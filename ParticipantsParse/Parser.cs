@@ -52,7 +52,7 @@ namespace ParticipantsParse
             _logger.Info($"Parser has been started");
 
             //Определяет общее количетво участников государственных закупок на текущий момент
-            Total = JsonSerializer.Deserialize<MainResponseParticipants>(GetPageResponse(Configuration.Url)).total;
+            Total = JsonSerializer.Deserialize<MainResponse>(GetPageResponse(Configuration.Url)).total;
             _logger.Info($"Total participants: |{Total}|");
 
             //Начало скачивания всех участников из api в отдельном потоке
@@ -93,11 +93,11 @@ namespace ParticipantsParse
                     Thread.Sleep(250);
 
 
-                MainResponseParticipants mainResponse;
+                MainResponse mainResponse;
                 try
                 {
                     var response = GetPageResponse(nextUrl);
-                    mainResponse = JsonSerializer.Deserialize<MainResponseParticipants>(response);
+                    mainResponse = JsonSerializer.Deserialize<MainResponse>(response);
                 }
                 catch (WebException e)
                 {

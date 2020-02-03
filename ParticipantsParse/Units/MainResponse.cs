@@ -10,7 +10,7 @@
 @brief Класс для создания объектов возвращаемых api после запроса
      
     */
-    public class MainResponseParticipants
+    public class MainResponse
     {
         public int total { get; set; }
         public int limit { get; set; }

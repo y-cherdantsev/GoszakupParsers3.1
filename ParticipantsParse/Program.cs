@@ -11,7 +11,7 @@
 - @ref ParticipantsParse.Configuration Глобальный статический класс конфигураций
 - @ref ParticipantsParse.Units.Participant Класс для создания объектов участников
 - @ref ParticipantsParse.Units.ParticipantDb Класс для преобразования типов и выгрузки в БД
-- @ref ParticipantsParse.Units.MainResponseParticipants Класс для создания объектов возвращаемых api после запроса
+- @ref ParticipantsParse.Units.MainResponse Класс для создания объектов возвращаемых api после запроса
 - @ref NLog.config Настройки логгера
 - @ref Configuration.json Файл с настройками парсера
 */
