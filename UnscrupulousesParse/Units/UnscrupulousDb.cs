@@ -1,7 +1,7 @@
 ﻿using System;
 using NpgsqlTypes;
 
-namespace ParticipantsParse.Units
+namespace UnscrupulousesParse.Units
 {
 /*!
 @author Yevgeniy Cherdantsev

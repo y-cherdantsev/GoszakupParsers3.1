@@ -8,8 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using NLog;
 using Npgsql;
-using ParticipantsParse.Units;
 using UnscrupulousesParse.Database;
+using UnscrupulousesParse.Units;
 
 namespace UnscrupulousesParse
 {

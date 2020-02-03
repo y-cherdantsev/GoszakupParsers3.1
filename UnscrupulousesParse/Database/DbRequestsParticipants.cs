@@ -2,7 +2,7 @@
 using System.Linq;
 using NLog;
 using Npgsql;
-using ParticipantsParse.Units;
+using UnscrupulousesParse.Units;
 
 namespace UnscrupulousesParse.Database
 {

@@ -1,6 +1,6 @@
 ﻿﻿using System.Collections.Generic;
 
- namespace ParticipantsParse.Units
+ namespace UnscrupulousesParse.Units
 {
 /*!
 

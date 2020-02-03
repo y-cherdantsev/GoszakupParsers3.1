@@ -9,8 +9,8 @@
 - @ref UnscrupulousesParse.Parser Класс парсинга недобросовестных участников
 - @ref UnscrupulousesParse.Units Объекты недобросовестных участников
 - @ref UnscrupulousesParse.Configuration Глобальный статический класс конфигураций
-- @ref UnscrupulousesParse.Units.Unscrupulouse Класс для создания объектов недобросовестных участников
-- @ref UnscrupulousesParse.Units.UnscrupulouseDb Класс для преобразования типов и выгрузки в БД
+- @ref UnscrupulousesParse.Units.Unscrupulous Класс для создания объектов недобросовестных участников
+- @ref UnscrupulousesParse.Units.UnscrupulousDb Класс для преобразования типов и выгрузки в БД
 - @ref UnscrupulousesParse.Units.MainResponse Класс для создания объектов возвращаемых api после запроса
 - @ref NLog.config Настройки логгера
 - @ref Configuration.json Файл с настройками парсера

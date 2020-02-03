@@ -1,4 +1,4 @@
-﻿﻿ namespace ParticipantsParse.Units
+﻿﻿ namespace UnscrupulousesParse.Units
 {
     /*!
 
