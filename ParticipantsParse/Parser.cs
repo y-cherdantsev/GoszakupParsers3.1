@@ -41,28 +41,11 @@ namespace ParticipantsParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 27.11.2019 15:13:11
+@date 03.02.2020 17:42:27
 @version 1.0
 @brief Парсер собственной персоной
 @throw Exeption - непредвиденные исключения
 
-@code
-    
-    //Начало скачивания всех участников из api в отдельном потоке
-    Task.Run(ParseApi);
-    
-    //Создание и запуск потоков обработки всех участников из уже загруженных
-    var tasks = new Task[Configuration.NumberOfDbConnections];
-
-    for (var i = 0; i < tasks.Length; i++)
-        tasks[i] = Task.Run(ProcessParticipants);
-        _logger.Info("All threads has been started");
-            
-    //Ожидание окончания работы всех потоков обработки
-    Task.WaitAll(tasks);
-    
-@endcode
-     
      */
         public void Parse()
         {
@@ -93,7 +76,7 @@ namespace ParticipantsParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 27.11.2019 15:20:31
+@date 03.02.2020 17:42:27
 @version 1.0
 @brief Скачивает всех участников госзакупа используя api
 @throw WebException - непредвиденное сетевое исключение не являющаяся потерью соединения
@@ -118,12 +101,12 @@ namespace ParticipantsParse
                 }
                 catch (WebException e)
                 {
-                    // if (e.Status == WebExceptionStatus.ProtocolError) break;
                     if (e.Status != WebExceptionStatus.NameResolutionFailure) throw;
                     _logger.Debug("Lost connection, waiting for reconnecting");
                     Thread.Sleep(5000);
                     continue;
                 }
+                //Если не может распарсить JSON, значит что это была последняя страница
                 catch (JsonException)
                 {
                     break;
@@ -143,49 +126,23 @@ namespace ParticipantsParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 27.11.2019 15:24:13
+@date 03.02.2020 17:44:13
 @version 1.0
 @brief Обработка участников из скачанного списка
 @throw Exception - непредвиденное исключение
-     
-@code
 
-    //Работает пока список не обнулится и загрузка из api не закончится
-     while (_loadedParticipants.Count != 0 || !LoadedAll)
-        ...
-        
-    //Лочит использование списка участников, копирует нулевого участника забирая на обработку и удаляет его из общего списка    
-    lock (_loadedParticipants)
-        {
-            if (_loadedParticipants.Count == 0)
-                continue;
-
-            participant = _loadedParticipants[0];
-            _loadedParticipants.RemoveAt(0);
-        }
-        
-    //Обнуляет переменную при успешной обработке участника
-    if (ProcessParticipant(participant)) participant = null;
-    
-    
-    //Ожидает наполнение списка при условии, что весь список уже обработан, а новые участники еще не загрузились из сети
-    catch (NullReferenceException e)
-        {
-            Thread.Sleep(60);
-        }
-    
-@endcode
-     
      */
         private void ProcessParticipants()
         {
             using (var connection = Configuration.GetNewConnection())
             {
+                //Работает пока список не обнулится и загрузка из api не закончится
                 while (LoadedParticipants.Count != 0 || !LoadedAll)
                 {
                     Participant participant = null;
                     try
                     {
+                        //Лочит использование списка участников, копирует нулевого участника забирая на обработку и удаляет его из общего списка 
                         lock (LoadedParticipants)
                         {
                             if (LoadedParticipants.Count == 0)
@@ -229,11 +186,10 @@ namespace ParticipantsParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 27.11.2019 15:28:42
+@date 03.02.2020 17:44:13
 @version 1.0
 @brief Обработка участника (загрузка или обновление участника в базе данных)
 @param[in] - participant - Участник
-@return bool - true если успешно обработан, false - если возникли какие-либо ошибки
 @throw Exception - непредвиденное исключение
      
      */
@@ -250,7 +206,7 @@ namespace ParticipantsParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 27.11.2019 15:35:10
+@date 03.02.2020 17:44:13
 @version 1.0
 @brief Возвращает страницу api со списком участников
 @param[in] url - сылка на следущую страницу api

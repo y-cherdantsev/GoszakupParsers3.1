@@ -10,7 +10,7 @@ namespace ParticipantsParse.Database
 @author Yevgeniy Cherdantsev
 @date 03.12.2019 18:46:18
 @version 1.0
-@brief Работа с таблицами участников госзакупа
+@brief Работа с таблицей участников госзакупа
     
     */
     public static class DbRequestsParticipants
@@ -30,14 +30,6 @@ namespace ParticipantsParse.Database
 @brief Добавляет нового участника в таблицу
 @param[in] participant - участник
 @param[in] connection - соединение с базой данных
-@throw Exception - непредвиденное исключение
-     
-@code
-
-//Сначала проверяет есть ли изменения с предыдущей записью и записывает предыдущую запись в историю если есть
-AddToHistory(participant, connection);
-
-@endcode
 
      */
         public static void AddParticipant(ParticipantDb participant, NpgsqlConnection connection)

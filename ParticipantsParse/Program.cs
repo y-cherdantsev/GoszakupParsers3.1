@@ -1,17 +1,17 @@
-﻿/**
-@mainpage Приложение для парсинга владельцев неблагонадежных компаний
+﻿// ReSharper disable once InvalidXmlDocComment
+/**
+@mainpage Приложение для парсинга участников источника https://www.goszakup.gov.kz/
 
 Состоит из следующих частей:
-- @ref GoszakupParticipantsParse.Program Запуск парсера
-- @ref GoszakupParticipantsParse.Database Классы для работы с базами данных
-- @ref GoszakupParticipantsParse.Database.DbRequestsParticipants Класс для работы с таблицами участников госзакупа
-- @ref GoszakupParticipantsParse.Parse.ParticipantsParser Класс парсинга участников
-- @ref GoszakupParticipantsParse.Units.Settings Статические переменные и настройки парсера
-- @ref GoszakupParticipantsParse.Units.Settings.Constants Глобальный статический класс
-- @ref GoszakupParticipantsParse.Units.Settings.Configuration Класс конфигураций
-- @ref GoszakupParticipantsParse.Units.Participant Классы отображающие свойства участников
-- @ref GoszakupParticipantsParse.Units.Participant.Participant Класс для создания объектов участников
-- @ref GoszakupParticipantsParse.Units.Participant.MainResponseParticipants Класс для создания объектов возвращаемых api после запроса
+- @ref ParticipantsParse.Program Запуск парсера
+- @ref ParticipantsParse.Database Классы для работы с базами данных
+- @ref ParticipantsParse.Database.DbRequestsParticipants Класс для работы с таблицей участников госзакупа
+- @ref ParticipantsParse.Parser Класс парсинга участников
+- @ref ParticipantsParse.Units Объекты участников
+- @ref ParticipantsParse.Configuration Глобальный статический класс конфигураций
+- @ref ParticipantsParse.Units.Participant Класс для создания объектов участников
+- @ref ParticipantsParse.Units.ParticipantDb Класс для преобразования типов и выгрузки в БД
+- @ref ParticipantsParse.Units.MainResponseParticipants Класс для создания объектов возвращаемых api после запроса
 - @ref NLog.config Настройки логгера
 - @ref Configuration.json Файл с настройками парсера
 */

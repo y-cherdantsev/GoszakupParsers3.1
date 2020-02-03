@@ -24,17 +24,27 @@
     {
         
         private static Logger Logger { get; set; } /*!< Логгер текущего класса */
-        internal static string DbHost { get; set; }
-        internal static string DbPort { get; set; }
-        internal static string DbUserName { get; set; }
-        internal static string DbPassword { get; set; }
-        internal static string DbName { get; set; }
-        internal static string DbScheme { get; set; }
-        internal static string DbParticipants { get; set; }
-        internal static int NumberOfDbConnections { get; set; }
-        internal static string Url { get; set; }
-        internal static string AuthToken { get; set; }
-        
+        internal static string DbHost { get; set; } /*!< Хост БД */
+        internal static string DbPort { get; set; } /*!< Порт БД */
+        internal static string DbUserName { get; set; } /*!< Имя пользователя БД */
+        internal static string DbPassword { get; set; } /*!< Пароль пользователя БД */
+        internal static string DbName { get; set; } /*!< Имя БД */
+        internal static string DbScheme { get; set; } /*!< Имя схемы БД */
+        internal static string DbParticipants { get; set; } /*!< Имя таблицы участников гос. закупа */
+        internal static int NumberOfDbConnections { get; set; } /*!< Количество соединений с БД */
+        internal static string Url { get; set; } /*!< URL API */
+        internal static string AuthToken { get; set; } /*!< окен авторизации API */
+
+
+        /*!
+
+@author Yevgeniy Cherdantsev
+@date 03.02.2020 17:56:29
+@version 1.0
+@brief Загрузка всех конфигураций
+@throw Exception - непредвиденные исключение
+     
+     */
         public static void LoadConfiguration()
         {
             
@@ -70,6 +80,16 @@
             
             
         }
+
+        /*!
+
+@author Yevgeniy Cherdantsev
+@date 03.02.2020 17:57:03
+@version 1.0
+@brief Создает и возвращает соединение с БД
+@return NpgsqlConnection - соединение с БД
+     
+     */
         
         public static NpgsqlConnection GetNewConnection()
         {
