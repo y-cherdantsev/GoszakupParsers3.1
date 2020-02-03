@@ -24,7 +24,12 @@ var NAVTREE =
 [
   [ "Goszakup Participants Parse", "index.html", [
     [ "Приложение для парсинга участников источника https://www.goszakup.gov.kz/", "index.html", null ],
-    [ "README", "md__r_e_a_d_m_e.html", null ],
+    [ "ParticipantsParse", "md__r_e_a_d_m_e.html", [
+      [ "Details", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "Libraries", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
+      [ "Versioning", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
+      [ "Authors", "md__r_e_a_d_m_e.html#autotoc_md5", null ]
+    ] ],
     [ "Пакеты", "namespaces.html", [
       [ "Пакеты", "namespaces.html", "namespaces_dup" ]
     ] ],

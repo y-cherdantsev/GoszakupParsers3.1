@@ -1,8 +1,8 @@
 var searchData=
 [
   ['main_37',['Main',['../class_participants_parse_1_1_program.html#af097187c6c1b272ee9c2ed651b7e6d94',1,'ParticipantsParse::Program']]],
-  ['mainresponseparticipants_38',['MainResponseParticipants',['../class_participants_parse_1_1_units_1_1_main_response_participants.html',1,'ParticipantsParse::Units']]],
-  ['mainresponseparticipants_2ecs_39',['MainResponseParticipants.cs',['../_main_response_participants_8cs.html',1,'']]],
+  ['mainresponse_38',['MainResponse',['../class_participants_parse_1_1_units_1_1_main_response.html',1,'ParticipantsParse::Units']]],
+  ['mainresponse_2ecs_39',['MainResponse.cs',['../_main_response_8cs.html',1,'']]],
   ['mark_5fassoc_5fwith_5fdisab_40',['mark_assoc_with_disab',['../class_participants_parse_1_1_units_1_1_participant.html#a4adad213155d93f0a624381489aec1dc',1,'ParticipantsParse.Units.Participant.mark_assoc_with_disab()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#a72ac5a4bc0a805b81ff3592440de6004',1,'ParticipantsParse.Units.ParticipantDb.mark_assoc_with_disab()']]],
   ['mark_5fnational_5fcompany_41',['mark_national_company',['../class_participants_parse_1_1_units_1_1_participant.html#a2eb0f530389f9da8644a1f13c1127b77',1,'ParticipantsParse.Units.Participant.mark_national_company()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#aeed955889850638b335af8bf0b7575c4',1,'ParticipantsParse.Units.ParticipantDb.mark_national_company()']]],
   ['mark_5fnatural_5fmonopoly_42',['mark_natural_monopoly',['../class_participants_parse_1_1_units_1_1_participant.html#a5f159f95079da187817a434d068fdd48',1,'ParticipantsParse.Units.Participant.mark_natural_monopoly()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#ac136b7b9a4bb06aca7f5a58e289d1ad5',1,'ParticipantsParse.Units.ParticipantDb.mark_natural_monopoly()']]],
