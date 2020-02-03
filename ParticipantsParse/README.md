@@ -1,4 +1,4 @@
-﻿﻿# ParticipantsParse
+﻿# ParticipantsParse
 
 ## Details
 
@@ -17,11 +17,11 @@
 * Microsoft.Extensions.Configuration.Json
 
 ## Versioning
-####Last versions:
+#### Last versions:
 0.1 [03.02.2020] - First release
 
 
-######Older versions:
+###### Older versions:
 
 ## Authors
 
