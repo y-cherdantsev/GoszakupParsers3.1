@@ -172,6 +172,11 @@ namespace ParticipantsParse
                         _logger.Error(
                             $"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|; [Connection State]: |{connection.State}|;");
                     }
+                    catch (NullReferenceException e)
+                    {
+                        if (participant != null)
+                            _logger.Warn($"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
+                    }
                     catch (Exception e)
                     {
                         _logger.Fatal(
