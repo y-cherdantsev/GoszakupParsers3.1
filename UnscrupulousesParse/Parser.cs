@@ -32,7 +32,11 @@ namespace UnscrupulousesParse
         private static bool LoadedAll { get; set; } /*!< Флаг конца скачивания недобросовестных участников через api  */
 
         private static int
-            TotalProceed { get; set; } /*!< Всего обработано недобросовестных участников (загружено в базу, обновлено и т.д.)*/
+            TotalProceed
+        {
+            get;
+            set;
+        } /*!< Всего обработано недобросовестных участников (загружено в базу, обновлено и т.д.)*/
 
         private static readonly List<Unscrupulous>
             LoadedUnscrupulouses = new List<Unscrupulous>(); /*!< Список недобросовестных участников для обработки */
@@ -172,10 +176,14 @@ namespace UnscrupulousesParse
                         _logger.Error(
                             $"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|; [Connection State]: |{connection.State}|;");
                     }
+                    catch (NullReferenceException e)
+                    {
+                        if (unscrupulous != null)
+                            _logger.Warn($"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
+                    }
                     catch (Exception e)
                     {
-                        _logger.Fatal(
-                            $"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
+                        _logger.Fatal($"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
                         throw;
                     }
                 }
