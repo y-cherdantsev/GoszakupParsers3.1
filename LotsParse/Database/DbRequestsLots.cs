@@ -93,8 +93,10 @@ namespace LotsParse.Database
                                         "@index_date, " +
                                         "@system_id, " +
                                         "@single_org_sign " +
-                                        ") ON CONFLICT (id) DO UPDATE SET " +
-                                        $"relevance = CURRENT_TIMESTAMP",
+                                        ") " +
+                                        // "ON CONFLICT (id) DO UPDATE SET " +
+                                        "ON CONFLICT (id) DO NOTHING ",
+                                        // $"relevance = CURRENT_TIMESTAMP",
                 connection);
 
             cmd.Parameters.AddWithValue("@id", lot.id);

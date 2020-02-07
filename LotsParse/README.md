@@ -1,5 +1,5 @@
 ﻿# LotsParse
-9
+
 ## Details
 
 Парсер лотов ресурса 'https://www.goszakup.gov.kz/'
