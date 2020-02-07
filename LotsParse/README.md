@@ -18,7 +18,7 @@
 
 ## Versioning
 #### Last version:
-
+0.1 [07.02.2020] - First release
 
 
 ###### Older versions:
