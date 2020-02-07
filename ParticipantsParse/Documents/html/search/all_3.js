@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['configuration_4',['Configuration',['../class_participants_parse_1_1_configuration.html',1,'ParticipantsParse']]],
-  ['configuration_2ecs_5',['Configuration.cs',['../_configuration_8cs.html',1,'']]],
-  ['country_5fcode_6',['country_code',['../class_participants_parse_1_1_units_1_1_participant.html#a4cb2823a2ef1ab3db7171334b0de8242',1,'ParticipantsParse.Units.Participant.country_code()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#ad2040c615e66024cfa92a700fcd05d96',1,'ParticipantsParse.Units.ParticipantDb.country_code()']]],
-  ['crdate_7',['crdate',['../class_participants_parse_1_1_units_1_1_participant.html#a2e957cbbae0e55b4f90f7a8c477ef607',1,'ParticipantsParse.Units.Participant.crdate()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#af69d85d18ca943ea2dec30863d3d6dd5',1,'ParticipantsParse.Units.ParticipantDb.crdate()']]],
-  ['customer_8',['customer',['../class_participants_parse_1_1_units_1_1_participant.html#a51c5fa1f9915a3f7c120a89d1303a5e3',1,'ParticipantsParse.Units.Participant.customer()'],['../class_participants_parse_1_1_units_1_1_participant_db.html#a30730d4e583f14c709047a602a42c005',1,'ParticipantsParse.Units.ParticipantDb.customer()']]]
+  ['dbhost_4',['DbHost',['../class_participants_parse_1_1_configuration.html#a182ca8f17ced4a7b85b2d2b6e4edbd3d',1,'ParticipantsParse::Configuration']]],
+  ['dbname_5',['DbName',['../class_participants_parse_1_1_configuration.html#a44d09acc0d3d7e4d1dba65be159a9cd4',1,'ParticipantsParse::Configuration']]],
+  ['dbparticipants_6',['DbParticipants',['../class_participants_parse_1_1_configuration.html#ab4bb29c6aae2b4630431d4623ea56d84',1,'ParticipantsParse::Configuration']]],
+  ['dbpassword_7',['DbPassword',['../class_participants_parse_1_1_configuration.html#a792f3d5e190dc427cba18172f934d840',1,'ParticipantsParse::Configuration']]],
+  ['dbport_8',['DbPort',['../class_participants_parse_1_1_configuration.html#a8998d04e6f4a3386c44279474f5f4b24',1,'ParticipantsParse::Configuration']]],
+  ['dbrequestsparticipants_9',['DbRequestsParticipants',['../class_participants_parse_1_1_database_1_1_db_requests_participants.html',1,'ParticipantsParse::Database']]],
+  ['dbscheme_10',['DbScheme',['../class_participants_parse_1_1_configuration.html#a8e14bbe5794c3a2988e65480dfc10f69',1,'ParticipantsParse::Configuration']]],
+  ['dbusername_11',['DbUserName',['../class_participants_parse_1_1_configuration.html#a97c4998feb2bb0481d3555cefd8ffe93',1,'ParticipantsParse::Configuration']]]
 ];
