@@ -22,7 +22,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "Goszakup Unscrupulouses Parse", "index.html", [
+  [ "Unscrupulouses Parser", "index.html", [
     [ "Приложение для парсинга недобросовестных участников источника https://www.goszakup.gov.kz/", "index.html", null ],
     [ "UnscrupulousesParse", "md__r_e_a_d_m_e.html", [
       [ "Details", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
@@ -42,20 +42,13 @@ var NAVTREE =
         [ "Переменные", "functions_vars.html", null ],
         [ "Свойства", "functions_prop.html", null ]
       ] ]
-    ] ],
-    [ "Файлы", "files.html", [
-      [ "Файлы", "files.html", "files_dup" ],
-      [ "Список членов всех файлов", "globals.html", [
-        [ "Указатель", "globals.html", null ],
-        [ "Переменные", "globals_vars.html", null ]
-      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_configuration_8cs.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

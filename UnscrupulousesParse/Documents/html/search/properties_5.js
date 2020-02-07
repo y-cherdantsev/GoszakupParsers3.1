@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pid_107',['pid',['../class_unscrupulouses_parse_1_1_units_1_1_unscrupulous.html#adfe5e11587cddee35c2a7be68164f84e',1,'UnscrupulousesParse.Units.Unscrupulous.pid()'],['../class_unscrupulouses_parse_1_1_units_1_1_unscrupulous_db.html#a229a759cddfc823a609c63dd4409ea6f',1,'UnscrupulousesParse.Units.UnscrupulousDb.pid()']]]
+  ['unscrupulousestable_75',['UnscrupulousesTable',['../class_unscrupulouses_parse_1_1_database_1_1_db_requests_unscrupulouses.html#a8d622b96ac3bb9dc3c1d5671533e3706',1,'UnscrupulousesParse::Database::DbRequestsUnscrupulouses']]],
+  ['url_76',['Url',['../class_unscrupulouses_parse_1_1_configuration.html#a03b9b9bc69c3823f65a4e2d38d5360d0',1,'UnscrupulousesParse::Configuration']]]
 ];

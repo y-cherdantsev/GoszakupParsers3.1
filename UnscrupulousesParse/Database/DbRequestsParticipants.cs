@@ -78,7 +78,7 @@ namespace UnscrupulousesParse.Database
             }
             catch (Exception e)
             {
-                var parameters = cmd.Statements[0].InputParameters.Aggregate("\n", (current, npgsqlParameter) => current + $"{npgsqlParameter.ParameterName}:{npgsqlParameter.Value}\n");
+                var parameters = cmd.Statements[0].InputParameters.Aggregate("\n", (current, npgsqlParameter) => current + $"{npgsqlParameter.ParameterName}:'{npgsqlParameter.Value}'\n");
                 Logger.Fatal(
                     $"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|; [Command]: |{cmd.Statements[0].SQL}|; [Parameters]: |{parameters}|");
                 Environment.Exit(1);

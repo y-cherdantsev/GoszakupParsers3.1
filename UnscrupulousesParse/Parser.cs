@@ -55,7 +55,7 @@ namespace UnscrupulousesParse
         {
             _logger.Info($"Parser has been started");
 
-            //Определяет общее количетво недобросовестных участников государственных закупок на текущий момент
+            //Определяет общее количество недобросовестных участников государственных закупок на текущий момент
             Total = JsonSerializer.Deserialize<MainResponse>(GetPageResponse(Configuration.Url)).total;
             _logger.Info($"Total unscrupulouses: |{Total}|");
 

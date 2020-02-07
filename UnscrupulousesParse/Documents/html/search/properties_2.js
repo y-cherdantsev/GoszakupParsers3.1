@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['index_5fdate_100',['index_date',['../class_unscrupulouses_parse_1_1_units_1_1_unscrupulous.html#a2cb9ac50d4b2fe162d196082910c89e1',1,'UnscrupulousesParse.Units.Unscrupulous.index_date()'],['../class_unscrupulouses_parse_1_1_units_1_1_unscrupulous_db.html#a03a16ec67148d627456692833833127e',1,'UnscrupulousesParse.Units.UnscrupulousDb.index_date()']]],
-  ['items_101',['items',['../class_unscrupulouses_parse_1_1_units_1_1_main_response.html#a3730cc48d84794faf26250ee44982064',1,'UnscrupulousesParse::Units::MainResponse']]]
+  ['loadedall_69',['LoadedAll',['../class_unscrupulouses_parse_1_1_parser.html#a26cd7455cd010381569ffddd95cdac2e',1,'UnscrupulousesParse::Parser']]],
+  ['logger_70',['Logger',['../class_unscrupulouses_parse_1_1_configuration.html#a8851ce2502b0080480c3cebffe205c06',1,'UnscrupulousesParse.Configuration.Logger()'],['../class_unscrupulouses_parse_1_1_program.html#ad3a54768cc547d1297dae82bd70566ac',1,'UnscrupulousesParse.Program.Logger()']]]
 ];

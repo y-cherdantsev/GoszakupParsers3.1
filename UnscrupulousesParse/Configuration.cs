@@ -30,7 +30,7 @@ namespace UnscrupulousesParse
         internal static string DbPassword { get; set; } /*!< Пароль пользователя БД */
         internal static string DbName { get; set; } /*!< Имя БД */
         internal static string DbScheme { get; set; } /*!< Имя схемы БД */
-        internal static string DbUnscrupulouses { get; set; } /*!< Имя таблицы участников гос. закупа */
+        internal static string DbUnscrupulouses { get; set; } /*!< Имя таблицы недобросовестных участников гос. закупа */
         internal static int NumberOfDbConnections { get; set; } /*!< Количество соединений с БД */
         internal static string Url { get; set; } /*!< URL API */
         internal static string AuthToken { get; set; } /*!< окен авторизации API */
@@ -50,7 +50,7 @@ namespace UnscrupulousesParse
             
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Title = "Goszakup Participants Parse";
+            Console.Title = "Goszakup Unscrupulous Parse";
             
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
             

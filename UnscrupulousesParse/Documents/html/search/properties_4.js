@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['next_5fpage_105',['next_page',['../class_unscrupulouses_parse_1_1_units_1_1_main_response.html#ae715b936a4bad76e7aa0749caa681bb4',1,'UnscrupulousesParse::Units::MainResponse']]],
-  ['numberofdbconnections_106',['NumberOfDbConnections',['../class_unscrupulouses_parse_1_1_configuration.html#aae06eddb7ac8c524879cb7bd42593812',1,'UnscrupulousesParse::Configuration']]]
+  ['total_72',['Total',['../class_unscrupulouses_parse_1_1_parser.html#ab5c3bd29dd8c30aa604d4326b99a370b',1,'UnscrupulousesParse::Parser']]],
+  ['totalloaded_73',['TotalLoaded',['../class_unscrupulouses_parse_1_1_parser.html#a96d1374b02bfbf28d333c3e688d95dcd',1,'UnscrupulousesParse::Parser']]],
+  ['totalproceed_74',['TotalProceed',['../class_unscrupulouses_parse_1_1_parser.html#ac1cb4c646fcf5be6bda0d048198f24dc',1,'UnscrupulousesParse::Parser']]]
 ];
