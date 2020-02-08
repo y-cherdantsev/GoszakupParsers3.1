@@ -17,6 +17,8 @@
 */
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using NLog;
 
 namespace LotsParse
@@ -56,7 +58,26 @@ namespace LotsParse
             var parser = new Parser();
             try
             {
-                parser.Parse();
+                while (true)
+                {
+                    var tokenSource = new CancellationTokenSource();
+                    var token = tokenSource.Token;
+                    var task = new Task(parser.Parse, token);
+                    task.Start();
+
+                    var loaded = -1;
+                    while (loaded != Parser.TotalLoaded)
+                    {
+                        loaded = Parser.TotalLoaded;
+                        Thread.Sleep(15000);
+                    }
+
+                    if (Parser.LoadedAll)
+                        break;
+                    Thread.Sleep(15000);
+                    tokenSource.Cancel();
+                    Logger.Warn($"Restarting parsing process at {Parser.TotalLoaded}");
+                }
             }
             catch (Exception e)
             {

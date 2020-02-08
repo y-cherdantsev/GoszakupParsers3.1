@@ -25,11 +25,11 @@ namespace LotsParse
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); /*!< Логгер текущего класса */
 
-        private static int TotalLoaded { get; set; } /*!< Всего скачано лотов с api */
+        public static int TotalLoaded { get; set; } /*!< Всего скачано лотов с api */
 
         private static int Total { get; set; } /*!< Всего лотов на обработку */
 
-        private static bool LoadedAll { get; set; } /*!< Флаг конца скачивания лотов через api  */
+        public static bool LoadedAll { get; set; } /*!< Флаг конца скачивания лотов через api  */
 
         private static int
             TotalProceed { get; set; } /*!< Всего обработано лотов (загружено в базу, обновлено и т.д.)*/
@@ -85,7 +85,6 @@ namespace LotsParse
      */
         private void ParseApi()
         {
-            var nextUrl = Configuration.Url;
             while (true)
             {
                 //Защита от переполнения памяти
@@ -96,7 +95,7 @@ namespace LotsParse
                 MainResponse mainResponse;
                 try
                 {
-                    var response = GetPageResponse(nextUrl);
+                    var response = GetPageResponse(Configuration.Url);
                     mainResponse = JsonSerializer.Deserialize<MainResponse>(response);
                 }
                 catch (WebException e)
@@ -112,7 +111,7 @@ namespace LotsParse
                     break;
                 }
 
-                nextUrl = mainResponse.next_page;
+                Configuration.Url = mainResponse.next_page;
 
                 LoadedLots.AddRange(mainResponse.items);
 

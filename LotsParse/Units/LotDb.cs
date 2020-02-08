@@ -45,15 +45,6 @@ namespace LotsParse.Units
             customer_name_ru = lot.customer_name_ru;
             ref_trade_methods_id = lot.ref_trade_methods_id;
             system_id = lot.system_id;
-            
-            
-            //TODO(DELETE NEXT BLOCK)
-            {
-                if (lot.dumping != 0 && lot.dumping != 1)
-                    throw new Exception("dumping");
-                if (lot.consulting_services != 0 && lot.consulting_services != 1)
-                    throw new Exception("consulting_services");
-            }
         }
         
         public int id { get; set; }
