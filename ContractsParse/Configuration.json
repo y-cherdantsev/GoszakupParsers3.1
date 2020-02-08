@@ -1,0 +1,14 @@
+﻿{
+  "Configuration": {
+    "DbHost": "localhost",
+    "DbPort": "5432",
+    "DbUserName": "postgres",
+    "DbPassword": "toor",
+    "DbName": "new_database",
+    "DbScheme": "new_goszakup",
+    "DbContracts": "contracts_goszakup",
+    "NumberOfDbConnections": "1",
+    "Url": "v3/contract/all",
+    "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea"
+  }
+}
