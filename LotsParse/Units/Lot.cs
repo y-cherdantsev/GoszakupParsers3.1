@@ -10,7 +10,6 @@
     */
     public class Lot
     {
-        //TODO()
         public int id { get; set; }
         public string lot_number { get; set; } = "";
         public int ref_lot_status_id { get; set; }

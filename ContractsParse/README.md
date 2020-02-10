@@ -1,11 +1,11 @@
-﻿# LotsParse
+﻿# ContractsParse
 
 ## Details
 
-Парсер лотов ресурса 'https://www.goszakup.gov.kz/'
+Парсер договоров ресурса 'https://www.goszakup.gov.kz/'
 
 ```
-Время работы: ~220 минут
+Время работы: (unknown)
 Количество одновременных подключений к БД: зависит от конфигурации (1 достаточно для быстрой работы)
 ```
 
@@ -18,7 +18,6 @@
 
 ## Versioning
 #### Last version:
-0.1 [07.02.2020] - First release
 
 
 ###### Older versions:

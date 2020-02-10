@@ -6,17 +6,16 @@ using System.Net.Security;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ContractsParse.Units;
 using NLog;
 using Npgsql;
-using UnscrupulousesParse.Database;
-using UnscrupulousesParse.Units;
 
-namespace UnscrupulousesParse
+namespace ContractsParse
 {
     /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 16:36:34
+@date 08.02.2020 14:49:05
 @version 1.0
 @brief Парсер
     
@@ -25,27 +24,23 @@ namespace UnscrupulousesParse
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); /*!< Логгер текущего класса */
 
-        private static int TotalLoaded { get; set; } /*!< Всего скачано недобросовестных участников с api */
+        public static int TotalLoaded { get; set; } /*!< Всего скачано договоров с api */
 
-        private static int Total { get; set; } /*!< Всего недобросовестных участников на обработку */
+        private static int Total { get; set; } /*!< Всего договоров на обработку */
 
-        private static bool LoadedAll { get; set; } /*!< Флаг конца скачивания недобросовестных участников через api  */
+        public static bool LoadedAll { get; set; } /*!< Флаг конца скачивания договоров через api  */
 
         private static int
-            TotalProceed
-        {
-            get;
-            set;
-        } /*!< Всего обработано недобросовестных участников (загружено в базу, обновлено и т.д.)*/
+            TotalProceed { get; set; } /*!< Всего обработано договоров (загружено в базу, обновлено и т.д.)*/
 
-        private static readonly List<Unscrupulous>
-            LoadedUnscrupulouses = new List<Unscrupulous>(); /*!< Список недобросовестных участников для обработки */
+        private static readonly List<Contract>
+            LoadedContracts = new List<Contract>(); /*!< Список договоров для обработки */
 
 
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:42:27
+@date 08.02.2020 14:49:05
 @version 1.0
 @brief Парсер собственной персоной
 @throw Exeption - непредвиденные исключения
@@ -55,18 +50,18 @@ namespace UnscrupulousesParse
         {
             _logger.Info($"Parser has been started");
 
-            //Определяет общее количество недобросовестных участников государственных закупок на текущий момент
+            //Определяет общее количество договоров государственных закупок на текущий момент
             Total = JsonSerializer.Deserialize<MainResponse>(GetPageResponse(Configuration.Url)).total;
-            _logger.Info($"Total unscrupulouses: |{Total}|");
+            _logger.Info($"Total contracts: |{Total}|");
 
-            //Начало скачивания всех недобросовестных участников из api в отдельном потоке
+            //Начало скачивания всех договоров из api в отдельном потоке
             Task.Run(ParseApi);
 
-            //Создание и запуск потоков обработки всех недобросовестных участников из уже загруженных
+            //Создание и запуск потоков обработки всех договоров из уже загруженных
             var tasks = new Task[Configuration.NumberOfDbConnections];
 
             for (var i = 0; i < tasks.Length; i++)
-                tasks[i] = Task.Run(ProcessUnscrupulous);
+                tasks[i] = Task.Run(ProcessContracts);
             _logger.Info("All threads has been started");
 
             //Ожидание окончания работы всех потоков обработки
@@ -80,27 +75,27 @@ namespace UnscrupulousesParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:42:27
+@date 08.02.2020 14:49:05
 @version 1.0
-@brief Скачивает всех недобросовестных участников госзакупа используя api
+@brief Скачивает всех договоров госзакупа используя api
 @throw WebException - непредвиденное сетевое исключение не являющаяся потерью соединения
 @throw Exception - непредвиденное исключение
      
      */
         private void ParseApi()
         {
-            var nextUrl = Configuration.Url;
             while (true)
             {
                 //Защита от переполнения памяти
                 while (TotalLoaded - TotalProceed > 5000)
                     Thread.Sleep(250);
 
+
                 var response = "";
                 MainResponse mainResponse;
                 try
                 {
-                    response = GetPageResponse(nextUrl);
+                    response = GetPageResponse(Configuration.Url);
                     mainResponse = JsonSerializer.Deserialize<MainResponse>(response);
                 }
                 catch (WebException e)
@@ -113,14 +108,19 @@ namespace UnscrupulousesParse
                 //Если не может распарсить JSON, значит что это была последняя страница
                 catch (JsonException)
                 {
-                    if (response.Contains("<!DOCTYPE html>"))
-                        break;
-                    throw;
+                    if (response != "")
+                    {
+                        if (response.Contains("<!DOCTYPE html>"))
+                            break;
+                        throw;
+                    }
+
+                    break;
                 }
 
-                nextUrl = mainResponse.next_page;
+                Configuration.Url = mainResponse.next_page;
 
-                LoadedUnscrupulouses.AddRange(mainResponse.items);
+                LoadedContracts.AddRange(mainResponse.items);
 
                 TotalLoaded += mainResponse.items.Count;
                 _logger.Trace($"Total Loaded: {TotalLoaded}");
@@ -132,37 +132,37 @@ namespace UnscrupulousesParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:44:13
+@date 08.02.2020 14:49:05
 @version 1.0
-@brief Обработка недобросовестных участников из скачанного списка
+@brief Обработка договоров из скачанного списка
 @throw Exception - непредвиденное исключение
 
      */
-        private void ProcessUnscrupulous()
+        private void ProcessContracts()
         {
             using (var connection = Configuration.GetNewConnection())
             {
                 //Работает пока список не обнулится и загрузка из api не закончится
-                while (LoadedUnscrupulouses.Count != 0 || !LoadedAll)
+                while (LoadedContracts.Count != 0 || !LoadedAll)
                 {
-                    Unscrupulous unscrupulous = null;
+                    Contract contract = null;
                     try
                     {
-                        //Лочит использование списка недобросовестных участников, копирует нулевого участника забирая на обработку и удаляет его из общего списка 
-                        lock (LoadedUnscrupulouses)
+                        //Лочит использование списка договоров, копирует нулевой договор забирая на обработку и удаляет его из общего списка 
+                        lock (LoadedContracts)
                         {
-                            if (LoadedUnscrupulouses.Count == 0)
+                            if (LoadedContracts.Count == 0)
                                 continue;
 
-                            unscrupulous = LoadedUnscrupulouses[0];
-                            LoadedUnscrupulouses.RemoveAt(0);
+                            contract = LoadedContracts[0];
+                            LoadedContracts.RemoveAt(0);
                         }
 
-                        ProcessParticipant(unscrupulous, connection);
+                        ProcessContract(contract, connection);
                     }
                     catch (NpgsqlException e)
                     {
-                        LoadedUnscrupulouses.Add(unscrupulous);
+                        LoadedContracts.Add(contract);
                         _logger.Debug("Lost connection to the database");
                         Thread.Sleep(5000);
                         try
@@ -180,12 +180,13 @@ namespace UnscrupulousesParse
                     }
                     catch (NullReferenceException e)
                     {
-                        if (unscrupulous != null)
+                        if (contract != null)
                             _logger.Warn($"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
                     }
                     catch (Exception e)
                     {
-                        _logger.Fatal($"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
+                        _logger.Fatal(
+                            $"[StackTrace]: |{e.StackTrace}|; [Message]: |{e.Message}|;");
                         throw;
                     }
                 }
@@ -196,19 +197,19 @@ namespace UnscrupulousesParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:44:13
+@date 08.02.2020 14:49:05
 @version 1.0
-@brief Обработка участника (загрузка или обновление участника в базе данных)
-@param[in] - unscrupulous - Участник
+@brief Обработка договора (загрузка или обновление договора в базе данных)
+@param[in] - contract - Лот
 @throw Exception - непредвиденное исключение
      
      */
-        private void ProcessParticipant(Unscrupulous unscrupulous, NpgsqlConnection connection)
+        private void ProcessContract(Contract contract, NpgsqlConnection connection)
         {
-            var unscrupulousDb = new UnscrupulousDb(unscrupulous);
-            DbRequestsUnscrupulouses.AddUnscrupulous(unscrupulousDb, connection);
+            // var contractDb = new ContractDb(contract);
+            // DbRequestsContracts.AddContract(contractDb, connection);
             TotalProceed++;
-            _logger.Trace($"Proceeding: {unscrupulousDb.supplier_name_ru}");
+            _logger.Trace($"Proceeding: {contract.description_ru}");
             _logger.Trace($"Total Proceed: {TotalProceed}");
         }
 
@@ -216,16 +217,16 @@ namespace UnscrupulousesParse
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:44:13
+@date 08.02.2020 14:49:05
 @version 1.0
-@brief Возвращает страницу api со списком недобросовестных участников
+@brief Возвращает страницу api со списком договоров
 @param[in] url - сылка на следущую страницу api
 @return Страница с json объектом
 @throw Exception - непредвиденное исключение
      
 @code
 
-    //?limit=500 возвращаемое количество недобросовестных участников после одного запроса
+    //?limit=500 возвращаемое количество договоров после одного запроса
      var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
      
 @endcode

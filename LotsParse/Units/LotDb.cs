@@ -8,7 +8,7 @@ namespace LotsParse.Units
 @author Yevgeniy Cherdantsev
 @date 31.01.2020 18:40:33
 @version 1.0
-@brief Объект участника с корректными типами данных 
+@brief Объект лота с корректными типами данных 
     
     */
 

@@ -1,16 +1,16 @@
-﻿﻿﻿using System;
-  using System.Text;
-  using Microsoft.Extensions.Configuration;
-  using NLog;
-  using NLog.Config;
-  using Npgsql;
+﻿using System;
+using System.Text;
+using Microsoft.Extensions.Configuration;
+using NLog;
+using NLog.Config;
+using Npgsql;
 
-  namespace ParticipantsParse
+namespace ContractsParse
 {
 /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 16:28:01
+@date 08.02.2020 14:41:31
 @version 1.0
 @brief Класс глобальных конфигураций и констант
      
@@ -30,7 +30,7 @@
         internal static string DbPassword { get; set; } /*!< Пароль пользователя БД */
         internal static string DbName { get; set; } /*!< Имя БД */
         internal static string DbScheme { get; set; } /*!< Имя схемы БД */
-        internal static string DbParticipants { get; set; } /*!< Имя таблицы участников гос. закупа */
+        internal static string DbContracts { get; set; } /*!< Имя таблицы договоров гос. закупа */
         internal static int NumberOfDbConnections { get; set; } /*!< Количество соединений с БД */
         internal static string Url { get; set; } /*!< URL API */
         internal static string AuthToken { get; set; } /*!< Токен авторизации API */
@@ -39,7 +39,7 @@
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:56:29
+@date 08.02.2020 14:41:31
 @version 1.0
 @brief Загрузка всех конфигураций
 @throw Exception - непредвиденные исключение
@@ -50,7 +50,7 @@
             
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Title = "Goszakup Participants Parse";
+            Console.Title = "Goszakup Lots Parse";
             
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
             
@@ -62,7 +62,7 @@
             DbPassword = getConfiguration["Configuration:DbPassword"];
             DbName = getConfiguration["Configuration:DbName"];
             DbScheme = getConfiguration["Configuration:DbScheme"];
-            DbParticipants = getConfiguration["Configuration:DbParticipants"];
+            DbContracts = getConfiguration["Configuration:DbContracts"];
             NumberOfDbConnections = Convert.ToInt32(getConfiguration["Configuration:NumberOfDbConnections"]);
             
             if (NumberOfDbConnections > 5)
@@ -84,7 +84,7 @@
         /*!
 
 @author Yevgeniy Cherdantsev
-@date 03.02.2020 17:57:03
+@date 08.02.2020 14:41:31
 @version 1.0
 @brief Создает и возвращает соединение с БД
 @return NpgsqlConnection - соединение с БД

@@ -33,7 +33,7 @@ namespace UnscrupulousesParse
         internal static string DbUnscrupulouses { get; set; } /*!< Имя таблицы недобросовестных участников гос. закупа */
         internal static int NumberOfDbConnections { get; set; } /*!< Количество соединений с БД */
         internal static string Url { get; set; } /*!< URL API */
-        internal static string AuthToken { get; set; } /*!< окен авторизации API */
+        internal static string AuthToken { get; set; } /*!< Токен авторизации API */
 
 
         /*!
