@@ -70,6 +70,8 @@ namespace LotsParse
                     {
                         loaded = Parser.TotalLoaded;
                         Thread.Sleep(15000);
+                        if (task.IsFaulted)
+                            throw task.Exception;
                     }
 
                     if (Parser.LoadedAll)
