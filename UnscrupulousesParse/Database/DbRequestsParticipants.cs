@@ -59,15 +59,15 @@ namespace UnscrupulousesParse.Database
                 unscrupulous.supplier_biin != 0 ? (object) unscrupulous.supplier_biin : DBNull.Value);
             cmd.Parameters.AddWithValue("@supplier_innunp",
                 !string.IsNullOrEmpty(unscrupulous.supplier_innunp)
-                    ? (object) unscrupulous.supplier_innunp
+                    ? (object) unscrupulous.supplier_innunp.Trim()
                     : DBNull.Value);
             cmd.Parameters.AddWithValue("@supplier_name_ru",
                 !string.IsNullOrEmpty(unscrupulous.supplier_name_ru)
-                    ? (object) unscrupulous.supplier_name_ru
+                    ? (object) unscrupulous.supplier_name_ru.Trim()
                     : DBNull.Value);
             cmd.Parameters.AddWithValue("@supplier_name_kz",
                 !string.IsNullOrEmpty(unscrupulous.supplier_name_kz)
-                    ? (object) unscrupulous.supplier_name_kz
+                    ? (object) unscrupulous.supplier_name_kz.Trim()
                     : DBNull.Value);
             cmd.Parameters.AddWithValue("@system_id", unscrupulous.system_id);
             cmd.Parameters.AddWithValue("@index_date", unscrupulous.index_date);
