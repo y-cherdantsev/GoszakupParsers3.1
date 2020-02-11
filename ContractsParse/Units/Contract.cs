@@ -19,7 +19,7 @@
         public byte deleted { get; set; }
         public string crdate { get; set; } = "";
         public string last_update_date { get; set; } = "";
-        public int supplier_id { get; set; }
+        public int? supplier_id { get; set; }
         public string supplier_biin { get; set; } = "";
         public string supplier_bik { get; set; } = "";
         public string supplier_iik { get; set; } = "";
@@ -29,7 +29,7 @@
         public string sign_reason_doc_name { get; set; } = "";
         public string sign_reason_doc_date { get; set; } = "";
         public string trd_buy_itogi_date_public { get; set; } = "";
-        public int customer_id { get; set; }
+        public int? customer_id { get; set; }
         public string customer_bin { get; set; } = "";
         public string customer_bik { get; set; } = "";
         public string customer_iik { get; set; } = "";

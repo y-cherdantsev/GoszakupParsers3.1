@@ -22,7 +22,7 @@ namespace ContractsParse.Units
             trd_buy_number_anno = contract.trd_buy_number_anno;
             ref_contract_status_id = contract.ref_contract_status_id;
             deleted = contract.deleted == 1;
-            supplier_id = contract.supplier_id;
+            supplier_id = contract.supplier_id ?? 0;
 
             supplier_bik = contract.supplier_bik;
             supplier_iik = contract.supplier_iik;
@@ -30,7 +30,7 @@ namespace ContractsParse.Units
             supplier_bank_name_ru = contract.supplier_bank_name_ru;
             contract_number = contract.contract_number;
             sign_reason_doc_name = contract.sign_reason_doc_name;
-            customer_id = contract.customer_id;
+            customer_id = contract.customer_id ?? 0;
             
             customer_bik = contract.customer_bik;
             customer_iik = contract.customer_iik;
