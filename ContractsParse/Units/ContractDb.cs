@@ -23,7 +23,8 @@ namespace ContractsParse.Units
             ref_contract_status_id = contract.ref_contract_status_id;
             deleted = contract.deleted == 1;
             supplier_id = contract.supplier_id ?? 0;
-
+            Int64.TryParse(contract.supplier_biin, out var supplierBiin); 
+            supplier_biin = supplierBiin;
             supplier_bik = contract.supplier_bik;
             supplier_iik = contract.supplier_iik;
             supplier_bank_name_kz = contract.supplier_bank_name_kz;
@@ -31,7 +32,8 @@ namespace ContractsParse.Units
             contract_number = contract.contract_number;
             sign_reason_doc_name = contract.sign_reason_doc_name;
             customer_id = contract.customer_id ?? 0;
-            
+            Int64.TryParse(contract.customer_bin, out var customerBin); 
+            customer_bin = customerBin;
             customer_bik = contract.customer_bik;
             customer_iik = contract.customer_iik;
             customer_bank_name_kz = contract.customer_bank_name_kz;
@@ -44,6 +46,31 @@ namespace ContractsParse.Units
             ref_currency_code = contract.ref_currency_code;
             contract_sum_wnds = contract.contract_sum_wnds;
             fakt_sum_wnds = contract.fakt_sum_wnds ?? 0;
+            ref_contract_cancel_id = contract.ref_contract_cancel_id ?? 0;
+            ref_contract_type_id = contract.ref_contract_type_id ?? 0;
+            description_kz = contract.description_kz;
+            description_ru = contract.description_ru;
+            fakt_trade_methods_id = contract.fakt_trade_methods_id ?? 0;
+            ec_customer_approve = contract.ec_customer_approve == 1;
+            ec_supplier_approve = contract.ec_supplier_approve == 1;
+            contract_ms = contract.contract_ms ?? 0;
+            supplier_legal_address = contract.supplier_legal_address;
+            customer_legal_address = contract.customer_legal_address;
+            payments_terms_ru = contract.payments_terms_ru;
+            payments_terms_kz = contract.payments_terms_kz;
+            is_gu = contract.is_gu == 1;
+            exchange_rate = contract.exchange_rate;
+            system_id = contract.system_id;
+            try { crdate = NpgsqlDateTime.Parse(contract.crdate); }catch (Exception) { }
+            try { last_update_date = NpgsqlDateTime.Parse(contract.last_update_date); }catch (Exception) { }
+            try { sign_reason_doc_date = NpgsqlDateTime.Parse(contract.sign_reason_doc_date); }catch (Exception) { }
+            try { trd_buy_itogi_date_public = NpgsqlDateTime.Parse(contract.trd_buy_itogi_date_public); }catch (Exception) { }
+            try { sign_date = NpgsqlDateTime.Parse(contract.sign_date); }catch (Exception) { }
+            try { ec_end_date = NpgsqlDateTime.Parse(contract.ec_end_date); }catch (Exception) { }
+            try { plan_exec_date = NpgsqlDateTime.Parse(contract.plan_exec_date); }catch (Exception) { }
+            try { fakt_exec_date = NpgsqlDateTime.Parse(contract.fakt_exec_date); }catch (Exception) { }
+            try { contract_end_date = NpgsqlDateTime.Parse(contract.contract_end_date); }catch (Exception) { }
+            try { index_date = NpgsqlDateTime.Parse(contract.index_date); }catch (Exception) { }
         }
 
         public int id { get; set; }

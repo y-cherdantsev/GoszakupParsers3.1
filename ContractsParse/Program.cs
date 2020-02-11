@@ -64,19 +64,19 @@ namespace ContractsParse
                     var token = tokenSource.Token;
                     var task = new Task(parser.Parse, token);
                     task.Start();
-                    
+
                     var loaded = -1;
                     while (loaded != Parser.TotalLoaded)
                     {
                         loaded = Parser.TotalLoaded;
-                        Thread.Sleep(5000);
+                        Thread.Sleep(15000);
                         if (task.IsFaulted)
                             throw task.Exception;
                     }
 
                     if (Parser.LoadedAll)
                         break;
-                    Thread.Sleep(5000);
+                    Thread.Sleep(15000);
                     tokenSource.Cancel();
                     Logger.Warn($"Restarting parsing process at {Parser.TotalLoaded}");
                 }

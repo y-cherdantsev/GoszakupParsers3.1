@@ -6,6 +6,7 @@ using System.Net.Security;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ContractsParse.Database;
 using ContractsParse.Units;
 using NLog;
 using Npgsql;
@@ -200,16 +201,16 @@ namespace ContractsParse
 @date 08.02.2020 14:49:05
 @version 1.0
 @brief Обработка договора (загрузка или обновление договора в базе данных)
-@param[in] - contract - Лот
+@param[in] - contract - договор
 @throw Exception - непредвиденное исключение
      
      */
         private void ProcessContract(Contract contract, NpgsqlConnection connection)
         {
-            // var contractDb = new ContractDb(contract);
-            // DbRequestsContracts.AddContract(contractDb, connection);
+            var contractDb = new ContractDb(contract);
+            DbRequestsContracts.AddContract(contractDb, connection);
             TotalProceed++;
-            _logger.Trace($"Proceeding: {contract.description_ru}");
+            _logger.Trace($"Proceeding: {contractDb.description_ru}");
             _logger.Trace($"Total Proceed: {TotalProceed}");
         }
 
