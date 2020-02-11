@@ -28,7 +28,7 @@ namespace LotsParse.Units
             name_kz = lot.name_kz;
             description_ru = lot.description_ru;
             description_kz = lot.description_kz;
-            customer_id = customer_id;
+            customer_id = lot.customer_id;
             Int64.TryParse(lot.customer_bin, out var customerBin);
             customer_bin = customerBin;
             trd_buy_number_anno = lot.trd_buy_number_anno;
