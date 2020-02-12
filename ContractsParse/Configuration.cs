@@ -46,7 +46,7 @@ namespace ContractsParse
             
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Title = "Goszakup Lots Parse";
+            Console.Title = "Goszakup Contracts Parse";
             
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
             
