@@ -5,6 +5,7 @@
 * Парсер недобросновестных участников госзакупа (*UnscrupulousParse*)
 * Парсер лотов госзакупа (*LotsParse*)
 * Парсер контрактов госзакупа (*ContractsParse*)
+* Парсер объявлений госзакупа (*AnnouncementsParser*)
 
 
 ## Authors
