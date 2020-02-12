@@ -206,10 +206,10 @@ namespace AnnouncementsParse
      */
         private void ProcessAnnouncement(Announcement announcement, NpgsqlConnection connection)
         {
-            // var announcementDb = new AnnouncementDb(announcement);
+            var announcementDb = new AnnouncementDb(announcement);
             // DbRequestsAnnouncements.AddAnnouncement(announcementDb, connection);
             TotalProceed++;
-            // _logger.Trace($"Proceeding: {announcementDb.description_ru}");
+            _logger.Trace($"Proceeding: {announcementDb.name_ru}");
             _logger.Trace($"Total Proceed: {TotalProceed}");
         }
 

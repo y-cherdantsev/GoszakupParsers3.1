@@ -6,7 +6,7 @@ create table announcements_table
     number_anno          text,
     name_ru              text,
     name_kz              text,
-    total_sum            integer,
+    total_sum            double precision,
     ref_trade_methods_id integer,
     ref_subject_type_id  integer,
     customer_bin         bigint,
@@ -15,8 +15,8 @@ create table announcements_table
     org_pid              integer,
     ref_buy_status_id    integer,
     start_date           timestamp,
-    "repeat_start_date " timestamp,
-    "repeat_end_date "   timestamp,
+    repeat_start_date    timestamp,
+    repeat_end_date      timestamp,
     end_date             timestamp,
     publish_date         timestamp,
     itogi_date_public    timestamp,
@@ -50,13 +50,11 @@ comment on column announcements_table.name_ru is 'Наименование на 
 
 comment on column announcements_table.name_kz is 'Наименование на казахском языке';
 
-comment on column announcements_table.total_sum is '?Общая сумма запланированная для закупки (Сумма закупки)';
+comment on column announcements_table.total_sum is 'Общая сумма запланированная для закупки (Сумма закупки)';
 
 comment on column announcements_table.ref_trade_methods_id is 'Код способа закупки';
 
-comment on column announcements_table.ref_subject_type_id is 'Вид предмета закупок
-
-';
+comment on column announcements_table.ref_subject_type_id is 'Вид предмета закупок';
 
 comment on column announcements_table.customer_bin is 'БИН Заказчика';
 
@@ -70,9 +68,9 @@ comment on column announcements_table.ref_buy_status_id is 'Статуса об�
 
 comment on column announcements_table.start_date is 'Дата начала приема заявок';
 
-comment on column announcements_table."repeat_start_date " is 'Срок начала повторного предоставления (дополнения) заявок';
+comment on column announcements_table.repeat_start_date is 'Срок начала повторного предоставления (дополнения) заявок';
 
-comment on column announcements_table."repeat_end_date " is 'Срок окончания повторного предоставления (дополнения) заявок';
+comment on column announcements_table.repeat_end_date is 'Срок окончания повторного предоставления (дополнения) заявок';
 
 comment on column announcements_table.end_date is 'Дата окончания приема заявок';
 
