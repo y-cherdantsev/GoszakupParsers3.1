@@ -55,8 +55,8 @@ create table contracts_goszakup
     exchange_rate             double precision,
     system_id                 integer,
     index_date                timestamp,
-    relevance                 timestamp default CURRENT_TIMESTAMP,
-    fakt_exec_date            timestamp
+    fakt_exec_date            timestamp,
+    relevance                 timestamp default CURRENT_TIMESTAMP
 );
 
 comment on table contracts_goszakup is 'Полная информация по договорам
@@ -169,6 +169,8 @@ comment on column contracts_goszakup.system_id is 'ИД системы';
 comment on column contracts_goszakup.index_date is 'Дата индексации';
 
 comment on column contracts_goszakup.fakt_exec_date is 'Фактическая дата исполнения';
+
+comment on column contracts_goszakup.relevance is 'Локально - Релевантность записи';
 
 create unique index contracts_goszakup_id_uindex
     on contracts_goszakup (id);
