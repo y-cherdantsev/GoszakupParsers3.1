@@ -13,10 +13,6 @@ namespace ContractsParse
 @date 08.02.2020 14:41:31
 @version 1.0
 @brief Класс глобальных конфигураций и констант
-     
-@code
-     
-@endcode
     
     */
     

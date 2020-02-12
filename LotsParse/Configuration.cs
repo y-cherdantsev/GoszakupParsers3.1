@@ -13,10 +13,6 @@ namespace LotsParse
 @date 05.02.2020 18:32:05
 @version 1.0
 @brief Класс глобальных конфигураций и констант
-     
-@code
-     
-@endcode
     
     */
     

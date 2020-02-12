@@ -13,10 +13,6 @@ namespace UnscrupulousesParse
 @date 03.02.2020 16:28:01
 @version 1.0
 @brief Класс глобальных конфигураций и констант
-     
-@code
-     
-@endcode
     
     */
     
