@@ -25,11 +25,11 @@ namespace ParticipantsParse
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); /*!< Логгер текущего класса */
 
-        private static int TotalLoaded { get; set; } /*!< Всего скачано участников с api */
+        internal static int TotalLoaded { get; set; } /*!< Всего скачано участников с api */
 
         private static int Total { get; set; } /*!< Всего участников на обработку */
 
-        private static bool LoadedAll { get; set; } /*!< Флаг конца скачивания участников через api  */
+        internal static bool LoadedAll { get; set; } /*!< Флаг конца скачивания участников через api  */
 
         private static int
             TotalProceed { get; set; } /*!< Всего обработано участников (загружено в базу, обновлено и т.д.)*/
