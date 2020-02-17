@@ -92,7 +92,7 @@ comment on column announcements_table.biin_supplier is 'БИН/ИИН поста
 
 comment on column announcements_table.parent_id is 'ИД исходного объявления';
 
-comment on column announcements_table.singl_org_sign is 'Закупки Единого организатора КГЗ МФ РК';
+comment on column announcements_table.single_org_sign is 'Закупки Единого организатора КГЗ МФ РК';
 
 comment on column announcements_table.is_light_industry is 'Закупка легкой и мебельной промышленности';
 

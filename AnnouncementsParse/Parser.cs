@@ -6,6 +6,7 @@ using System.Net.Security;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using AnnouncementsParse.Database;
 using AnnouncementsParse.Units;
 using NLog;
 using Npgsql;
@@ -207,7 +208,7 @@ namespace AnnouncementsParse
         private void ProcessAnnouncement(Announcement announcement, NpgsqlConnection connection)
         {
             var announcementDb = new AnnouncementDb(announcement);
-            // DbRequestsAnnouncements.AddAnnouncement(announcementDb, connection);
+            DbRequestsAnnouncements.AddAnnouncement(announcementDb, connection);
             TotalProceed++;
             _logger.Trace($"Proceeding: {announcementDb.name_ru}");
             _logger.Trace($"Total Proceed: {TotalProceed}");

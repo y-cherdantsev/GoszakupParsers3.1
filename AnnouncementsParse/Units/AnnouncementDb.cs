@@ -35,7 +35,7 @@ namespace AnnouncementsParse.Units
             Int64.TryParse(announcement.biin_supplier, out var biinSupplier);
             biin_supplier = biinSupplier;
             parent_id = announcement.parent_id;
-            singl_org_sign = announcement.singl_org_sign == 1;
+            single_org_sign = announcement.singl_org_sign == 1;
             is_light_industry = announcement.is_light_industry == 1;
             is_construction_work = announcement.is_construction_work == 1;
             customer_name_kz = announcement.customer_name_kz;
@@ -79,7 +79,7 @@ namespace AnnouncementsParse.Units
         public int id_supplier { get; set; }
         public long biin_supplier { get; set; }
         public int parent_id { get; set; }
-        public bool singl_org_sign { get; set; }
+        public bool single_org_sign { get; set; }
         public bool is_light_industry { get; set; }
         public bool is_construction_work { get; set; }
         public string customer_name_kz { get; set; }
