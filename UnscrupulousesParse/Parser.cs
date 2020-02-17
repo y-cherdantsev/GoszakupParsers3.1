@@ -25,11 +25,11 @@ namespace UnscrupulousesParse
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); /*!< Логгер текущего класса */
 
-        private static int TotalLoaded { get; set; } /*!< Всего скачано недобросовестных участников с api */
+        internal static int TotalLoaded { get; set; } /*!< Всего скачано недобросовестных участников с api */
 
         private static int Total { get; set; } /*!< Всего недобросовестных участников на обработку */
 
-        private static bool LoadedAll { get; set; } /*!< Флаг конца скачивания недобросовестных участников через api  */
+        internal static bool LoadedAll { get; set; } /*!< Флаг конца скачивания недобросовестных участников через api  */
 
         private static int
             TotalProceed
