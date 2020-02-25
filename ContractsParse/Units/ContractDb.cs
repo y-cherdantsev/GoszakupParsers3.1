@@ -39,7 +39,6 @@ namespace ContractsParse.Units
             customer_bank_name_kz = contract.customer_bank_name_kz;
             customer_bank_name_ru = contract.customer_bank_name_ru;
             contract_number_sys = contract.contract_number_sys;
-            fin_year = contract.fin_year;
             ref_contract_agr_form_id = contract.ref_contract_agr_form_id;
             ref_contract_year_type_id = contract.ref_contract_year_type_id;
             ref_finsource_id = contract.ref_finsource_id ?? 0;
@@ -71,6 +70,7 @@ namespace ContractsParse.Units
             try { fakt_exec_date = NpgsqlDateTime.Parse(contract.fakt_exec_date); }catch (Exception) { }
             try { contract_end_date = NpgsqlDateTime.Parse(contract.contract_end_date); }catch (Exception) { }
             try { index_date = NpgsqlDateTime.Parse(contract.index_date); }catch (Exception) { }
+            try { fin_year = NpgsqlDateTime.Parse($"{contract.fin_year.ToString()}-01-01 00:00:00"); }catch (Exception) { }
         }
 
         public int id { get; set; }
@@ -99,7 +99,7 @@ namespace ContractsParse.Units
         public string customer_bank_name_kz { get; set; }
         public string customer_bank_name_ru { get; set; }
         public string contract_number_sys { get; set; }
-        public int fin_year { get; set; }
+        public NpgsqlDateTime fin_year { get; set; }
         public int ref_contract_agr_form_id { get; set; }
         public int ref_contract_year_type_id { get; set; }
         public int ref_finsource_id { get; set; }

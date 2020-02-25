@@ -158,7 +158,7 @@ namespace ParticipantsParse.Database
             cmd.Parameters.AddWithValue("@website", !string.IsNullOrEmpty(participant.website) ? (object) participant.website.Trim() : DBNull.Value);
             cmd.Parameters.AddWithValue("@last_update_date", participant.last_update_date);
             cmd.Parameters.AddWithValue("@qvazi", participant.qvazi);
-            cmd.Parameters.AddWithValue("@year", participant.year != 0 ? (object) participant.year : DBNull.Value);
+            cmd.Parameters.AddWithValue("@year", participant.year);
             cmd.Parameters.AddWithValue("@mark_resident", participant.mark_resident);
             try
             {

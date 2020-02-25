@@ -1,0 +1,41 @@
+﻿{
+    "DbHost": "192.168.2.37",
+    "DbPort": 5432,
+    "DbUser": "administrator",
+    "DbPassword": "administrator",
+    "DbName": "development",
+    "DbScheme": "evgeniy",
+    "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
+    "Parsers": [
+      {
+        "Name": "Announcement",
+        "NumberOfDbConnections": 1,
+        "Url": "v3/trd-buy/all",
+        "Table": "announcement_goszakup"
+      },
+      {
+        "Name": "Contract",
+        "NumberOfDbConnections": 1,
+        "Url": "v3/contract/all",
+        "Table": "contract_goszakup"
+      },
+      {
+        "Name": "Lot",
+        "NumberOfDbConnections": 1,
+        "Url": "v3/lots",
+        "Table": "lot_goszakup"
+      },
+      {
+        "Name": "Participant",
+        "NumberOfDbConnections": 1,
+        "Url": "v3/subject/all",
+        "Table": "participant_goszakup"
+      },
+      {
+        "Name": "Unscrupulous",
+        "NumberOfDbConnections": 1,
+        "Url": "v3/rnu",
+        "Table": "unscrupulous_goszakup"
+      }
+    ]
+}

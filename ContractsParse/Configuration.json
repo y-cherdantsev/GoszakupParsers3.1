@@ -1,12 +1,12 @@
 ﻿{
   "Configuration": {
-    "DbHost": "localhost",
+    "DbHost": "192.168.2.37",
     "DbPort": "5432",
-    "DbUserName": "postgres",
-    "DbPassword": "toor",
-    "DbName": "new_database",
-    "DbScheme": "new_goszakup",
-    "DbContracts": "contracts_goszakup",
+    "DbUserName": "administrator",
+    "DbPassword": "administrator",
+    "DbName": "development",
+    "DbScheme": "evgeniy",
+    "DbContracts": "contract_goszakup",
     "NumberOfDbConnections": "1",
     "Url": "v3/contract/all",
     "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea"

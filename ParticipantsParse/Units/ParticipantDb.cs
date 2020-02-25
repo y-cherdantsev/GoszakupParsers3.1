@@ -25,7 +25,8 @@ namespace ParticipantsParse.Units
             try { regdate = NpgsqlDateTime.Parse(participant.regdate); }catch (Exception) { }
             try { index_date = NpgsqlDateTime.Parse(participant.index_date); }catch (Exception) { }
             try { last_update_date = NpgsqlDateTime.Parse(participant.last_update_date); }catch (Exception) { }
-            crdate = participant.crdate;
+            try { crdate = NpgsqlDateTime.Parse($"{participant.crdate.ToString()}-01-01 00:00:00"); }catch (Exception) { }
+            try { year = NpgsqlDateTime.Parse($"{participant.year.ToString()}-01-01 00:00:00"); }catch (Exception) { }
             number_reg = participant.number_reg;
             series = participant.series;
             name_ru = participant.name_ru;
@@ -55,7 +56,6 @@ namespace ParticipantsParse.Units
             phone = participant.phone;
             website = participant.website;
             qvazi = participant.qvazi == 1;
-            year = participant.year;
             mark_resident = participant.mark_resident == 1;
         }
 
@@ -65,7 +65,7 @@ namespace ParticipantsParse.Units
         public string inn { get; set; }
         public string unp { get; set; }
         public NpgsqlDateTime regdate { get; set; }
-        public int crdate { get; set; }
+        public NpgsqlDateTime crdate { get; set; }
         public NpgsqlDateTime index_date { get; set; }
         public string number_reg { get; set; }
         public string series { get; set; }
@@ -97,7 +97,7 @@ namespace ParticipantsParse.Units
         public string website { get; set; }
         public NpgsqlDateTime last_update_date { get; set; }
         public bool qvazi { get; set; }
-        public int year { get; set; }
+        public NpgsqlDateTime year { get; set; }
         public bool mark_resident { get; set; }
     }
 }

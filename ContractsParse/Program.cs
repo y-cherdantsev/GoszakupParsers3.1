@@ -70,7 +70,8 @@ namespace ContractsParse
                     {
                         loaded = Parser.TotalLoaded;
                         Thread.Sleep(15000);
-                        if (task.IsFaulted)
+                        
+                        if (task.Exception != null)
                             throw task.Exception;
                     }
 
