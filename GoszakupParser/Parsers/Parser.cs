@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Security;
 using NLog;
 
-namespace GoszakupParser
+namespace GoszakupParser.Parsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 25.02.2020 10:53:43
@@ -16,9 +16,10 @@ namespace GoszakupParser
     {
         private readonly Logger _logger; /*!< Логгер текущего класса */
         protected string Url { get; set; }
-        private static int Total { get; set; }
+        private int Total { get; set; }
+        private int NumOfDbConnections { get; set; } 
 
-        public Parser()
+        protected Parser()
         {
             _logger = InitLogger();
         }
