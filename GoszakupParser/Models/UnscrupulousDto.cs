@@ -5,10 +5,8 @@
     /// @date 26.02.2020 18:29:40
     /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Объект недобросовестного участника возвращаемый из API
     /// </summary>
-
-
     public class UnscrupulousDto
     {
         public int pid { get; set; }

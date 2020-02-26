@@ -17,7 +17,7 @@ namespace GoszakupParser.Parsers
         private readonly Logger _logger; /*!< Логгер текущего класса */
         protected string Url { get; set; }
         private int Total { get; set; }
-        private int NumOfDbConnections { get; set; } 
+        private int NumOfDbConnections { get; set; }
 
         protected Parser()
         {
@@ -28,7 +28,7 @@ namespace GoszakupParser.Parsers
         public abstract void Parse();
         public abstract void ProcessObject(object entity);
 
-        protected string GetPageResponse(string url)
+        protected string GetApiPageResponse(string url)
         {
             var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
             request.Method = WebRequestMethods.Http.Get;
@@ -36,6 +36,8 @@ namespace GoszakupParser.Parsers
             request.Headers["Authorization"] = Configuration.AuthToken;
             request.AuthenticationLevel = AuthenticationLevel.None;
             var response = request.GetResponse();
+            if (response.GetResponseStream() == null)
+                return null;
             var objReader =
                 new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
 

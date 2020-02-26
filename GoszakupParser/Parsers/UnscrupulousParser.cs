@@ -7,7 +7,7 @@ namespace GoszakupParser.Parsers
     /// @date 25.02.2020 12:10:21
     /// @version 1.0
     /// <summary>
-    /// 
+    /// Парсер недобросовестных учатников
     /// </summary>
 
 
