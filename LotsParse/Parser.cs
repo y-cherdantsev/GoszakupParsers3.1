@@ -31,11 +31,9 @@ namespace LotsParse
 
         public static bool LoadedAll { get; set; } /*!< Флаг конца скачивания лотов через api  */
 
-        private static int
-            TotalProceed { get; set; } /*!< Всего обработано лотов (загружено в базу, обновлено и т.д.)*/
+        private static int TotalProceed { get; set; } /*!< Всего обработано лотов (загружено в базу, обновлено и т.д.)*/
 
-        private static readonly List<Lot>
-            LoadedLots = new List<Lot>(); /*!< Список лотов для обработки */
+        private static readonly List<Lot> LoadedLots = new List<Lot>(); /*!< Список лотов для обработки */
 
 
         /*!
