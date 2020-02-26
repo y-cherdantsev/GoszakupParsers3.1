@@ -24,8 +24,6 @@ namespace GoszakupParser
             public string Name { get; set; }
             public int NumberOfDbConnections { get; set; }
             public string Url { get; set; }
-            public string Table { get; set; }
-            public string AdditionalTable { get; set; }
         }
     }
 }

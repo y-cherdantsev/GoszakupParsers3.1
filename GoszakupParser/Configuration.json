@@ -10,32 +10,27 @@
       {
         "Name": "Announcement",
         "NumberOfDbConnections": 1,
-        "Url": "v3/trd-buy/all",
-        "Table": "announcement_goszakup"
+        "Url": "v3/trd-buy/all"
       },
       {
         "Name": "Contract",
         "NumberOfDbConnections": 1,
-        "Url": "v3/contract/all",
-        "Table": "contract_goszakup"
+        "Url": "v3/contract/all"
       },
       {
         "Name": "Lot",
         "NumberOfDbConnections": 1,
-        "Url": "v3/lots",
-        "Table": "lot_goszakup"
+        "Url": "v3/lots"
       },
       {
         "Name": "Participant",
         "NumberOfDbConnections": 1,
-        "Url": "v3/subject/all",
-        "Table": "participant_goszakup"
+        "Url": "v3/subject/all"
       },
       {
         "Name": "Unscrupulous",
         "NumberOfDbConnections": 1,
-        "Url": "v3/rnu",
-        "Table": "unscrupulous_goszakup"
+        "Url": "v3/rnu"
       }
     ]
 }

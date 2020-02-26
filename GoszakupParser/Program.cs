@@ -2,18 +2,21 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace GoszakupParser
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
             Console.Title = "Goszakup Parser";
-            var str = File.ReadAllText("Configuration.json");
-            var conf = JsonSerializer.Deserialize<Configuration>(str);
+            var configurationString = File.ReadAllText("Configuration.json");
+            var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
+            var parserService = new ParserService(configuration);
+            await parserService.StartParsing();
         }
     }
 }
