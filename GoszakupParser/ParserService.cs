@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GoszakupParser.Parsers;
 using NLog;
 
 namespace GoszakupParser
@@ -24,10 +25,11 @@ namespace GoszakupParser
         {
             _logger.Info("Started parsing service!");
             var parsers = _configuration.Parsers;
-            foreach (var parser in parsers)
-            {
-                
-            }
+            // foreach (var parser in parsers)
+            // {
+            //     
+            // }
+            new UnscrupulousParser(parsers[4], _configuration.AuthToken).Parse();
         }
     }
 }

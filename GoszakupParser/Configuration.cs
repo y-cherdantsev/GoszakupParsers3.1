@@ -16,7 +16,7 @@ namespace GoszakupParser
         public string DbPassword { get; set; }
         public string DbName { get; set; }
         public string DbScheme { get; set; }
-        public static string AuthToken { get; set; }
+        public string AuthToken { get; set; }
         public List<ParserSettings> Parsers { get; set; }
 
         public class ParserSettings

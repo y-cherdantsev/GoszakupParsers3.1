@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Security;
+using System.Threading.Tasks;
 using NLog;
 
 namespace GoszakupParser.Parsers
@@ -18,6 +20,7 @@ namespace GoszakupParser.Parsers
         protected string Url { get; set; }
         private int Total { get; set; }
         private int NumOfDbConnections { get; set; }
+        protected string AuthToken { get; set; }
 
         protected Parser()
         {
@@ -25,15 +28,15 @@ namespace GoszakupParser.Parsers
         }
 
         protected abstract Logger InitLogger();
-        public abstract void Parse();
-        public abstract void ProcessObject(object entity);
+        public abstract Task Parse();
+        public abstract Task ProcessObjects(List<object> entities);
 
         protected string GetApiPageResponse(string url)
         {
             var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
             request.Method = WebRequestMethods.Http.Get;
             request.Headers["Content-Type"] = "application/json";
-            request.Headers["Authorization"] = Configuration.AuthToken;
+            request.Headers["Authorization"] = AuthToken;
             request.AuthenticationLevel = AuthenticationLevel.None;
             var response = request.GetResponse();
             if (response.GetResponseStream() == null)
@@ -51,6 +54,11 @@ namespace GoszakupParser.Parsers
             }
 
             return pageResponse;
+        }
+
+        protected object DtoToDb()
+        {
+            
         }
     }
 }
