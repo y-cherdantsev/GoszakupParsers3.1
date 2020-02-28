@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -17,7 +18,8 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public abstract class ApiParser<TContext, TDto, TModel> : Parser<TContext, TDto, TModel> where TContext : DbContext, new()
+    public abstract class ApiParser<TDto, TModel> : Parser<ParserContext<TModel>, TDto, TModel>
+        where TModel : DbLoggerCategory.Model, new()
     {
         protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings)
         {
@@ -27,8 +29,9 @@ namespace GoszakupParser.Parsers
         }
 
         protected int Total { get; set; }
-
         private string AuthToken { get; set; }
+        
+        protected abstract TDto[] DivideList(List<TDto> list, int i);
 
         public async Task ParseApiAsync()
         {
@@ -46,7 +49,7 @@ namespace GoszakupParser.Parsers
                 tasks.Clear();
 
                 for (var i = 0; i < NumOfDbConnections; i++)
-                    tasks.Add(ProcessObjects(apiResponse.items));
+                    tasks.Add(ProcessObjects(DivideList(apiResponse.items, i)));
 
                 if (Url != "") continue;
                 await Task.WhenAll(tasks);

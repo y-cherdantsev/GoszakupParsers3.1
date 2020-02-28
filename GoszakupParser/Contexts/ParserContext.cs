@@ -1,3 +1,4 @@
+using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Contexts
@@ -5,9 +6,10 @@ namespace GoszakupParser.Contexts
     /// <summary>
     /// Parent context 
     /// </summary>
-    public abstract class ParserContext: DbContext
+    public class ParserContext<TModel>: DbContext where TModel : DbLoggerCategory.Model
     {
-        public ParserContext(DbContextOptions<ParserContext> options)
+        public DbSet<TModel> Models { get; set; }
+        public ParserContext(DbContextOptions<ParserContext<TModel>> options)
             : base(options)
         {
         }

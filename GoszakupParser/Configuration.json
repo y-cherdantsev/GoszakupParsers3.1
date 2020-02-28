@@ -24,7 +24,7 @@
       },
       {
         "Name": "Participant",
-        "NumberOfDbConnections": 1,
+        "NumberOfDbConnections": 10,
         "Url": "v3/subject/all"
       },
       {

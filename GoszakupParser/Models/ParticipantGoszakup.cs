@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Models
 {
@@ -13,7 +14,7 @@ namespace GoszakupParser.Models
 	/// INPUT
 	/// </summary>
 	[Table("participant_goszakup")]
-	public class ParticipantGoszakup
+	public class ParticipantGoszakup : DbLoggerCategory.Model
 	{
 		[Key] [Column("pid")] public int? Pid{get; set;}
 		[Column("bin")] public long? Bin{get; set;}
@@ -55,7 +56,7 @@ namespace GoszakupParser.Models
 		[Column("year")] public DateTime? Year{get; set;}
 		[Column("mark_resident")] public bool? MarkResident{get; set;}
 		[Column("type_supplier")] public int? TypeSupplier{get; set;}
-		[Column("relevance")] public DateTime? Relevance{get; set;}
+		// [Column("relevance")] public DateTime? Relevance{get; set;}
 		
 	}
 }
