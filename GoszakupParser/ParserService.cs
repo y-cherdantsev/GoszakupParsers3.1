@@ -29,8 +29,9 @@ namespace GoszakupParser
             // {
             //     
             // }
-            await new UnscrupulousParser(parsers[4], _configuration.AuthToken).ParseApiAsync();
+            // await new UnscrupulousParser(parsers[4], _configuration.AuthToken).ParseApiAsync();
             // await new ContractParser(parsers[1], _configuration.AuthToken).ParseApiAsync();
+            await new ParticipantParser(parsers[3], _configuration.AuthToken).ParseApiAsync();
         }
     }
 }
