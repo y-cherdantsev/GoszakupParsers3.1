@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Parsers;
 using GoszakupParser.Parsers.SequentialParsers;
@@ -26,13 +28,13 @@ namespace GoszakupParser
         public async Task StartParsing()
         {
             _logger.Info("Started parsing service!");
-            var parsers = _configuration.Parsers;
-            // foreach (var parser in parsers)
-            // {
-            //     
-            // }
-            await new UnscrupulousParser(parsers.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
-                _configuration.AuthToken).ParseApiAsync();
+            var parsersSettings = _configuration.Parsers;
+            var parsers = new List<IParser>();
+            parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")), _configuration.AuthToken));
+            parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")), _configuration.AuthToken));
+            parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")), _configuration.AuthToken));
+            parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")), _configuration.AuthToken));
+            parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")), _configuration.AuthToken));
             // await new ContractParser(parsers[1], _configuration.AuthToken).ParseApiAsync();
         }
     }

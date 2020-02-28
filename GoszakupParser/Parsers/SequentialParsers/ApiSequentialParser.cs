@@ -33,7 +33,7 @@ namespace GoszakupParser.Parsers.SequentialParsers
         private int Total { get; set; }
         private string AuthToken { get; set; }
 
-        public async Task ParseApiAsync()
+        public override async Task ParseAsync()
         {
             var tasks = new List<Task>();
             Logger.Info("Starting parsing");
