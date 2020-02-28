@@ -1,10 +1,10 @@
 ﻿{
-    "DbHost": "192.168.2.37",
+    "DbHost": "192.168.2.25",
     "DbPort": 5432,
-    "DbUser": "administrator",
-    "DbPassword": "administrator",
-    "DbName": "development",
-    "DbScheme": "evgeniy",
+    "DbUser": "data_migrator",
+    "DbPassword": "Z4P6PjEHnJ5nPT",
+    "DbName": "adata",
+    "DbScheme": "avroradata",
     "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
     "Parsers": [
       {

@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
+using GoszakupParser.Models;
 using NLog;
 
 namespace GoszakupParser.Parsers
@@ -16,11 +18,12 @@ namespace GoszakupParser.Parsers
     /// </summary>
     public abstract class Parser
     {
-        private readonly Logger _logger; /*!< Логгер текущего класса */
+        protected readonly Logger _logger; /*!< Логгер текущего класса */
         protected string Url { get; set; }
-        private int Total { get; set; }
-        private int NumOfDbConnections { get; set; }
+        protected int Total { get; set; }
+        protected int NumOfDbConnections { get; set; }
         protected string AuthToken { get; set; }
+        protected List<ParserContext> contexts { get; set; } = new List<ParserContext>();
 
         protected Parser()
         {
@@ -28,8 +31,8 @@ namespace GoszakupParser.Parsers
         }
 
         protected abstract Logger InitLogger();
-        public abstract Task Parse();
-        public abstract Task ProcessObjects(List<object> entities);
+        public abstract Task ParseAsync();
+        public abstract Task ProcessObjects(object[] entities);
 
         protected string GetApiPageResponse(string url)
         {
@@ -56,9 +59,6 @@ namespace GoszakupParser.Parsers
             return pageResponse;
         }
 
-        protected object DtoToDb()
-        {
-            
-        }
+        protected abstract object DtoToDb(object dto);
     }
 }

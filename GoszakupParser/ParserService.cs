@@ -29,7 +29,7 @@ namespace GoszakupParser
             // {
             //     
             // }
-            new UnscrupulousParser(parsers[4], _configuration.AuthToken).Parse();
+            await new UnscrupulousParser(parsers[4], _configuration.AuthToken).ParseAsync();
         }
     }
 }
