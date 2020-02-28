@@ -19,7 +19,7 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// Parsing abstract class
     /// </summary>
-    public abstract class Parser<TContext, TDto, TModel> where TContext : DbContext, new()
+    public abstract class Parser<TDto, TModel>
     {
         protected readonly Logger Logger;
         protected string Url { get; set; }

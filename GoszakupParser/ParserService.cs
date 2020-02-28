@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GoszakupParser.Parsers;
+using GoszakupParser.Parsers.SequentialParsers;
 using NLog;
 
 namespace GoszakupParser
