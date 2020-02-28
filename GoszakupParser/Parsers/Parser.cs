@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Text.Json;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 
 namespace GoszakupParser.Parsers
@@ -16,49 +19,29 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// Parsing abstract class
     /// </summary>
-    public abstract class Parser
+    public abstract class Parser<TContext, TDto,TModel> where TContext : DbContext, new()
     {
-        protected readonly Logger _logger; /*!< Логгер текущего класса */
+        protected readonly Logger Logger;
         protected string Url { get; set; }
-        protected int Total { get; set; }
         protected int NumOfDbConnections { get; set; }
-        protected string AuthToken { get; set; }
-        protected List<ParserContext> contexts { get; set; } = new List<ParserContext>();
+        protected List<TContext> Contexts { get; set; } = new List<TContext>();
 
-        protected Parser()
+        protected readonly object Lock = new object();
+
+        protected Parser(Configuration.ParserSettings parserSettings)
         {
-            _logger = InitLogger();
+            Logger = InitLogger();
+            NumOfDbConnections = parserSettings.NumberOfDbConnections;
+            Url = parserSettings.Url;
+            Logger.Info($"Creating {NumOfDbConnections} contexts");
+            for (var i = 0; i < NumOfDbConnections; i++)
+                Contexts.Add(new TContext());
+            Logger.Info($"{Contexts.Count} contexts has been created");
         }
 
         protected abstract Logger InitLogger();
-        public abstract Task ParseAsync();
-        public abstract Task ProcessObjects(object[] entities);
+        protected abstract Task ProcessObjects(List<TDto> entities);
 
-        protected string GetApiPageResponse(string url)
-        {
-            var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
-            request.Method = WebRequestMethods.Http.Get;
-            request.Headers["Content-Type"] = "application/json";
-            request.Headers["Authorization"] = AuthToken;
-            request.AuthenticationLevel = AuthenticationLevel.None;
-            var response = request.GetResponse();
-            if (response.GetResponseStream() == null)
-                return null;
-            var objReader =
-                new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
-
-            var sLine = "";
-            var pageResponse = "";
-            while (sLine != null)
-            {
-                sLine = objReader.ReadLine();
-                if (sLine != null)
-                    pageResponse += sLine;
-            }
-
-            return pageResponse;
-        }
-
-        protected abstract object DtoToDb(object dto);
+        protected abstract TModel DtoToDb(TDto dto);
     }
 }
