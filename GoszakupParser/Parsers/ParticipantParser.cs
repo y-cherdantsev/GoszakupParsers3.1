@@ -23,18 +23,6 @@ namespace GoszakupParser.Parsers
             return LogManager.GetCurrentClassLogger();
         }
 
-        protected override async Task ProcessObjects(ParticipantDto[] entities)
-        {
-            var participantGoszakupContext = Contexts[entities[0].pid % NumOfDbConnections];
-            foreach (var entity in entities)
-            {
-                var participant = DtoToDb(entity);
-                participantGoszakupContext.Models.Add(participant);
-                await participantGoszakupContext.SaveChangesAsync();
-                lock (Lock)
-                    Logger.Trace($"Left:{--Total}");
-            }
-        }
 
         protected override ParticipantGoszakup DtoToDb(ParticipantDto dto)
         {
@@ -84,11 +72,6 @@ namespace GoszakupParser.Parsers
             participant.MarkResident = dto.mark_resident == 1;
 
             return participant;
-        }
-
-        protected override ParticipantDto[] DivideList(List<ParticipantDto> list, int i)
-        {
-            return list.Where(x => x.pid % NumOfDbConnections == i).ToArray();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Threading.Tasks;
@@ -30,8 +31,6 @@ namespace GoszakupParser.Parsers
 
         protected int Total { get; set; }
         private string AuthToken { get; set; }
-        
-        protected abstract TDto[] DivideList(List<TDto> list, int i);
 
         public async Task ParseApiAsync()
         {
@@ -54,7 +53,6 @@ namespace GoszakupParser.Parsers
                 if (Url != "") continue;
                 await Task.WhenAll(tasks);
                 tasks.Clear();
-                Contexts.Clear();
                 break;
             }
 
@@ -63,6 +61,21 @@ namespace GoszakupParser.Parsers
                 Logger.Info($"{Total} elements hasn't been parsed");
         }
 
+        protected override async Task ProcessObjects(TDto[] entities)
+        {
+            using (var context = new ParserContext<TModel>())
+            {
+                foreach (var dto in entities)
+                {
+                    var model = DtoToDb(dto);
+                    context.Models.Add(model);
+                    await context.SaveChangesAsync();
+                    lock (Lock)
+                        Logger.Trace($"Left:{--Total}");
+                }
+            }
+        }
+        
         private string GetApiPageResponse(string url)
         {
             var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
@@ -86,6 +99,10 @@ namespace GoszakupParser.Parsers
             }
 
             return pageResponse;
+        }
+        protected TDto[] DivideList(List<TDto> list, int i)
+        {
+            return list.Where(x => list.IndexOf(x) % NumOfDbConnections == i).ToArray();
         }
     }
 }

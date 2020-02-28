@@ -24,7 +24,6 @@ namespace GoszakupParser.Parsers
         protected readonly Logger Logger;
         protected string Url { get; set; }
         protected int NumOfDbConnections { get; set; }
-        protected List<TContext> Contexts { get; set; } = new List<TContext>();
 
         protected readonly object Lock = new object();
 
@@ -33,15 +32,10 @@ namespace GoszakupParser.Parsers
             Logger = InitLogger();
             NumOfDbConnections = parserSettings.NumberOfDbConnections;
             Url = parserSettings.Url;
-            Logger.Info($"Creating {NumOfDbConnections} contexts");
-            for (var i = 0; i < NumOfDbConnections; i++)
-                Contexts.Add(new TContext());
-            Logger.Info($"{Contexts.Count} contexts has been created");
         }
 
         protected abstract Logger InitLogger();
         protected abstract Task ProcessObjects(TDto[] entities);
-        
         protected abstract TModel DtoToDb(TDto dto);
     }
 }

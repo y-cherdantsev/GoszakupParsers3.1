@@ -14,7 +14,7 @@
       },
       {
         "Name": "Contract",
-        "NumberOfDbConnections": 1,
+        "NumberOfDbConnections": 10,
         "Url": "v3/contract/all"
       },
       {
