@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using GoszakupParser.Parsers;
 using GoszakupParser.Parsers.SequentialParsers;
 using NLog;
 
 namespace GoszakupParser
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:18:55
     /// @version 1.0
@@ -16,6 +16,7 @@ namespace GoszakupParser
     {
         private readonly Configuration _configuration;
         private readonly Logger _logger;
+
         public ParserService(Configuration configuration)
         {
             _configuration = configuration;
@@ -30,7 +31,8 @@ namespace GoszakupParser
             // {
             //     
             // }
-            await new UnscrupulousParser(parsers[4], _configuration.AuthToken).ParseApiAsync();
+            await new UnscrupulousParser(parsers.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
+                _configuration.AuthToken).ParseApiAsync();
             // await new ContractParser(parsers[1], _configuration.AuthToken).ParseApiAsync();
         }
     }
