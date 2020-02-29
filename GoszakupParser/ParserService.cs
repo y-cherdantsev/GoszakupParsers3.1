@@ -21,10 +21,12 @@ namespace GoszakupParser
     {
         private readonly Configuration _configuration;
         private readonly Logger _logger;
+        private string[] Args { get; set; }
         private Dictionary<string, string> ParserMonitoringNames { get; set; } = new Dictionary<string, string>();
 
-        public ParserService(Configuration configuration)
+        public ParserService(Configuration configuration, string[] args)
         {
+            Args = args;
             _configuration = configuration;
             _logger = LogManager.GetCurrentClassLogger();
             ParserMonitoringNames.Add("UnscrupulousGoszakup", "UnscrupulousParser");
@@ -40,18 +42,20 @@ namespace GoszakupParser
             _logger.Info("Started parsing service!");
             var parsersSettings = _configuration.Parsers;
             var parsers = new List<Parser>();
-            // parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")),
-                // _configuration.AuthToken));
-            // parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")),
-                // _configuration.AuthToken));
-            // parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")),
-                // _configuration.AuthToken));
-            // parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")),
-                // _configuration.AuthToken));
-            // parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
-                // _configuration.AuthToken));
+            parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")),
+                _configuration.AuthToken));
+            parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")),
+                _configuration.AuthToken));
+            parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")),
+                _configuration.AuthToken));
+            parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")),
+                _configuration.AuthToken));
+            parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
+                _configuration.AuthToken));
 
-            await new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))).ParseAsync();
+
+            await parsers.FirstOrDefault(x => x.GetType().Name.Equals(Args[0]))?.ParseAsync();
+            // await new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))).ParseAsync();
         }
     }
 }

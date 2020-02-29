@@ -20,7 +20,7 @@ namespace GoszakupParser
             var configurationString = File.ReadAllText("Configuration.json");
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
             var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
-            var parserService = new ParserService(configuration);
+            var parserService = new ParserService(configuration, args);
             await parserService.StartParsing();
         }
     }
