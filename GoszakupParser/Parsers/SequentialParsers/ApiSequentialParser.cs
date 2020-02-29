@@ -7,11 +7,12 @@ using System.Net.Security;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models;
+using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace GoszakupParser.Parsers
+namespace GoszakupParser.Parsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 14:51:37
@@ -19,20 +20,20 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public abstract class ApiParser<TDto, TModel> : Parser<ParserContext<TModel>, TDto, TModel>
+    public abstract class ApiSequentialParser<TDto, TModel> : Parser<TDto, TModel>
         where TModel : DbLoggerCategory.Model, new()
     {
-        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings)
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings)
         {
             AuthToken = authToken;
             var response = GetApiPageResponse(Url);
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
-        protected int Total { get; set; }
+        private int Total { get; set; }
         private string AuthToken { get; set; }
 
-        public async Task ParseApiAsync()
+        public override async Task ParseAsync()
         {
             var tasks = new List<Task>();
             Logger.Info("Starting parsing");
@@ -48,7 +49,7 @@ namespace GoszakupParser.Parsers
                 tasks.Clear();
 
                 for (var i = 0; i < NumOfDbConnections; i++)
-                    tasks.Add(ProcessObjects(DivideList(apiResponse.items, i)));
+                    tasks.Add(ProcessObjects(DivideList(apiResponse?.items, i)));
 
                 if (Url != "") continue;
                 await Task.WhenAll(tasks);

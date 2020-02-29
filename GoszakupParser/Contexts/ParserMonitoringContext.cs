@@ -14,6 +14,7 @@ namespace GoszakupParser.Contexts
     {
     
         public DbSet<ParserMonitoring> ParserMonitorings { get; set; }
+        public DbSet<Proxy> Proxies { get; set; }
         public ParserMonitoringContext(DbContextOptions<ParserMonitoringContext> options)
             : base(options)
         {

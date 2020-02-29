@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using GoszakupParser.Models;
+using GoszakupParser.Models.Dtos;
+using GoszakupParser.Models.ParsingModels;
 using NLog;
-using NpgsqlTypes;
 
-namespace GoszakupParser.Parsers
+namespace GoszakupParser.Parsers.SequentialParsers
 {
 
     /// @author Yevgeniy Cherdantsev
@@ -16,7 +13,7 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public class ContractParser : ApiParser<ContractDto, ContractGoszakup>
+    public sealed class ContractParser : ApiSequentialParser<ContractDto, ContractGoszakup>
     {
         public ContractParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
         {

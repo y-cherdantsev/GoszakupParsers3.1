@@ -8,27 +8,27 @@
     "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
     "Parsers": [
       {
-        "Name": "Announcement",
-        "NumberOfDbConnections": 1,
+        "Name": "AnnouncementParser",
+        "NumberOfDbConnections": 15,
         "Url": "v3/trd-buy/all"
       },
       {
-        "Name": "Contract",
+        "Name": "ContractParser",
         "NumberOfDbConnections": 10,
         "Url": "v3/contract/all"
       },
       {
-        "Name": "Lot",
-        "NumberOfDbConnections": 1,
+        "Name": "LotParser",
+        "NumberOfDbConnections": 15,
         "Url": "v3/lots"
       },
       {
-        "Name": "Participant",
+        "Name": "ParticipantParser",
         "NumberOfDbConnections": 10,
         "Url": "v3/subject/all"
       },
       {
-        "Name": "Unscrupulous",
+        "Name": "UnscrupulousParser",
         "NumberOfDbConnections": 10,
         "Url": "v3/rnu"
       }

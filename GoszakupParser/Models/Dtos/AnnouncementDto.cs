@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GoszakupParser.Models
+﻿namespace GoszakupParser.Models.Dtos
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:45:45

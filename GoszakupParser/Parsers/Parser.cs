@@ -19,7 +19,7 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// Parsing abstract class
     /// </summary>
-    public abstract class Parser<TContext, TDto, TModel> where TContext : DbContext, new()
+    public abstract class Parser<TDto, TModel> : IParser
     {
         protected readonly Logger Logger;
         protected string Url { get; set; }
@@ -37,5 +37,6 @@ namespace GoszakupParser.Parsers
         protected abstract Logger InitLogger();
         protected abstract Task ProcessObjects(TDto[] entities);
         protected abstract TModel DtoToDb(TDto dto);
+        public abstract Task ParseAsync();
     }
 }

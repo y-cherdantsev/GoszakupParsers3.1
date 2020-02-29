@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GoszakupParser.Models
+namespace GoszakupParser.Models.Dtos
 {
 /*!
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using GoszakupParser.Models;
+using GoszakupParser.Models.Dtos;
+using GoszakupParser.Models.ParsingModels;
 using NLog;
 
-namespace GoszakupParser.Parsers
+namespace GoszakupParser.Parsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 25.02.2020 12:10:21
@@ -10,7 +12,7 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// Парсер недобросовестных учатников
     /// </summary>
-    public class UnscrupulousParser : ApiParser<UnscrupulousDto, UnscrupulousGoszakup>
+    public sealed class UnscrupulousParser : ApiSequentialParser<UnscrupulousDto, UnscrupulousGoszakup>
     {
         public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
             authToken)

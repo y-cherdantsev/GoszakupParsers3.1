@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GoszakupParser.Models;
+using GoszakupParser.Models.Dtos;
+using GoszakupParser.Models.ParsingModels;
 using NLog;
 
-namespace GoszakupParser.Parsers
+namespace GoszakupParser.Parsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 13:56:44
@@ -13,7 +12,7 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public class ParticipantParser : ApiParser<ParticipantDto, ParticipantGoszakup> {
+    public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup> {
         public ParticipantParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
         {
         }

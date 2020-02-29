@@ -1,4 +1,4 @@
-﻿﻿ namespace GoszakupParser.Models
+﻿﻿ namespace GoszakupParser.Models.Dtos
 {
 
 
