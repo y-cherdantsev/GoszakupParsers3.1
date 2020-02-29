@@ -26,5 +26,7 @@ namespace GoszakupParser.Contexts
             optionsBuilder.UseNpgsql(
                 "Server = 192.168.1.158; Database = avroradata; Port=5432; User ID = data_migrator; Password = Z4P6PjEHnJ5nPT; Search Path = avroradata; Integrated Security=true; Pooling=true;");
         }
+
+      
     }
 }

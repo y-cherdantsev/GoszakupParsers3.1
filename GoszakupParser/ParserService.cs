@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models;
 using GoszakupParser.Parsers;
-using GoszakupParser.Parsers.SequentialParsers;
+using GoszakupParser.Parsers.ApiParsers.SequentialParsers;
+using GoszakupParser.Parsers.WebParsers;
 using NLog;
 
 namespace GoszakupParser
@@ -31,37 +32,26 @@ namespace GoszakupParser
             ParserMonitoringNames.Add("LotGoszakup", "LotParser");
             ParserMonitoringNames.Add("ContractGoszakup", "ContractParser");
             ParserMonitoringNames.Add("AnnouncementGoszakup", "AnnouncementParser");
+            ParserMonitoringNames.Add("DirectorGoszakup", "DirectorParser");
         }
 
         public async Task StartParsing()
         {
             _logger.Info("Started parsing service!");
             var parsersSettings = _configuration.Parsers;
-            var parsers = new List<IParser>();
-            parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")),
-                _configuration.AuthToken));
-            parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")),
-                _configuration.AuthToken));
-            parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")),
-                _configuration.AuthToken));
-            parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")),
-                _configuration.AuthToken));
-            parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
-                _configuration.AuthToken));
+            var parsers = new List<Parser>();
+            // parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")),
+                // _configuration.AuthToken));
+            // parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")),
+                // _configuration.AuthToken));
+            // parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")),
+                // _configuration.AuthToken));
+            // parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")),
+                // _configuration.AuthToken));
+            // parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
+                // _configuration.AuthToken));
 
-            var available = new List<ParserMonitoring>();
-            using (var monitoringContext = new ParserMonitoringContext())
-            {
-                available = monitoringContext.ParserMonitorings.Where(x => (x.Active == true && x.Parsed == false))
-                    .ToList();
-            }
-
-            var parserName = "LotGoszakup";
-            if (available.FirstOrDefault(x => x.Name.Equals(parserName)) != null)
-            {
-                await new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(ParserMonitoringNames[parserName])),
-                    _configuration.AuthToken).ParseAsync();
-            }
+            await new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))).ParseAsync();
         }
     }
 }

@@ -1,36 +1,41 @@
 ﻿{
-    "DbHost": "192.168.2.25",
-    "DbPort": 5432,
-    "DbUser": "data_migrator",
-    "DbPassword": "Z4P6PjEHnJ5nPT",
-    "DbName": "adata",
-    "DbScheme": "avroradata",
-    "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
-    "Parsers": [
-      {
-        "Name": "AnnouncementParser",
-        "NumberOfDbConnections": 15,
-        "Url": "v3/trd-buy/all"
-      },
-      {
-        "Name": "ContractParser",
-        "NumberOfDbConnections": 10,
-        "Url": "v3/contract/all"
-      },
-      {
-        "Name": "LotParser",
-        "NumberOfDbConnections": 15,
-        "Url": "v3/lots"
-      },
-      {
-        "Name": "ParticipantParser",
-        "NumberOfDbConnections": 10,
-        "Url": "v3/subject/all"
-      },
-      {
-        "Name": "UnscrupulousParser",
-        "NumberOfDbConnections": 10,
-        "Url": "v3/rnu"
-      }
-    ]
+  "DbHost": "192.168.2.25",
+  "DbPort": 5432,
+  "DbUser": "data_migrator",
+  "DbPassword": "Z4P6PjEHnJ5nPT",
+  "DbName": "adata",
+  "DbScheme": "avroradata",
+  "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
+  "Parsers": [
+    {
+      "Name": "AnnouncementParser",
+      "Threads": 15,
+      "Url": "v3/trd-buy/all"
+    },
+    {
+      "Name": "ContractParser",
+      "Threads": 10,
+      "Url": "v3/contract/all"
+    },
+    {
+      "Name": "LotParser",
+      "Threads": 15,
+      "Url": "v3/lots"
+    },
+    {
+      "Name": "ParticipantParser",
+      "Threads": 10,
+      "Url": "v3/subject/all"
+    },
+    {
+      "Name": "UnscrupulousParser",
+      "Threads": 10,
+      "Url": "v3/rnu"
+    },
+    {
+      "Name": "DirectorParser",
+      "Threads": 20,
+      "Url": "https://www.goszakup.gov.kz/ru/registry/show_supplier"
+    }
+  ]
 }

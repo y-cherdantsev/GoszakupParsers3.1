@@ -22,7 +22,7 @@ namespace GoszakupParser
         public class ParserSettings
         {
             public string Name { get; set; }
-            public int NumberOfDbConnections { get; set; }
+            public int Threads { get; set; }
             public string Url { get; set; }
         }
     }

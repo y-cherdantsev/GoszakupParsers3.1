@@ -1,10 +1,9 @@
 ﻿using System;
-using GoszakupParser.Models;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using NLog;
 
-namespace GoszakupParser.Parsers.SequentialParsers
+namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
 
     /// @author Yevgeniy Cherdantsev

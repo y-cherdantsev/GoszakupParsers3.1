@@ -19,24 +19,22 @@ namespace GoszakupParser.Parsers
     /// <summary>
     /// Parsing abstract class
     /// </summary>
-    public abstract class Parser<TDto, TModel> : IParser
+    public abstract class Parser
     {
         protected readonly Logger Logger;
         protected string Url { get; set; }
-        protected int NumOfDbConnections { get; set; }
+        protected int Threads { get; set; }
 
         protected readonly object Lock = new object();
 
         protected Parser(Configuration.ParserSettings parserSettings)
         {
             Logger = InitLogger();
-            NumOfDbConnections = parserSettings.NumberOfDbConnections;
+            Threads = parserSettings.Threads;
             Url = parserSettings.Url;
         }
 
         protected abstract Logger InitLogger();
-        protected abstract Task ProcessObjects(TDto[] entities);
-        protected abstract TModel DtoToDb(TDto dto);
         public abstract Task ParseAsync();
     }
 }
