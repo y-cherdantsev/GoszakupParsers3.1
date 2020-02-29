@@ -11,8 +11,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup> {
-        public ParticipantParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
+    public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup>
+    {
+        public ParticipantParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
+            authToken)
         {
         }
 
@@ -25,22 +27,60 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         protected override ParticipantGoszakup DtoToDb(ParticipantDto dto)
         {
             var participant = new ParticipantGoszakup();
-            
+
             participant.Pid = dto.pid;
             long.TryParse(dto.bin, out var bin);
             participant.Bin = bin;
+            participant.Bin = participant.Bin != 0 ? participant.Bin : null;
             long.TryParse(dto.iin, out var iin);
             participant.Iin = iin;
-            participant.Inn = dto.inn;
-            participant.Unp = dto.unp;
-            try { participant.Regdate = DateTime.Parse(dto.regdate); }catch (Exception) { }
-            try { participant.IndexDate = DateTime.Parse(dto.index_date); }catch (Exception) { }
-            try { participant.LastUpdateDate = DateTime.Parse(dto.last_update_date); }catch (Exception) { }
-            try { participant.Crdate = DateTime.Parse($"{dto.crdate.ToString()}-01-01 00:00:00"); }catch (Exception) { }
-            try { participant.Year = DateTime.Parse($"{dto.year.ToString()}-01-01 00:00:00"); }catch (Exception) { }
-            participant.NumberReg = dto.number_reg;
-            participant.Series = dto.series;
-            participant.NameRu = dto.name_ru;
+            participant.Iin = participant.Iin != 0 ? participant.Iin : null;
+            participant.Inn = dto.inn != "" ? dto.iin : null;
+            participant.Unp = dto.unp != "" ? dto.unp : null;
+            try
+            {
+                participant.Regdate = DateTime.Parse(dto.regdate);
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                participant.IndexDate = DateTime.Parse(dto.index_date);
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                participant.LastUpdateDate = DateTime.Parse(dto.last_update_date);
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                participant.Crdate = DateTime.Parse($"{dto.crdate.ToString()}-01-01 00:00:00");
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                participant.Year = DateTime.Parse($"{dto.year.ToString()}-01-01 00:00:00");
+            }
+            catch (Exception)
+            {
+            }
+
+//TODO(FINISH NULLS)
+            participant.NumberReg = dto.number_reg != "" ? dto.number_reg : null;
+            participant.Series = dto.series != "" ? dto.series : null;
+            participant.NameRu = dto.name_ru != "" ? dto.name_ru : null;
             participant.NameKz = dto.name_kz;
             participant.FullNameRu = dto.full_name_ru;
             participant.FullNameKz = dto.full_name_kz;

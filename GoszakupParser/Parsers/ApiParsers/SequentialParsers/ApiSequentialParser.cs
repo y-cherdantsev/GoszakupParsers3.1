@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
@@ -14,9 +15,11 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public abstract class ApiSequentialParser<TDto, TModel> : ApiParser<TDto, TModel> where TModel : DbLoggerCategory.Model, new()
+    public abstract class ApiSequentialParser<TDto, TModel> : ApiParser<TDto, TModel>
+        where TModel : DbLoggerCategory.Model, new()
     {
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 
@@ -53,8 +56,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 
         private async Task ProcessObjects(TDto[] entities)
         {
-            using (var context = new ParserContext<TModel>())
+            //TODO(Fix error Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. 192.168.2.25:5432)
+            try
             {
+                await using var context = new ParserContext<TModel>();
                 foreach (var dto in entities)
                 {
                     var model = DtoToDb(dto);
@@ -64,7 +69,12 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                         Logger.Trace($"Left:{--Total}");
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
+
         private TDto[] DivideList(List<TDto> list, int i)
         {
             return list.Where(x => list.IndexOf(x) % Threads == i).ToArray();
