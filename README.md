@@ -6,6 +6,7 @@
 * Парсер лотов госзакупа (*LotsParse*)
 * Парсер контрактов госзакупа (*ContractsParse*)
 * Парсер объявлений госзакупа (*AnnouncementsParser*)
+* Парсер руководителей (*DirectorParser*)
 
 
 ## Authors

@@ -570,3 +570,19 @@ comment on column unscrupulous_goszakup.relevance is 'Локально - Рел�
 
 create unique index unscrupulous_goszakup_pid_uindex
     on unscrupulous_goszakup (pid);
+
+--director
+create table director_goszakup
+(
+    id        serial                              not null
+        constraint head_pk
+            primary key,
+    bin       bigint                              not null,
+    iin       bigint,
+    rnn       bigint,
+    fullname  text,
+    relevance timestamp default CURRENT_TIMESTAMP not null
+);
+
+create unique index head_id_uindex
+    on director_goszakup (id);
