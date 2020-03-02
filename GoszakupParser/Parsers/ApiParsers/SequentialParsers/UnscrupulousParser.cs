@@ -33,9 +33,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             
             long.TryParse(dto.supplier_biin, out var supplierBiin);
             unscrupulous.SupplierBiin = supplierBiin;
-            unscrupulous.SupplierInnunp = dto.supplier_innunp;
-            unscrupulous.SupplierNameRu = dto.supplier_name_ru;
-            unscrupulous.SupplierNameKz = dto.supplier_name_kz;
+            unscrupulous.SupplierInnunp = dto.supplier_innunp !=""? dto.supplier_innunp : null;
+            unscrupulous.SupplierNameRu = dto.supplier_name_ru !=""? dto.supplier_name_ru : null;
+            unscrupulous.SupplierNameKz = dto.supplier_name_kz !=""? dto.supplier_name_kz : null;
             unscrupulous.SystemId = dto.system_id;
             return unscrupulous;
         }

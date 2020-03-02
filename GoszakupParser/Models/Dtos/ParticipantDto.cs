@@ -30,7 +30,7 @@
         public byte mark_national_company { get; set; }
         public string ref_kopf_code { get; set; }
         public byte mark_assoc_with_disab { get; set; }
-        public int system_id { get; set; }
+        public int? system_id { get; set; }
         public byte supplier { get; set; }
         public byte type_supplier { get; set; }
         public int krp_code { get; set; }

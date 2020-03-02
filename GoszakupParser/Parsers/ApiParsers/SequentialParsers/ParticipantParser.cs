@@ -77,20 +77,19 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             {
             }
 
-//TODO(FINISH NULLS)
             participant.NumberReg = dto.number_reg != "" ? dto.number_reg : null;
             participant.Series = dto.series != "" ? dto.series : null;
             participant.NameRu = dto.name_ru != "" ? dto.name_ru : null;
-            participant.NameKz = dto.name_kz;
-            participant.FullNameRu = dto.full_name_ru;
-            participant.FullNameKz = dto.full_name_kz;
+            participant.NameKz = dto.name_kz != "" ? dto.name_kz : null;
+            participant.FullNameRu = dto.full_name_ru  != "" ? dto.full_name_ru : null;
+            participant.FullNameKz = dto.full_name_kz != "" ? dto.full_name_kz : null;
             participant.CountryCode = Convert.ToInt32(dto.country_code);
             participant.Customer = dto.customer == 1;
             participant.Organizer = dto.organizer == 1;
             participant.MarkNationalCompany = dto.mark_national_company == 1;
-            participant.RefKopfCode = dto.ref_kopf_code;
+            participant.RefKopfCode = dto.ref_kopf_code != "" ? dto.ref_kopf_code : null;
             participant.MarkAssocWithDisab = dto.mark_assoc_with_disab == 1;
-            participant.SystemId = dto.system_id;
+            participant.SystemId = dto.system_id != 0 ? dto.system_id : null;
             participant.Supplier = dto.supplier == 1;
             participant.TypeSupplier = dto.type_supplier;
             participant.KrpCode = dto.krp_code;
@@ -103,9 +102,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             participant.MarkPatronymicSupplier = dto.mark_patronymic_supplyer == 1;
             participant.MarkSmallEmployer = dto.mark_small_employer == 1;
             participant.IsSingleOrg = dto.is_single_org == 1;
-            participant.Email = dto.email;
-            participant.Phone = dto.phone;
-            participant.Website = dto.website;
+            participant.Email = dto.email!= "" ? dto.email : null;
+            participant.Phone = dto.phone!= "" ? dto.phone : null;
+            participant.Website = dto.website!= "" ? dto.website : null;
             participant.Qvazi = dto.qvazi == 1;
             participant.MarkResident = dto.mark_resident == 1;
 

@@ -8,6 +8,7 @@ using GoszakupParser.Parsers;
 using GoszakupParser.Parsers.ApiParsers.SequentialParsers;
 using GoszakupParser.Parsers.WebParsers;
 using NLog;
+using NLog.Fluent;
 
 namespace GoszakupParser
 {
@@ -29,12 +30,12 @@ namespace GoszakupParser
             Args = args;
             _configuration = configuration;
             _logger = LogManager.GetCurrentClassLogger();
-            ParserMonitoringNames.Add("UnscrupulousGoszakup", "UnscrupulousParser");
-            ParserMonitoringNames.Add("ParticipantGoszakup", "ParticipantParser");
-            ParserMonitoringNames.Add("LotGoszakup", "LotParser");
-            ParserMonitoringNames.Add("ContractGoszakup", "ContractParser");
-            ParserMonitoringNames.Add("AnnouncementGoszakup", "AnnouncementParser");
-            ParserMonitoringNames.Add("DirectorGoszakup", "DirectorParser");
+            ParserMonitoringNames.Add("UnscrupulousParser", "UnscrupulousGoszakup");
+            ParserMonitoringNames.Add("ParticipantParser", "ParticipantGoszakup");
+            ParserMonitoringNames.Add("LotParser", "LotGoszakup");
+            ParserMonitoringNames.Add("ContractParser", "ContractGoszakup");
+            ParserMonitoringNames.Add("AnnouncementParser", "AnnouncementGoszakup");
+            ParserMonitoringNames.Add("DirectorParser", "DirectorGoszakup");
         }
 
         public async Task StartParsing()
@@ -52,10 +53,47 @@ namespace GoszakupParser
                 _configuration.AuthToken));
             parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
                 _configuration.AuthToken));
+            var avaliable = new List<string>();
+            await using (var parserMonitoringContext = new ParserMonitoringContext())
+            {
+                var avaliableFromContext = parserMonitoringContext.ParserMonitorings.Where(x => (x.Parsed == false && x.Active == true)).ToList();
+                avaliable.AddRange(avaliableFromContext.Select(parserMonitoring => parserMonitoring.Name));
+            }
 
+            foreach (var arg in Args)
+            {
+                try
+                {
+                    var parser = parsers.FirstOrDefault(x => x.GetType().Name.Equals(arg));
+                    if (parser != null && !avaliable.Contains(ParserMonitoringNames[arg]))
+                    {
+                        _logger.Warn($"Parser '{arg}' hasn't been migrated yet");
+                        continue;
+                    }
+                    if (parser != null)
+                    {
+                        await using var parserMonitoringContext = new ParserMonitoringContext();
+                        await parser.ParseAsync();
+                        var parsed = parserMonitoringContext.ParserMonitorings.FirstOrDefault(x => x.Name.Equals(ParserMonitoringNames[arg]));
+                        if (parsed != null)
+                        {
+                            parsed.LastParsed = DateTime.Now;
+                            parsed.Parsed = true;
+                            parserMonitoringContext.ParserMonitorings.Update(parsed);
+                        }
 
-            await parsers.FirstOrDefault(x => x.GetType().Name.Equals(Args[0]))?.ParseAsync();
-            // await new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))).ParseAsync();
+                        await parserMonitoringContext.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        _logger.Warn($"Can't find such parser '{arg}'");
+                    }
+                }
+                catch (Exception e)
+                {
+                    _logger.Error(e.StackTrace);
+                }
+            }
         }
     }
 }
