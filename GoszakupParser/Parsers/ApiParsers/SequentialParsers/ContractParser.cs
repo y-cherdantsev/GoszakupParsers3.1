@@ -56,7 +56,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             contract.ContractNumberSys = dto.contract_number_sys;
             contract.RefContractAgrFormId = dto.ref_contract_agr_form_id;
             contract.RefContractYearTypeId = dto.ref_contract_year_type_id;
-            contract.RefFinsourceId = dto.ref_finsource_id ?? 0;
+            contract.RefFinsourceId = dto.ref_finsource_id != 0 ? dto.ref_finsource_id : null;
             contract.RefCurrencyCode = dto.ref_currency_code;
             contract.ContractSumWnds = dto.contract_sum_wnds;
             contract.FaktSumWnds = dto.fakt_sum_wnds != 0 ? dto.fakt_sum_wnds : null;
