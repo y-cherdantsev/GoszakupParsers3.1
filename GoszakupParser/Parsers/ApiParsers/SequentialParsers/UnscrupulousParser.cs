@@ -28,14 +28,20 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         {
             var unscrupulous = new UnscrupulousGoszakup();
             unscrupulous.Pid = dto.pid;
-            try { unscrupulous.IndexDate = DateTime.Parse(dto.index_date); }catch (Exception) { }
+            try
+            {
+                unscrupulous.IndexDate = DateTime.Parse(dto.index_date);
+            }
+            catch (Exception)
+            {
+                unscrupulous.IndexDate = null; }
 
             
             long.TryParse(dto.supplier_biin, out var supplierBiin);
             unscrupulous.SupplierBiin = supplierBiin;
-            unscrupulous.SupplierInnunp = dto.supplier_innunp !=""? dto.supplier_innunp : null;
-            unscrupulous.SupplierNameRu = dto.supplier_name_ru !=""? dto.supplier_name_ru : null;
-            unscrupulous.SupplierNameKz = dto.supplier_name_kz !=""? dto.supplier_name_kz : null;
+            unscrupulous.SupplierInnunp = !string.IsNullOrEmpty(dto.supplier_innunp)? dto.supplier_innunp : null;
+            unscrupulous.SupplierNameRu = !string.IsNullOrEmpty(dto.supplier_name_ru)? dto.supplier_name_ru : null;
+            unscrupulous.SupplierNameKz = !string.IsNullOrEmpty(dto.supplier_name_kz)? dto.supplier_name_kz : null;
             unscrupulous.SystemId = dto.system_id;
             return unscrupulous;
         }

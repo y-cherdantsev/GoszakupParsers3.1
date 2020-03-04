@@ -30,8 +30,21 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             lot.Id = dto.id;
             lot.LotNumber = dto.lot_number;
             lot.RefLotStatusId = dto.ref_lot_status_id;
-            try { lot.IndexDate = DateTime.Parse(dto.index_date); }catch (Exception) { }
-            try { lot.LastUpdateDate = DateTime.Parse(dto.last_update_date); }catch (Exception) { }
+            try
+            {
+                lot.IndexDate = DateTime.Parse(dto.index_date);
+            }
+            catch (Exception)
+            {
+                lot.IndexDate = null;}
+
+            try
+            {
+                lot.LastUpdateDate = DateTime.Parse(dto.last_update_date);
+            }
+            catch (Exception)
+            {
+                lot.LastUpdateDate = null;}
             lot.UnionLots = dto.union_lots == 1;
             lot.Count = dto.count;
             lot.Amount = dto.amount;
@@ -45,8 +58,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             lot.TrdBuyNumberAnno = dto.trd_buy_number_anno;
             lot.TrdBuyId = dto.trd_buy_id;
             lot.Dumping = dto.dumping == 1;
-            lot.DumpingLotPrice = dto.dumping_lot_price;
-            lot.PsdSign = dto.psd_sign;
+            lot.DumpingLotPrice = dto.dumping_lot_price != 0 ? dto.dumping_lot_price : (int?) null;
+            lot.PsdSign = dto.psd_sign!= 0 ? dto.psd_sign : (int?) null;
             lot.ConsultingServices = dto.consulting_services == 1;
             lot.SingleOrgSign = dto.singl_org_sign;
             lot.IsLightIndustry = dto.is_light_industry == 1;
