@@ -56,7 +56,8 @@ namespace GoszakupParser
             var avaliable = new List<string>();
             await using (var parserMonitoringContext = new ParserMonitoringContext())
             {
-                var avaliableFromContext = parserMonitoringContext.ParserMonitorings.Where(x => (x.Parsed == false && x.Active == true)).ToList();
+                var avaliableFromContext = parserMonitoringContext.ParserMonitorings
+                    .Where(x => (x.Parsed == false && x.Active == true)).ToList();
                 avaliable.AddRange(avaliableFromContext.Select(parserMonitoring => parserMonitoring.Name));
             }
 
@@ -70,11 +71,14 @@ namespace GoszakupParser
                         _logger.Warn($"Parser '{arg}' hasn't been migrated yet");
                         continue;
                     }
+
                     if (parser != null)
                     {
                         await using var parserMonitoringContext = new ParserMonitoringContext();
                         await parser.ParseAsync();
-                        var parsed = parserMonitoringContext.ParserMonitorings.FirstOrDefault(x => x.Name.Equals(ParserMonitoringNames[arg]));
+                        var parsed =
+                            parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
+                                x.Name.Equals(ParserMonitoringNames[arg]));
                         if (parsed != null)
                         {
                             parsed.LastParsed = DateTime.Now;

@@ -5,7 +5,6 @@ using NLog;
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 23:55:36
     /// @version 1.0
@@ -14,7 +13,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
     {
-        public LotParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
+        public LotParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
+            authToken)
         {
         }
 
@@ -26,7 +26,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         protected override LotGoszakup DtoToDb(LotDto dto)
         {
             var lot = new LotGoszakup();
-            
+
             lot.Id = dto.id;
             lot.LotNumber = dto.lot_number;
             lot.RefLotStatusId = dto.ref_lot_status_id;
@@ -36,7 +36,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             }
             catch (Exception)
             {
-                lot.IndexDate = null;}
+                lot.IndexDate = null;
+            }
 
             try
             {
@@ -44,7 +45,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             }
             catch (Exception)
             {
-                lot.LastUpdateDate = null;}
+                lot.LastUpdateDate = null;
+            }
+
             lot.UnionLots = dto.union_lots == 1;
             lot.Count = dto.count;
             lot.Amount = dto.amount;
@@ -59,7 +62,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             lot.TrdBuyId = dto.trd_buy_id;
             lot.Dumping = dto.dumping == 1;
             lot.DumpingLotPrice = dto.dumping_lot_price != 0 ? dto.dumping_lot_price : (int?) null;
-            lot.PsdSign = dto.psd_sign!= 0 ? dto.psd_sign : (int?) null;
+            lot.PsdSign = dto.psd_sign != 0 ? dto.psd_sign : (int?) null;
             lot.ConsultingServices = dto.consulting_services == 1;
             lot.SingleOrgSign = dto.singl_org_sign;
             lot.IsLightIndustry = dto.is_light_industry == 1;

@@ -51,9 +51,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             announcement.IsLightIndustry = dto.is_light_industry == 1;
             announcement.IsConstructionWork = dto.is_construction_work == 1;
             announcement.CustomerNameKz = !string.IsNullOrEmpty(dto.customer_name_kz) ? dto.customer_name_kz : null;
-            announcement.CustomerNameRu = !string.IsNullOrEmpty(dto.customer_name_ru)? dto.customer_name_ru : null;
-            announcement.OrgNameKz = !string.IsNullOrEmpty(dto.org_name_kz)? dto.org_name_kz : null;
-            announcement.OrgNameRu = !string.IsNullOrEmpty(dto.org_name_ru)? dto.org_name_ru : null;
+            announcement.CustomerNameRu = !string.IsNullOrEmpty(dto.customer_name_ru) ? dto.customer_name_ru : null;
+            announcement.OrgNameKz = !string.IsNullOrEmpty(dto.org_name_kz) ? dto.org_name_kz : null;
+            announcement.OrgNameRu = !string.IsNullOrEmpty(dto.org_name_ru) ? dto.org_name_ru : null;
             announcement.SystemId = dto.system_id;
             try
             {
