@@ -16,7 +16,7 @@ namespace GoszakupParser
     /// @date 26.02.2020 18:18:55
     /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Proceeding of arguments and general logic
     /// </summary>
     public class ParserService
     {
