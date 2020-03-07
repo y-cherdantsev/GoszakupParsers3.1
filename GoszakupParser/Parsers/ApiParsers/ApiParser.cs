@@ -33,27 +33,45 @@ namespace GoszakupParser.Parsers.ApiParsers
 
         protected string GetApiPageResponse(string url)
         {
-            var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
-            request.Method = WebRequestMethods.Http.Get;
-            request.Headers["Content-Type"] = "application/json";
-            request.Headers["Authorization"] = AuthToken;
-            request.AuthenticationLevel = AuthenticationLevel.None;
-            var response = request.GetResponse();
-            if (response.GetResponseStream() == null)
-                return null;
-            var objReader =
-                new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
-
-            var sLine = "";
-            var pageResponse = "";
-            while (sLine != null)
+            var i = 0;
+            while (true)
             {
-                sLine = objReader.ReadLine();
-                if (sLine != null)
-                    pageResponse += sLine;
-            }
+                var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
+                request.Method = WebRequestMethods.Http.Get;
+                request.Headers["Content-Type"] = "application/json";
+                request.Headers["Authorization"] = AuthToken;
+                request.AuthenticationLevel = AuthenticationLevel.None;
+                WebResponse response;
+                try
+                {
+                    response = request.GetResponse();
+                }
+                catch (Exception e)
+                {
+                    if (++i == 5)
+                    {
+                        Logger.Error(e);
+                        throw;
+                    }
+                    continue;
+                }
+                if (response.GetResponseStream() == null)
+                    return null;
+                var objReader =
+                    new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
 
-            return pageResponse;
+                var sLine = "";
+                var pageResponse = "";
+                while (sLine != null)
+                {
+                    sLine = objReader.ReadLine();
+                    if (sLine != null)
+                        pageResponse += sLine;
+                }
+
+                return pageResponse;
+            }
         }
+        
     }
 }

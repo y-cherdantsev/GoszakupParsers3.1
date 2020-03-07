@@ -53,6 +53,7 @@ namespace GoszakupParser
                 _configuration.AuthToken));
             parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
                 _configuration.AuthToken));
+            parsers.Add(new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))));
             var avaliable = new List<string>();
             await using (var parserMonitoringContext = new ParserMonitoringContext())
             {
