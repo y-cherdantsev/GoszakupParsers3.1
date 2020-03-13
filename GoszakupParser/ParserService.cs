@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models;
 using GoszakupParser.Parsers;
+using GoszakupParser.Parsers.ApiParsers.AimParsers;
 using GoszakupParser.Parsers.ApiParsers.SequentialParsers;
 using GoszakupParser.Parsers.WebParsers;
 using GoszakupParser.Parsers.WebParsers.AimParsers;
@@ -37,24 +38,15 @@ namespace GoszakupParser
             ParserMonitoringNames.Add("ContractParser", "ContractGoszakup");
             ParserMonitoringNames.Add("AnnouncementParser", "AnnouncementGoszakup");
             ParserMonitoringNames.Add("DirectorParser", "DirectorGoszakup");
+            ParserMonitoringNames.Add("RnuReferenceParser", "RnuReferenceGoszakup");
         }
 
         public async Task StartParsing()
         {
             _logger.Info("Started parsing service!");
             var parsersSettings = _configuration.Parsers;
-            var parsers = new List<Parser>();
-            parsers.Add(new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("AnnouncementParser")),
-                _configuration.AuthToken));
-            parsers.Add(new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("LotParser")),
-                _configuration.AuthToken));
-            parsers.Add(new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ContractParser")),
-                _configuration.AuthToken));
-            parsers.Add(new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("ParticipantParser")),
-                _configuration.AuthToken));
-            parsers.Add(new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("UnscrupulousParser")),
-                _configuration.AuthToken));
-            parsers.Add(new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals("DirectorParser"))));
+
+
             var avaliable = new List<string>();
             await using (var parserMonitoringContext = new ParserMonitoringContext())
             {
@@ -67,33 +59,60 @@ namespace GoszakupParser
             {
                 try
                 {
-                    var parser = parsers.FirstOrDefault(x => x.GetType().Name.Equals(arg));
-                    if (parser != null && !avaliable.Contains(ParserMonitoringNames[arg]))
+                    Parser parser = null;
+                    if (!avaliable.Contains(ParserMonitoringNames[arg]))
                     {
                         _logger.Warn($"Parser '{arg}' hasn't been migrated yet");
                         continue;
                     }
 
-                    if (parser != null)
+                    switch (arg)
                     {
-                        await using var parserMonitoringContext = new ParserMonitoringContext();
-                        await parser.ParseAsync();
-                        var parsed =
-                            parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
-                                x.Name.Equals(ParserMonitoringNames[arg]));
-                        if (parsed != null)
-                        {
-                            parsed.LastParsed = DateTime.Now;
-                            parsed.Parsed = true;
-                            parserMonitoringContext.ParserMonitorings.Update(parsed);
-                        }
+                        case "AnnouncementParser":
+                            parser = new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        case "LotParser":
+                            parser = new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        case "ContractParser":
+                            parser = new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        case "ParticipantParser":
+                            parser = new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        case "UnscrupulousParser":
+                            parser = new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        case "DirectorParser":
+                            parser = new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)));
+                            break;
+                        case "RnuReferenceParser":
+                            parser = new RnuReferenceParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken);
+                            break;
+                        default:
+                            _logger.Warn($"Can't find such parser '{arg}'");
+                            continue;
+                    }
 
-                        await parserMonitoringContext.SaveChangesAsync();
-                    }
-                    else
+                    await using var parserMonitoringContext = new ParserMonitoringContext();
+                    await parser.ParseAsync();
+                    var parsed =
+                        parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
+                            x.Name.Equals(ParserMonitoringNames[arg]));
+                    if (parsed != null)
                     {
-                        _logger.Warn($"Can't find such parser '{arg}'");
+                        parsed.LastParsed = DateTime.Now;
+                        parsed.Parsed = true;
+                        parserMonitoringContext.ParserMonitorings.Update(parsed);
                     }
+
+                    await parserMonitoringContext.SaveChangesAsync();
                 }
                 catch (Exception e)
                 {

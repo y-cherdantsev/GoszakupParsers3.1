@@ -39,7 +39,7 @@ namespace GoszakupParser.Parsers
 
         protected string[] DivideList(List<string> list, int i)
         {
-            return list.Where(x => int.Parse(x) % Threads == i).ToArray();
+            return list.Where(x => long.Parse(x) % Threads == i).ToArray();
         }
     }
 }

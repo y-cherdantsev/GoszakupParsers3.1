@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
+using Newtonsoft.Json;
 using NLog;
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
@@ -29,7 +31,9 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 
         protected override RnuReferenceGoszakup DtoToDb(RnuReferenceDto dto)
         {
-            throw new System.NotImplementedException();
+            var rnuReferenceGoszakup = new RnuReferenceGoszakup();
+
+            return rnuReferenceGoszakup;
         }
 
         protected override List<string> LoadAims()
@@ -40,9 +44,19 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             return stringList;
         }
 
-        protected override Task ParseArray(string[] list)
+        protected override async Task ParseArray(string[] list)
         {
-            throw new System.NotImplementedException();
+            foreach (var biin in list)
+            {
+                var response = GetApiPageResponse($"{Url}/{biin}", 0);
+                if (response == null)
+                    continue;
+                if (!response.Contains("\"founders\":null}"))
+                {
+                    Console.WriteLine(response);
+                }
+                // var element = JsonConvert.DeserializeObject<>(response);
+            }
         }
     }
 }

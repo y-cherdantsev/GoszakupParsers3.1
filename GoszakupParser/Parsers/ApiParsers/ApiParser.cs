@@ -32,7 +32,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         public abstract override Task ParseAsync();
         protected abstract TModel DtoToDb(TDto dto);
 
-        protected string GetApiPageResponse(string url)
+        protected string GetApiPageResponse(string url, int delay = 10000)
         {
             var i = 0;
             while (true)
@@ -47,9 +47,13 @@ namespace GoszakupParser.Parsers.ApiParsers
                 {
                     response = request.GetResponse();
                 }
-                catch (Exception e)
+                catch (WebException e)
                 {
-                    Thread.Sleep(30000);
+                    if (e.Message.Equals("The remote server returned an error: (404) Not Found."))
+                    {
+                        return null;
+                    }
+                    Thread.Sleep(delay);
                     if (++i == 5)
                     {
                         Logger.Error(e);
@@ -57,6 +61,12 @@ namespace GoszakupParser.Parsers.ApiParsers
                     }
                     continue;
                 }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    throw;
+                }
+
                 if (response.GetResponseStream() == null)
                     return null;
                 var objReader =
@@ -74,6 +84,5 @@ namespace GoszakupParser.Parsers.ApiParsers
                 return pageResponse;
             }
         }
-        
     }
 }

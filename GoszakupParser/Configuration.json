@@ -33,6 +33,11 @@
       "Url": "v3/rnu"
     },
     {
+      "Name": "RnuReferenceParser",
+      "Threads": 1,
+      "Url": "v3/rnu"
+    },
+    {
       "Name": "DirectorParser",
       "Threads": 20,
       "Url": "https://www.goszakup.gov.kz/ru/registry/show_supplier"
