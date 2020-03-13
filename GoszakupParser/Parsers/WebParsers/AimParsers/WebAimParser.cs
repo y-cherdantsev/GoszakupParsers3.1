@@ -4,14 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
-using System.Threading;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 
-namespace GoszakupParser.Parsers.WebParsers
+namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 19:47:21
@@ -19,12 +17,12 @@ namespace GoszakupParser.Parsers.WebParsers
     /// <summary>
     /// INPUT
     /// </summary>
-    public abstract class WebParser<TModel> : Parser where TModel : DbLoggerCategory.Model
+    public abstract class WebAimParser<TModel> : Parser where TModel : DbLoggerCategory.Model
     {
         protected Dictionary<string, string> Aims { get; set; }
         private int Total { get; set; } 
 
-        protected WebParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
+        protected WebAimParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
             Aims = LoadAims();
             Total = Aims.Count;

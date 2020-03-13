@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
 using NLog;
 
-namespace GoszakupParser.Parsers.WebParsers
+namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 12:17:39
     /// @version 1.0
-    public class DirectorParser : WebParser<DirectorGoszakup>
+    public class DirectorParser : WebAimParser<DirectorGoszakup>
     {
         public DirectorParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
