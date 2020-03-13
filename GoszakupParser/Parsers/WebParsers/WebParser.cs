@@ -76,7 +76,9 @@ namespace GoszakupParser.Parsers.WebParsers
                 request.AuthenticationLevel = AuthenticationLevel.None;
                 request.Proxy = proxy;
                 request.Timeout = 10000;
+                Console.WriteLine("Requesting");
                 var response = request.GetResponse();
+                Console.WriteLine("Got response");
                 var objReader =
                     new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
 

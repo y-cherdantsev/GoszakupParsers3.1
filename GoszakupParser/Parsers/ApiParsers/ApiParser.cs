@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using GoszakupParser.Models.Dtos;
 using NLog;
@@ -48,6 +49,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                 }
                 catch (Exception e)
                 {
+                    Thread.Sleep(30000);
                     if (++i == 5)
                     {
                         Logger.Error(e);

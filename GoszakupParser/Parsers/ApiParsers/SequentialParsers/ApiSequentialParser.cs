@@ -23,8 +23,6 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         {
         }
 
-        protected abstract override TModel DtoToDb(TDto dto);
-
         public override async Task ParseAsync()
         {
             var tasks = new List<Task>();
