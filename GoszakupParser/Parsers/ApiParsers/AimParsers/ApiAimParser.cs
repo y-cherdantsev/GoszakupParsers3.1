@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
@@ -28,9 +31,18 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 
         protected abstract List<string> LoadAims();
         
-        public override Task ParseAsync()
+        public override async Task ParseAsync()
         {
-            throw new System.NotImplementedException();
+            Logger.Info("Starting Parsing");
+            var tasks = new List<Task>();
+            for (var i = 0; i < Threads; i++)
+            {
+                var ls = DivideList(Aims, i);
+                tasks.Add(ParseArray(ls));
+            }
+
+            await Task.WhenAll(tasks);
+            Logger.Info("End Of Parsing");
         }
 
         protected abstract Task ParseArray(string[] list);

@@ -43,7 +43,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             await using var context = new ParserContext<DirectorGoszakup>();
             foreach (var pid in list)
             {
-                var response = GetPage(GenerateUrl(pid), webProxy);
+                var response = GetPage($"{Url}/{pid}", webProxy);
                 var director = ParseParticipantPage(response);
                 director.Bin = long.Parse(Aims[pid]);
                 director.Rnn = director.Rnn != 0 ? director.Rnn : null;
@@ -80,11 +80,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             }
 
             return director;
-        }
-
-        public override string GenerateUrl(string aim)
-        {
-            return $"{Url}/{aim}";
         }
     }
 }

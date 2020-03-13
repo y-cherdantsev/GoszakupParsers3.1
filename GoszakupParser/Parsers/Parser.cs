@@ -36,5 +36,10 @@ namespace GoszakupParser.Parsers
 
         protected abstract Logger InitLogger();
         public abstract Task ParseAsync();
+
+        protected string[] DivideList(List<string> list, int i)
+        {
+            return list.Where(x => int.Parse(x) % Threads == i).ToArray();
+        }
     }
 }

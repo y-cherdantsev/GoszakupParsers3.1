@@ -62,8 +62,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             Logger.Info("End Of Parsing");
         }
 
-        public abstract string GenerateUrl(string aim);
-
         protected string GetPage(string url, WebProxy proxy)
         {
             var pageResponse = "";
@@ -96,11 +94,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 // Console.WriteLine(e.StackTrace);
                 return null;
             }
-        }
-        
-        private string[] DivideList(List<string> list, int i)
-        {
-            return list.Where(x => int.Parse(x) % Threads == i).ToArray();
         }
     }
 }
