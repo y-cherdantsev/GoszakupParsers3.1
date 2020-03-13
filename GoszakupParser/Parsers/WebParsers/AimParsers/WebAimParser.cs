@@ -30,8 +30,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
 
         protected abstract Dictionary<string, string> LoadAims();
 
-        protected abstract override Logger InitLogger();
-
         protected async Task ProcessObject(TModel model, ParserContext<TModel> context)
         {
             context.Models.Add(model);
