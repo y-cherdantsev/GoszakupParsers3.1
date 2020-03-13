@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
@@ -7,7 +9,6 @@ using NLog;
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:16:57
     /// @version 1.0
@@ -16,7 +17,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     /// </summary>
     public class RnuReferenceParser : ApiAimParser<RnuReferenceDto, RnuReferenceGoszakup, UnscrupulousGoszakupWeb>
     {
-        public RnuReferenceParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings, authToken)
+        public RnuReferenceParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
+            authToken)
         {
         }
 
@@ -32,7 +34,10 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 
         protected override List<string> LoadAims()
         {
-            throw new System.NotImplementedException();
+            var tempCtx = new WebContext<UnscrupulousGoszakupWeb>();
+            var tempList = tempCtx.Models.Select(x => x.BiinCompanies).ToList();
+            var stringList = tempList.Select(l => l.ToString().PadLeft(12, '0')).ToList();
+            return stringList;
         }
 
         protected override Task ParseArray(string[] list)
