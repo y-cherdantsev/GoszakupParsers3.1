@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
@@ -45,6 +48,33 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             Logger.Info("End Of Parsing");
         }
 
-        protected abstract Task ParseArray(string[] list);
+        protected async Task ParseArray(string[] list)
+        {
+            foreach (var element in list)
+            {
+                var context = new ParserContext<TModel>();
+                var response = GetApiPageResponse($"{Url}/{element}", 0);
+                lock (Lock)
+                {
+                    Logger.Trace($"Left: {--Total}");
+                }
+                if (response == null)
+                    continue;
+                var dtos = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
+
+                foreach (var model in dtos.items.Select(dto => DtoToDb(dto)))
+                {
+                    try
+                    {
+                        context.Models.Add(model);
+                        await context.SaveChangesAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Warn(e);
+                    }
+                }
+            }
+        }
     }
 }

@@ -26,6 +26,6 @@
         public string end_date { get; set; }
         public string ref_reason_id { get; set; }
         public string index_date { get; set; }
-        public int system_id { get; set; }
+        public byte system_id { get; set; }
     }
 }
