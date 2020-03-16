@@ -26,7 +26,7 @@ namespace GoszakupParser.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Server = 192.168.2.25; Database = adata; Port=5432; User ID = administrator; Password = Z4P6PjEHnJ5nPT; Search Path = monitoring; Integrated Security=true; Pooling=true;");
+                "Server = 192.168.1.25; Database = adata; Port=5432; User ID = administrator; Password = Z4P6PjEHnJ5nPT; Search Path = monitoring; Integrated Security=true; Pooling=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

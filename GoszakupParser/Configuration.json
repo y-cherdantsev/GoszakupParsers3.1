@@ -1,5 +1,5 @@
 ﻿{
-  "DbHost": "192.168.2.25",
+  "DbHost": "192.168.1.25",
   "DbPort": 5432,
   "DbUser": "data_migrator",
   "DbPassword": "Z4P6PjEHnJ5nPT",
@@ -34,7 +34,7 @@
     },
     {
       "Name": "RnuReferenceParser",
-      "Threads": 1,
+      "Threads": 10,
       "Url": "v3/rnu"
     },
     {
