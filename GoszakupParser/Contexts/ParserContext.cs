@@ -1,4 +1,3 @@
-using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Contexts

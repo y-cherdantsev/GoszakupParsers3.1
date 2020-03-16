@@ -3,8 +3,6 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using GoszakupParser.Models;
-using GoszakupParser.Parsers;
 using NLog;
 using NLog.Config;
 

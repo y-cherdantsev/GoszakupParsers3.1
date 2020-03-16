@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Text.Json;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
-using GoszakupParser.Models;
-using Microsoft.EntityFrameworkCore;
 using NLog;
 
 namespace GoszakupParser.Parsers

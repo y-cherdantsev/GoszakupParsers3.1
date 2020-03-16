@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
 using GoszakupParser.Parsers;
 using GoszakupParser.Parsers.ApiParsers.AimParsers;
 using GoszakupParser.Parsers.ApiParsers.SequentialParsers;
-using GoszakupParser.Parsers.WebParsers;
 using GoszakupParser.Parsers.WebParsers.AimParsers;
 using NLog;
-using NLog.Fluent;
 
 namespace GoszakupParser
 {

@@ -7,8 +7,6 @@ using System.Net.Security;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using Microsoft.EntityFrameworkCore;
-using NLog;
-
 namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
