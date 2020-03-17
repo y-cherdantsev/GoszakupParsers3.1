@@ -43,12 +43,16 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             await using var context = new ParserContext<DirectorGoszakup>();
             foreach (var pid in list)
             {
+                Logger.Trace("Started proceeding of the next element");
                 var response = GetPage($"{Url}/{pid}", webProxy);
+                Logger.Trace("Send into parsing of the page");
                 var director = ParseParticipantPage(response);
+                Logger.Trace("Creating Object");
                 director.Bin = long.Parse(Aims[pid]);
                 director.Rnn = director.Rnn != 0 ? director.Rnn : null;
                 director.Iin = director.Iin != 0 ? director.Iin : null;
                 await ProcessObject(director, context);
+                Logger.Trace("Objects has been proceeded");
                 Thread.Sleep(1000);
             }
         }

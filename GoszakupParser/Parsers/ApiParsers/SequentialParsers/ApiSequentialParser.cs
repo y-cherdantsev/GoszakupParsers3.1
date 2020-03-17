@@ -43,6 +43,13 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 
                 if (Url != "") continue;
                 await Task.WhenAll(tasks);
+                foreach (var task in tasks.Where(task => task.IsFaulted))
+                {
+                    Logger.Error(task.Exception);
+                }
+
+                if (tasks.Any(x => x.IsFaulted))
+                    throw new Exception("Parsing hasn't been done");
                 tasks.Clear();
                 break;
             }
