@@ -5,7 +5,7 @@
   "DbPassword": "Z4P6PjEHnJ5nPT",
   "DbName": "adata",
   "DbScheme": "avroradata",
-  "AuthToken": "Bearer 01c6dce8313563d85515bc5ee98e65ea",
+  "AuthToken": "Bearer 94ec0d25d613ce099378f7762b6842cc
   "Parsers": [
     {
       "Name": "AnnouncementParser",
