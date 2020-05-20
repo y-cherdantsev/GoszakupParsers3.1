@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Security;
 using System.Text.Json;
 using System.Threading;
@@ -37,15 +39,21 @@ namespace GoszakupParser.Parsers.ApiParsers
             var i = 0;
             while (true)
             {
-                var request = WebRequest.Create($"https://ows.goszakup.gov.kz/{url}?limit=500");
-                request.Method = WebRequestMethods.Http.Get;
-                request.Headers["Content-Type"] = "application/json";
-                request.Headers["Authorization"] = AuthToken;
-                request.AuthenticationLevel = AuthenticationLevel.None;
-                WebResponse response;
+                var handler = new HttpClientHandler();
+                handler.Proxy = new WebProxy($"185.120.78.137:65233", true)
+                    {Credentials = new NetworkCredential {UserName = "21046", Password = "V1r4TjI"}};
+                var httpClient = new HttpClient(handler);
+                httpClient.Timeout = TimeSpan.FromSeconds(10);
+                httpClient.DefaultRequestHeaders
+                    .Accept
+                    .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Add("Authorization", AuthToken);
+                
+                string response;
                 try
                 {
-                    response = request.GetResponse();
+                    response = httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500").GetAwaiter()
+                        .GetResult();
                 }
                 catch (WebException e)
                 {
@@ -53,12 +61,25 @@ namespace GoszakupParser.Parsers.ApiParsers
                     {
                         return null;
                     }
+
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
                         Logger.Error(e);
                         throw;
                     }
+
+                    continue;
+                }
+                catch (TaskCanceledException e)
+                {
+                    Thread.Sleep(delay);
+                    if (++i == 5)
+                    {
+                        Logger.Error(e);
+                        throw;
+                    }
+                    
                     continue;
                 }
                 catch (Exception e)
@@ -67,21 +88,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     throw;
                 }
 
-                if (response.GetResponseStream() == null)
-                    return null;
-                var objReader =
-                    new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
-
-                var sLine = "";
-                var pageResponse = "";
-                while (sLine != null)
-                {
-                    sLine = objReader.ReadLine();
-                    if (sLine != null)
-                        pageResponse += sLine;
-                }
-
-                return pageResponse;
+                return response;
             }
         }
     }
