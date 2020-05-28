@@ -56,8 +56,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             }
 
             Logger.Info("Parsing done");
-            if (Total > 0)
-                Logger.Info($"{Total} elements hasn't been parsed");
+            // if (Total > 0)
+                // Logger.Info($"{Total} elements hasn't been parsed");
         }
 
         private async Task ProcessObjects(TDto[] entities)

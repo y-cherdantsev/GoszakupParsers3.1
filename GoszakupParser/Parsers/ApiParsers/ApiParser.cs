@@ -58,22 +58,23 @@ namespace GoszakupParser.Parsers.ApiParsers
                 {
                     response = httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500").GetAwaiter()
                         .GetResult();
-                    Console.WriteLine($"{DateTime.Now} - {url} - Left:[{Total}]");
+                    Logger.Trace($"{url} - Left:[{Total}]");
                 }
                 catch (HttpRequestException e)
                 {
-                    if (response.Contains("\"status\": 403,"))
-                    {
-                        Console.WriteLine(response);
-                    }
-                    if (++i == 15)
+                    // if (response.Contains("\"status\": 403,"))
+                    // {
+                        // Console.WriteLine(response);
+                    // }
+                    if (++i == 25)
                     {
                         Logger.Error($"{e} Link:'{url}'");
-                        response = httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500")
+                        httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500")
                             .GetAwaiter()
                             .GetResult();
                         throw;
                     }
+                    Thread.Sleep(1000);
 
                     continue;
                 }
