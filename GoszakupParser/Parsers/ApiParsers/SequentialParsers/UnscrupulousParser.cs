@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using NLog;
@@ -13,8 +14,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public sealed class UnscrupulousParser : ApiSequentialParser<UnscrupulousDto, UnscrupulousGoszakup>
     {
-        public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
+            authToken, proxy)
         {
         }
 

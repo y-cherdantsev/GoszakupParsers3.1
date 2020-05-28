@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
@@ -18,8 +19,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public abstract class ApiSequentialParser<TDto, TModel> : ApiParser<TDto, TModel>
         where TModel : DbLoggerCategory.Model, new()
     {
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
+            parserSettings, authToken, proxy)
         {
         }
 
@@ -70,8 +71,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     var model = DtoToDb(dto);
                     context.Models.Add(model);
                     await context.SaveChangesAsync();
-                    lock (Lock)
-                        Logger.Trace($"Left:{--Total}");
+                    --Total;
+                    // lock (Lock)
+                    // Logger.Trace($"Left:{--Total}");
                 }
             }
             catch (Exception e)

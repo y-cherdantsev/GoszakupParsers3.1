@@ -18,12 +18,20 @@ namespace GoszakupParser
         public string DbScheme { get; set; }
         public string AuthToken { get; set; }
         public List<ParserSettings> Parsers { get; set; }
+        public ProxyData Proxy { get; set; }
 
         public class ParserSettings
         {
             public string Name { get; set; }
             public int Threads { get; set; }
             public string Url { get; set; }
+        }
+
+        public class ProxyData
+        {
+            public string Address { get; set; }
+            public string UserName { get; set; }
+            public string Password { get; set; }
         }
     }
 }

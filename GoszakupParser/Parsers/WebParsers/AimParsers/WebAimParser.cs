@@ -19,9 +19,11 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     {
         protected Dictionary<string, string> Aims { get; set; }
         private int Total { get; set; } 
+        private WebProxy Proxy { get; set; }
 
-        protected WebAimParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
+        protected WebAimParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings)
         {
+            Proxy = proxy;
             Aims = LoadAims();
             Total = Aims.Count;
         }

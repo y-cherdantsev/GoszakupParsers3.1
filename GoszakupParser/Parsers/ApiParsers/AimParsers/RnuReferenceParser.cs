@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
@@ -19,8 +20,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     /// </summary>
     public class RnuReferenceParser : ApiAimParser<RnuReferenceDto, RnuReferenceGoszakup, UnscrupulousGoszakupWeb>
     {
-        public RnuReferenceParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public RnuReferenceParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
+            authToken, proxy)
         {
         }
 

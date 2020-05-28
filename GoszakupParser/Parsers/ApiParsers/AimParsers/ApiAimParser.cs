@@ -25,8 +25,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         protected List<string> Aims { get; set; }
         private new int Total { get; set; }
 
-        public ApiAimParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public ApiAimParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
+            authToken, proxy)
         {
             Aims = LoadAims();
             Total = Aims.Count;

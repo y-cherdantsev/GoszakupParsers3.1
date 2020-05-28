@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Parsers;
@@ -63,34 +64,39 @@ namespace GoszakupParser
                         continue;
                     }
 
+                    var proxy = new WebProxy(_configuration.Proxy.Address, true)
+                    {
+                        Credentials = new NetworkCredential
+                            {UserName = _configuration.Proxy.UserName, Password = _configuration.Proxy.Password}
+                    };
                     switch (arg)
                     {
                         case "AnnouncementParser":
                             parser = new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         case "LotParser":
                             parser = new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         case "ContractParser":
                             parser = new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         case "ParticipantParser":
                             parser = new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         case "UnscrupulousParser":
                             parser = new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         case "DirectorParser":
-                            parser = new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)));
+                            parser = new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),proxy);
                             break;
                         case "RnuReferenceParser":
                             parser = new RnuReferenceParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken);
+                                _configuration.AuthToken,proxy);
                             break;
                         default:
                             _logger.Warn($"Can't find such parser '{arg}'");

@@ -22,10 +22,12 @@ namespace GoszakupParser.Parsers.ApiParsers
     {
         private string AuthToken { get; set; }
         protected int Total { get; set; }
+        private WebProxy Proxy { get; set; }
 
-        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings)
+        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings)
         {
             AuthToken = authToken;
+            Proxy = proxy;
             var response = GetApiPageResponse(Url);
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
@@ -36,24 +38,44 @@ namespace GoszakupParser.Parsers.ApiParsers
 
         protected string GetApiPageResponse(string url, int delay = 10000)
         {
+            // Thread.Sleep(1000);
             var i = 0;
             while (true)
             {
                 var handler = new HttpClientHandler();
-                handler.Proxy = new WebProxy($"185.120.78.137:65233", true)
-                    {Credentials = new NetworkCredential {UserName = "21046", Password = "V1r4TjI"}};
+
+                handler.Proxy = Proxy;
+                
                 var httpClient = new HttpClient(handler);
                 httpClient.Timeout = TimeSpan.FromSeconds(10);
                 httpClient.DefaultRequestHeaders
                     .Accept
                     .Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 httpClient.DefaultRequestHeaders.Add("Authorization", AuthToken);
-                
-                string response;
+
+                string response = "";
                 try
                 {
                     response = httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500").GetAwaiter()
                         .GetResult();
+                    Console.WriteLine($"{DateTime.Now} - {url} - Left:[{Total}]");
+                }
+                catch (HttpRequestException e)
+                {
+                    if (response.Contains("\"status\": 403,"))
+                    {
+                        Console.WriteLine(response);
+                    }
+                    if (++i == 15)
+                    {
+                        Logger.Error($"{e} Link:'{url}'");
+                        response = httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500")
+                            .GetAwaiter()
+                            .GetResult();
+                        throw;
+                    }
+
+                    continue;
                 }
                 catch (WebException e)
                 {
@@ -65,7 +87,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
-                        Logger.Error(e);
+                        Logger.Error($"{e} Link:'{url}'");
                         throw;
                     }
 
@@ -76,15 +98,15 @@ namespace GoszakupParser.Parsers.ApiParsers
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
-                        Logger.Error(e);
+                        Logger.Error($"{e} Link:'{url}'");
                         throw;
                     }
-                    
+
                     continue;
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e);
+                    Logger.Error($"{e} Link:'{url}'");
                     throw;
                 }
 

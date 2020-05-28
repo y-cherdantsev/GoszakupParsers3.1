@@ -16,7 +16,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     /// @version 1.0
     public class DirectorParser : WebAimParser<DirectorGoszakup>
     {
-        public DirectorParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
+        public DirectorParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings, proxy)
         {
         }
 

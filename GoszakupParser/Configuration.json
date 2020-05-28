@@ -6,6 +6,11 @@
   "DbName": "adata",
   "DbScheme": "avroradata",
   "AuthToken": "Bearer 94ec0d25d613ce099378f7762b6842cc",
+  "Proxy": {
+    "Address": "45.152.84.97:65233",
+    "UserName": "21046",
+    "Password": "V1r4TjI"
+  },
   "Parsers": [
     {
       "Name": "AnnouncementParser",
