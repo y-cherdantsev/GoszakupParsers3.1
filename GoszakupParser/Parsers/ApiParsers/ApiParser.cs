@@ -45,7 +45,6 @@ namespace GoszakupParser.Parsers.ApiParsers
                 var handler = new HttpClientHandler();
 
                 handler.Proxy = Proxy;
-                
                 var httpClient = new HttpClient(handler);
                 httpClient.Timeout = TimeSpan.FromSeconds(10);
                 httpClient.DefaultRequestHeaders
