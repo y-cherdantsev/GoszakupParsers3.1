@@ -67,7 +67,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     // }
                     if (++i == 25)
                     {
-                        Logger.Error($"{e} Link:'{url}'");
+                        Logger.Error($"Link:'{url}'", e);
                         httpClient.GetStringAsync($"https://ows.goszakup.gov.kz/{url}?limit=500")
                             .GetAwaiter()
                             .GetResult();
@@ -87,7 +87,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
-                        Logger.Error($"{e} Link:'{url}'");
+                        Logger.Error($"Link:'{url}'", e);
                         throw;
                     }
 
@@ -98,7 +98,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
-                        Logger.Error($"{e} Link:'{url}'");
+                        Logger.Error($"Link:'{url}'", e);
                         throw;
                     }
 
@@ -106,7 +106,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{e} Link:'{url}'");
+                    Logger.Error($"Link:'{url}'", e);
                     throw;
                 }
 

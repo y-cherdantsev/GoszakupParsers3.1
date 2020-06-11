@@ -119,7 +119,7 @@ namespace GoszakupParser
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(e.StackTrace);
+                    _logger.Error(e);
                 }
             }
         }
