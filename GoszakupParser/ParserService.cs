@@ -33,6 +33,7 @@ namespace GoszakupParser
             ParserMonitoringNames.Add("UnscrupulousParser", "UnscrupulousGoszakup");
             ParserMonitoringNames.Add("ParticipantParser", "ParticipantGoszakup");
             ParserMonitoringNames.Add("LotParser", "LotGoszakup");
+            ParserMonitoringNames.Add("PlanParser", "PlanGoszakup");
             ParserMonitoringNames.Add("ContractParser", "ContractGoszakup");
             ParserMonitoringNames.Add("AnnouncementParser", "AnnouncementGoszakup");
             ParserMonitoringNames.Add("DirectorParser", "DirectorGoszakup");
@@ -77,6 +78,10 @@ namespace GoszakupParser
                             break;
                         case "LotParser":
                             parser = new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
+                                _configuration.AuthToken,proxy);
+                            break;
+                        case "PlanParser":
+                            parser = new PlanParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
                                 _configuration.AuthToken,proxy);
                             break;
                         case "ContractParser":

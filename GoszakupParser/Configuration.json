@@ -46,6 +46,11 @@
       "Name": "DirectorParser",
       "Threads": 20,
       "Url": "https://www.goszakup.gov.kz/ru/registry/show_supplier"
+    },
+    {
+      "Name": "PlanParser",
+      "Threads": 20,
+      "Url": "v3/plans/all"
     }
   ]
 }

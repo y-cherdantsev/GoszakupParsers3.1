@@ -37,5 +37,6 @@
         public int ref_trade_methods_id { get; set; }
         public string index_date { get; set; } = "";
         public int system_id { get; set; }
+        public int [] point_list { get; set; }
     }
 }
