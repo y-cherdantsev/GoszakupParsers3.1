@@ -9,6 +9,6 @@ namespace GoszakupParser.Models.ParsingModels
     [Table("plan_goszakup")]
     public class PlanGoszakup : DbLoggerCategory.Model
     {
-        
+        [Key] [Column("id")] public long Id{get; set;}
     }
 }

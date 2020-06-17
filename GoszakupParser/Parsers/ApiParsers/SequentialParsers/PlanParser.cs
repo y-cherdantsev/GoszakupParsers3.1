@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using NLog;
@@ -18,7 +19,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 
         protected override PlanGoszakup DtoToDb(PlanDto dto)
         {
-            throw new System.NotImplementedException();
+            var planGoszakup = new PlanGoszakup();
+            planGoszakup.Id = dto.id;
+            return planGoszakup;
         }
     }
 }
