@@ -1,11 +1,12 @@
 # Goszakup Parsers
 
 #### Решение включает в себя парсеры:
-* Парсер всех участников госзакупа (*ParticipantsParse*)
-* Парсер недобросновестных участников госзакупа (*UnscrupulousParse*)
-* Парсер лотов госзакупа (*LotsParse*)
-* Парсер контрактов госзакупа (*ContractsParse*)
-* Парсер объявлений госзакупа (*AnnouncementsParser*)
+* Парсер всех участников госзакупа (*ParticipantParser*)
+* Парсер недобросновестных участников госзакупа (*UnscrupulousParser*)
+* Парсер лотов госзакупа (*LotParser*)
+* Парсер контрактов госзакупа (*ContractParser*)
+* Парсер объявлений госзакупа (*AnnouncementParser*)
+* Парсер пунктов плана (*PlanParser*)
 * Парсер руководителей (*DirectorParser*)
 
 
