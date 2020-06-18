@@ -39,7 +39,7 @@
         public long sum_2 { get; set; }
         public long sum_3 { get; set; }
         public string supply_date_ru { get; set; }
-        public int prepayment { get; set; }
+        public float prepayment { get; set; }
         public int ref_justification_id { get; set; }
         public int ref_amendment_agreem_type_id { get; set; }
         public int ref_amendm_agreem_justif_id { get; set; }

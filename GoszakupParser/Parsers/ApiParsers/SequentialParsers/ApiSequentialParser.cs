@@ -69,16 +69,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 foreach (var dto in entities)
                 {
                     var model = DtoToDb(dto);
-                    try
-                    {
                         context.Models.Add(model);
                         await context.SaveChangesAsync();
-                    }
-                    catch (Exception)
-                    {
-
-                        Console.WriteLine(1);
-                    }
 
                     --Total;
                     // lock (Lock)

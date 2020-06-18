@@ -42,6 +42,7 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("index_date")] public DateTime? IndexDate { get; set; }
         [Column("system_id")] public int? SystemId { get; set; }
         [Column("single_org_sign")] public int? SingleOrgSign { get; set; }
+        [Column("plan_point")] public int? PlanPoint { get; set; }
         // [Column("relevance")] public DateTime? Relevance { get; set; }
     }
 }

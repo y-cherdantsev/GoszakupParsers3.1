@@ -14,7 +14,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
     {
-        public LotParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
+        public LotParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
+            parserSettings,
             authToken, proxy)
         {
         }
@@ -73,7 +74,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             lot.CustomerNameRu = dto.customer_name_ru;
             lot.RefTradeMethodsId = dto.ref_trade_methods_id;
             lot.SystemId = dto.system_id;
-
+            if (dto.point_list.Length > 0)
+                lot.PlanPoint = dto.point_list[0];
             return lot;
         }
     }

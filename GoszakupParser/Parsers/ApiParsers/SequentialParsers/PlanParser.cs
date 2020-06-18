@@ -21,6 +21,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         {
             var planGoszakup = new PlanGoszakup();
             planGoszakup.Id = dto.id;
+            planGoszakup.RootrecordId = dto.rootrecord_id;
+            planGoszakup.SubjectBiin = long.Parse(dto.subject_biin);
+            planGoszakup.RefEnstruCode = dto.ref_enstru_code;
+            planGoszakup.SupplyDateRu = dto.supply_date_ru;
             return planGoszakup;
         }
     }
