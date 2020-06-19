@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
@@ -24,6 +25,7 @@ namespace GoszakupParser.Parsers
             Logger = InitLogger();
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
+            Console.Title = $"Goszakup Parser: '{parserSettings.Name}'";
         }
 
         protected abstract Logger InitLogger();
