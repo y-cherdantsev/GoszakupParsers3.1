@@ -7,6 +7,7 @@ using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using NLog.Fluent;
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
@@ -29,30 +30,40 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             var tasks = new List<Task>();
             Logger.Info("Starting parsing");
             while (true)
-            {
-                var response = GetApiPageResponse(Url);
-                if (response == null)
-                    break;
-                var apiResponse = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
-                Url = apiResponse?.next_page;
-
-                await Task.WhenAll(tasks);
-                tasks.Clear();
-
-                for (var i = 0; i < Threads; i++)
-                    tasks.Add(ProcessObjects(DivideList(apiResponse?.items, i)));
-
-                if (Url != "") continue;
-                await Task.WhenAll(tasks);
-                foreach (var task in tasks.Where(task => task.IsFaulted))
+            {var response = GetApiPageResponse(Url);
+                try
                 {
-                    Logger.Error(task.Exception);
-                }
+                    
+                    if (response == null)
+                        break;
 
-                if (tasks.Any(x => x.IsFaulted))
-                    throw new Exception("Parsing hasn't been done");
-                tasks.Clear();
-                break;
+                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
+                    Url = apiResponse?.next_page;
+                    if (Url == null)
+                        Console.WriteLine("Url is null");
+
+                    await Task.WhenAll(tasks);
+                    tasks.Clear();
+
+                    for (var i = 0; i < Threads; i++)
+                        tasks.Add(ProcessObjects(DivideList(apiResponse?.items, i)));
+
+                    if (Url != "") continue;
+                    await Task.WhenAll(tasks);
+                    foreach (var task in tasks.Where(task => task.IsFaulted))
+                    {
+                        Logger.Error(task.Exception);
+                    }
+
+                    if (tasks.Any(x => x.IsFaulted))
+                        throw new Exception("Parsing hasn't been done");
+                    tasks.Clear();
+                    break;
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(response);
+                }
             }
 
             Logger.Info("Parsing done");
