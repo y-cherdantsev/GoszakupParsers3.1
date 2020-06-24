@@ -30,7 +30,9 @@ namespace GoszakupParser.Parsers.ApiParsers
         {
             AuthToken = authToken;
             Proxy = proxy;
-            var response = GetApiPageResponse(Url);
+            var response = "";
+            IRestResponse temp;
+                (response, temp)= GetApiPageResponse(Url);
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
@@ -38,7 +40,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         public abstract override Task ParseAsync();
         protected abstract TModel DtoToDb(TDto dto);
 
-        protected string GetApiPageResponse(string url, int delay = 15000)
+        protected (string, IRestResponse) GetApiPageResponse(string url, int delay = 15000)
         {
             // Thread.Sleep(1000);
             var i = 0;
@@ -46,14 +48,17 @@ namespace GoszakupParser.Parsers.ApiParsers
             {
                 var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500");
                 restClient.Proxy = Proxy;
-                restClient.Timeout = 4000;
+                restClient.Timeout = 15000;
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
                 var response = "";
+                IRestResponse restResponse = null;
                 try
                 {
-                    var restResponse = restClient.Execute(new RestRequest(Method.GET));
+                    restResponse = restClient.Execute(new RestRequest(Method.GET));
                     if (restResponse.StatusCode == HttpStatusCode.Forbidden)
+                        return GetApiPageResponse(url, delay);
+                    if (restResponse.StatusCode == 0 && restResponse.ContentLength == 0)
                         return GetApiPageResponse(url, delay);
                     response = restResponse.Content;
                      
@@ -78,14 +83,16 @@ namespace GoszakupParser.Parsers.ApiParsers
                 }
                 catch (WebException e)
                 {
+                    Logger.Warn(e, "MAFAKAKA");
                     if (e.Message.Equals("The remote server returned an error: (404) Not Found."))
                     {
-                        return null;
+                        return (null, null);
                     }
 
                     Thread.Sleep(delay);
                     if (++i == 5)
                     {
+                        Thread.Sleep(delay);
                         Logger.Error(e, $"Link:'{url}'");
                         throw;
                     }
@@ -109,7 +116,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     throw;
                 }
 
-                return response;
+                return (response, restResponse);
             }
         }
     }

@@ -7,6 +7,7 @@ using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
@@ -53,7 +54,9 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             foreach (var element in list)
             {
                 var context = new ParserContext<TModel>();
-                var response = GetApiPageResponse($"{Url}/{element}", 0);
+                var response = "";
+                IRestResponse temp;
+                (response, temp) = GetApiPageResponse($"{Url}/{element}", 0);
                 lock (Lock)
                 {
                     Logger.Trace($"Left: {--Total}");

@@ -8,6 +8,7 @@ using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NLog.Fluent;
+using RestSharp;
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
@@ -30,7 +31,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             var tasks = new List<Task>();
             Logger.Info("Starting parsing");
             while (true)
-            {var response = GetApiPageResponse(Url);
+            {var response = "";
+                    IRestResponse restResp;
+                        (response, restResp)= GetApiPageResponse(Url);
                 try
                 {
                     
