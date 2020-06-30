@@ -56,7 +56,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
                 var context = new ParserContext<TModel>();
                 var response = "";
                 IRestResponse temp;
-                (response, temp) = GetApiPageResponse($"{Url}/{element}", 0);
+                (response, temp) = GetApiPageResponse($"{Url}/{element}", 0).Result;
                 lock (Lock)
                 {
                     Logger.Trace($"Left: {--Total}");

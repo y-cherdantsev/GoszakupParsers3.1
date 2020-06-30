@@ -33,7 +33,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             while (true)
             {var response = "";
                     IRestResponse restResp;
-                        (response, restResp)= GetApiPageResponse(Url);
+                        (response, restResp)= GetApiPageResponse(Url).Result;
                 try
                 {
                     

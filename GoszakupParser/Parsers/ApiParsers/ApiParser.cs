@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -32,7 +33,7 @@ namespace GoszakupParser.Parsers.ApiParsers
             Proxy = proxy;
             var response = "";
             IRestResponse temp;
-                (response, temp)= GetApiPageResponse(Url);
+            (response, temp) = GetApiPageResponse(Url).Result;
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
@@ -40,7 +41,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         public abstract override Task ParseAsync();
         protected abstract TModel DtoToDb(TDto dto);
 
-        protected (string, IRestResponse) GetApiPageResponse(string url, int delay = 15000)
+        protected async Task<(string, IRestResponse)> GetApiPageResponse(string url, int delay = 15000)
         {
             // Thread.Sleep(1000);
             var i = 0;
@@ -51,64 +52,100 @@ namespace GoszakupParser.Parsers.ApiParsers
                 restClient.Timeout = 15000;
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
-                var response = "";
+                string response;
                 IRestResponse restResponse = null;
                 try
                 {
-                    restResponse = restClient.Execute(new RestRequest(Method.GET));
-                    if (restResponse.StatusCode == HttpStatusCode.Forbidden)
-                        return GetApiPageResponse(url, delay);
-                    if (restResponse.StatusCode == 0 && restResponse.ContentLength == 0)
-                        return GetApiPageResponse(url, delay);
-                    response = restResponse.Content;
-                     
-                    Logger.Trace($"{url} - Left:[{Total}]");
-                }
-                catch (HttpRequestException e)
-                {
-                    // if (response.Contains("\"status\": 403,"))
-                    // {
-                    // Console.WriteLine(response);
-                    // }
-                    if (++i == 25)
+                    Logger.Trace($"Start request {url}");
+                    var cts = new CancellationTokenSource();
+                    var awaitingTask = restClient.ExecuteAsync(new RestRequest(Method.GET), cts.Token);
+
+                    var tempDelay = delay;
+                    while (true)
                     {
-                        Logger.Error(e, $"Link:'{url}'");
-                        restClient.Execute(new RestRequest(Method.GET));
-                        throw;
+                        Thread.Sleep(50);
+                        tempDelay -= 50;
+                        if (tempDelay < 0 && !awaitingTask.IsCompleted)
+                        {
+                            Logger.Warn("Timeout exceeded");
+                            cts.Cancel();
+                            return await GetApiPageResponse(url, delay);
+                        }
+
+                        if (awaitingTask.IsCompleted)
+                        {
+                            break;
+                        }
                     }
 
-                    Thread.Sleep(1000);
-
-                    continue;
-                }
-                catch (WebException e)
-                {
-                    Logger.Warn(e, "MAFAKAKA");
-                    if (e.Message.Equals("The remote server returned an error: (404) Not Found."))
+                    if (awaitingTask.IsCompletedSuccessfully)
                     {
-                        return (null, null);
+                        restResponse = awaitingTask.Result;
                     }
-
-                    Thread.Sleep(delay);
-                    if (++i == 5)
+                    else
                     {
+                        ++i;
                         Thread.Sleep(delay);
-                        Logger.Error(e, $"Link:'{url}'");
-                        throw;
+                        Logger.Warn($"{i} times, {restResponse.Content}");
+                        continue;
                     }
 
-                    continue;
-                }
-                catch (TaskCanceledException e)
-                {
-                    Thread.Sleep(delay);
-                    if (++i == 5)
+                    Logger.Trace($"Finish request {url}");
+                    if (restResponse.StatusCode == HttpStatusCode.Forbidden)
                     {
-                        Logger.Error(e, $"Link:'{url}'");
-                        throw;
+                        ++i;
+                        Thread.Sleep(delay);
+                        Logger.Warn($"{i} times, {restResponse.Content}");
+                        continue;
                     }
 
-                    continue;
+                    if (restResponse.StatusCode == HttpStatusCode.InternalServerError)
+                    {
+                        ++i;
+
+                        Thread.Sleep(delay);
+                        Logger.Warn($"{i} times, {restResponse.Content}");
+                        continue;
+                    }
+
+                    if (restResponse.ErrorMessage != null &&
+                        restResponse.ErrorMessage.Contains(
+                            "An error occurred while sending the request. The response ended prematurely."))
+                    {
+                        ++i;
+
+                        Thread.Sleep(delay);
+                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        continue;
+                    }
+
+                    if (restResponse.ErrorMessage != null &&
+                        restResponse.ErrorMessage.Contains("The operation has timed out."))
+                    {
+                        ++i;
+
+                        Thread.Sleep(delay);
+                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        continue;
+                    }
+
+                    if (restResponse.ContentLength == 0 ||
+                        (restResponse.ErrorMessage != null && restResponse.ErrorMessage.Contains(
+                            "Подключение не установлено," +
+                            " т.к. конечный компьютер отверг запрос на подключение. Подключение не установлено," +
+                            " т.к. конечный компьютер отверг запрос на подключение.")))
+                    {
+                        ++i;
+
+                        Thread.Sleep(delay);
+                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        continue;
+                    }
+
+                    response = restResponse.Content;
+                    if (restResponse.Content.Length < 1000)
+                        Logger.Trace($"{i} times, {restResponse.Content}");
+                    Logger.Trace($"{url} - Left:[{Total}]");
                 }
                 catch (Exception e)
                 {
