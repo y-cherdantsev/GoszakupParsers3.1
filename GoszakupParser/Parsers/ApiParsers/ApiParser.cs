@@ -56,7 +56,6 @@ namespace GoszakupParser.Parsers.ApiParsers
                 IRestResponse restResponse = null;
                 try
                 {
-                    Logger.Trace($"Start request {url}");
                     var cts = new CancellationTokenSource();
                     var awaitingTask = restClient.ExecuteAsync(new RestRequest(Method.GET), cts.Token);
 
@@ -89,23 +88,13 @@ namespace GoszakupParser.Parsers.ApiParsers
                         Logger.Warn($"{i} times, {restResponse.Content}");
                         continue;
                     }
-
-                    Logger.Trace($"Finish request {url}");
-                    if (restResponse.StatusCode == HttpStatusCode.Forbidden)
+                    switch (restResponse.StatusCode)
                     {
-                        ++i;
-                        Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.Content}");
-                        continue;
-                    }
-
-                    if (restResponse.StatusCode == HttpStatusCode.InternalServerError)
-                    {
-                        ++i;
-
-                        Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.Content}");
-                        continue;
+                        case HttpStatusCode.Forbidden:case HttpStatusCode.InternalServerError:
+                            ++i;
+                            Thread.Sleep(delay);
+                            Logger.Warn($"{i} times, {restResponse.Content}");
+                            continue;
                     }
 
                     if (restResponse.ErrorMessage != null &&
