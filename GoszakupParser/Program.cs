@@ -24,7 +24,7 @@ namespace GoszakupParser
             var parserService = new ParserService(configuration, args);
             await parserService.StartParsing();
         }
-        
+
         private static string GetLocalIpAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -35,6 +35,7 @@ namespace GoszakupParser
                     return ip.ToString();
                 }
             }
+
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
     }
