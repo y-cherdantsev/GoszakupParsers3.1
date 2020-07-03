@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using AngleSharp.Common;
+using CommandLine;
 using NLog;
 using NLog.Config;
 
@@ -16,27 +20,38 @@ namespace GoszakupParser
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
-            Console.Title = "Goszakup Parser";
-            var configurationString = File.ReadAllText("Configuration.json");
-            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
-            LogManager.Configuration.Variables["sourceAddress"] = GetLocalIpAddress();
-            var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
-            var parserService = new ParserService(configuration, args);
-            await parserService.StartParsing();
-        }
 
-        private static string GetLocalIpAddress()
-        {
+            Console.Title = "Goszakup Parser";
+
+
+            //Loading configurations
+            var configurationString = File.ReadAllText("Configuration.json");
+            var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
+
+            //Initializing logger
+            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
+
+            //Assigning ip address to a logger
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
-            {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
+                    LogManager.Configuration.Variables["sourceAddress"] = ip.ToString();
 
-            throw new Exception("No network adapters with an IPv4 address in the system!");
+
+            Parser.Default.ParseArguments<CommandLineOptions>(args)
+                .WithParsed(options =>
+                {
+                    var parserService = new ParserService(configuration, options);
+                    parserService.StartParsingService().GetAwaiter().GetResult();
+                })
+                .WithNotParsed(errors =>
+                {
+                    using var err = errors.GetEnumerator();
+                    while (err.MoveNext())
+                        if (err.Current != null)
+                            Console.WriteLine(err.Current.Tag.GetMessage());
+                    throw new Exception("Some error occured while parsing arguments");
+                });
         }
     }
 }

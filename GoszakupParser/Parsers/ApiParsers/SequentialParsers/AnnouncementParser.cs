@@ -14,8 +14,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public class AnnouncementParser : ApiSequentialParser<AnnouncementDto, AnnouncementGoszakup>
     {
-        public AnnouncementParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
-            authToken, proxy)
+        public AnnouncementParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(parserSettings,
+            proxy, authToken)
         {
         }
 

@@ -14,8 +14,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public sealed class ContractParser : ApiSequentialParser<ContractDto, ContractGoszakup>
     {
-        public ContractParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
-            authToken, proxy)
+        public ContractParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
+            parserSettings,
+            proxy, authToken)
         {
         }
 

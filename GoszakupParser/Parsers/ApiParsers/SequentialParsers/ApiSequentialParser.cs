@@ -21,7 +21,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public abstract class ApiSequentialParser<TDto, TModel> : ApiParser<TDto, TModel>
         where TModel : DbLoggerCategory.Model, new()
     {
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
             parserSettings, authToken, proxy)
         {
         }

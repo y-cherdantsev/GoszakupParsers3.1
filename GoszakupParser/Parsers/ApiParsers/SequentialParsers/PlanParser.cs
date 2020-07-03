@@ -8,8 +8,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     public sealed class PlanParser : ApiSequentialParser<PlanDto, PlanGoszakup>
     {
-        public PlanParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
-            parserSettings, authToken, proxy)
+        public PlanParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
+            parserSettings, proxy, authToken)
         {
         }
 

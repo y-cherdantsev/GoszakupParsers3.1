@@ -14,8 +14,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// </summary>
     public sealed class UnscrupulousParser : ApiSequentialParser<UnscrupulousDto, UnscrupulousGoszakup>
     {
-        public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
-            authToken, proxy)
+        public UnscrupulousParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
+            parserSettings,
+            proxy, authToken)
         {
         }
 
