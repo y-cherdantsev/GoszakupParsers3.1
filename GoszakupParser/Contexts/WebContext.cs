@@ -5,9 +5,8 @@ namespace GoszakupParser.Contexts
 
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 09:58:18
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Web DB context, 'avroradata' schema
     /// </summary>
     public class WebContext<TModel>: DbContext where TModel : DbLoggerCategory.Model
     {

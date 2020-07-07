@@ -7,11 +7,9 @@ namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:18:25
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// rnu Parsing DB table field
     /// </summary>
-    
     [Table("rnu_reference_goszakup")]
     public class RnuReferenceGoszakup : DbLoggerCategory.Model
     {
@@ -34,6 +32,5 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("ref_reason_id")] public int RefReasonId { get; set; }
         [Column("index_date")] public DateTime? IndexDate { get; set; }
         [Column("system_id")] public byte SystemId { get; set; }
-        // [Column("relevance")] public DateTime? Relevance { get; set; }
     }
 }

@@ -2,9 +2,8 @@
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:17:39
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// API rnu object
     /// </summary>
     public class RnuReferenceDto
     {

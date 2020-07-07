@@ -1,11 +1,9 @@
 ﻿namespace GoszakupParser.Models.Dtos
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:45:10
-    /// @version 1.0
     /// <summary>
-    /// Объект договора возвращаемый из API
+    /// API contract object
     /// </summary>
     public class ContractDto
     {

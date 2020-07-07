@@ -1,11 +1,9 @@
-﻿﻿ namespace GoszakupParser.Models.Dtos
+﻿namespace GoszakupParser.Models.Dtos
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:44:49
-    /// @version 1.0
     /// <summary>
-    /// Объект лота возвращаемый из API
+    /// API lot object
     /// </summary>
     public class LotDto
     {
@@ -37,6 +35,6 @@
         public int ref_trade_methods_id { get; set; }
         public string index_date { get; set; } = "";
         public int system_id { get; set; }
-        public int [] point_list { get; set; }
+        public int[] point_list { get; set; }
     }
 }

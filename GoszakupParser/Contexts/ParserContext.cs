@@ -2,12 +2,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Contexts
 {
+    /// @author Yevgeniy Cherdantsev
+    /// @date 26.02.2020 17:50:16
     /// <summary>
-    /// Parent context 
+    /// Parser DB context, 'avroradata' schema
     /// </summary>
-    public class ParserContext<TModel>: DbContext where TModel : DbLoggerCategory.Model
+    public class ParserContext<TModel> : DbContext where TModel : DbLoggerCategory.Model
     {
         public DbSet<TModel> Models { get; set; }
+
         public ParserContext(DbContextOptions<ParserContext<TModel>> options)
             : base(options)
         {

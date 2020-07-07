@@ -1,11 +1,9 @@
 ﻿namespace GoszakupParser.Models.Dtos
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:29:40
-    /// @version 1.0
     /// <summary>
-    /// Объект недобросовестного участника возвращаемый из API
+    /// API unscrupulous object
     /// </summary>
     public class UnscrupulousDto
     {

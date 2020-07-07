@@ -5,7 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoszakupParser.Models.ParsingModels
 {
-    
+	/// @author Yevgeniy Cherdantsev
+	/// @date 26.02.2020 18:43:05
+	/// <summary>
+	/// plan Parsing DB table field
+	/// </summary>
     [Table("plan_goszakup")]
     public class PlanGoszakup : DbLoggerCategory.Model
     {
@@ -57,6 +61,5 @@ namespace GoszakupParser.Models.ParsingModels
 		[Column("ref_budget_type_id")] public int? RefBudgetTypeId{get; set;}
 		[Column("subject_name_kz")] public string SubjectNameKz{get; set;}
 		[Column("subject_name_ru")] public string SubjectNameRu{get; set;}
-		// [Column("relevance")] public DateTime? Relevance{get; set;}
     }
 }

@@ -7,9 +7,8 @@ namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:05
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// contract Parsing DB table field
     /// </summary>
     [Table("contract_goszakup")]
     public class ContractGoszakup : DbLoggerCategory.Model
@@ -69,6 +68,5 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("index_date")] public DateTime? IndexDate { get; set; }
 
         [Column("fakt_exec_date")] public DateTime? FaktExecDate { get; set; }
-        // [Column("relevance")] public DateTime? Relevance{get; set;}
     }
 }

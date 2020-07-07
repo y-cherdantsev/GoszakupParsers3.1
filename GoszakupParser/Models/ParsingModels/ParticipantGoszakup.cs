@@ -9,9 +9,8 @@ namespace GoszakupParser.Models.ParsingModels
 
 	/// @author Yevgeniy Cherdantsev
 	/// @date 26.02.2020 18:43:17
-	/// @version 1.0
 	/// <summary>
-	/// INPUT
+	/// participant Parsing DB table field
 	/// </summary>
 	[Table("participant_goszakup")]
 	public class ParticipantGoszakup : DbLoggerCategory.Model
@@ -56,7 +55,6 @@ namespace GoszakupParser.Models.ParsingModels
 		[Column("year")] public DateTime? Year{get; set;}
 		[Column("mark_resident")] public bool? MarkResident{get; set;}
 		[Column("type_supplier")] public int? TypeSupplier{get; set;}
-		// [Column("relevance")] public DateTime? Relevance{get; set;}
 		
 	}
 }

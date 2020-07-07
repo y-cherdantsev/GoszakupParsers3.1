@@ -1,12 +1,9 @@
 ﻿﻿ namespace GoszakupParser.Models.Dtos
 {
-
-
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:44:10
-    /// @version 1.0
     /// <summary>
-    /// Объект участника возвращаемый из API
+    /// API participant object
     /// </summary>
     public class ParticipantDto
     {

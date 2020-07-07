@@ -7,9 +7,8 @@ namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:11
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// lot Parsing DB table field
     /// </summary>
     [Table("lot_goszakup")]
     public class LotGoszakup : DbLoggerCategory.Model
@@ -43,6 +42,5 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("system_id")] public int? SystemId { get; set; }
         [Column("single_org_sign")] public int? SingleOrgSign { get; set; }
         [Column("plan_point")] public int? PlanPoint { get; set; }
-        // [Column("relevance")] public DateTime? Relevance { get; set; }
     }
 }
