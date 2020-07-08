@@ -8,7 +8,6 @@ namespace GoszakupParser.Parsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 25.02.2020 10:53:43
-    /// @version 1.0
     /// <summary>
     /// Parsing abstract class
     /// </summary>
@@ -25,15 +24,15 @@ namespace GoszakupParser.Parsers
             Logger = InitLogger();
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
-            Console.Title = $"Goszakup Parser: '{parserSettings.Name}'";
+            Console.Title = $"Goszakup Parser: '{GetType().Name}'";
         }
 
         protected abstract Logger InitLogger();
         public abstract Task ParseAsync();
 
-        protected string[] DivideList(List<string> list, int i)
+        protected string[] DivideList(IEnumerable<string> list, int numberOfList)
         {
-            return list.Where(x => long.Parse(x) % Threads == i).ToArray();
+            return list.Where(x => long.Parse(x) % Threads == numberOfList).ToArray();
         }
     }
 }

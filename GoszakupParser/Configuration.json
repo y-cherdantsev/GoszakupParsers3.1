@@ -6,44 +6,56 @@
   "DbName": "adata",
   "DbScheme": "avroradata",
   "AuthToken": "Bearer 94ec0d25d613ce099378f7762b6842cc",
+  
+  "ParserMonitoringNames": {
+    "Participant": "ParticipantGoszakup",
+    "Unscrupulous": "UnscrupulousGoszakup",
+    "Contract": "ContractGoszakup",
+    "Announcement": "AnnouncementGoszakup",
+    "Lot": "LotGoszakup",
+    "Plan": "PlanGoszakup",
+    "Director": "DirectorGoszakup",
+    "RnuReference": "RnuReferenceGoszakup"
+  },
+  
   "Parsers": [
     {
-      "Name": "AnnouncementParser",
+      "Name": "Announcement",
       "Threads": 15,
       "Url": "v3/trd-buy/all"
     },
     {
-      "Name": "ContractParser",
+      "Name": "Contract",
       "Threads": 10,
       "Url": "v3/contract/all"
     },
     {
-      "Name": "LotParser",
+      "Name": "Lot",
       "Threads": 15,
       "Url": "v3/lots"
     },
     {
-      "Name": "ParticipantParser",
+      "Name": "Participant",
       "Threads": 10,
       "Url": "v3/subject/all"
     },
     {
-      "Name": "UnscrupulousParser",
+      "Name": "Unscrupulous",
       "Threads": 10,
       "Url": "v3/rnu"
     },
     {
-      "Name": "RnuReferenceParser",
+      "Name": "RnuReference",
       "Threads": 10,
       "Url": "v3/rnu"
     },
     {
-      "Name": "DirectorParser",
+      "Name": "Director",
       "Threads": 20,
       "Url": "https://www.goszakup.gov.kz/ru/registry/show_supplier"
     },
     {
-      "Name": "PlanParser",
+      "Name": "Plan",
       "Threads": 20,
       "Url": "v3/plans/all"
     }
