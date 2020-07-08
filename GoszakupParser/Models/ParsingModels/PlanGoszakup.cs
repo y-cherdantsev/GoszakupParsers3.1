@@ -49,7 +49,7 @@ namespace GoszakupParser.Models.ParsingModels
 		[Column("sum_1")] public long? Sum1{get; set;}
 		[Column("sum_2")] public long? Sum2{get; set;}
 		[Column("sum_3")] public long? Sum3{get; set;}
-		[Column("supply_date_ru")] public string? SupplyDateRu{get; set;}
+		[Column("supply_date_ru")] public string SupplyDateRu{get; set;}
 		[Column("prepayment")] public double? Prepayment{get; set;}
 		[Column("ref_justification_id")] public int? RefJustificationId{get; set;}
 		[Column("ref_amendment_agreem_type_id")] public int? RefAmendmentAgreemTypeId{get; set;}

@@ -53,7 +53,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
                 string response;
-                IRestResponse restResponse = null;
+                IRestResponse restResponse;
                 try
                 {
                     var cts = new CancellationTokenSource();
@@ -85,7 +85,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                     {
                         ++i;
                         Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.Content}");
+                        Logger.Warn(awaitingTask.Exception, $"Tried {i} times");
                         continue;
                     }
                     switch (restResponse.StatusCode)

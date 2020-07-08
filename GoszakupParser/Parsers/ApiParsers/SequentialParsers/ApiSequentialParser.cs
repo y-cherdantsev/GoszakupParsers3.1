@@ -65,7 +65,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(response);
+                    Logger.Error(e, response);
                 }
             }
 

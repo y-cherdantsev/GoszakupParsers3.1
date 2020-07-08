@@ -49,12 +49,12 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             Logger.Info("End Of Parsing");
         }
 
-        protected async Task ParseArray(string[] list)
+        private async Task ParseArray(IEnumerable<string> list)
         {
             foreach (var element in list)
             {
                 var context = new ParserContext<TModel>();
-                var response = "";
+                string response;
                 IRestResponse temp;
                 (response, temp) = GetApiPageResponse($"{Url}/{element}", 0).Result;
                 lock (Lock)
