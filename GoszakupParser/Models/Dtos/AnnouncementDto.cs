@@ -2,7 +2,6 @@
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:45:45
-    /// @version 1.0
     /// <summary>
     /// Объект объявления возвращаемый из API
     /// </summary>
