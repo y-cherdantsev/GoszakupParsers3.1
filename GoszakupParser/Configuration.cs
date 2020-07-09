@@ -9,38 +9,10 @@ namespace GoszakupParser
     /// </summary>
     public sealed class Configuration
     {
-        /// <summary>
-        /// Database host address
-        /// </summary>
-        public string DbHost { get; set; }
+        //TODO(Database data provided in configuration)
 
         /// <summary>
-        /// Database port
-        /// </summary>
-        public int DbPort { get; set; }
-
-        /// <summary>
-        /// Database username
-        /// </summary>
-        public string DbUser { get; set; }
-
-        /// <summary>
-        /// Database password
-        /// </summary>
-        public string DbPassword { get; set; }
-
-        /// <summary>
-        /// Database name
-        /// </summary>
-        public string DbName { get; set; }
-
-        /// <summary>
-        /// Database parsing scheme
-        /// </summary>
-        public string DbScheme { get; set; }
-
-        /// <summary>
-        /// Goszakup auth bearer token
+        /// Goszakup authentication bearer token
         /// </summary>
         public string AuthToken { get; set; }
 
@@ -48,7 +20,7 @@ namespace GoszakupParser
         /// Parsers settings
         /// </summary>
         public List<ParserSettings> Parsers { get; set; }
-        
+
         /// <summary>
         /// Mapped parsers names into parsing DB titles
         /// </summary>

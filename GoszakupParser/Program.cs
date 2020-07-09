@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -29,9 +30,8 @@ namespace GoszakupParser
 
             // Assigning ip address to a logger
             var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    LogManager.Configuration.Variables["sourceAddress"] = ip.ToString();
+            var ip = host.AddressList.LastOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)?.ToString();
+            LogManager.Configuration.Variables["sourceAddress"] = ip;
 
             // Parsing arguments
             var parser = new Parser(with =>
@@ -43,8 +43,8 @@ namespace GoszakupParser
             var result = parser.ParseArguments<CommandLineOptions>(args);
             if (result.Tag == ParserResultType.NotParsed)
                 return;
-            var options = ((Parsed<CommandLineOptions>)result).Value;
-            
+            var options = ((Parsed<CommandLineOptions>) result).Value;
+
             // Start parsing using given arguments
             var parserService = new ParserService(configuration, options);
             parserService.StartParsingService().GetAwaiter().GetResult();

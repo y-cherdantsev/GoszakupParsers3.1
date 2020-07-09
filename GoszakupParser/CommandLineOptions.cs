@@ -8,7 +8,7 @@ namespace GoszakupParser
         /// <summary>
         /// List of parsers
         /// </summary>
-        [Option('p', "parsers", Required = true, HelpText = "Determine parsers using spaces;" + 
+        [Option('p', "parsers", Required = true, HelpText = "Defining parsers using spaces;" +
                                                             "\nList of available parsers:" +
                                                             "\n    Participant" +
                                                             "\n    Unscrupulous" +

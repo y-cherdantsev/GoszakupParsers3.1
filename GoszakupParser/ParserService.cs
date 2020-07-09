@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -30,21 +29,6 @@ namespace GoszakupParser
         /// Command line options
         /// </summary>
         private readonly CommandLineOptions _options;
-
-        /// <summary>
-        /// Mapped parsers names into parsing DB titles
-        /// </summary>
-        // private static Dictionary<string, string> ParserMonitoringNames { get; } = new Dictionary<string, string>
-        // {
-        //     {"Participant", "ParticipantGoszakup"},
-        //     {"Unscrupulous", "UnscrupulousGoszakup"},
-        //     {"Contract", "ContractGoszakup"},
-        //     {"Announcement", "AnnouncementGoszakup"},
-        //     {"Lot", "LotGoszakup"},
-        //     {"Plan", "PlanGoszakup"},
-        //     {"Director", "DirectorGoszakup"},
-        //     {"RnuReference", "RnuReferenceGoszakup"}
-        // };
 
         /// <summary>
         /// Constructor of ParserService class
@@ -117,6 +101,7 @@ namespace GoszakupParser
             Parser parser;
 
             // ReSharper disable once PossibleNullReferenceException (Already checked)
+            // If parser has authToken in arguments list, creates object with the first constructor, otherwise with the second 
             if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name.Equals("authToken")))
                 parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration, proxy,
                     _configuration.AuthToken);

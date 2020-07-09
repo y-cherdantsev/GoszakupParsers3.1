@@ -7,36 +7,43 @@ using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using NLog.Fluent;
-using RestSharp;
+using Npgsql;
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 14:51:37
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Parent parser used for creating parsers that getting information from api sequentially
     /// </summary>
-    public abstract class ApiSequentialParser<TDto, TModel> : ApiParser<TDto, TModel>
-        where TModel : DbLoggerCategory.Model, new()
+    /// <typeparam name="TDto">Dto that will be parsed</typeparam>
+    /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
+    public abstract class ApiSequentialParser<TDto, TResultModel> : ApiParser<TDto, TResultModel>
+        where TResultModel : DbLoggerCategory.Model, new()
     {
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings, authToken, proxy)
+        /// <summary>
+        /// Constructor for creating API sequential parsers
+        /// </summary>
+        /// <param name="parserSettings">Parser settings from configuration</param>
+        /// <param name="proxy">Authentication bearer token</param>
+        /// <param name="authToken">Parsing proxy</param>
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) :
+            base(
+                parserSettings, proxy, authToken)
         {
         }
 
+        /// <inheritdoc />
+        // ReSharper disable once CognitiveComplexity
         public override async Task ParseAsync()
         {
             var tasks = new List<Task>();
             Logger.Info("Starting parsing");
             while (true)
-            {var response = "";
-                    IRestResponse restResp;
-                        (response, restResp)= GetApiPageResponse(Url).Result;
+            {
+                var response = GetApiPageResponse(Url).Result;
                 try
                 {
-                    
                     if (response == null)
                         break;
 
@@ -49,7 +56,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     tasks.Clear();
 
                     for (var i = 0; i < Threads; i++)
-                        tasks.Add(ProcessObjects(DivideList(apiResponse?.items, i)));
+                        tasks.Add(ProcessObjects(DivideList((IEnumerable<object>) apiResponse?.items, i)));
 
                     if (Url != "") continue;
                     await Task.WhenAll(tasks);
@@ -70,36 +77,40 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             }
 
             Logger.Info("Parsing done");
-            // if (Total > 0)
-                // Logger.Info($"{Total} elements hasn't been parsed");
         }
 
-        private async Task ProcessObjects(TDto[] entities)
+        /// <summary>
+        /// Converts dtos into models and inserts them into DB
+        /// </summary>
+        /// <param name="entities">List of parsed elements</param>
+        private async Task ProcessObjects(IEnumerable<object> entities)
         {
             //TODO(Fix error Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. 192.168.2.25:5432)
-            try
+
+            await using var context = new ParserContext<TResultModel>();
+            foreach (TDto dto in entities)
             {
-                await using var context = new ParserContext<TModel>();
-                foreach (var dto in entities)
+                try
                 {
                     var model = DtoToDb(dto);
-                        context.Models.Add(model);
-                        await context.SaveChangesAsync();
+                    context.Models.Add(model);
+                    await context.SaveChangesAsync();
+                }
+                catch (DbUpdateException e)
+                {
+                    if (e.InnerException is NpgsqlException)
+                        Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
+                                     $"{e.InnerException?.Data["Detail"]} " +
+                                     $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
+                    else
+                        throw;
+                }
 
+                lock (Lock)
+                {
                     --Total;
-                    // lock (Lock)
-                    // Logger.Trace($"Left:{--Total}");
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        private TDto[] DivideList(List<TDto> list, int i)
-        {
-            return list.Where(x => list.IndexOf(x) % Threads == i).ToArray();
         }
     }
 }
