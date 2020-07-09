@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable StringLiteralTypo
+
 namespace GoszakupParser.Contexts
 {
     /// @author Yevgeniy Cherdantsev
@@ -11,7 +16,7 @@ namespace GoszakupParser.Contexts
     {
         public DbSet<TModel> Models { get; set; }
 
-        public ParserContext(DbContextOptions<ParserContext<TModel>> options)
+        public ParserContext(DbContextOptions options)
             : base(options)
         {
         }
