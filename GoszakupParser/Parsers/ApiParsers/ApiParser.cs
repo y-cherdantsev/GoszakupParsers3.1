@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using RestSharp;
 
 namespace GoszakupParser.Parsers.ApiParsers
@@ -15,7 +19,7 @@ namespace GoszakupParser.Parsers.ApiParsers
     /// </summary>
     /// <typeparam name="TDto">Dto that will be parsed</typeparam>
     /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
-    public abstract class ApiParser<TDto, TResultModel> : Parser
+    public abstract class ApiParser<TDto, TResultModel> : Parser where TResultModel : DbLoggerCategory.Model
     {
         /// <summary>
         /// Authentication bearer token
@@ -54,6 +58,43 @@ namespace GoszakupParser.Parsers.ApiParsers
         protected abstract TResultModel DtoToDb(TDto dto);
 
         /// <summary>
+        /// Processing list of dtos
+        /// </summary>
+        /// <param name="entities">List of parsed elements</param>
+        protected async Task ProcessObjects(IEnumerable<object> entities)
+        {
+            //TODO(Fix error Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. 192.168.2.25:5432)
+
+            await using var context = new ParserContext<TResultModel>();
+            foreach (TDto dto in entities)
+                await ProcessObject(dto, context);
+        }
+
+        /// <summary>
+        /// Converts dto into model and inserts it into DB
+        /// </summary>
+        /// <param name="dto">Dto from Api</param>
+        /// <param name="context">Parsing DB context</param>
+        protected async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
+        {
+            try
+            {
+                var model = DtoToDb(dto);
+                context.Models.Add(model);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                if (e.InnerException is NpgsqlException)
+                    Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
+                                 $"{e.InnerException?.Data["Detail"]} " +
+                                 $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
+                else
+                    throw;
+            }
+        }
+
+        /// <summary>
         /// Gets json response from api
         /// </summary>
         /// <param name="url">Url that gonna be requested</param>
@@ -62,7 +103,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <returns>JSON representation of response</returns>
         /// <exception cref="Exception">If number of attempts exceeded</exception>
         // ReSharper disable once CognitiveComplexity
-        protected async Task<string> GetApiPageResponse(string url, int delay = 15000, int allowedAttempts = 20)
+        protected virtual async Task<string> GetApiPageResponse(string url, int delay = 15000, int allowedAttempts = 20)
         {
             var attempts = 0;
 
@@ -161,10 +202,6 @@ namespace GoszakupParser.Parsers.ApiParsers
 
                     // If response message is too short, throws exception
                     var response = restResponse.Content;
-                    if (restResponse.Content.Length < 500)
-                    {
-                        throw new Exception($"Unknown error, {attempts} times, {restResponse.Content}");
-                    }
 
                     // After checking, if all is OK returns response
                     Logger.Trace($"{url} - Left:[{Total}]");

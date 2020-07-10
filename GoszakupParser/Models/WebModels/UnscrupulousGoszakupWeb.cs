@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.WebModels
 {
     /// @author Yevgeniy Cherdantsev
@@ -15,7 +21,8 @@ namespace GoszakupParser.Models.WebModels
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("biin_companies")] public long? BiinCompanies { get; set; }
+        [Column("biin_companies")]
+        public long? BiinCompanies { get; set; }
 
         [Column("status")] public bool? Status { get; set; }
         [Column("relevance_date")] public DateTime? RelevanceDate { get; set; }

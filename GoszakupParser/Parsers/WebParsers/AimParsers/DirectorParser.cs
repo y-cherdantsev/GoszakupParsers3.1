@@ -7,14 +7,13 @@ using AngleSharp.Html.Parser;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
-using NLog;
 
 namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 12:17:39
     /// @version 1.0
-    public class DirectorParser : WebAimParser<DirectorGoszakup>
+    public sealed class DirectorParser : WebAimParser<DirectorGoszakup>
     {
         public DirectorParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings, proxy)
         {
@@ -31,11 +30,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             }
 
             return aims;
-        }
-
-        protected override Logger InitLogger()
-        {
-            return LogManager.GetCurrentClassLogger();
         }
 
         protected override async Task ParseArray(string[] list, WebProxy webProxy)

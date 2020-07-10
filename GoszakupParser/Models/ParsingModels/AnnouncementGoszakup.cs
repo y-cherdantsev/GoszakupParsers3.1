@@ -3,12 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:42:59
     /// <summary>
-    /// announcement Parsing DB table field
+    /// Announcement Parsing DB table field
     /// </summary>
     [Table("announcement_goszakup")]
     public class AnnouncementGoszakup : DbLoggerCategory.Model
@@ -46,7 +51,6 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("org_name_kz")] public string OrgNameKz { get; set; }
         [Column("org_name_ru")] public string OrgNameRu { get; set; }
         [Column("system_id")] public int? SystemId { get; set; }
-
         [Column("index_date")] public DateTime? IndexDate { get; set; }
     }
 }

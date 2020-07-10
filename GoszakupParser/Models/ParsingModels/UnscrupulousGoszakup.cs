@@ -3,12 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:26
     /// <summary>
-    /// unscrupulous Parsing DB table field
+    /// Unscrupulous Parsing DB table field
     /// </summary>
     [Table("unscrupulous_goszakup")]
     public class UnscrupulousGoszakup : DbLoggerCategory.Model

@@ -17,7 +17,7 @@ namespace GoszakupParser
                                                             "\n    Lot" +
                                                             "\n    Plan" +
                                                             "\n    Director" +
-                                                            "\n    Rnu")]
+                                                            "\n    RnuReference")]
         public IEnumerable<string> Parsers { get; set; }
 
         /// <summary>
@@ -31,5 +31,11 @@ namespace GoszakupParser
         /// </summary>
         [Option('i', "ignore", Default = false, HelpText = "Ignores 'parsed' field")]
         public bool Ignore { get; set; }
+
+        /// <summary>
+        /// Truncate flag
+        /// </summary>
+        [Option('t', "truncate", Default = false, HelpText = "Truncates parsing table before parsing (Not Implemented)")]
+        public bool Truncate { get; set; }
     }
 }

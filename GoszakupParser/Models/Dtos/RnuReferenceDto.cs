@@ -1,4 +1,9 @@
-﻿namespace GoszakupParser.Models.Dtos
+﻿// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
+namespace GoszakupParser.Models.Dtos
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:17:39

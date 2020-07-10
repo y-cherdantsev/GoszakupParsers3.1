@@ -1,11 +1,15 @@
-﻿namespace GoszakupParser.Models.Dtos
+﻿// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
+namespace GoszakupParser.Models.Dtos
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 07.07.2020 16:51:10
     /// <summary>
     /// API plan object
     /// </summary>
-   
     public class PlanDto
     {
         public long id { get; set; }

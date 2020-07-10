@@ -1,7 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
-using NpgsqlTypes;
+
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Models
 {

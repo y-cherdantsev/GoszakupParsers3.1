@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using GoszakupParser.Models.ParsingModels;
 using NLog;
 using Parser = GoszakupParser.Parsers.Parser;
 
@@ -71,7 +72,7 @@ namespace GoszakupParser
         /// <param name="parserName">Parser name</param>
         private async Task ProceedParsing(string parserName)
         {
-            await using var parserMonitoringContext = new ParserMonitoringContext();
+            var parserMonitoringContext = new ParserMonitoringContext();
 
             // Get proxy for parser
             var proxyDto = parserMonitoringContext.Proxies.OrderBy(x => new Random().NextDouble()).First();
@@ -112,6 +113,7 @@ namespace GoszakupParser
             else throw new NullReferenceException($"{parserName} hasn't been created");
 
             // Update data in monitoring table
+            parserMonitoringContext = new ParserMonitoringContext();
             var parsed =
                 parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
                     x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
@@ -122,6 +124,7 @@ namespace GoszakupParser
             parsed.Parsed = true;
             parserMonitoringContext.ParserMonitorings.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
+            await parserMonitoringContext.DisposeAsync();
         }
 
         /// <summary>

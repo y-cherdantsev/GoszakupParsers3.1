@@ -3,12 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:18:25
     /// <summary>
-    /// rnu Parsing DB table field
+    /// RnuReference Parsing DB table field
     /// </summary>
     [Table("rnu_reference_goszakup")]
     public class RnuReferenceGoszakup : DbLoggerCategory.Model

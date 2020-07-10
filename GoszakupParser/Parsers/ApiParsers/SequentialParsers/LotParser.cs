@@ -10,7 +10,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Lot Parser
     /// </summary>
-    public class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
+    public sealed class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
     {
         /// <inheritdoc />
         public LotParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(

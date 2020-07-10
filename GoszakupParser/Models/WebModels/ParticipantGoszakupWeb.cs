@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.WebModels
 {
     /// @author Yevgeniy Cherdantsev
@@ -14,7 +20,9 @@ namespace GoszakupParser.Models.WebModels
     public class ParticipantGoszakupWeb : DbLoggerCategory.Model
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("biin_companies")] public long? BiinCompanies { get; set; }
+        [Column("biin_companies")]
+        public long? BiinCompanies { get; set; }
+
         [Column("pid")] public int Pid { get; set; }
         [Column("regdate")] public DateTime? Regdate { get; set; }
         [Column("last_update_date")] public DateTime? LastUpdateDate { get; set; }
