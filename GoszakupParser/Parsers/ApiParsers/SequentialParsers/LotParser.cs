@@ -3,6 +3,9 @@ using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -10,6 +13,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Lot Parser
     /// </summary>
+    // ReSharper disable once UnusedType.Global
     public sealed class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
     {
         /// <inheritdoc />

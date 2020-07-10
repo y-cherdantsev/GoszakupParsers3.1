@@ -3,8 +3,10 @@ using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
-// ReSharper disable CompareOfFloatsByEqualityOperator
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -12,6 +14,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Contract Parser
     /// </summary>
+    // ReSharper disable once UnusedType.Global
     public sealed class ContractParser : ApiSequentialParser<ContractDto, ContractGoszakup>
     {
         /// <inheritdoc />
@@ -71,7 +74,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 RefFinsourceId = dto.ref_finsource_id != 0 ? dto.ref_finsource_id : null,
                 RefCurrencyCode = dto.ref_currency_code,
                 ContractSumWnds = dto.contract_sum_wnds,
+                // ReSharper disable CompareOfFloatsByEqualityOperator
                 FaktSumWnds = dto.fakt_sum_wnds != 0 ? dto.fakt_sum_wnds : null,
+                ContractMs = dto.contract_ms != 0f ? dto.contract_ms : null,
+                // ReSharper restore CompareOfFloatsByEqualityOperator
                 RefContractCancelId = dto.ref_contract_cancel_id != 0 ? dto.ref_contract_cancel_id : null,
                 RefContractTypeId = dto.ref_contract_type_id != 0 ? dto.ref_contract_type_id : null,
                 DescriptionKz = !string.IsNullOrEmpty(dto.description_kz) ? dto.description_kz : null,
@@ -79,7 +85,6 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 FaktTradeMethodsId = dto.fakt_trade_methods_id != 0 ? dto.fakt_trade_methods_id : null,
                 EcCustomerApprove = dto.ec_customer_approve == 1,
                 EcSupplierApprove = dto.ec_supplier_approve == 1,
-                ContractMs = dto.contract_ms != 0f ? dto.contract_ms : null,
                 SupplierLegalAddress = !string.IsNullOrEmpty(dto.supplier_legal_address)
                     ? dto.supplier_legal_address
                     : null,

@@ -7,6 +7,9 @@ using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -75,9 +78,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 
                     await Task.WhenAll(tasks);
                     foreach (var task in tasks.Where(task => task.IsFaulted))
-                    {
                         Logger.Error(task.Exception);
-                    }
 
                     if (tasks.Any(x => x.IsFaulted))
                         throw new Exception("Parsing hasn't been done");

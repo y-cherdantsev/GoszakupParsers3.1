@@ -7,6 +7,9 @@ using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -14,6 +17,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     /// <summary>
     /// Rnu References Parser
     /// </summary>
+    // ReSharper disable once UnusedType.Global
     public sealed class RnuReferenceParser : ApiAimParser<RnuReferenceDto, RnuReferenceGoszakup>
     {
         /// <inheritdoc />

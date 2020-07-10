@@ -2,9 +2,9 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
 
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Contexts
 {
     /// @author Yevgeniy Cherdantsev

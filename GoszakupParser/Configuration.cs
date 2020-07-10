@@ -1,5 +1,11 @@
 ﻿using System.Collections.Generic;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable CollectionNeverUpdated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser
 {
     /// @author Yevgeniy Cherdantsev

@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using RestSharp;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -24,7 +27,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <summary>
         /// Authentication bearer token
         /// </summary>
-        private string AuthToken { get; set; }
+        private string AuthToken { get; }
 
         /// <summary>
         /// Total number of elements that should be parsed (decreasing with each iteration)
@@ -43,6 +46,7 @@ namespace GoszakupParser.Parsers.ApiParsers
             AuthToken = authToken;
 
             // Get total number of elements from api
+            // ReSharper disable once VirtualMemberCallInConstructor
             var response = GetApiPageResponse(Url).Result;
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
@@ -75,7 +79,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         /// <param name="dto">Dto from Api</param>
         /// <param name="context">Parsing DB context</param>
-        protected async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
+        private async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
         {
             try
             {
@@ -103,7 +107,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <returns>JSON representation of response</returns>
         /// <exception cref="Exception">If number of attempts exceeded</exception>
         // ReSharper disable once CognitiveComplexity
-        protected virtual async Task<string> GetApiPageResponse(string url, int delay = 15000, int allowedAttempts = 20)
+        protected async Task<string> GetApiPageResponse(string url, int delay = 15000, int allowedAttempts = 20)
         {
             var attempts = 0;
 
@@ -157,6 +161,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                         continue;
                     }
 
+                    // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
                     switch (restResponse.StatusCode)
                     {
                         case HttpStatusCode.Forbidden:

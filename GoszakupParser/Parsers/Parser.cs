@@ -5,6 +5,9 @@ using System.Net;
 using System.Threading.Tasks;
 using NLog;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -27,12 +30,12 @@ namespace GoszakupParser.Parsers
         /// <summary>
         /// Proxy for sending requests
         /// </summary>
-        protected WebProxy Proxy { get; set; }
+        protected WebProxy Proxy { get; }
 
         /// <summary>
         /// Number of threads used by parser
         /// </summary>
-        protected int Threads { get; set; }
+        protected int Threads { get; }
 
         /// <summary>
         /// Lock used to prevent fragmentation and implement atomic operations between several threads
@@ -52,6 +55,7 @@ namespace GoszakupParser.Parsers
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
 
+            // ReSharper disable once StringLiteralTypo
             Console.Title = $"Goszakup Parser: '{GetType().Name}'";
         }
 

@@ -9,17 +9,26 @@ using CommandLine;
 using NLog;
 using NLog.Config;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+
 namespace GoszakupParser
 {
+    /// @author Yevgeniy Cherdantsev
+    /// @date 26.02.2020 18:18:55
     internal static class Program
     {
+        /// <summary>
+        /// Enter point
+        /// </summary>
+        /// <param name="args">Command Line arguments</param>
         private static void Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
 
+            // ReSharper disable once StringLiteralTypo
             Console.Title = "Goszakup Parser";
-
 
             // Loading configurations
             var configurationString = File.ReadAllText("Configuration.json");

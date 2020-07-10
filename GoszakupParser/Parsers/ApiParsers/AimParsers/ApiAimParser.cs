@@ -5,8 +5,10 @@ using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
+// ReSharper disable CommentTypo
 // ReSharper disable InconsistentlySynchronizedField
 
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev

@@ -3,9 +3,12 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models.ParsingModels;
 using NLog;
 using Parser = GoszakupParser.Parsers.Parser;
+
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable InvertIf
 
 namespace GoszakupParser
 {
