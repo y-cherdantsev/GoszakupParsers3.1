@@ -17,7 +17,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     /// </summary>
     public abstract class WebAimParser<TModel> : Parser where TModel : DbLoggerCategory.Model
     {
-        protected Dictionary<string, string> Aims { get; set; }
+        protected Dictionary<string, string> Aims { get; }
         private int Total { get; set; } 
 
         protected WebAimParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings, proxy)

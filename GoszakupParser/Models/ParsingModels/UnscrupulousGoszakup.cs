@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:26
     /// <summary>
-    /// Unscrupulous Parsing DB table field
+    /// Unscrupulous Parsing DB table object
     /// </summary>
     [Table("unscrupulous_goszakup")]
     public class UnscrupulousGoszakup : DbLoggerCategory.Model

@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:17
     /// <summary>
-    /// Participant Parsing DB table field
+    /// Participant Parsing DB table object
     /// </summary>
     [Table("participant_goszakup")]
     public class ParticipantGoszakup : DbLoggerCategory.Model

@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:42:59
     /// <summary>
-    /// Announcement Parsing DB table field
+    /// Announcement Parsing DB table object
     /// </summary>
     [Table("announcement_goszakup")]
     public class AnnouncementGoszakup : DbLoggerCategory.Model

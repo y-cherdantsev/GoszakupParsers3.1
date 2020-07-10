@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:11
     /// <summary>
-    /// lot Parsing DB table field
+    /// lot Parsing DB table object
     /// </summary>
     [Table("lot_goszakup")]
     public class LotGoszakup : DbLoggerCategory.Model

@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 16:18:25
     /// <summary>
-    /// RnuReference Parsing DB table field
+    /// RnuReference Parsing DB table object
     /// </summary>
     [Table("rnu_reference_goszakup")]
     public class RnuReferenceGoszakup : DbLoggerCategory.Model

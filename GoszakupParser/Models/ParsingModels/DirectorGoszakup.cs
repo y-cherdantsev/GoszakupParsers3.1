@@ -12,7 +12,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:05
     /// <summary>
-    /// Director Parsing DB table field
+    /// Director Parsing DB table object
     /// </summary>
     [Table("director_goszakup")]
     public class DirectorGoszakup : DbLoggerCategory.Model

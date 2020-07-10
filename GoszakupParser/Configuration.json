@@ -9,7 +9,11 @@
     "Lot": "LotGoszakup",
     "Plan": "PlanGoszakup",
     "Director": "DirectorGoszakup",
-    "RnuReference": "RnuReferenceGoszakup"
+    "RnuReference": "RnuReferenceGoszakup",
+    "RefBuyStatus": "RefBuyStatusGoszakup",
+    "RefLotStatus": "RefLotStatusGoszakup",
+    "RefTradeMethod": "RefTradeMethodGoszakup",
+    "RefUnit": "RefUnitGoszakup"
   },
   
   "Parsers": [
@@ -52,6 +56,26 @@
       "Name": "Plan",
       "Threads": 20,
       "Url": "v3/plans/all"
+    },
+    {
+      "Name": "RefBuyStatus",
+      "Threads": 1,
+      "Url": "v3/refs/ref_buy_status"
+    },
+    {
+      "Name": "RefLotStatus",
+      "Threads": 1,
+      "Url": "v3/refs/ref_lots_status"
+    },
+    {
+      "Name": "RefTradeMethod",
+      "Threads": 1,
+      "Url": "v3/refs/ref_trade_methods"
+    },
+    {
+      "Name": "RefUnit",
+      "Threads": 1,
+      "Url": "v3/refs/ref_units"
     }
   ]
 }

@@ -13,7 +13,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:05
     /// <summary>
-    /// Contract Parsing DB table field
+    /// Contract Parsing DB table object
     /// </summary>
     [Table("contract_goszakup")]
     public class ContractGoszakup : DbLoggerCategory.Model

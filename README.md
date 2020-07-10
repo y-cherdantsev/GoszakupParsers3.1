@@ -9,6 +9,7 @@
 * Парсер пунктов плана (*Plan*)
 * Парсер руководителей (*Director*)
 * Парсер справок по внесению в недобросновестных участников (*RnuReference*)
+* Парсер справочников: (*RefBuyStatus*, *RefLotStatus*, *RefTradeMethod*, *RefUnit*)
 
 
 ## Authors

@@ -107,7 +107,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <returns>JSON representation of response</returns>
         /// <exception cref="Exception">If number of attempts exceeded</exception>
         // ReSharper disable once CognitiveComplexity
-        protected async Task<string> GetApiPageResponse(string url, int delay = 15000, int allowedAttempts = 20)
+        protected async Task<string> GetApiPageResponse(string url, int delay = 10000, int allowedAttempts = 20)
         {
             var attempts = 0;
 
@@ -201,7 +201,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
+                        Logger.Trace($"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 

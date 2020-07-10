@@ -675,3 +675,63 @@ create table plan_goszakup
 
 create unique index plan_goszakup_id_uindex
     on plan_goszakup (id);
+
+
+--ref_unit
+create table ref_unit_goszakup
+(
+    id         serial not null,
+    name_ru    text,
+    name_kz    text,
+    code       integer,
+    code2      text,
+    alpha_code text
+);
+
+create unique index ref_unit_goszakup_id_uindex
+    on ref_unit_goszakup (id);
+
+
+--ref_buy_status
+create table ref_buy_status_goszakup
+(
+    id      serial not null,
+    name_ru text,
+    name_kz text,
+    code    text
+);
+
+create unique index ref_buy_status_goszakup_id_uindex
+    on ref_buy_status_goszakup (id);
+
+
+--ref_lot_status
+create table ref_lot_status_goszakup
+(
+    id      serial not null,
+    name_ru text,
+    name_kz text,
+    code    text
+);
+
+create unique index ref_lots_status_goszakup_id_uindex
+    on ref_lot_status_goszakup (id);
+
+
+--ref_trade_method
+create table ref_trade_method_goszakup
+(
+    id          serial not null,
+    name_ru     text,
+    name_kz     text,
+    symbol_code text,
+    code        integer,
+    is_active   boolean,
+    type        integer,
+    f1          integer,
+    ord         integer,
+    f2          integer
+);
+
+create unique index ref_trade_method_goszakup_id_uindex
+    on ref_trade_method_goszakup (id);
