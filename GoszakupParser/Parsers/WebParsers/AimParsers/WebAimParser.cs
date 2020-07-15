@@ -7,6 +7,8 @@ using System.Net.Security;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+
 namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -28,14 +30,28 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
 
         protected abstract Dictionary<string, string> LoadAims();
 
+        /// <summary>
+        /// Inserts model into DB
+        /// </summary>
+        /// <param name="model">Model</param>
+        /// <param name="context">Parsing DB context</param>
         protected async Task ProcessObject(TModel model, ParserContext<TModel> context)
         {
-            context.Models.Add(model);
-            await context.SaveChangesAsync();
-            lock (Lock)
+            try
             {
-                Logger.Trace($"Left: {--Total}");
+                context.Models.Add(model);
+                await context.SaveChangesAsync();
             }
+            catch (DbUpdateException e)
+            {
+                if (e.InnerException is NpgsqlException)
+                    Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
+                                 $"{e.InnerException?.Data["Detail"]} " +
+                                 $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
+                else
+                    throw;
+            }
+            
         }
 
         protected abstract Task ParseArray(string[] list, WebProxy webProxy);
@@ -80,7 +96,10 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                     if (sLine != null)
                         pageResponse += sLine;
                 }
-
+                lock (Lock)
+                {
+                    Logger.Trace($"Left: {--Total}");
+                }
                 return pageResponse;
             }
             catch (Exception)
