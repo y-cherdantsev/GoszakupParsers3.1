@@ -7,7 +7,6 @@ using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using NLog.Fluent;
 using RestSharp;
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
