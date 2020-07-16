@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using NLog;
+using NLog.Fluent;
 using Parser = GoszakupParser.Parsers.Parser;
 
 // ReSharper disable IdentifierTypo
@@ -64,7 +65,7 @@ namespace GoszakupParser
                 }
                 catch (Exception e)
                 {
-                    _logger.Warn(e);
+                    _logger.Error(e);
                 }
             }
         }

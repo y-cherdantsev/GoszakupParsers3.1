@@ -85,6 +85,11 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     tasks.Clear();
                     break;
                 }
+                catch (InvalidOperationException e)
+                {
+                    Logger.Fatal(e, e.Message);
+                    throw;
+                }
                 catch (Exception e)
                 {
                     Logger.Error($"{e} | {response}");
