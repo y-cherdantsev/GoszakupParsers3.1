@@ -28,7 +28,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         }
 
         /// <inheritdoc />
-        protected override RnuReferenceGoszakup DtoToDb(RnuReferenceDto dto)
+        protected override RnuReferenceGoszakup DtoToModel(RnuReferenceDto dto)
         {
             long.TryParse(dto.customer_biin, out var customerBin);
             long.TryParse(dto.supplier_biin, out var supplierBin);

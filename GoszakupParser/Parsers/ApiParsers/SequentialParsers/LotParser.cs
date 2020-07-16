@@ -24,7 +24,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override LotGoszakup DtoToDb(LotDto dto)
+        protected override LotGoszakup DtoToModel(LotDto dto)
         {
             long.TryParse(dto.customer_bin, out var customerBin);
             DateTime.TryParse(dto.index_date, out var indexDate);

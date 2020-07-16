@@ -22,7 +22,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override RefLotStatusGoszakup DtoToDb(RefLotStatusDto dto)
+        protected override RefLotStatusGoszakup DtoToModel(RefLotStatusDto dto)
         {
             var refLotStatus = new RefLotStatusGoszakup
             {

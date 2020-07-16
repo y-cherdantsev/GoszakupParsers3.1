@@ -59,7 +59,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         /// <param name="dto">Object parsed from api</param>
         /// <returns>DB model</returns>
-        protected abstract TResultModel DtoToDb(TDto dto);
+        protected abstract TResultModel DtoToModel(TDto dto);
 
         /// <summary>
         /// Processing list of dtos
@@ -81,11 +81,20 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <param name="context">Parsing DB context</param>
         private async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
         {
+            var model = DtoToModel(dto);
+            context.Models.Add(model);
+            
+            Insert:
             try
             {
-                var model = DtoToDb(dto);
-                context.Models.Add(model);
                 await context.SaveChangesAsync();
+            }
+            // Appears while network card error occurs
+            catch (InvalidOperationException e)
+            {
+                Logger.Warn(e.Message);
+                Thread.Sleep(15000);
+                goto Insert;
             }
             catch (DbUpdateException e)
             {

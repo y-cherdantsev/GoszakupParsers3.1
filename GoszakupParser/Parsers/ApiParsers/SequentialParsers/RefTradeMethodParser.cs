@@ -22,7 +22,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override RefTradeMethodGoszakup DtoToDb(RefTradeMethodDto dto)
+        protected override RefTradeMethodGoszakup DtoToModel(RefTradeMethodDto dto)
         {
             var refTradeMethod = new RefTradeMethodGoszakup
             {

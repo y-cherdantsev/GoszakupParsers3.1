@@ -23,7 +23,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override PlanGoszakup DtoToDb(PlanDto dto)
+        protected override PlanGoszakup DtoToModel(PlanDto dto)
         {
             DateTime.TryParse(dto.date_approved, out var dateApproved);
             DateTime.TryParse(dto.date_create, out var dateCreate);

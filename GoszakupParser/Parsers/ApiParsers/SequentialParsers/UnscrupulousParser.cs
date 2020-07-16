@@ -4,7 +4,6 @@ using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
 
 // ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
@@ -25,7 +24,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override UnscrupulousGoszakup DtoToDb(UnscrupulousDto dto)
+        protected override UnscrupulousGoszakup DtoToModel(UnscrupulousDto dto)
         {
             long.TryParse(dto.supplier_biin, out var supplierBiin);
             DateTime.TryParse(dto.index_date, out var indexDate);

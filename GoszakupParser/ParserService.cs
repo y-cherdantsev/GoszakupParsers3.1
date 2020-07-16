@@ -4,7 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using NLog;
-using NLog.Fluent;
 using Parser = GoszakupParser.Parsers.Parser;
 
 // ReSharper disable IdentifierTypo
@@ -60,6 +59,8 @@ namespace GoszakupParser
             {
                 try
                 {
+                    if (_options.Reset)
+                        await ChangeParsedField(parserName, false);
                     if (IsAvailable(parserName))
                         await ProceedParsing(parserName);
                 }
@@ -116,19 +117,8 @@ namespace GoszakupParser
             if (parser != null) await parser.ParseAsync();
             else throw new NullReferenceException($"{parserName} hasn't been created");
 
-            // Update data in monitoring table
-            parserMonitoringContext = new ParserMonitoringContext();
-            var parsed =
-                parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
-                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
-
-            // ReSharper disable once PossibleNullReferenceException (Already checked)
-            // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
-            parsed.LastParsed = DateTime.Now;
-            parsed.Parsed = true;
-            parserMonitoringContext.ParserMonitorings.Update(parsed);
-            await parserMonitoringContext.SaveChangesAsync();
-            await parserMonitoringContext.DisposeAsync();
+            // Changes 'parsed' field value in monitoring table to true
+            await ChangeParsedField(parserName, true);
         }
 
         /// <summary>
@@ -207,9 +197,8 @@ namespace GoszakupParser
             // Check 'active' field in monitoring table
             var isActive = parserMonitoringContext.ParserMonitorings
                 .FirstOrDefault(x =>
-                    x.Active
-                    && x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
-                    )) != null;
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
+                    ) && x.Active) != null;
 
             if (!isActive)
             {
@@ -223,9 +212,8 @@ namespace GoszakupParser
             // Check 'parsed' field in monitoring table
             var isParsed = parserMonitoringContext.ParserMonitorings
                 .FirstOrDefault(x =>
-                    x.Parsed
-                    && x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
-                    )) != null;
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
+                    ) && x.Parsed) != null;
 
             if (isParsed)
             {
@@ -234,6 +222,31 @@ namespace GoszakupParser
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Changes value of 'parsed' field
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        /// <param name="flag">Value</param>
+        private async Task ChangeParsedField(string parserName, bool flag)
+        {
+            // Update data in monitoring table
+            var parserMonitoringContext = new ParserMonitoringContext();
+            var parsed =
+                parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
+
+            // ReSharper disable PossibleNullReferenceException
+            // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
+            if (flag)
+                parsed.LastParsed = DateTime.Now;
+            parsed.Parsed = flag;
+            // ReSharper restore PossibleNullReferenceException
+            parserMonitoringContext.ParserMonitorings.Update(parsed);
+            await parserMonitoringContext.SaveChangesAsync();
+            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'");
+            await parserMonitoringContext.DisposeAsync();
         }
     }
 }

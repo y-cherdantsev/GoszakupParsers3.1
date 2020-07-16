@@ -4,7 +4,6 @@ using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
 
 // ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
@@ -25,7 +24,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override ParticipantGoszakup DtoToDb(ParticipantDto dto)
+        protected override ParticipantGoszakup DtoToModel(ParticipantDto dto)
         {
             long.TryParse(dto.bin, out var bin);
             long.TryParse(dto.iin, out var iin);

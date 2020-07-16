@@ -19,15 +19,7 @@ namespace GoszakupParser
         /// List of parsers
         /// </summary>
         [Option('p', "parsers", Required = true, HelpText = "Defining parsers using spaces;" +
-                                                            "\nList of available parsers:" +
-                                                            "\n    Participant" +
-                                                            "\n    Unscrupulous" +
-                                                            "\n    Contract" +
-                                                            "\n    Announcement" +
-                                                            "\n    Lot" +
-                                                            "\n    Plan" +
-                                                            "\n    Director" +
-                                                            "\n    RnuReference")]
+                                                            "\nList of available parsers can be found in documentation or in README.md")]
         public IEnumerable<string> Parsers { get; set; }
 
         /// <summary>
@@ -43,8 +35,16 @@ namespace GoszakupParser
         public bool Ignore { get; set; }
 
         /// <summary>
-        /// Truncate flag
+        /// Reset flag
         /// </summary>
+        [Option('r', "reset", Default = false,
+            HelpText = "Resets 'parsed' field to false before checking it")]
+        public bool Reset { get; set; }
+
+        /// <summary>
+        /// Truncate flag (not implemented)
+        /// </summary>
+        /// TODO(Implement parsing table truncating while using this flag)
         [Option('t', "truncate", Default = false,
             HelpText = "Truncates parsing table before parsing (Not Implemented)")]
         public bool Truncate { get; set; }

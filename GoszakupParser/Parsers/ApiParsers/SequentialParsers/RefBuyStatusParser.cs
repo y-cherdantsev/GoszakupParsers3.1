@@ -22,7 +22,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override RefBuyStatusGoszakup DtoToDb(RefBuyStatusDto dto)
+        protected override RefBuyStatusGoszakup DtoToModel(RefBuyStatusDto dto)
         {
             var refBuyStatus = new RefBuyStatusGoszakup
             {
