@@ -1,101 +1,86 @@
 ﻿using System;
-using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
-using NLog;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
+    /// @author Yevgeniy Cherdantsev
+    /// @date 09.07.2020 15:39:44
+    /// <summary>
+    /// Plan Parser
+    /// </summary>
+    // ReSharper disable once UnusedType.Global
     public sealed class PlanParser : ApiSequentialParser<PlanDto, PlanGoszakup>
     {
-        public PlanParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
-            parserSettings, authToken, proxy)
+        /// <inheritdoc />
+        public PlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 
-        protected override Logger InitLogger()
+        /// <inheritdoc />
+        protected override PlanGoszakup DtoToModel(PlanDto dto)
         {
-            return LogManager.GetCurrentClassLogger();
-        }
+            DateTime.TryParse(dto.date_approved, out var dateApproved);
+            DateTime.TryParse(dto.date_create, out var dateCreate);
+            DateTime.TryParse(dto.timestamp, out var timestamp);
 
-        protected override PlanGoszakup DtoToDb(PlanDto dto)
-        {
-            var planGoszakup = new PlanGoszakup();
-            planGoszakup.Id = dto.id;
-            planGoszakup.RootrecordId = dto.rootrecord_id;
-            planGoszakup.SubjectBiin = long.Parse(dto.subject_biin);
-            planGoszakup.RefEnstruCode = dto.ref_enstru_code;
-            planGoszakup.PlanActNumber = dto.plan_act_number;
-            planGoszakup.SupplyDateRu = dto.supply_date_ru;
-            planGoszakup.PlanActId = dto.plan_act_id;
-            planGoszakup.RefPlanStatusId = dto.ref_plan_status_id;
-            planGoszakup.PlanFinYear = dto.plan_fin_year;
-            planGoszakup.PlanPreliminary = dto.plan_preliminary;
-            planGoszakup.SysSubjectsId = dto.sys_subjects_id;
-            planGoszakup.NameRu = dto.name_ru;
-            planGoszakup.NameKz = dto.name_kz;
-            planGoszakup.RefSubjectTypesId = dto.ref_subject_types_id;
-            planGoszakup.RefTradeMethodsId = dto.ref_trade_methods_id;
-            planGoszakup.RefUnitsCode = int.Parse(dto.ref_units_code);
-            planGoszakup.Count = dto.count;
-            planGoszakup.Price = dto.price;
-            planGoszakup.Amount = dto.amount;
-            planGoszakup.RefMonthsId = dto.ref_months_id;
-            planGoszakup.RefFinsourceId = dto.ref_finsource_id;
-            planGoszakup.RefPlnPointStatusId = dto.ref_pln_point_status_id;
-            planGoszakup.PlnPointYear = dto.pln_point_year;
-            planGoszakup.RefAbpCode = dto.ref_abp_code;
-            planGoszakup.IsQvazi = dto.is_qvazi;
-            planGoszakup.SystemId = dto.system_id;
-            planGoszakup.RefPointTypeId = dto.ref_point_type_id;
-            planGoszakup.DescRu = dto.desc_ru;
-            planGoszakup.DescKz = dto.desc_kz;
-            planGoszakup.ExtraDescRu = dto.extra_desc_ru;
-            planGoszakup.ExtraDescKz = dto.extra_desc_kz;
-            planGoszakup.Sum1 = dto.sum_1;
-            planGoszakup.Sum2 = dto.sum_2;
-            planGoszakup.Sum3 = dto.sum_3;
-            planGoszakup.Prepayment = dto.prepayment;
-            planGoszakup.RefJustificationId = dto.ref_justification_id;
-            planGoszakup.RefAmendmentAgreemTypeId = dto.ref_amendment_agreem_type_id;
-            planGoszakup.RefAmendmAgreemJustifId = dto.ref_amendm_agreem_justif_id;
-            planGoszakup.ContractPrevPointId = dto.contract_prev_point_id;
-            planGoszakup.DisablePersonId = dto.disable_person_id;
-            planGoszakup.TransferSysSubjectsId = dto.transfer_sys_subjects_id;
-            planGoszakup.TransferType = dto.transfer_type;
-            planGoszakup.RefBudgetTypeId = dto.ref_budget_type_id;
-            planGoszakup.SubjectNameKz = dto.subject_name_kz;
-            planGoszakup.SubjectNameRu = dto.subject_name_ru;
+            var plan = new PlanGoszakup
+            {
+                Id = dto.id,
+                RootrecordId = dto.rootrecord_id,
+                SubjectBiin = long.Parse(dto.subject_biin),
+                RefEnstruCode = dto.ref_enstru_code,
+                PlanActNumber = dto.plan_act_number,
+                SupplyDateRu = dto.supply_date_ru,
+                PlanActId = dto.plan_act_id,
+                RefPlanStatusId = dto.ref_plan_status_id,
+                PlanFinYear = dto.plan_fin_year,
+                PlanPreliminary = dto.plan_preliminary,
+                SysSubjectsId = dto.sys_subjects_id,
+                NameRu = dto.name_ru,
+                NameKz = dto.name_kz,
+                RefSubjectTypesId = dto.ref_subject_types_id,
+                RefTradeMethodsId = dto.ref_trade_methods_id,
+                RefUnitsCode = int.Parse(dto.ref_units_code),
+                Count = dto.count,
+                Price = dto.price,
+                Amount = dto.amount,
+                RefMonthsId = dto.ref_months_id,
+                RefFinsourceId = dto.ref_finsource_id,
+                RefPlnPointStatusId = dto.ref_pln_point_status_id,
+                PlnPointYear = dto.pln_point_year,
+                RefAbpCode = dto.ref_abp_code,
+                IsQvazi = dto.is_qvazi,
+                SystemId = dto.system_id,
+                RefPointTypeId = dto.ref_point_type_id,
+                DescRu = dto.desc_ru,
+                DescKz = dto.desc_kz,
+                ExtraDescRu = dto.extra_desc_ru,
+                ExtraDescKz = dto.extra_desc_kz,
+                Sum1 = dto.sum_1,
+                Sum2 = dto.sum_2,
+                Sum3 = dto.sum_3,
+                Prepayment = dto.prepayment,
+                RefJustificationId = dto.ref_justification_id,
+                RefAmendmentAgreemTypeId = dto.ref_amendment_agreem_type_id,
+                RefAmendmAgreemJustifId = dto.ref_amendm_agreem_justif_id,
+                ContractPrevPointId = dto.contract_prev_point_id,
+                DisablePersonId = dto.disable_person_id,
+                TransferSysSubjectsId = dto.transfer_sys_subjects_id,
+                TransferType = dto.transfer_type,
+                RefBudgetTypeId = dto.ref_budget_type_id,
+                SubjectNameKz = dto.subject_name_kz,
+                SubjectNameRu = dto.subject_name_ru,
+                DateApproved = dateApproved,
+                DateCreate = dateCreate,
+                Timestamp = timestamp
+            };
 
-            try
-            {
-                planGoszakup.DateApproved = DateTime.Parse(dto.date_approved);
-            }
-            catch (Exception)
-            {
-                planGoszakup.DateApproved = null;
-            }
-            
-            try
-            {
-                planGoszakup.DateCreate = DateTime.Parse(dto.date_create);
-            }
-            catch (Exception)
-            {
-                planGoszakup.DateCreate = null;
-            }
-            
-            try
-            {
-                planGoszakup.Timestamp = DateTime.Parse(dto.timestamp);
-            }
-            catch (Exception)
-            {
-                planGoszakup.Timestamp = null;
-            }
-            
-            
-            return planGoszakup;
+            return plan;
         }
     }
 }

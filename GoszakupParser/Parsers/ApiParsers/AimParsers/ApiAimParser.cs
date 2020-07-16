@@ -1,82 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using RestSharp;
 
+// ReSharper disable CommentTypo
+// ReSharper disable InconsistentlySynchronizedField
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 13.03.2020 14:01:53
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Parent parser used for creating parsers that gets information from api by aim elements
     /// </summary>
-    /// <code>
-    /// 
-    /// </code>
-    public abstract class ApiAimParser<TDto, TModel, TSourceModel> : ApiParser<TDto, TModel>
-        where TModel : DbLoggerCategory.Model where TSourceModel : DbLoggerCategory.Model
+    /// <typeparam name="TDto">Dto that will be parsed</typeparam>
+    /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
+    public abstract class ApiAimParser<TDto, TResultModel> : ApiParser<TDto, TResultModel>
+        where TResultModel : DbLoggerCategory.Model
     {
-        protected List<string> Aims { get; set; }
-        private new int Total { get; set; }
+        /// <summary>
+        /// Aims that's used for parsing
+        /// </summary>
+        private List<string> Aims { get; set; }
 
-        public ApiAimParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(parserSettings,
-            authToken, proxy)
+        /// <inheritdoc />
+        protected ApiAimParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
-            Aims = LoadAims();
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Aims = (List<string>) LoadAims();
             Total = Aims.Count;
         }
 
-        protected abstract List<string> LoadAims();
-        
+        /// <summary>
+        /// Loads aims from the (Mostly from DB, but also can be file or smt. similar)
+        /// </summary>
+        /// <returns>List of aims</returns>
+        protected abstract IEnumerable<string> LoadAims();
+
+        /// <inheritdoc />
         public override async Task ParseAsync()
         {
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
+
             for (var i = 0; i < Threads; i++)
             {
-                var ls = DivideList(Aims, i);
-                tasks.Add(ParseArray(ls));
+                var dividedList = DivideList(Aims, i);
+                tasks.Add(ParseArray(dividedList));
             }
 
             await Task.WhenAll(tasks);
             Logger.Info("End Of Parsing");
         }
 
-        protected async Task ParseArray(string[] list)
+        /// <summary>
+        /// Parses list of aims
+        /// </summary>
+        /// <param name="list">List of aims to parse</param>
+        private async Task ParseArray(IEnumerable<string> list)
         {
             foreach (var element in list)
             {
-                var context = new ParserContext<TModel>();
-                var response = "";
-                IRestResponse temp;
-                (response, temp) = GetApiPageResponse($"{Url}/{element}", 0).Result;
+                // Gets response for aim
+                var response = GetApiPageResponse($"{Url}/{element}").Result;
                 lock (Lock)
                 {
-                    Logger.Trace($"Left: {--Total}");
+                    --Total;
                 }
-                if (response == null)
-                    continue;
-                var dtos = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
 
-                foreach (var model in dtos.items.Select(dto => DtoToDb(dto)))
-                {
-                    try
-                    {
-                        context.Models.Add(model);
-                        await context.SaveChangesAsync();
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Warn(e);
-                    }
-                }
+                var apiResponse = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
+
+                //{"name":"Not Found","message":"*** не найден в реестре","code":0,"status":404,"type":"yii\\web\\NotFoundHttpException"}
+                if (apiResponse.status == (int) HttpStatusCode.NotFound)
+                    continue;
+
+                await ProcessObjects((IEnumerable<object>) apiResponse.items);
             }
         }
     }

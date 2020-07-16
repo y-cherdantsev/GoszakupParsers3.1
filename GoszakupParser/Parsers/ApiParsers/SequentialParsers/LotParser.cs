@@ -1,81 +1,66 @@
 ﻿using System;
-using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
-using NLog;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 23:55:36
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Lot Parser
     /// </summary>
-    public class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
+    // ReSharper disable once UnusedType.Global
+    public sealed class LotParser : ApiSequentialParser<LotDto, LotGoszakup>
     {
-        public LotParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
-            parserSettings,
-            authToken, proxy)
+        /// <inheritdoc />
+        public LotParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 
-        protected override Logger InitLogger()
+        /// <inheritdoc />
+        protected override LotGoszakup DtoToModel(LotDto dto)
         {
-            return LogManager.GetCurrentClassLogger();
-        }
-
-        protected override LotGoszakup DtoToDb(LotDto dto)
-        {
-            var lot = new LotGoszakup();
-
-            lot.Id = dto.id;
-            lot.LotNumber = dto.lot_number;
-            lot.RefLotStatusId = dto.ref_lot_status_id;
-            try
-            {
-                lot.IndexDate = DateTime.Parse(dto.index_date);
-            }
-            catch (Exception)
-            {
-                lot.IndexDate = null;
-            }
-
-            try
-            {
-                lot.LastUpdateDate = DateTime.Parse(dto.last_update_date);
-            }
-            catch (Exception)
-            {
-                lot.LastUpdateDate = null;
-            }
-
-            lot.UnionLots = dto.union_lots == 1;
-            lot.Count = dto.count;
-            lot.Amount = dto.amount;
-            lot.NameRu = dto.name_ru;
-            lot.NameKz = dto.name_kz;
-            lot.DescriptionRu = dto.description_ru;
-            lot.DescriptionKz = dto.description_kz;
-            lot.CustomerId = dto.customer_id;
             long.TryParse(dto.customer_bin, out var customerBin);
-            lot.CustomerBin = customerBin;
-            lot.TrdBuyNumberAnno = dto.trd_buy_number_anno;
-            lot.TrdBuyId = dto.trd_buy_id;
-            lot.Dumping = dto.dumping == 1;
-            lot.DumpingLotPrice = dto.dumping_lot_price != 0 ? dto.dumping_lot_price : (int?) null;
-            lot.PsdSign = dto.psd_sign != 0 ? dto.psd_sign : (int?) null;
-            lot.ConsultingServices = dto.consulting_services == 1;
-            lot.SingleOrgSign = dto.singl_org_sign;
-            lot.IsLightIndustry = dto.is_light_industry == 1;
-            lot.IsConstructionWork = dto.is_construction_work == 1;
-            lot.DisablePersonId = dto.disable_person_id == 1;
-            lot.CustomerNameKz = dto.customer_name_kz;
-            lot.CustomerNameRu = dto.customer_name_ru;
-            lot.RefTradeMethodsId = dto.ref_trade_methods_id;
-            lot.SystemId = dto.system_id;
-            if (dto.point_list.Length > 0)
-                lot.PlanPoint = dto.point_list[0];
+            DateTime.TryParse(dto.index_date, out var indexDate);
+            DateTime.TryParse(dto.last_update_date, out var lastUpdateDate);
+
+            var lot = new LotGoszakup
+            {
+                Id = dto.id,
+                LotNumber = dto.lot_number,
+                RefLotStatusId = dto.ref_lot_status_id,
+                UnionLots = dto.union_lots == 1,
+                Count = dto.count,
+                Amount = dto.amount,
+                NameRu = dto.name_ru,
+                NameKz = dto.name_kz,
+                DescriptionRu = dto.description_ru,
+                DescriptionKz = dto.description_kz,
+                CustomerId = dto.customer_id,
+                CustomerBin = customerBin,
+                TrdBuyNumberAnno = dto.trd_buy_number_anno,
+                TrdBuyId = dto.trd_buy_id,
+                Dumping = dto.dumping == 1,
+                DumpingLotPrice = dto.dumping_lot_price != 0 ? dto.dumping_lot_price : (int?) null,
+                PsdSign = dto.psd_sign != 0 ? dto.psd_sign : (int?) null,
+                ConsultingServices = dto.consulting_services == 1,
+                SingleOrgSign = dto.singl_org_sign,
+                IsLightIndustry = dto.is_light_industry == 1,
+                IsConstructionWork = dto.is_construction_work == 1,
+                DisablePersonId = dto.disable_person_id == 1,
+                CustomerNameKz = dto.customer_name_kz,
+                CustomerNameRu = dto.customer_name_ru,
+                RefTradeMethodsId = dto.ref_trade_methods_id,
+                SystemId = dto.system_id,
+                IndexDate = indexDate,
+                LastUpdateDate = lastUpdateDate,
+                PlanPoint = dto.point_list.Length > 0 ? dto.point_list[0] : (int?) null
+            };
+
             return lot;
         }
     }

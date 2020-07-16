@@ -1,64 +1,156 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Security;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
-using NLog;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using RestSharp;
 
+// ReSharper disable StringLiteralTypo
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 11:53:37
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Parent parser used for creating parsers that getting information using API
     /// </summary>
-    public abstract class ApiParser<TDto, TModel> : Parser
+    /// <typeparam name="TDto">Dto that will be parsed</typeparam>
+    /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
+    public abstract class ApiParser<TDto, TResultModel> : Parser where TResultModel : DbLoggerCategory.Model
     {
-        private string AuthToken { get; set; }
-        protected int Total { get; set; }
-        private WebProxy Proxy { get; set; }
+        /// <summary>
+        /// Authentication bearer token
+        /// </summary>
+        private string AuthToken { get; }
 
-        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken, WebProxy proxy) : base(
+
+        /// <summary>
+        /// Proxy for sending requests
+        /// </summary>
+        private WebProxy Proxy { get; }
+
+        /// <summary>
+        /// Generates object of given api parser and starts it
+        /// </summary>
+        /// <param name="parserSettings">Parser settings from configuration</param>
+        /// <param name="authToken">Authentication bearer token</param>
+        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(
             parserSettings)
         {
             AuthToken = authToken;
-            Proxy = proxy;
-            var response = "";
-            IRestResponse temp;
-            (response, temp) = GetApiPageResponse(Url).Result;
+
+            // Get proxy for parser
+            var parserMonitoringContext = new ParserMonitoringContext();
+            var proxyDto = parserMonitoringContext.Proxies.OrderBy(x => new Random().NextDouble()).First();
+            Proxy = new WebProxy(
+                $"{proxyDto.Address}:{proxyDto.Port}",
+                true)
+            {
+                Credentials = new NetworkCredential
+                {
+                    UserName = proxyDto.Username,
+                    Password = proxyDto.Password
+                }
+            };
+            parserMonitoringContext.Dispose();
+
+            // Get total number of elements from api
+            // ReSharper disable once VirtualMemberCallInConstructor
+            var response = GetApiPageResponse(Url).Result;
             Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
-        protected abstract override Logger InitLogger();
+        /// <inheritdoc />
         public abstract override Task ParseAsync();
-        protected abstract TModel DtoToDb(TDto dto);
 
-        protected async Task<(string, IRestResponse)> GetApiPageResponse(string url, int delay = 15000)
+        /// <summary>
+        /// Converts general dto object to DB model
+        /// </summary>
+        /// <param name="dto">Object parsed from api</param>
+        /// <returns>DB model</returns>
+        protected abstract TResultModel DtoToModel(TDto dto);
+
+        /// <summary>
+        /// Processing list of dtos
+        /// </summary>
+        /// <param name="entities">List of parsed elements</param>
+        protected async Task ProcessObjects(IEnumerable<object> entities)
         {
-            // Thread.Sleep(1000);
-            var i = 0;
-            while (true)
+            await using var context = new ParserContext<TResultModel>();
+            foreach (TDto dto in entities)
+                await ProcessObject(dto, context);
+        }
+
+        /// <summary>
+        /// Converts dto into model and inserts it into DB
+        /// </summary>
+        /// <param name="dto">Dto from Api</param>
+        /// <param name="context">Parsing DB context</param>
+        private async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
+        {
+            var model = DtoToModel(dto);
+            context.Models.Add(model);
+
+            InsertDataOperation:
+            try
             {
-                var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500");
-                restClient.Proxy = Proxy;
-                restClient.Timeout = 15000;
+                await context.SaveChangesAsync();
+            }
+            // Appears while network card error occurs
+            catch (InvalidOperationException e)
+            {
+                Logger.Warn(e.Message);
+                Thread.Sleep(15000);
+                goto InsertDataOperation;
+            }
+            catch (DbUpdateException e)
+            {
+                if (e.InnerException is NpgsqlException)
+                    Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
+                                 $"{e.InnerException?.Data["Detail"]} " +
+                                 $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
+                else
+                    throw;
+            }
+        }
+
+        /// <summary>
+        /// Gets json response from api
+        /// </summary>
+        /// <param name="url">Url that gonna be requested</param>
+        /// <param name="delay">Delay between attempts and timeout</param>
+        /// <param name="allowedAttempts">Number of allowed requests before exception</param>
+        /// <returns>JSON representation of response</returns>
+        /// <exception cref="Exception">If number of attempts exceeded</exception>
+        // ReSharper disable once CognitiveComplexity
+        protected async Task<string> GetApiPageResponse(string url, int delay = 10000, int allowedAttempts = 20)
+        {
+            var attempts = 0;
+
+            // Loop that sends requests to api till successive result
+            while (attempts < allowedAttempts)
+            {
+                // Creating a client that will send the requst
+                var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500")
+                    {Proxy = Proxy, Timeout = delay};
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
-                string response;
-                IRestResponse restResponse = null;
+
+                // Sending request and catching all exceptions and known problems
                 try
                 {
                     var cts = new CancellationTokenSource();
                     var awaitingTask = restClient.ExecuteAsync(new RestRequest(Method.GET), cts.Token);
 
+                    // Some requests can lock parser and even timeout won't help, that's why custom timeout has been implemented
                     var tempDelay = delay;
                     while (true)
                     {
@@ -68,6 +160,8 @@ namespace GoszakupParser.Parsers.ApiParsers
                         {
                             Logger.Warn("Timeout exceeded");
                             cts.Cancel();
+
+                            //If request loading more than delay time, another request starts
                             return await GetApiPageResponse(url, delay);
                         }
 
@@ -77,23 +171,28 @@ namespace GoszakupParser.Parsers.ApiParsers
                         }
                     }
 
+                    //After request proceeded checks all known problems, and sends request again if some error occured
+                    IRestResponse restResponse;
                     if (awaitingTask.IsCompletedSuccessfully)
                     {
                         restResponse = awaitingTask.Result;
                     }
                     else
                     {
-                        ++i;
+                        ++attempts;
                         Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.Content}");
+                        Logger.Warn(awaitingTask.Exception, $"Tried {attempts} times");
                         continue;
                     }
+
+                    // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
                     switch (restResponse.StatusCode)
                     {
-                        case HttpStatusCode.Forbidden:case HttpStatusCode.InternalServerError:
-                            ++i;
+                        case HttpStatusCode.Forbidden:
+                        case HttpStatusCode.InternalServerError:
+                            ++attempts;
                             Thread.Sleep(delay);
-                            Logger.Warn($"{i} times, {restResponse.Content}");
+                            Logger.Warn($"{attempts} times, {restResponse.Content}");
                             continue;
                     }
 
@@ -101,49 +200,51 @@ namespace GoszakupParser.Parsers.ApiParsers
                         restResponse.ErrorMessage.Contains(
                             "An error occurred while sending the request. The response ended prematurely."))
                     {
-                        ++i;
+                        ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
                     if (restResponse.ErrorMessage != null &&
                         restResponse.ErrorMessage.Contains("The operation has timed out."))
                     {
-                        ++i;
+                        ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
                     if (restResponse.ContentLength == 0 ||
-                        (restResponse.ErrorMessage != null && restResponse.ErrorMessage.Contains(
+                        restResponse.ErrorMessage != null && restResponse.ErrorMessage.Contains(
                             "Подключение не установлено," +
-                            " т.к. конечный компьютер отверг запрос на подключение. Подключение не установлено," +
-                            " т.к. конечный компьютер отверг запрос на подключение.")))
+                            " т.к. конечный компьютер отверг запрос на подключение."))
                     {
-                        ++i;
+                        ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{i} times, {restResponse.ErrorMessage}");
+                        Logger.Trace($"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
-                    response = restResponse.Content;
-                    if (restResponse.Content.Length < 1000)
-                        Logger.Trace($"{i} times, {restResponse.Content}");
+                    // If response message is too short, throws exception
+                    var response = restResponse.Content;
+
+                    // After checking, if all is OK returns response
                     Logger.Trace($"{url} - Left:[{Total}]");
+
+                    return response;
                 }
                 catch (Exception e)
                 {
                     Logger.Error(e, $"Link:'{url}'");
                     throw;
                 }
-
-                return (response, restResponse);
             }
+
+            throw new Exception($"Attempts exceeded their maximum({allowedAttempts}) value");
         }
     }
 }

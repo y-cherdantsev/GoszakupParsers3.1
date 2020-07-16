@@ -1,18 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Contexts
 {
-
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 09:58:18
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Web DB context, 'avroradata' schema
     /// </summary>
-    public class WebContext<TModel>: DbContext where TModel : DbLoggerCategory.Model
+    public class WebContext<TModel> : DbContext where TModel : DbLoggerCategory.Model
     {
         public DbSet<TModel> Models { get; set; }
-        public WebContext(DbContextOptions<WebContext<TModel>> options)
+
+        public WebContext(DbContextOptions options)
             : base(options)
         {
         }
@@ -26,7 +30,5 @@ namespace GoszakupParser.Contexts
             optionsBuilder.UseNpgsql(
                 "Server = 192.168.1.158; Database = avroradata; Port=5432; User ID = data_migrator; Password = Z4P6PjEHnJ5nPT; Search Path = avroradata; Integrated Security=true; Pooling=true;");
         }
-
-      
     }
 }

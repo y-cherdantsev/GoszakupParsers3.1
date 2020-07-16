@@ -7,19 +7,26 @@ using AngleSharp.Html.Parser;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
-using NLog;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 29.02.2020 12:17:39
-    /// @version 1.0
-    public class DirectorParser : WebAimParser<DirectorGoszakup>
+    /// <summary>
+    /// Director Parser
+    /// </summary>
+    // ReSharper disable once UnusedType.Global
+    public sealed class DirectorParser : WebAimParser<DirectorGoszakup>
     {
-        public DirectorParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings, proxy)
+        /// <inheritdoc />
+        public DirectorParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
         }
 
+        /// <inheritdoc />
         protected override Dictionary<string, string> LoadAims()
         {
             var aims = new Dictionary<string, string>();
@@ -33,30 +40,27 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             return aims;
         }
 
-        protected override Logger InitLogger()
-        {
-            return LogManager.GetCurrentClassLogger();
-        }
-
-        protected override async Task ParseArray(string[] list, WebProxy webProxy)
+        /// <inheritdoc />
+        protected override async Task ParseArray(IEnumerable<string> list, WebProxy webProxy)
         {
             await using var context = new ParserContext<DirectorGoszakup>();
             foreach (var pid in list)
             {
-                Logger.Trace("Started proceeding of the next element");
                 var response = GetPage($"{Url}/{pid}", webProxy);
-                Logger.Trace("Send into parsing of the page");
                 var director = ParseParticipantPage(response);
-                Logger.Trace("Creating Object");
                 director.Bin = long.Parse(Aims[pid]);
                 director.Rnn = director.Rnn != 0 ? director.Rnn : null;
                 director.Iin = director.Iin != 0 ? director.Iin : null;
                 await ProcessObject(director, context);
-                Logger.Trace("Objects has been proceeded");
                 Thread.Sleep(1000);
             }
         }
 
+        /// <summary>
+        /// Parses page and gets Director goszakup from it
+        /// </summary>
+        /// <param name="page">html page</param>
+        /// <returns>DirectorGoszakup model</returns>
         private static DirectorGoszakup ParseParticipantPage(string page)
         {
             var director = new DirectorGoszakup();

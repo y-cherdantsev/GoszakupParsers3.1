@@ -1,132 +1,236 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Parsers;
-using GoszakupParser.Parsers.ApiParsers.AimParsers;
-using GoszakupParser.Parsers.ApiParsers.SequentialParsers;
-using GoszakupParser.Parsers.WebParsers.AimParsers;
 using NLog;
+using Parser = GoszakupParser.Parsers.Parser;
+
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable InvertIf
 
 namespace GoszakupParser
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:18:55
-    /// @version 1.0
     /// <summary>
     /// Proceeding of arguments and general logic
     /// </summary>
     public class ParserService
     {
+        /// <summary>
+        /// Configuration defined in 'Configuration.json' file
+        /// </summary>
         private readonly Configuration _configuration;
-        private readonly Logger _logger;
-        private string[] Args { get; set; }
-        private Dictionary<string, string> ParserMonitoringNames { get; set; } = new Dictionary<string, string>();
 
-        public ParserService(Configuration configuration, string[] args)
+        /// <summary>
+        /// Current class logger
+        /// </summary>
+        private readonly Logger _logger;
+
+        /// <summary>
+        /// Command line options
+        /// </summary>
+        private readonly CommandLineOptions _options;
+
+        /// <summary>
+        /// Constructor of ParserService class
+        /// </summary>
+        /// <param name="configuration">Parser configurations</param>
+        /// <param name="options">Parsed command line options</param>
+        /// <returns></returns>
+        public ParserService(Configuration configuration, CommandLineOptions options)
         {
-            Args = args;
+            _options = options;
             _configuration = configuration;
             _logger = LogManager.GetCurrentClassLogger();
-            ParserMonitoringNames.Add("UnscrupulousParser", "UnscrupulousGoszakup");
-            ParserMonitoringNames.Add("ParticipantParser", "ParticipantGoszakup");
-            ParserMonitoringNames.Add("LotParser", "LotGoszakup");
-            ParserMonitoringNames.Add("PlanParser", "PlanGoszakup");
-            ParserMonitoringNames.Add("ContractParser", "ContractGoszakup");
-            ParserMonitoringNames.Add("AnnouncementParser", "AnnouncementGoszakup");
-            ParserMonitoringNames.Add("DirectorParser", "DirectorGoszakup");
-            ParserMonitoringNames.Add("RnuReferenceParser", "RnuReferenceGoszakup");
         }
 
-        public async Task StartParsing()
+        /// <summary>
+        /// Starts parsing activity
+        /// </summary>
+        public async Task StartParsingService()
         {
-            _logger.Info("Started parsing service!");
-            var parsersSettings = _configuration.Parsers;
+            _logger.Info("Starting parsing service!");
 
-
-            var avaliable = new List<string>();
-            await using (var parserMonitoringContext = new ParserMonitoringContext())
-            {
-                var avaliableFromContext = parserMonitoringContext.ParserMonitorings
-                    .Where(x => (x.Parsed == false && x.Active == true)).ToList();
-                avaliable.AddRange(avaliableFromContext.Select(parserMonitoring => parserMonitoring.Name));
-            }
-
-            foreach (var arg in Args)
+            // Trying to start each defined parser sequentially in defined order
+            foreach (var parserName in _options.Parsers)
             {
                 try
                 {
-                    Parser parser = null;
-                    if (!avaliable.Contains(ParserMonitoringNames[arg]))
-                    {
-                        _logger.Warn($"Parser '{arg}' hasn't been migrated yet");
-                        continue;
-                    }
-
-                    var proxy = new WebProxy(_configuration.Proxy.Address, true)
-                    {
-                        Credentials = new NetworkCredential
-                            {UserName = _configuration.Proxy.UserName, Password = _configuration.Proxy.Password}
-                    };
-                    switch (arg)
-                    {
-                        case "AnnouncementParser":
-                            parser = new AnnouncementParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "LotParser":
-                            parser = new LotParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "PlanParser":
-                            parser = new PlanParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "ContractParser":
-                            parser = new ContractParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "ParticipantParser":
-                            parser = new ParticipantParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "UnscrupulousParser":
-                            parser = new UnscrupulousParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        case "DirectorParser":
-                            parser = new DirectorParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),proxy);
-                            break;
-                        case "RnuReferenceParser":
-                            parser = new RnuReferenceParser(parsersSettings.FirstOrDefault(x => x.Name.Equals(arg)),
-                                _configuration.AuthToken,proxy);
-                            break;
-                        default:
-                            _logger.Warn($"Can't find such parser '{arg}'");
-                            continue;
-                    }
-
-                    await using var parserMonitoringContext = new ParserMonitoringContext();
-                    await parser.ParseAsync();
-                    var parsed =
-                        parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
-                            x.Name.Equals(ParserMonitoringNames[arg]));
-                    if (parsed != null)
-                    {
-                        parsed.LastParsed = DateTime.Now;
-                        parsed.Parsed = true;
-                        parserMonitoringContext.ParserMonitorings.Update(parsed);
-                    }
-
-                    await parserMonitoringContext.SaveChangesAsync();
+                    if (_options.Reset)
+                        await ChangeParsedField(parserName, false);
+                    if (IsAvailable(parserName))
+                        await ProceedParsing(parserName);
                 }
                 catch (Exception e)
                 {
                     _logger.Error(e);
                 }
             }
+        }
+
+        /// <summary>
+        /// Generating object of given parser and starts it
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        private async Task ProceedParsing(string parserName)
+        {
+            // Get class for parser
+            var parsingClass = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .FirstOrDefault(t => t.Name == parserName + "Parser");
+
+            // Get parser configuration
+            var parserConfiguration = _configuration.Parsers.FirstOrDefault(x => x.Name.Equals(parserName));
+
+
+            // Initializing and starting parser
+            Parser parser;
+
+            // ReSharper disable once PossibleNullReferenceException (Already checked)
+            // If parser has authToken in arguments list, creates object with the first constructor, otherwise with the second 
+            if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name.Equals("authToken")))
+                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration,
+                    _configuration.AuthToken);
+            else
+                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration);
+
+            if (parser != null) await parser.ParseAsync();
+            else throw new NullReferenceException($"{parserName} hasn't been created");
+
+            // Changes 'parsed' field value in monitoring table to true
+            await ChangeParsedField(parserName, true);
+        }
+
+        /// <summary>
+        /// Check if parser available based on current system state and given values
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        /// <returns>Boolean</returns>
+        private bool IsAvailable(string parserName)
+        {
+            return Exists(parserName) && CheckState(parserName);
+        }
+
+        /// <summary>
+        /// Check if parser fully integrated in parsing system
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        /// <returns>Boolean</returns>
+        private bool Exists(string parserName)
+        {
+            using var parserMonitoringContext = new ParserMonitoringContext();
+
+            // Check if parser exist in map dictionary
+            var existInDictionary = _configuration.ParserMonitoringNames.Keys
+                .Any(x => x.Equals(parserName));
+            if (!existInDictionary)
+            {
+                _logger.Warn($"Parser '{parserName}' doesn't exist in local dictionary");
+                return false;
+            }
+
+            // Check if parser exist in monitoring table
+            var existsInDatabase = parserMonitoringContext.ParserMonitorings
+                .Any(x => x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
+            if (!existsInDatabase)
+            {
+                _logger.Warn($"Parser '{parserName}' doesn't exist in database");
+                return false;
+            }
+
+            // Check if parser class exists
+            var existClass = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Any(x => x.Name.Equals(parserName + "Parser"));
+            if (!existClass)
+            {
+                _logger.Warn($"Parser '{parserName}' doesn't exist in current context");
+                return false;
+            }
+
+            // Check if parser exist in configuration
+            var existConfiguration = _configuration.Parsers
+                .Any(x => x.Name.Equals(parserName));
+            if (!existConfiguration)
+            {
+                _logger.Warn($"There is no configuration for '{parserName}' parser");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Check if parser available to use based on command line arguments
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        /// <returns>Boolean</returns>
+        private bool CheckState(string parserName)
+        {
+            // Skip all check activities if 'force' flag determined
+            if (_options.Force)
+                return true;
+
+            using var parserMonitoringContext = new ParserMonitoringContext();
+
+            // Check 'active' field in monitoring table
+            var isActive = parserMonitoringContext.ParserMonitorings
+                .FirstOrDefault(x =>
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
+                    ) && x.Active) != null;
+
+            if (!isActive)
+            {
+                _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' is not active");
+                return false;
+            }
+
+            // Skip next check activities if 'ignore' flag determined
+            if (_options.Ignore) return true;
+
+            // Check 'parsed' field in monitoring table
+            var isParsed = parserMonitoringContext.ParserMonitorings
+                .FirstOrDefault(x =>
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
+                    ) && x.Parsed) != null;
+
+            if (isParsed)
+            {
+                _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Changes value of 'parsed' field
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        /// <param name="flag">Value</param>
+        private async Task ChangeParsedField(string parserName, bool flag)
+        {
+            // Update data in monitoring table
+            var parserMonitoringContext = new ParserMonitoringContext();
+            var parsed =
+                parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
+                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
+
+            // ReSharper disable PossibleNullReferenceException
+            // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
+            if (flag)
+                parsed.LastParsed = DateTime.Now;
+            parsed.Parsed = flag;
+            // ReSharper restore PossibleNullReferenceException
+            parserMonitoringContext.ParserMonitorings.Update(parsed);
+            await parserMonitoringContext.SaveChangesAsync();
+            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'");
+            await parserMonitoringContext.DisposeAsync();
         }
     }
 }

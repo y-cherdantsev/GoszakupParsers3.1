@@ -3,13 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser.Models.ParsingModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:05
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Contract Parsing DB table object
     /// </summary>
     [Table("contract_goszakup")]
     public class ContractGoszakup : DbLoggerCategory.Model
@@ -67,8 +71,6 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("exchange_rate")] public double? ExchangeRate { get; set; }
         [Column("system_id")] public int? SystemId { get; set; }
         [Column("index_date")] public DateTime? IndexDate { get; set; }
-
         [Column("fakt_exec_date")] public DateTime? FaktExecDate { get; set; }
-        // [Column("relevance")] public DateTime? Relevance{get; set;}
     }
 }

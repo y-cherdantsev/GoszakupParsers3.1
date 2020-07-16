@@ -586,3 +586,152 @@ create table director_goszakup
 
 create unique index head_id_uindex
     on director_goszakup (id);
+
+--rnu
+create table rnu_reference_goszakup
+(
+    id                    integer                             not null
+        constraint rnu_reference_goszakup_pk
+            primary key,
+    pid                   integer,
+    customer_biin         bigint                              not null,
+    customer_name_ru      text,
+    customer_name_kz      text,
+    supplier_biin         bigint                              not null,
+    supplier_name_ru      text,
+    supplier_name_kz      text,
+    supplier_innunp       text,
+    supplier_head_name_kz text,
+    supplier_head_name_ru text,
+    supplier_head_biin    bigint,
+    court_decision        text,
+    court_decision_date   timestamp,
+    start_date            timestamp,
+    end_date              timestamp,
+    ref_reason_id         integer,
+    index_date            timestamp,
+    system_id             smallint,
+    relevance             timestamp default CURRENT_TIMESTAMP not null
+);
+
+create unique index rnu_reference_goszakup_id_uindex
+    on rnu_reference_goszakup (id);
+
+--plan
+create table plan_goszakup
+(
+    id                           bigint not null
+        constraint plan_goszakup_pk
+            primary key,
+    plan_act_id                  bigint,
+    plan_act_number              text,
+    ref_plan_status_id           integer,
+    plan_fin_year                integer,
+    plan_preliminary             integer,
+    rootrecord_id                bigint,
+    sys_subjects_id              bigint,
+    subject_biin                 bigint,
+    name_ru                      text,
+    name_kz                      text,
+    ref_trade_methods_id         integer,
+    ref_units_code               integer,
+    count                        double precision,
+    price                        double precision,
+    amount                       double precision,
+    ref_months_id                integer,
+    ref_pln_point_status_id      integer,
+    pln_point_year               integer,
+    ref_subject_types_id         integer,
+    ref_enstru_code              text,
+    ref_finsource_id             integer,
+    ref_abp_code                 integer,
+    date_approved                timestamp,
+    is_qvazi                     integer,
+    date_create                  timestamp,
+    timestamp                    timestamp,
+    system_id                    integer,
+    ref_point_type_id            integer,
+    desc_ru                      text,
+    desc_kz                      text,
+    extra_desc_ru                text,
+    extra_desc_kz                text,
+    sum_1                        bigint,
+    sum_2                        bigint,
+    sum_3                        bigint,
+    supply_date_ru               text,
+    prepayment                   double precision,
+    ref_justification_id         integer,
+    ref_amendment_agreem_type_id integer,
+    ref_amendm_agreem_justif_id  integer,
+    contract_prev_point_id       integer,
+    disable_person_id            integer,
+    transfer_sys_subjects_id     integer,
+    transfer_type                integer,
+    ref_budget_type_id           integer,
+    subject_name_kz              text,
+    subject_name_ru              text,
+    relevance                    timestamp default CURRENT_TIMESTAMP
+);
+
+create unique index plan_goszakup_id_uindex
+    on plan_goszakup (id);
+
+
+--ref_unit
+create table ref_unit_goszakup
+(
+    id         serial not null,
+    name_ru    text,
+    name_kz    text,
+    code       integer,
+    code2      text,
+    alpha_code text
+);
+
+create unique index ref_unit_goszakup_id_uindex
+    on ref_unit_goszakup (id);
+
+
+--ref_buy_status
+create table ref_buy_status_goszakup
+(
+    id      serial not null,
+    name_ru text,
+    name_kz text,
+    code    text
+);
+
+create unique index ref_buy_status_goszakup_id_uindex
+    on ref_buy_status_goszakup (id);
+
+
+--ref_lot_status
+create table ref_lot_status_goszakup
+(
+    id      serial not null,
+    name_ru text,
+    name_kz text,
+    code    text
+);
+
+create unique index ref_lots_status_goszakup_id_uindex
+    on ref_lot_status_goszakup (id);
+
+
+--ref_trade_method
+create table ref_trade_method_goszakup
+(
+    id          serial not null,
+    name_ru     text,
+    name_kz     text,
+    symbol_code text,
+    code        integer,
+    is_active   boolean,
+    type        integer,
+    f1          integer,
+    ord         integer,
+    f2          integer
+);
+
+create unique index ref_trade_method_goszakup_id_uindex
+    on ref_trade_method_goszakup (id);

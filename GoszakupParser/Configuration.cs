@@ -1,37 +1,58 @@
 ﻿using System.Collections.Generic;
 
+// ReSharper disable IdentifierTypo
+// ReSharper disable CommentTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable CollectionNeverUpdated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace GoszakupParser
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 25.02.2020 10:17:01
-    /// @version 1.0
     /// <summary>
     /// Configuration class
     /// </summary>
-    public class Configuration
+    public sealed class Configuration
     {
-        public string DbHost { get; set; }
-        public int DbPort { get; set; }
-        public string DbUser { get; set; }
-        public string DbPassword { get; set; }
-        public string DbName { get; set; }
-        public string DbScheme { get; set; }
+        //TODO(Database data provided in configuration)
+
+        /// <summary>
+        /// Goszakup authentication bearer token
+        /// </summary>
         public string AuthToken { get; set; }
+
+        /// <summary>
+        /// Parsers settings
+        /// </summary>
         public List<ParserSettings> Parsers { get; set; }
-        public ProxyData Proxy { get; set; }
 
-        public class ParserSettings
+        /// <summary>
+        /// Mapped parsers names into parsing DB titles
+        /// </summary>
+        public Dictionary<string, string> ParserMonitoringNames { get; set; }
+
+        /// @author Yevgeniy Cherdantsev
+        /// @date 25.02.2020 10:17:01
+        /// <summary>
+        /// Parser setting class with parser properties
+        /// </summary>
+        public sealed class ParserSettings
         {
+            /// <summary>
+            /// Parser name (depends on parser classname)
+            /// </summary>
             public string Name { get; set; }
-            public int Threads { get; set; }
-            public string Url { get; set; }
-        }
 
-        public class ProxyData
-        {
-            public string Address { get; set; }
-            public string UserName { get; set; }
-            public string Password { get; set; }
+            /// <summary>
+            /// Number of working threads (affects speed)
+            /// </summary>
+            public int Threads { get; set; }
+
+            /// <summary>
+            /// Link to the source that gonna be parsed
+            /// </summary>
+            public string Url { get; set; }
         }
     }
 }
