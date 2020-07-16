@@ -45,7 +45,8 @@ var menudata={children:[
 {text:"r",url:"functions.html#index_r"},
 {text:"s",url:"functions.html#index_s"},
 {text:"t",url:"functions.html#index_t"},
-{text:"u",url:"functions.html#index_u"}]},
+{text:"u",url:"functions.html#index_u"},
+{text:"w",url:"functions.html#index_w"}]},
 {text:"Функции",url:"functions_func.html",children:[
 {text:"a",url:"functions_func.html#index_a"},
 {text:"c",url:"functions_func.html#index_c"},
@@ -58,6 +59,7 @@ var menudata={children:[
 {text:"p",url:"functions_func.html#index_p"},
 {text:"r",url:"functions_func.html#index_r"},
 {text:"s",url:"functions_func.html#index_s"},
-{text:"u",url:"functions_func.html#index_u"}]},
+{text:"u",url:"functions_func.html#index_u"},
+{text:"w",url:"functions_func.html#index_w"}]},
 {text:"Переменные",url:"functions_vars.html"},
 {text:"Свойства",url:"functions_prop.html"}]}]}]}

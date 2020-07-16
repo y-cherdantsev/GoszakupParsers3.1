@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Models.WebModels;
 
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
-// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -21,9 +20,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     public sealed class RnuReferenceParser : ApiAimParser<RnuReferenceDto, RnuReferenceGoszakup>
     {
         /// <inheritdoc />
-        public RnuReferenceParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings,
-            proxy, authToken)
+        public RnuReferenceParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 

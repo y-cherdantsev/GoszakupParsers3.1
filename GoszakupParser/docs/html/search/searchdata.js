@@ -3,8 +3,8 @@ var indexSectionsWithContent =
   0: "_acdefgilmnprstuw",
   1: "acdlpruw",
   2: "g",
-  3: "acdegilmprsu",
-  4: "_l",
+  3: "acdegilmprsuw",
+  4: "_lp",
   5: "afinprtu"
 };
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Threading;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using RestSharp;
 
+// ReSharper disable StringLiteralTypo
 // ReSharper disable CommentTypo
 
 // ReSharper disable once IdentifierTypo
@@ -29,21 +31,36 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         private string AuthToken { get; }
 
-        /// <summary>
-        /// Total number of elements that should be parsed (decreasing with each iteration)
-        /// </summary>
-        protected int Total { get; set; }
 
         /// <summary>
-        /// Generates object of given parser and starts it
+        /// Proxy for sending requests
+        /// </summary>
+        private WebProxy Proxy { get; }
+
+        /// <summary>
+        /// Generates object of given api parser and starts it
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="proxy">Parsing proxy</param>
         /// <param name="authToken">Authentication bearer token</param>
-        protected ApiParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings, proxy)
+        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings)
         {
             AuthToken = authToken;
+
+            // Get proxy for parser
+            var parserMonitoringContext = new ParserMonitoringContext();
+            var proxyDto = parserMonitoringContext.Proxies.OrderBy(x => new Random().NextDouble()).First();
+            Proxy = new WebProxy(
+                $"{proxyDto.Address}:{proxyDto.Port}",
+                true)
+            {
+                Credentials = new NetworkCredential
+                {
+                    UserName = proxyDto.Username,
+                    Password = proxyDto.Password
+                }
+            };
+            parserMonitoringContext.Dispose();
 
             // Get total number of elements from api
             // ReSharper disable once VirtualMemberCallInConstructor
@@ -67,8 +84,6 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <param name="entities">List of parsed elements</param>
         protected async Task ProcessObjects(IEnumerable<object> entities)
         {
-            //TODO(Fix error Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. 192.168.2.25:5432)
-
             await using var context = new ParserContext<TResultModel>();
             foreach (TDto dto in entities)
                 await ProcessObject(dto, context);
@@ -83,8 +98,8 @@ namespace GoszakupParser.Parsers.ApiParsers
         {
             var model = DtoToModel(dto);
             context.Models.Add(model);
-            
-            Insert:
+
+            InsertDataOperation:
             try
             {
                 await context.SaveChangesAsync();
@@ -94,7 +109,7 @@ namespace GoszakupParser.Parsers.ApiParsers
             {
                 Logger.Warn(e.Message);
                 Thread.Sleep(15000);
-                goto Insert;
+                goto InsertDataOperation;
             }
             catch (DbUpdateException e)
             {

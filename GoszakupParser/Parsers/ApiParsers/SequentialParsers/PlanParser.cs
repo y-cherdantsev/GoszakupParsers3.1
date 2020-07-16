@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -17,8 +16,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public sealed class PlanParser : ApiSequentialParser<PlanDto, PlanGoszakup>
     {
         /// <inheritdoc />
-        public PlanParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings, proxy, authToken)
+        public PlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 

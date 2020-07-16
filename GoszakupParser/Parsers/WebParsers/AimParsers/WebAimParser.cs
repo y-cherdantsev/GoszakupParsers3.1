@@ -1,112 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Security;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
 
+// ReSharper disable CommentTypo
+
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.WebParsers.AimParsers
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 28.02.2020 19:47:21
-    /// @version 1.0
     /// <summary>
-    /// INPUT
+    /// Parent parser used for creating parsers that gets information from web by aim elements
     /// </summary>
-    public abstract class WebAimParser<TModel> : Parser where TModel : DbLoggerCategory.Model
+    /// <typeparam name="TModel">Model that will be parsed and inserted into DB</typeparam>
+    public abstract class WebAimParser<TModel> : WebParser<TModel> where TModel : DbLoggerCategory.Model
     {
+        /// <summary>
+        /// Aims that's used for parsing
+        /// </summary>
         protected Dictionary<string, string> Aims { get; }
-        private int Total { get; set; } 
 
-        protected WebAimParser(Configuration.ParserSettings parserSettings, WebProxy proxy) : base(parserSettings, proxy)
+        /// <inheritdoc />
+        protected WebAimParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
             Aims = LoadAims();
             Total = Aims.Count;
         }
 
+        /// <summary>
+        /// Loads aims from the (Mostly from DB, but also can be file or smt. similar);
+        /// </summary>
+        /// <returns>List of aims</returns>
         protected abstract Dictionary<string, string> LoadAims();
 
-        /// <summary>
-        /// Inserts model into DB
-        /// </summary>
-        /// <param name="model">Model</param>
-        /// <param name="context">Parsing DB context</param>
-        protected async Task ProcessObject(TModel model, ParserContext<TModel> context)
-        {
-            try
-            {
-                context.Models.Add(model);
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateException e)
-            {
-                if (e.InnerException is NpgsqlException)
-                    Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
-                                 $"{e.InnerException?.Data["Detail"]} " +
-                                 $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
-                else
-                    throw;
-            }
-            
-        }
-
-        protected abstract Task ParseArray(string[] list, WebProxy webProxy);
-
+        /// <inheritdoc />
         public override async Task ParseAsync()
         {
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
-            using var context = new ParserMonitoringContext();
-            var proxies = context.Proxies.Where(x => x.Status==true).ToList();
+
             for (var i = 0; i < Threads; i++)
             {
                 var ls = DivideList(Aims.Keys.ToList(), i);
-                var proxy = new WebProxy(proxies[i].Address.ToString(), proxies[i].Port);
-                proxy.Credentials = new NetworkCredential(proxies[i].Username, proxies[i].Password);
-                tasks.Add(ParseArray(ls, proxy));
+                tasks.Add(ParseArray(ls, Proxies[i]));
             }
 
             await Task.WhenAll(tasks);
             Logger.Info("End Of Parsing");
         }
 
-        protected string GetPage(string url, WebProxy proxy)
-        {
-            var pageResponse = "";
-            try
-            {
-                var request = WebRequest.Create(url);
-                request.Method = WebRequestMethods.Http.Get;
-                request.AuthenticationLevel = AuthenticationLevel.None;
-                request.Proxy = proxy;
-                request.Timeout = 10000;
-                var response = request.GetResponse();
-                var objReader =
-                    new StreamReader(response.GetResponseStream() ?? throw new NullReferenceException());
 
-                var sLine = "";
-
-                while (sLine != null)
-                {
-                    sLine = objReader.ReadLine();
-                    if (sLine != null)
-                        pageResponse += sLine;
-                }
-                lock (Lock)
-                {
-                    Logger.Trace($"Left: {--Total}");
-                }
-                return pageResponse;
-            }
-            catch (Exception)
-            {
-                // Console.WriteLine(e.StackTrace);
-                return null;
-            }
-        }
+        /// <summary>
+        /// Parses given list of aims
+        /// </summary>
+        /// <param name="list">List of aims</param>
+        /// <param name="webProxy">Parsing proxy</param>
+        protected abstract Task ParseArray(IEnumerable<string> list, WebProxy webProxy);
     }
 }

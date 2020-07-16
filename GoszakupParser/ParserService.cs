@@ -77,22 +77,6 @@ namespace GoszakupParser
         /// <param name="parserName">Parser name</param>
         private async Task ProceedParsing(string parserName)
         {
-            var parserMonitoringContext = new ParserMonitoringContext();
-
-            // Get proxy for parser
-            var proxyDto = parserMonitoringContext.Proxies.OrderBy(x => new Random().NextDouble()).First();
-            var proxy = new WebProxy(
-                $"{proxyDto.Address}:{proxyDto.Port}",
-                true)
-            {
-                Credentials = new NetworkCredential
-                {
-                    UserName = proxyDto.Username,
-                    Password = proxyDto.Password
-                }
-            };
-            await parserMonitoringContext.DisposeAsync();
-
             // Get class for parser
             var parsingClass = AppDomain.CurrentDomain
                 .GetAssemblies()
@@ -109,10 +93,10 @@ namespace GoszakupParser
             // ReSharper disable once PossibleNullReferenceException (Already checked)
             // If parser has authToken in arguments list, creates object with the first constructor, otherwise with the second 
             if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name.Equals("authToken")))
-                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration, proxy,
+                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration,
                     _configuration.AuthToken);
             else
-                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration, proxy);
+                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration);
 
             if (parser != null) await parser.ParseAsync();
             else throw new NullReferenceException($"{parserName} hasn't been created");

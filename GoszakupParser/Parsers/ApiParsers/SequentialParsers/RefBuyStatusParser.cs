@@ -1,5 +1,4 @@
-﻿using System.Net;
-using GoszakupParser.Models.Dtos;
+﻿using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
@@ -16,8 +15,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public sealed class RefBuyStatusParser : ApiSequentialParser<RefBuyStatusDto, RefBuyStatusGoszakup>
     {
         /// <inheritdoc />
-        public RefBuyStatusParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings, proxy, authToken)
+        public RefBuyStatusParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 

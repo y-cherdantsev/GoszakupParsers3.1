@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -26,11 +25,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         /// Constructor for creating API sequential parsers
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="proxy">Authentication bearer token</param>
         /// <param name="authToken">Parsing proxy</param>
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) :
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) :
             base(
-                parserSettings, proxy, authToken)
+                parserSettings, authToken)
         {
         }
 

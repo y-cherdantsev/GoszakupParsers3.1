@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
-// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 {
     /// @author Yevgeniy Cherdantsev
@@ -17,9 +16,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public sealed class UnscrupulousParser : ApiSequentialParser<UnscrupulousDto, UnscrupulousGoszakup>
     {
         /// <inheritdoc />
-        public UnscrupulousParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings,
-            proxy, authToken)
+        public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
         }
 

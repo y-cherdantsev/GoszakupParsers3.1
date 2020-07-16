@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using NLog;
 
@@ -28,9 +27,9 @@ namespace GoszakupParser.Parsers
         protected string Url { get; set; }
 
         /// <summary>
-        /// Proxy for sending requests
+        /// Total number of elements that should be parsed (decreasing with each iteration)
         /// </summary>
-        protected WebProxy Proxy { get; }
+        protected int Total { get; set; }
 
         /// <summary>
         /// Number of threads used by parser
@@ -46,12 +45,10 @@ namespace GoszakupParser.Parsers
         /// Base constructor of each parser
         /// </summary>
         /// <param name="parserSettings">Parser settings from a configuration</param>
-        /// <param name="proxy">Parsing proxy</param>
-        protected Parser(Configuration.ParserSettings parserSettings, WebProxy proxy)
+        protected Parser(Configuration.ParserSettings parserSettings)
         {
             // Initializes logger of derived class using overrode function
             Logger = LogManager.GetLogger(GetType().Name, GetType());
-            Proxy = proxy;
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
 
@@ -70,7 +67,7 @@ namespace GoszakupParser.Parsers
         /// <param name="list">List that should be divided</param>
         /// <param name="threadNumber">Number of current thread</param>
         /// <returns>Array of elements</returns>
-        protected string[] DivideList(IEnumerable<string> list, int threadNumber)
+        protected IEnumerable<string> DivideList(IEnumerable<string> list, int threadNumber)
         {
             /*
              * Splitting based on counting ASCII representations of all characters and counting modulus with Threads numbers
@@ -86,7 +83,7 @@ namespace GoszakupParser.Parsers
         /// <param name="list">List that should be divided</param>
         /// <param name="threadNumber">Number of current thread</param>
         /// <returns>Array of elements</returns>
-        protected object[] DivideList(IEnumerable<object> list, int threadNumber)
+        protected IEnumerable<object> DivideList(IEnumerable<object> list, int threadNumber)
         {
             /*
              * Splitting based on index of an object in list

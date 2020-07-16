@@ -1,5 +1,4 @@
-﻿using System.Net;
-using GoszakupParser.Models.Dtos;
+﻿using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
@@ -16,8 +15,9 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public sealed class RefTradeMethodParser : ApiSequentialParser<RefTradeMethodDto, RefTradeMethodGoszakup>
     {
         /// <inheritdoc />
-        public RefTradeMethodParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings, proxy, authToken)
+        public RefTradeMethodParser(Configuration.ParserSettings parserSettings, string authToken) :
+            base(
+                parserSettings, authToken)
         {
         }
 

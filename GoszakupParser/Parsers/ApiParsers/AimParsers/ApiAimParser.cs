@@ -27,9 +27,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         private List<string> Aims { get; set; }
 
         /// <inheritdoc />
-        protected ApiAimParser(Configuration.ParserSettings parserSettings, WebProxy proxy, string authToken) : base(
-            parserSettings,
-            proxy, authToken)
+        protected ApiAimParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+            parserSettings, authToken)
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             Aims = (List<string>) LoadAims();
