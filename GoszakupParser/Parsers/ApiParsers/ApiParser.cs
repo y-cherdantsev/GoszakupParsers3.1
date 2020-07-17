@@ -32,7 +32,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         private string AuthToken { get; }
 
         /// <summary>
-        /// Generates object of given api parser and starts it
+        /// Generates object of given api parser
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
         /// <param name="authToken">Authentication bearer token</param>
