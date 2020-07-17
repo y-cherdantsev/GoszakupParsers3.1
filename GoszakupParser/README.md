@@ -1,3 +1,4 @@
+![alternativetext](./goszakup_logo.png)
 # Goszakup Parser
 
 ## Проект включает в себя парсеры:
@@ -20,4 +21,4 @@
 
 ## Авторы
 
-* **Yevgeniy Cherdantsev** - *Initial work* - [21090](https://github.com/ZhekaCher)
+* **Yevgeniy Cherdantsev** - *Initial work* - [github](https://github.com/ZhekaCher) - [21090](http://192.168.1.75:7990/users/e.cherdancev)
