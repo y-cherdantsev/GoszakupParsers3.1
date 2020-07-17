@@ -1,7 +1,7 @@
 # Goszakup Parsers 3.1
 
 ## Решение включает в себя проекты:
-### Goszakup Parser
+* **Goszakup Parser**
 
 
 ## Авторы
