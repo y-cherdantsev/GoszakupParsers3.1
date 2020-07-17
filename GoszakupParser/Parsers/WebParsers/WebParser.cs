@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Threading;
@@ -24,28 +22,11 @@ namespace GoszakupParser.Parsers.WebParsers
     public abstract class WebParser<TModel> : Parser where TModel : DbLoggerCategory.Model
     {
         /// <summary>
-        /// Proxies for sending requests
-        /// </summary>
-        protected readonly List<WebProxy> Proxies = new List<WebProxy>();
-
-        /// <summary>
         /// Generates object of given web parser and starts it
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
         protected WebParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
-            // Get proxies for parser
-            var parserMonitoringContext = new ParserMonitoringContext();
-            var proxiesDto = parserMonitoringContext.Proxies.Where(x => x.Status == true).ToList();
-            foreach (var proxy in proxiesDto)
-            {
-                Proxies.Add(new WebProxy(proxy.Address.ToString(), proxy.Port)
-                {
-                    Credentials = new NetworkCredential(proxy.Username, proxy.Password)
-                });
-            }
-
-            parserMonitoringContext.Dispose();
         }
 
 
@@ -89,7 +70,7 @@ namespace GoszakupParser.Parsers.WebParsers
         /// <param name="url">Url that gonna be requested</param>
         /// <param name="proxy">Proxy for request</param>
         /// <returns>html representation of response</returns>
-        /// TODO(Unstable method, should be rewritten)
+        /// \todo(Unstable method, should be rewritten)
         protected string GetPage(string url, WebProxy proxy)
         {
             var pageResponse = "";

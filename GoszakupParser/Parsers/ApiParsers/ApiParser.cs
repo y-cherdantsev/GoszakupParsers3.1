@@ -31,12 +31,6 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         private string AuthToken { get; }
 
-
-        /// <summary>
-        /// Proxy for sending requests
-        /// </summary>
-        private WebProxy Proxy { get; }
-
         /// <summary>
         /// Generates object of given api parser and starts it
         /// </summary>
@@ -46,21 +40,6 @@ namespace GoszakupParser.Parsers.ApiParsers
             parserSettings)
         {
             AuthToken = authToken;
-
-            // Get proxy for parser
-            var parserMonitoringContext = new ParserMonitoringContext();
-            var proxyDto = parserMonitoringContext.Proxies.OrderBy(x => new Random().NextDouble()).First();
-            Proxy = new WebProxy(
-                $"{proxyDto.Address}:{proxyDto.Port}",
-                true)
-            {
-                Credentials = new NetworkCredential
-                {
-                    UserName = proxyDto.Username,
-                    Password = proxyDto.Password
-                }
-            };
-            parserMonitoringContext.Dispose();
 
             // Get total number of elements from api
             // ReSharper disable once VirtualMemberCallInConstructor
@@ -140,7 +119,7 @@ namespace GoszakupParser.Parsers.ApiParsers
             {
                 // Creating a client that will send the requst
                 var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500")
-                    {Proxy = Proxy, Timeout = delay};
+                    {Proxy = Proxies[0], Timeout = delay};
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
 

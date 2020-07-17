@@ -44,7 +44,7 @@ namespace GoszakupParser
         /// <summary>
         /// Truncate flag (not implemented)
         /// </summary>
-        /// TODO(Implement parsing table truncating while using this flag)
+        /// \todo(Implement parsing table truncating while using this flag)
         [Option('t', "truncate", Default = false,
             HelpText = "Truncates parsing table before parsing (Not Implemented)")]
         public bool Truncate { get; set; }

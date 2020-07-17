@@ -838,7 +838,7 @@ INPUT                  = ./
 # possible encodings.
 # The default value is: UTF-8.
 
-INPUT_ENCODING         = windows-1251
+INPUT_ENCODING         = UTF-8
 
 # If the value of the INPUT tag contains directories, you can use the
 # FILE_PATTERNS tag to specify one or more wildcard patterns (like *.cpp and

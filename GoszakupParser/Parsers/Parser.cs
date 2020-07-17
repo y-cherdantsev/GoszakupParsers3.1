@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using NLog;
 
 // ReSharper disable CommentTypo
@@ -37,6 +39,11 @@ namespace GoszakupParser.Parsers
         protected int Threads { get; }
 
         /// <summary>
+        /// Proxies for sending requests
+        /// </summary>
+        protected readonly WebProxy[] Proxies;
+
+        /// <summary>
         /// Lock used to prevent fragmentation and implement atomic operations between several threads
         /// </summary>
         protected readonly object Lock = new object();
@@ -51,6 +58,15 @@ namespace GoszakupParser.Parsers
             Logger = LogManager.GetLogger(GetType().Name, GetType());
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
+
+
+            // Load proxies for parser
+            var parserMonitoringContext = new ParserMonitoringContext();
+            var proxiesDto = parserMonitoringContext.Proxies.Where(x => x.Status == true).ToList();
+            Proxies = proxiesDto.Select(proxy => new WebProxy(proxy.Address.ToString(), proxy.Port)
+                    {Credentials = new NetworkCredential(proxy.Username, proxy.Password)})
+                .OrderBy(x => new Random().NextDouble()).ToArray();
+            parserMonitoringContext.Dispose();
 
             // ReSharper disable once StringLiteralTypo
             Console.Title = $"Goszakup Parser: '{GetType().Name}'";

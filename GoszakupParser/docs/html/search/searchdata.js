@@ -1,11 +1,12 @@
 var indexSectionsWithContent =
 {
-  0: "_acdefgilmnprstuw",
+  0: "_acdefgilmnprstuwÐ",
   1: "acdlpruw",
   2: "g",
   3: "acdegilmprsuw",
   4: "_lp",
-  5: "afinprtu"
+  5: "afinprtu",
+  6: "gÐ"
 };
 
 var indexSectionNames =
@@ -15,7 +16,8 @@ var indexSectionNames =
   2: "namespaces",
   3: "functions",
   4: "variables",
-  5: "properties"
+  5: "properties",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -25,6 +27,7 @@ var indexSectionLabels =
   2: "Пространства имен",
   3: "Функции",
   4: "Переменные",
-  5: "Свойства"
+  5: "Свойства",
+  6: "Страницы"
 };
 

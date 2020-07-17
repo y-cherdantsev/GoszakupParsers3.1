@@ -13,10 +13,9 @@ namespace GoszakupParser
     /// <summary>
     /// Configuration class
     /// </summary>
+    /// \todo(Database data provided via configuration)
     public sealed class Configuration
     {
-        //TODO(Database data provided in configuration)
-
         /// <summary>
         /// Goszakup authentication bearer token
         /// </summary>

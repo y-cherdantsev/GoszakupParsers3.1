@@ -22,6 +22,7 @@ for the JavaScript code in this file
 */
 var menudata={children:[
 {text:"Титульная страница",url:"index.html"},
+{text:"Описания",url:"pages.html"},
 {text:"Пакеты",url:"namespaces.html",children:[
 {text:"Пакеты",url:"namespaces.html"}]},
 {text:"Классы",url:"annotated.html",children:[

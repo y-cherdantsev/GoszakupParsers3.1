@@ -125,6 +125,9 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 <tr class="memitem:a2c37202a5189b61d56b979f88bef4849"><td class="memItemLeft" align="right" valign="top">readonly Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a2c37202a5189b61d56b979f88bef4849">Logger</a></td></tr>
 <tr class="memdesc:a2c37202a5189b61d56b979f88bef4849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logger used by parser  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a2c37202a5189b61d56b979f88bef4849">Подробнее...</a><br /></td></tr>
 <tr class="separator:a2c37202a5189b61d56b979f88bef4849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb1c02112be268016c63af2b938555d3"><td class="memItemLeft" align="right" valign="top">readonly WebProxy[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#afb1c02112be268016c63af2b938555d3">Proxies</a></td></tr>
+<tr class="memdesc:afb1c02112be268016c63af2b938555d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxies for sending requests  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#afb1c02112be268016c63af2b938555d3">Подробнее...</a><br /></td></tr>
+<tr class="separator:afb1c02112be268016c63af2b938555d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8e309913cdac5db508fc067724f7124"><td class="memItemLeft" align="right" valign="top">readonly object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af8e309913cdac5db508fc067724f7124">Lock</a> = new object()</td></tr>
 <tr class="memdesc:af8e309913cdac5db508fc067724f7124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock used to prevent fragmentation and implement atomic operations between several threads  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af8e309913cdac5db508fc067724f7124">Подробнее...</a><br /></td></tr>
 <tr class="separator:af8e309913cdac5db508fc067724f7124"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,7 +301,7 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 
 <p>Starts parsing </p>
 
-<p>Замещается в <a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html#abe92f0280d459154c222f1c2e21f96fd">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a36bdbc1a09578a6083424d320e6e7819">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a>, <a class="el" href="../../dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html#ad77b3bfc41c85235085fd972dee90e46">GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#acc69ac548fcd80f800c0023dbb9b3d7f">GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser&lt; TModel &gt;</a> и <a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a5c51d37bc2c16185181d500db4eded86">GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser&lt; TDto, TResultModel &gt;</a>.</p>
+<p>Замещается в <a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html#abe92f0280d459154c222f1c2e21f96fd">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html#ad77b3bfc41c85235085fd972dee90e46">GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#acc69ac548fcd80f800c0023dbb9b3d7f">GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser&lt; TModel &gt;</a>, <a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a5c51d37bc2c16185181d500db4eded86">GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser&lt; TDto, TResultModel &gt;</a> и <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a36bdbc1a09578a6083424d320e6e7819">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a>.</p>
 
 </div>
 </div>
@@ -348,6 +351,30 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 </div><div class="memdoc">
 
 <p>Logger used by parser </p>
+
+</div>
+</div>
+<a id="afb1c02112be268016c63af2b938555d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1c02112be268016c63af2b938555d3">&#9670;&nbsp;</a></span>Proxies</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly WebProxy [] GoszakupParser.Parsers.Parser.Proxies</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Proxies for sending requests </p>
 
 </div>
 </div>
@@ -433,7 +460,7 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../df/dcd/namespace_goszakup_parser.html">GoszakupParser</a></li><li class="navelem"><a class="el" href="../../d7/d76/namespace_goszakup_parser_1_1_parsers.html">Parsers</a></li><li class="navelem"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html">Parser</a></li>
-    <li class="footer">Документация по GoszakupParser. Последние изменения: Чт 16 Июл 2020 17:59:07. Создано системой
+    <li class="footer">Документация по GoszakupParser. Последние изменения: Пт 17 Июл 2020 10:17:22. Создано системой
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
   </ul>

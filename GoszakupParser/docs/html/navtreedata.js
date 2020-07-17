@@ -23,6 +23,15 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "GoszakupParser", "index.html", [
+    [ "Goszakup Parser", "d3/dcc/md__r_e_a_d_m_e.html", [
+      [ "Проект включает в себя парсеры:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
+        [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ],
+        [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ],
+        [ "Справочники:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md4", null ]
+      ] ],
+      [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md5", null ]
+    ] ],
+    [ "Список задач", "dd/da0/todo.html", null ],
     [ "Пакеты", "namespaces.html", [
       [ "Пакеты", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -43,8 +52,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ac02b5e74d28202721c0f19c043879345",
-"da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a9a2ffb9111aa202ad030be0e0caab2e6"
+"d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a9a5c1af5254ac11db7a45188fd1fe024",
+"da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a874de0665173509b15e65d95997a365d"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';
