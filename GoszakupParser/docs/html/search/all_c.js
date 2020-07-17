@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['readme_83',['README',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]],
   ['refbuystatusdto_84',['RefBuyStatusDto',['../d6/d95/class_goszakup_parser_1_1_models_1_1_dtos_1_1_ref_buy_status_dto.html',1,'GoszakupParser::Models::Dtos']]],
   ['refbuystatusgoszakup_85',['RefBuyStatusGoszakup',['../de/d0a/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_buy_status_goszakup.html',1,'GoszakupParser::Models::ParsingModels']]],
   ['refbuystatusparser_86',['RefBuyStatusParser',['../d1/d24/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_buy_status_parser.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers.RefBuyStatusParser'],['../d1/d24/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_buy_status_parser.html#a8bc8af9f13d365630f7ed0da42e34a77',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers.RefBuyStatusParser.RefBuyStatusParser()']]],
