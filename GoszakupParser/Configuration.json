@@ -12,7 +12,10 @@
     "RefBuyStatus": "RefBuyStatusGoszakup",
     "RefLotStatus": "RefLotStatusGoszakup",
     "RefTradeMethod": "RefTradeMethodGoszakup",
-    "RefUnit": "RefUnitGoszakup"
+    "RefUnit": "RefUnitGoszakup",
+    "LotPlan": "LotPlanGoszakup",
+    "Place": "PlaceGoszakup",
+    "Documentation": "TenderDocumentationGoszakup"
   },
   "Parsers": [
     {
@@ -46,6 +49,11 @@
       "Url": "v3/rnu"
     },
     {
+      "Name": "LotPlan",
+      "Threads": 20,
+      "Url": "v3/plans/view"
+    },
+    {
       "Name": "Director",
       "Threads": 20,
       "Url": "https://www.goszakup.gov.kz/ru/registry/show_supplier"
@@ -54,6 +62,11 @@
       "Name": "Plan",
       "Threads": 20,
       "Url": "v3/plans/all"
+    },
+    {
+      "Name": "Place",
+      "Threads": 20,
+      "Url": "v3/plans/kato"
     },
     {
       "Name": "RefBuyStatus",
@@ -74,6 +87,11 @@
       "Name": "RefUnit",
       "Threads": 1,
       "Url": "v3/refs/ref_units"
+    },
+    {
+      "Name": "Documentation",
+      "Threads": 1,
+      "Url": "https://www.goszakup.gov.kz/ru/announce/index"
     }
   ]
 }
