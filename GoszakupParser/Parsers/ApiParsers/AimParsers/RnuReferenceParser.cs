@@ -4,7 +4,6 @@ using System.Linq;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
-using GoszakupParser.Models.WebModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -67,8 +66,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         /// <inheritdoc />
         protected override IEnumerable<string> LoadAims()
         {
-            var tempCtx = new WebContext<UnscrupulousGoszakupWeb>();
-            var tempList = tempCtx.Models.Select(x => x.BiinCompanies).ToList();
+            var tempCtx = new AdataContext<UnscrupulousGoszakup>(DatabaseConnections.ParsingAvroradata);
+            var tempList = tempCtx.Models.Select(x => x.SupplierBiin).ToList();
             var stringList = tempList.Select(l => l.ToString().PadLeft(12, '0')).ToList();
             return stringList;
         }

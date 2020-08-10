@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using GoszakupParser.Models;
 using NLog;
 
 // ReSharper disable CommentTypo
@@ -61,8 +62,8 @@ namespace GoszakupParser.Parsers
 
 
             // Load proxies for parser
-            var parserMonitoringContext = new ParserMonitoringContext();
-            var proxiesDto = parserMonitoringContext.Proxies.Where(x => x.Status == true).ToList();
+            var parserMonitoringContext = new AdataContext<Proxy>(DatabaseConnections.ParsingMonitoring);
+            var proxiesDto = parserMonitoringContext.Models.Where(x => x.Status == true).ToList();
             Proxies = proxiesDto.Select(proxy => new WebProxy(proxy.Address.ToString(), proxy.Port)
                     {Credentials = new NetworkCredential(proxy.Username, proxy.Password)})
                 .OrderBy(x => new Random().NextDouble()).ToArray();

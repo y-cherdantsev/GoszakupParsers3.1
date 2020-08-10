@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -60,8 +61,21 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 LastUpdateDate = lastUpdateDate,
                 PlanPoint = dto.point_list.Length > 0 ? dto.point_list[0] : (int?) null
             };
-
             return lot;
+        }
+
+
+        /// <summary>
+        /// Returns true if all lot elements are older than 60 days
+        /// </summary>
+        protected override bool StopCondition(object checkElement)
+        {
+            var elements = (ApiResponse<LotDto>) checkElement;
+            return elements.items.All(x =>
+            {
+                DateTime.TryParse(x.index_date, out var indexDate);
+                return indexDate < DateTime.Now.Subtract(TimeSpan.FromDays(33));
+            });
         }
     }
 }

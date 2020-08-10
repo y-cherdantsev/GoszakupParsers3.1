@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reset_240',['Reset',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a2d06ef1d0c1fdaa38c083eb1f8f80521',1,'GoszakupParser::CommandLineOptions']]]
+  ['name_277',['Name',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a476fb297a0d3481259dbc3d1fd8b15ee',1,'GoszakupParser::Configuration::ParserSettings']]]
 ];

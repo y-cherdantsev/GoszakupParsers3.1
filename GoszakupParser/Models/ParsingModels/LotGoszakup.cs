@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -16,7 +15,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// Lot Parsing DB table object
     /// </summary>
     [Table("lot_goszakup")]
-    public class LotGoszakup : DbLoggerCategory.Model
+    public class LotGoszakup : BaseModel
     {
         [Key] [Column("id")] public int? Id { get; set; }
         [Column("lot_number")] public string LotNumber { get; set; }

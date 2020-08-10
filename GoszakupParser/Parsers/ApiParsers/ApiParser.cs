@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models.Dtos;
+using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using RestSharp;
@@ -23,7 +22,7 @@ namespace GoszakupParser.Parsers.ApiParsers
     /// </summary>
     /// <typeparam name="TDto">Dto that will be parsed</typeparam>
     /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
-    public abstract class ApiParser<TDto, TResultModel> : Parser where TResultModel : DbLoggerCategory.Model
+    public abstract class ApiParser<TDto, TResultModel> : Parser where TResultModel : BaseModel, new()
     {
         /// <summary>
         /// Authentication bearer token
@@ -39,11 +38,6 @@ namespace GoszakupParser.Parsers.ApiParsers
             parserSettings)
         {
             AuthToken = authToken;
-
-            // Get total number of elements from api
-            // ReSharper disable once VirtualMemberCallInConstructor
-            var response = GetApiPageResponse(Url).Result;
-            Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
         /// <inheritdoc />
@@ -62,7 +56,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <param name="entities">List of parsed elements</param>
         protected async Task ProcessObjects(IEnumerable<object> entities)
         {
-            await using var context = new ParserContext<TResultModel>();
+            await using var context = new AdataContext<TResultModel>(DatabaseConnections.ParsingAvroradata);
             foreach (TDto dto in entities)
                 await ProcessObject(dto, context);
         }
@@ -72,7 +66,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         /// <param name="dto">Dto from Api</param>
         /// <param name="context">Parsing DB context</param>
-        private async Task ProcessObject(TDto dto, ParserContext<TResultModel> context)
+        private async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
         {
             var model = DtoToModel(dto);
             context.Models.Add(model);
@@ -211,8 +205,6 @@ namespace GoszakupParser.Parsers.ApiParsers
                     var response = restResponse.Content;
 
                     // After checking, if all is OK returns response
-                    Logger.Trace($"{url} - Left:[{Total}]");
-
                     return response;
                 }
                 catch (Exception e)

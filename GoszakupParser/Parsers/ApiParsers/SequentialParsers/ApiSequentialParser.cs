@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoszakupParser.Models;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 // ReSharper disable CommentTypo
 
@@ -19,7 +20,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <typeparam name="TDto">Dto that will be parsed</typeparam>
     /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
     public abstract class ApiSequentialParser<TDto, TResultModel> : ApiParser<TDto, TResultModel>
-        where TResultModel : DbLoggerCategory.Model, new()
+        where TResultModel : BaseModel, new()
     {
         /// <summary>
         /// Constructor for creating API sequential parsers
@@ -30,6 +31,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             base(
                 parserSettings, authToken)
         {
+            // Get total number of elements from api
+            // ReSharper disable once VirtualMemberCallInConstructor
+            var response = GetApiPageResponse(Url).Result;
+            Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
         }
 
         /// <inheritdoc />
@@ -43,6 +48,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             {
                 // Gets json response
                 var response = GetApiPageResponse(Url).Result;
+
                 try
                 {
                     if (response == null)
@@ -50,10 +56,13 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
 
                     // If response is too short to be true (Used to find and fix new errors if occured)
                     if (response.Length < 500)
-                        throw new Exception($"Unknown error, Response: {response}");
+                        throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
 
                     // Deserializes json into api response object
                     var apiResponse = JsonConvert.DeserializeObject<ApiResponse<TDto>>(response);
+
+                    Logger.Trace($"{Url} - {LogMessage(apiResponse)}");
+
                     Url = apiResponse?.next_page;
                     if (Url == null)
                         Logger.Warn("Url is null");
@@ -72,7 +81,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     }
 
                     // If Url == "" then finish parsing
-                    if (Url != "") continue;
+                    if (Url != "" && !StopCondition(apiResponse)) continue;
 
                     await Task.WhenAll(tasks);
                     foreach (var task in tasks.Where(task => task.IsFaulted))
@@ -85,7 +94,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{e} | {response}");
+                    Logger.Error($"{e} | {Url} |{response}");
                 }
             }
 

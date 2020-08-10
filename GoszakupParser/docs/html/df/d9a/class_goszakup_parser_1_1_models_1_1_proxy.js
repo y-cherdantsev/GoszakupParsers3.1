@@ -1,5 +1,6 @@
 var class_goszakup_parser_1_1_models_1_1_proxy =
 [
+    [ "BuildModel", "df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html#a1121d784361587ae3a712ba05bc4d368", null ],
     [ "Address", "df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html#a052ea0fe938e9cf59a0d9f9f88c6ba75", null ],
     [ "Password", "df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html#abfd99605660ce52e945d5fc3302ed310", null ],
     [ "Port", "df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html#a51ad7a163f267be995093ba342797735", null ],

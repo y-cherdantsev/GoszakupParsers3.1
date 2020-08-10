@@ -30,7 +30,8 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         protected override Dictionary<string, string> LoadAims()
         {
             var aims = new Dictionary<string, string>();
-            using (var participantWebContext = new WebContext<ParticipantGoszakupWeb>())
+            using (var participantWebContext =
+                new AdataContext<ParticipantGoszakupWeb>(DatabaseConnections.WebAvroradata))
             {
                 var list = participantWebContext.Models.ToList();
                 foreach (var participantGoszakupWeb in list)
@@ -43,10 +44,16 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         /// <inheritdoc />
         protected override async Task ParseArray(IEnumerable<string> list, WebProxy webProxy)
         {
-            await using var context = new ParserContext<DirectorGoszakup>();
+            await using var context = new AdataContext<DirectorGoszakup>(DatabaseConnections.WebAvroradata);
             foreach (var pid in list)
             {
                 var response = GetPage($"{Url}/{pid}", webProxy);
+                lock (Lock)
+                {
+                    --Total;
+                    Logger.Trace($"{LogMessage()}");
+                }
+
                 var director = ParseParticipantPage(response);
                 director.Bin = long.Parse(Aims[pid]);
                 director.Rnn = director.Rnn != 0 ? director.Rnn : null;

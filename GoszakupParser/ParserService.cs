@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using GoszakupParser.Models;
 using NLog;
 using Parser = GoszakupParser.Parsers.Parser;
 
@@ -121,7 +122,8 @@ namespace GoszakupParser
         /// <returns>Boolean</returns>
         private bool Exists(string parserName)
         {
-            using var parserMonitoringContext = new ParserMonitoringContext();
+            using var parserMonitoringContext =
+                new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
 
             // Check if parser exist in map dictionary
             var existInDictionary = _configuration.ParserMonitoringNames.Keys
@@ -133,7 +135,7 @@ namespace GoszakupParser
             }
 
             // Check if parser exist in monitoring table
-            var existsInDatabase = parserMonitoringContext.ParserMonitorings
+            var existsInDatabase = parserMonitoringContext.Models
                 .Any(x => x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
             if (!existsInDatabase)
             {
@@ -175,10 +177,11 @@ namespace GoszakupParser
             if (_options.Force)
                 return true;
 
-            using var parserMonitoringContext = new ParserMonitoringContext();
+            using var parserMonitoringContext =
+                new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
 
             // Check 'active' field in monitoring table
-            var isActive = parserMonitoringContext.ParserMonitorings
+            var isActive = parserMonitoringContext.Models
                 .FirstOrDefault(x =>
                     x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
                     ) && x.Active) != null;
@@ -193,7 +196,7 @@ namespace GoszakupParser
             if (_options.Ignore) return true;
 
             // Check 'parsed' field in monitoring table
-            var isParsed = parserMonitoringContext.ParserMonitorings
+            var isParsed = parserMonitoringContext.Models
                 .FirstOrDefault(x =>
                     x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
                     ) && x.Parsed) != null;
@@ -215,9 +218,9 @@ namespace GoszakupParser
         private async Task ChangeParsedField(string parserName, bool flag)
         {
             // Update data in monitoring table
-            var parserMonitoringContext = new ParserMonitoringContext();
+            var parserMonitoringContext = new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
             var parsed =
-                parserMonitoringContext.ParserMonitorings.FirstOrDefault(x =>
+                parserMonitoringContext.Models.FirstOrDefault(x =>
                     x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
 
             // ReSharper disable PossibleNullReferenceException
@@ -226,7 +229,7 @@ namespace GoszakupParser
                 parsed.LastParsed = DateTime.Now;
             parsed.Parsed = flag;
             // ReSharper restore PossibleNullReferenceException
-            parserMonitoringContext.ParserMonitorings.Update(parsed);
+            parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
             _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'");
             await parserMonitoringContext.DisposeAsync();

@@ -11,5 +11,6 @@ var namespace_goszakup_parser_1_1_models_1_1_parsing_models =
     [ "RefTradeMethodGoszakup", "d2/dd8/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_trade_method_goszakup.html", "d2/dd8/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_trade_method_goszakup" ],
     [ "RefUnitGoszakup", "d8/d8f/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_unit_goszakup.html", "d8/d8f/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_unit_goszakup" ],
     [ "RnuReferenceGoszakup", "d9/d7c/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_rnu_reference_goszakup.html", "d9/d7c/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_rnu_reference_goszakup" ],
+    [ "TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup" ],
     [ "UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup" ]
 ];

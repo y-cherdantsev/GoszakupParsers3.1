@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -15,8 +16,12 @@ namespace GoszakupParser.Models
     /// proxies Parsing DB table field
     /// </summary>
     [Table("proxies")]
-    public class Proxy
+    public sealed class Proxy : BaseModel
     {
+        public override void BuildModel(ModelBuilder modelBuilder) =>
+            modelBuilder.Entity<Proxy>().HasKey(proxy => new {proxy.Address, proxy.Port});
+
+
         [Column("address")] public IPAddress Address { get; set; }
         [Column("port")] public int Port { get; set; }
         [Column("username")] public string Username { get; set; }

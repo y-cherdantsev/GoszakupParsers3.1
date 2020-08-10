@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['force_235',['Force',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a8ecef55e248303497e13ecb304f0e144',1,'GoszakupParser::CommandLineOptions']]]
+  ['dbconnectioncredentials_272',['DbConnectionCredentials',['../df/d41/class_goszakup_parser_1_1_configuration.html#a93f79ea753876abaa528b1fb025a495c',1,'GoszakupParser::Configuration']]],
+  ['dbconnectioncredentialsstatic_273',['DbConnectionCredentialsStatic',['../df/d41/class_goszakup_parser_1_1_configuration.html#aab35e0806180bad05a546bbc511dc351',1,'GoszakupParser::Configuration']]]
 ];

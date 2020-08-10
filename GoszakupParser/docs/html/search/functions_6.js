@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['loadaims_205',['LoadAims',['../dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html#ae9b9a3e829f4daadc24004f3b21ab951',1,'GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser.LoadAims()'],['../d8/dbb/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_rnu_reference_parser.html#a15f8975f8264187f33d31d86ef668279',1,'GoszakupParser.Parsers.ApiParsers.AimParsers.RnuReferenceParser.LoadAims()'],['../db/d5f/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_director_parser.html#a00c43ffbe6c3cecd379ea2e894498ec5',1,'GoszakupParser.Parsers.WebParsers.AimParsers.DirectorParser.LoadAims()'],['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#ad45ee12c65eaeaa5c2065e8a46b43f55',1,'GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser.LoadAims()']]],
-  ['lotparser_206',['LotParser',['../dc/d83/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_lot_parser.html#ae83bc0a2951e9037515ede751ad32d49',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers::LotParser']]]
+  ['isavailable_234',['IsAvailable',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#a0acde95c7b07518b5c792e8f1d196b46',1,'GoszakupParser::ParserService']]]
 ];

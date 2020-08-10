@@ -1,0 +1,25 @@
+var class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web =
+[
+    [ "AnnouncementId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ab2aa3cf5e917eec539298779de535c4d", null ],
+    [ "ApplicationFinishDate", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ae6baf2828647042a7bf10a8c638bba5a", null ],
+    [ "ApplicationStartDate", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#affe860a26eb6c4c9f90a5668ecbcdc61", null ],
+    [ "Characteristics", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a97cb3cdee54dfb267b708af23eb24e71", null ],
+    [ "CustomerBin", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#af4fa8b6c339ee6269537843d7ad03128", null ],
+    [ "FlagPrequalification", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#aea2fc0cb98e61638f7359c85e262ca80", null ],
+    [ "Id", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ac673df0fee558d790d0cfd530dba2baa", null ],
+    [ "MeasureId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ae120aacf07ac821738cec6b772f0a8f1", null ],
+    [ "MethodId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a25482535b68b5d5d98d6e8e3cb567f28", null ],
+    [ "Quantity", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a2c2e7ce92c4147d82934b491767e71be", null ],
+    [ "RelevanceDate", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a213abfdf8c37ebcfc22f66c1eef53afd", null ],
+    [ "SourceId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a36f44a8f2398d04085593f7f4b8bb553", null ],
+    [ "SourceLink", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a058dd112f95aac5a4bec24e90bf6ee2b", null ],
+    [ "SourceNumber", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a1ba9c5d4bff80a9d01180af156dae4ce", null ],
+    [ "StatusId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#adeb0412b5bb6eada0a2133932c0888f0", null ],
+    [ "SupplyLocation", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a99d135a8bf674aee9110d258c354f9b7", null ],
+    [ "TenderLocation", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a5c7630072fb18f67d94ccbcd1aa846ad", null ],
+    [ "Terms", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ac6b863356412cc9600a62d96c4482fb9", null ],
+    [ "Title", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a6d45bab49f4561a368ebf012c33225f6", null ],
+    [ "TotalAmount", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a1068e0dbd9f175d716abc8f71816adbc", null ],
+    [ "TruId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#aeba59c43fa3c9378bbb963547757417e", null ],
+    [ "UnitPrice", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a118b500773322f74bda6023acf55eee3", null ]
+];

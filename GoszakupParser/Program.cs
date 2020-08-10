@@ -34,6 +34,9 @@ namespace GoszakupParser
             var configurationString = File.ReadAllText("Configuration.json");
             var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
 
+            // todo(Remove after making configuration static)
+            Configuration.DbConnectionCredentialsStatic = configuration.DbConnectionCredentials;
+
             // Initializing logger
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
 

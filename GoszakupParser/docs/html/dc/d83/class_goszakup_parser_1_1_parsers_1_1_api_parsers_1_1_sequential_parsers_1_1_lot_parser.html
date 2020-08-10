@@ -115,6 +115,9 @@ override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <tr class="memitem:a0ed4ddd783de3b899f200954df39096b"><td class="memItemLeft" align="right" valign="top"><a id="a0ed4ddd783de3b899f200954df39096b"></a>
 override <a class="el" href="../../d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html">LotGoszakup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d83/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_lot_parser.html#a0ed4ddd783de3b899f200954df39096b">DtoToModel</a> (<a class="el" href="../../da/df9/class_goszakup_parser_1_1_models_1_1_dtos_1_1_lot_dto.html">LotDto</a> dto)</td></tr>
 <tr class="separator:a0ed4ddd783de3b899f200954df39096b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae92e0753344faa929411950e6419f2"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d83/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_lot_parser.html#afae92e0753344faa929411950e6419f2">StopCondition</a> (object checkElement)</td></tr>
+<tr class="memdesc:afae92e0753344faa929411950e6419f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if all lot elements are older than 60 days  <a href="../../dc/d83/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_lot_parser.html#afae92e0753344faa929411950e6419f2">Подробнее...</a><br /></td></tr>
+<tr class="separator:afae92e0753344faa929411950e6419f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser')"><img src="../../closed.png" alt="-"/>&#160;Защищенные члены унаследованные от <a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html">GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser&lt; LotDto, LotGoszakup &gt;</a></td></tr>
 <tr class="memitem:a2306b7797bfc6168ba5d96794278a44e inherit pro_methods_class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a2306b7797bfc6168ba5d96794278a44e">ApiSequentialParser</a> (<a class="el" href="../../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html">Configuration.ParserSettings</a> parserSettings, string authToken)</td></tr>
 <tr class="memdesc:a2306b7797bfc6168ba5d96794278a44e inherit pro_methods_class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for creating API sequential parsers  <a href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a2306b7797bfc6168ba5d96794278a44e">Подробнее...</a><br /></td></tr>
@@ -124,7 +127,36 @@ override <a class="el" href="../../d2/dc5/class_goszakup_parser_1_1_models_1_1_p
 <div class="textblock"><p>Lot <a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html" title="Parent parsing class for creating parser based on this class">Parser</a> </p>
 <dl class="section author"><dt>Автор</dt><dd>Yevgeniy Cherdantsev </dd></dl>
 <dl class="section date"><dt>Дата</dt><dd>28.02.2020 23:55:36</dd></dl>
-</div><hr/>Объявления и описания членов класса находятся в файле:<ul>
+</div><h2 class="groupheader">Методы</h2>
+<a id="afae92e0753344faa929411950e6419f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae92e0753344faa929411950e6419f2">&#9670;&nbsp;</a></span>StopCondition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override bool GoszakupParser.Parsers.ApiParsers.SequentialParsers.LotParser.StopCondition </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>checkElement</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if all lot elements are older than 60 days </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
 <li>Parsers/ApiParsers/SequentialParsers/LotParser.cs</li>
 </ul>
 </div><!-- contents -->

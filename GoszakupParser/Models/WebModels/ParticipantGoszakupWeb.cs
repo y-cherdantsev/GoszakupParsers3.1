@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -17,7 +16,7 @@ namespace GoszakupParser.Models.WebModels
     /// participant Web DB table field
     /// </summary>
     [Table("all_participants_goszakup")]
-    public class ParticipantGoszakupWeb : DbLoggerCategory.Model
+    public class ParticipantGoszakupWeb : BaseModel
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("biin_companies")]

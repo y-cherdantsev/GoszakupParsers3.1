@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -16,7 +15,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// RnuReference Parsing DB table object
     /// </summary>
     [Table("rnu_reference_goszakup")]
-    public class RnuReferenceGoszakup : DbLoggerCategory.Model
+    public class RnuReferenceGoszakup : BaseModel
     {
         [Key] [Column("id")] public int Id { get; set; }
         [Column("pid")] public int? Pid { get; set; }

@@ -15,8 +15,20 @@
     "RefUnit": "RefUnitGoszakup",
     "LotPlan": "LotPlanGoszakup",
     "Place": "PlaceGoszakup",
-    "Documentation": "TenderDocumentationGoszakup"
+    "Tender": "GoszakupTender",
+    "TenderDocumentation": "TenderDocumentationGoszakup"
   },
+  "DbConnectionCredentials": [
+    {
+      "Title": "MyDatabase",
+      "Address": "192.168.1.1",
+      "Port": 1111,
+      "Name": "mysql",
+      "SearchPath": "schema1",
+      "Username": "user",
+      "Password": "qwerty"
+    }
+  ],
   "Parsers": [
     {
       "Name": "Announcement",
@@ -89,8 +101,8 @@
       "Url": "v3/refs/ref_units"
     },
     {
-      "Name": "Documentation",
-      "Threads": 1,
+      "Name": "TenderDocumentation",
+      "Threads": 20,
       "Url": "https://www.goszakup.gov.kz/ru/announce/index"
     }
   ]

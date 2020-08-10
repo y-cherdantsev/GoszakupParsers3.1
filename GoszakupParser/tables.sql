@@ -735,3 +735,21 @@ create table ref_trade_method_goszakup
 
 create unique index ref_trade_method_goszakup_id_uindex
     on ref_trade_method_goszakup (id);
+
+
+--tender_document_goszakup
+create table tender_document_goszakup
+(
+    id        serial not null
+        constraint tender_document_goszakup_pk
+            primary key,
+    identity  text   not null,
+    number    text   not null,
+    type      text   not null,
+    title     text   not null,
+    link      text   not null,
+    relevance timestamp default now()
+);
+
+create unique index tender_document_goszakup_id_uindex
+    on tender_document_goszakup (id);

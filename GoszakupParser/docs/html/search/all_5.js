@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['force_35',['Force',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a8ecef55e248303497e13ecb304f0e144',1,'GoszakupParser::CommandLineOptions']]]
+  ['exists_44',['Exists',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#a5468ddd3ebcc2755ee80945d3fb5f21e',1,'GoszakupParser::ParserService']]]
 ];

@@ -15,10 +15,10 @@ namespace GoszakupParser.Models
     /// parser_monitoring Parsing DB table field
     /// </summary>
     [Table("parser_monitoring")]
-    public class ParserMonitoring
+    public sealed class ParserMonitoring : BaseModel
     {
         [Key] [Column("id")] public int? Id { get; set; }
-        [Column("name")] public string Name { get; set; }
+        [Column("name")] public new string Name { get; set; }
         [Column("parsed")] public bool Parsed { get; set; }
         [Column("last_migrated")] public DateTime? LastMigrated { get; set; }
         [Column("last_parsed")] public DateTime? LastParsed { get; set; }

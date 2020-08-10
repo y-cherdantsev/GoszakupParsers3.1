@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using GoszakupParser.Models;
 
 // ReSharper disable CommentTypo
 
@@ -15,7 +15,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     /// Parent parser used for creating parsers that gets information from web by aim elements
     /// </summary>
     /// <typeparam name="TModel">Model that will be parsed and inserted into DB</typeparam>
-    public abstract class WebAimParser<TModel> : WebParser<TModel> where TModel : DbLoggerCategory.Model
+    public abstract class WebAimParser<TModel> : WebParser<TModel> where TModel : BaseModel, new()
     {
         /// <summary>
         /// Aims that's used for parsing
@@ -42,16 +42,22 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
 
+            var proxies = Proxies.GetEnumerator();
             for (var i = 0; i < Threads; i++)
             {
                 var ls = DivideList(Aims.Keys.ToList(), i);
-                tasks.Add(ParseArray(ls, Proxies[i]));
+                if (!proxies.MoveNext())
+                {
+                    proxies.Reset();
+                    proxies.MoveNext();
+                }
+
+                tasks.Add(ParseArray(ls, proxies.Current as WebProxy));
             }
 
             await Task.WhenAll(tasks);
             Logger.Info("End Of Parsing");
         }
-
 
         /// <summary>
         /// Parses given list of aims

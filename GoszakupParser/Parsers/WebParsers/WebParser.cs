@@ -5,9 +5,11 @@ using System.Net.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
+// ReSharper disable CommentTypo
 // ReSharper disable InconsistentlySynchronizedField
 
 // ReSharper disable once IdentifierTypo
@@ -19,7 +21,7 @@ namespace GoszakupParser.Parsers.WebParsers
     /// Parent parser used for creating parsers that gets information from web
     /// </summary>
     /// <typeparam name="TModel">Model that will be parsed and inserted into DB</typeparam>
-    public abstract class WebParser<TModel> : Parser where TModel : DbLoggerCategory.Model
+    public abstract class WebParser<TModel> : Parser where TModel : BaseModel, new()
     {
         /// <summary>
         /// Generates object of given web parser and starts it
@@ -38,7 +40,7 @@ namespace GoszakupParser.Parsers.WebParsers
         /// </summary>
         /// <param name="model">Model</param>
         /// <param name="context">Parsing DB context</param>
-        protected async Task ProcessObject(TModel model, ParserContext<TModel> context)
+        protected async Task ProcessObject(TModel model, AdataContext<TModel> context)
         {
             context.Models.Add(model);
             InsertDataOperation:
@@ -92,11 +94,6 @@ namespace GoszakupParser.Parsers.WebParsers
                     sLine = objReader.ReadLine();
                     if (sLine != null)
                         pageResponse += sLine;
-                }
-
-                lock (Lock)
-                {
-                    Logger.Trace($"Left: {--Total}");
                 }
 
                 return pageResponse;

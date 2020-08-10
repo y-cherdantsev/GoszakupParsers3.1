@@ -31,6 +31,14 @@ namespace GoszakupParser
         /// </summary>
         public Dictionary<string, string> ParserMonitoringNames { get; set; }
 
+        /// <summary>
+        /// List of connection credentials for DB
+        /// </summary>
+        public List<DbConnectionCredential> DbConnectionCredentials { get; set; }
+
+        /// \todo(Make configuration static)
+        public static List<DbConnectionCredential> DbConnectionCredentialsStatic { get; set; }
+
         /// @author Yevgeniy Cherdantsev
         /// @date 25.02.2020 10:17:01
         /// <summary>
@@ -52,6 +60,18 @@ namespace GoszakupParser
             /// Link to the source that gonna be parsed
             /// </summary>
             public string Url { get; set; }
+        }
+
+
+        public sealed class DbConnectionCredential
+        {
+            public string Title { get; set; }
+            public string Address { get; set; }
+            public int Port { get; set; }
+            public string Name { get; set; }
+            public string SearchPath { get; set; }
+            public string Username { get; set; }
+            public string Password { get; set; }
         }
     }
 }

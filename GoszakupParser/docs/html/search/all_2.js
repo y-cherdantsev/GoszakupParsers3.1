@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['changeparsedfield_23',['ChangeParsedField',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#abcd69449c6300dd1ef47bba312339a46',1,'GoszakupParser::ParserService']]],
-  ['checkstate_24',['CheckState',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#a0441aa1cf7e786ee32d88ea099d998ac',1,'GoszakupParser::ParserService']]],
-  ['commandlineoptions_25',['CommandLineOptions',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html',1,'GoszakupParser']]],
-  ['configuration_26',['Configuration',['../df/d41/class_goszakup_parser_1_1_configuration.html',1,'GoszakupParser']]],
-  ['contractdto_27',['ContractDto',['../df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html',1,'GoszakupParser::Models::Dtos']]],
-  ['contractgoszakup_28',['ContractGoszakup',['../da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html',1,'GoszakupParser::Models::ParsingModels']]],
-  ['contractparser_29',['ContractParser',['../d5/d16/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_contract_parser.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers.ContractParser'],['../d5/d16/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_contract_parser.html#aab7eacaceee81db335d3de6c66308f5a',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers.ContractParser.ContractParser()']]]
+  ['basemodel_28',['BaseModel',['../dd/d30/class_goszakup_parser_1_1_models_1_1_base_model.html',1,'GoszakupParser.Models.BaseModel'],['../dd/d30/class_goszakup_parser_1_1_models_1_1_base_model.html#a9237d3072d81fb8f7298194c044920db',1,'GoszakupParser.Models.BaseModel.BaseModel()']]],
+  ['buildmodel_29',['BuildModel',['../dd/d30/class_goszakup_parser_1_1_models_1_1_base_model.html#af16981720509a550468eb3748327c334',1,'GoszakupParser.Models.BaseModel.BuildModel()'],['../df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html#a1121d784361587ae3a712ba05bc4d368',1,'GoszakupParser.Models.Proxy.BuildModel()']]]
 ];

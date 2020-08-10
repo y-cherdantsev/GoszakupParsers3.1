@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -16,7 +15,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// Plan Parsing DB table object
     /// </summary>
     [Table("plan_goszakup")]
-    public class PlanGoszakup : DbLoggerCategory.Model
+    public class PlanGoszakup : BaseModel
     {
         [Key] [Column("id")] public long? Id { get; set; }
         [Column("plan_act_id")] public long? PlanActId { get; set; }

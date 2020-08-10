@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['threads_241',['Threads',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a77cc729054f2d1290274c0561f7819a1',1,'GoszakupParser.Configuration.ParserSettings.Threads()'],['../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a5ae5609a9d7665dd82287372ba2492f5',1,'GoszakupParser.Parsers.Parser.Threads()']]],
-  ['total_242',['Total',['../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a1cfc57dc010ba7355c8e43fef4731482',1,'GoszakupParser::Parsers::Parser']]],
-  ['truncate_243',['Truncate',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a93646aa4004b8f19106bbaf72b0fc4e7',1,'GoszakupParser::CommandLineOptions']]]
+  ['parsermonitoringnames_278',['ParserMonitoringNames',['../df/d41/class_goszakup_parser_1_1_configuration.html#a60cd20057192d7d829506a0eb91dab42',1,'GoszakupParser::Configuration']]],
+  ['parsers_279',['Parsers',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a936d73778d8fb305222e57de69f0be5b',1,'GoszakupParser.CommandLineOptions.Parsers()'],['../df/d41/class_goszakup_parser_1_1_configuration.html#aca73938857f1c7b3f22d2ebff73b8c5c',1,'GoszakupParser.Configuration.Parsers()']]]
 ];

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -76,6 +77,19 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             };
 
             return announcement;
+        }
+
+        /// <summary>
+        /// Returns true if all announcement elements are older than 60 days
+        /// </summary>
+        protected override bool StopCondition(object checkElement)
+        {
+            var elements = (ApiResponse<AnnouncementDto>) checkElement;
+            return elements.items.All(x =>
+            {
+                DateTime.TryParse(x.start_date, out var startDate);
+                return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(31));
+            });
         }
     }
 }
