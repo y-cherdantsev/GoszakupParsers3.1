@@ -13,7 +13,6 @@ namespace GoszakupParser
     /// <summary>
     /// Configuration class
     /// </summary>
-    /// \todo(Database data provided via configuration)
     public sealed class Configuration
     {
         /// <summary>
