@@ -69,7 +69,7 @@ namespace GoszakupParser.Parsers
             parserMonitoringContext.Dispose();
 
             // ReSharper disable once StringLiteralTypo
-            Console.Title = $"Goszakup Parser: '{GetType().Name}'";
+            Console.Title = $"Goszakup Parser - {GetType().Name}";
         }
 
         /// <summary>
@@ -80,18 +80,15 @@ namespace GoszakupParser.Parsers
         /// <summary>
         /// Gets part of list of strings for the given thread
         /// </summary>
+        /// <code>
+        /// Splitting based on counting ASCII representations of all characters and counting modulus with Threads numbers
+        /// Lists might not be fully equal to each other by count, but it's easy and effective method of dividing of large lists
+        /// </code>
         /// <param name="list">List that should be divided</param>
         /// <param name="threadNumber">Number of current thread</param>
         /// <returns>Array of elements</returns>
-        protected IEnumerable<string> DivideList(IEnumerable<string> list, int threadNumber)
-        {
-            /*
-             * Splitting based on counting ASCII representations of all characters and counting modulus with Threads numbers
-             * Lists might not be fully equal to each other by count, but it's easy and effective method of dividing of large lists
-             */
-            return list.Where(
-                x => System.Text.Encoding.ASCII.GetBytes(x).Sum(Convert.ToInt32) % Threads == threadNumber).ToArray();
-        }
+        protected IEnumerable<string> DivideList(IEnumerable<string> list, int threadNumber) => list.Where(
+            x => System.Text.Encoding.ASCII.GetBytes(x).Sum(Convert.ToInt32) % Threads == threadNumber).ToArray();
 
         /// <summary>
         /// Gets part of list of objects for the given thread
@@ -107,5 +104,18 @@ namespace GoszakupParser.Parsers
             var enumerable = list.ToList();
             return enumerable.Where(x => enumerable.IndexOf(x) % Threads == threadNumber).ToArray();
         }
+
+        /// <summary>
+        /// Determines when the parser should be stopped
+        /// </summary>
+        /// <param name="checkElement">Element that will determine if parsing should be stopped</param>
+        /// <returns>True, if parser should be stopped</returns>
+        protected virtual bool StopCondition(object checkElement) => false;
+
+        /// <summary>
+        /// Determines the message that will be showed after each iteration
+        /// </summary>
+        /// <returns>string - message</returns>
+        protected virtual string LogMessage(object obj = null) => $"Left:[{Total}]";
     }
 }
