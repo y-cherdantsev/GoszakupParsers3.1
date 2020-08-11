@@ -101,6 +101,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         /// Returns true if all lot elements are older than 60 days
         /// </summary>
         /// \todo(Not optimized, need logic reworking => { if (apiResponse.items.All(x => _existingPlans.Contains(x.id))) return true; }) 
+        /// \todo(Don't work, fix) 
         protected override bool StopCondition(object checkElement)
         {
             var apiResponse = (ApiResponse<PlanDto>) checkElement;

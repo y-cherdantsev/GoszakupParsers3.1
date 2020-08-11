@@ -33,7 +33,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             var statusesContext = new AdataContext<StatusWeb>(DatabaseConnections.WebAdataTender);
             var combinedIds = statusesContext.Models.ToDictionary(x => x.Id, x => x.CombinedId ?? 0);
             statusesContext.Dispose();
-            var announcementContext = new AdataContext<AdataAnnouncementWeb>(DatabaseConnections.ParsingAvroradata);
+            var announcementContext = new AdataContext<AdataAnnouncementWeb>(DatabaseConnections.WebAdataTender);
             var aims = announcementContext.Models
                 .AsEnumerable()
                 .Where(x => combinedIds[x.SourceId] < (long) 3 && x.SourceId == 2
