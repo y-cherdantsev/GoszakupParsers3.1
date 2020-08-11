@@ -36,8 +36,9 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             var announcementContext = new AdataContext<AdataAnnouncementWeb>(DatabaseConnections.WebAdataTender);
             var aims = announcementContext.Models
                 .AsEnumerable()
-                .Where(x => combinedIds[x.SourceId] < (long) 3 && x.SourceId == 2
-                ).Select(x => new {x.SourceNumber, x.Id})
+                .Where(x => combinedIds[x.SourceId] < (long) 3 && x.SourceId == 2)
+                .OrderByDescending(x => x.ApplicationStartDate)
+                .Select(x => new {x.SourceNumber, x.Id})
                 .ToDictionary(x => x.SourceNumber, y => y.Id.ToString());
             announcementContext.Dispose();
             return aims;
