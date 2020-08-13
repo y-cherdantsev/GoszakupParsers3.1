@@ -30,9 +30,6 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         protected ApiAimParser(Configuration.ParserSettings parserSettings, string authToken) : base(
             parserSettings, authToken)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Aims = (List<string>) LoadAims();
-            Total = Aims.Count;
         }
 
         /// <summary>
@@ -44,6 +41,10 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         /// <inheritdoc />
         public override async Task ParseAsync()
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Aims = (List<string>) LoadAims();
+            Total = Aims.Count;
+            
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
 

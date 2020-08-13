@@ -27,8 +27,12 @@ namespace GoszakupParser
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
 
+            // Removing checking SSL cert
+            ServicePointManager.ServerCertificateValidationCallback =
+                (some, kind, of, shit) => true;
+
             // ReSharper disable once StringLiteralTypo
-            Console.Title = "Goszakup Parser";
+            Configuration.Title = "Goszakup Parser";
 
             // Loading configurations
             var configurationString = File.ReadAllText("Configuration.json");
@@ -36,6 +40,8 @@ namespace GoszakupParser
 
             // todo(Remove after making configuration static)
             Configuration.DbConnectionCredentialsStatic = configuration.DbConnectionCredentials;
+            Configuration.ParsersStatic = configuration.Parsers;
+            Configuration.AuthTokenStatic = configuration.AuthToken;
 
             // Initializing logger
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
@@ -56,6 +62,28 @@ namespace GoszakupParser
             if (result.Tag == ParserResultType.NotParsed)
                 return;
             var options = ((Parsed<CommandLineOptions>) result).Value;
+
+            // Disabling trace level of logging
+            if (options.NoTrace)
+                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Trace));
+
+            // Disabling info level of logging
+            if (options.NoInfo)
+                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Info));
+
+            // Disabling warn level of logging
+            if (options.NoWarn)
+                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Warn));
+
+            // Disabling error level of logging
+            if (options.NoError)
+                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Error));
+
+            // Disabling fatal level of logging
+            if (options.NoFatal)
+                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Fatal));
+
+            LogManager.GetCurrentClassLogger().Debug("DEBUG IS ENABLED");
 
             // Start parsing using given arguments
             var parserService = new ParserService(configuration, options);

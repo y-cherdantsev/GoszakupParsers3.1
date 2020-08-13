@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
@@ -66,7 +68,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         /// <param name="dto">Dto from Api</param>
         /// <param name="context">Parsing DB context</param>
-        private async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
+        protected virtual async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
         {
             var model = DtoToModel(dto);
             context.Models.Add(model);
@@ -106,13 +108,13 @@ namespace GoszakupParser.Parsers.ApiParsers
         protected async Task<string> GetApiPageResponse(string url, int delay = 10000, int allowedAttempts = 20)
         {
             var attempts = 0;
-
             // Loop that sends requests to api till successive result
             while (attempts < allowedAttempts)
             {
                 // Creating a client that will send the requst
                 var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500")
                     {Proxy = Proxies[0], Timeout = delay};
+                restClient.UnsafeAuthenticatedConnectionSharing = true;
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
 
@@ -176,6 +178,8 @@ namespace GoszakupParser.Parsers.ApiParsers
 
                         Thread.Sleep(delay);
                         Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
                         continue;
                     }
 
@@ -186,6 +190,8 @@ namespace GoszakupParser.Parsers.ApiParsers
 
                         Thread.Sleep(delay);
                         Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
+                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
                         continue;
                     }
 
@@ -198,6 +204,8 @@ namespace GoszakupParser.Parsers.ApiParsers
 
                         Thread.Sleep(delay);
                         Logger.Trace($"{attempts} times, {restResponse.ErrorMessage}");
+                        Logger.Trace($"{attempts} times, {restResponse.ErrorException}");
+                        Logger.Trace($"{attempts} times, {restResponse.ErrorException.InnerException}");
                         continue;
                     }
 

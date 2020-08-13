@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
@@ -19,11 +20,15 @@ namespace GoszakupParser
         /// Goszakup authentication bearer token
         /// </summary>
         public string AuthToken { get; set; }
+        
+        public static string AuthTokenStatic { get; set; }
 
         /// <summary>
         /// Parsers settings
         /// </summary>
         public List<ParserSettings> Parsers { get; set; }
+        
+        public static List<ParserSettings> ParsersStatic { get; set; }
 
         /// <summary>
         /// Mapped parsers names into parsing DB titles
@@ -37,6 +42,18 @@ namespace GoszakupParser
 
         /// \todo(Make configuration static)
         public static List<DbConnectionCredential> DbConnectionCredentialsStatic { get; set; }
+
+        private static string _title;
+        public static string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                    Console.Title = value;
+            }
+        }
 
         /// @author Yevgeniy Cherdantsev
         /// @date 25.02.2020 10:17:01

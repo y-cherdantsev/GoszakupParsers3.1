@@ -49,7 +49,7 @@ namespace GoszakupParser.Contexts
                     $"Search Path = {connectionCredentials.SearchPath}; " +
                     $"Integrated Security=true; " +
                     $"Pooling=true; " +
-                    $"Application Name={Console.Title};");
+                    $"Application Name={Title};");
             else
                 throw new NullReferenceException("Cannot find such connection credentials");
         }

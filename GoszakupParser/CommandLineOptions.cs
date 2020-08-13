@@ -35,6 +35,36 @@ namespace GoszakupParser
         public bool Ignore { get; set; }
 
         /// <summary>
+        /// No trace flag
+        /// </summary>
+        [Option("no-trace", Default = false, HelpText = "Removes trace level")]
+        public bool NoTrace { get; set; }
+
+        /// <summary>
+        /// No info flag
+        /// </summary>
+        [Option("no-info", Default = false, HelpText = "Removes info level")]
+        public bool NoInfo { get; set; }
+
+        /// <summary>
+        /// No warn flag
+        /// </summary>
+        [Option("no-warn", Default = false, HelpText = "Removes warn level")]
+        public bool NoWarn { get; set; }
+
+        /// <summary>
+        /// No error flag
+        /// </summary>
+        [Option("no-error", Default = false, HelpText = "Removes error level")]
+        public bool NoError { get; set; }
+
+        /// <summary>
+        /// No fatal flag
+        /// </summary>
+        [Option("no-fatal", Default = false, HelpText = "Removes fatal level")]
+        public bool NoFatal { get; set; }
+
+        /// <summary>
         /// Reset flag
         /// </summary>
         [Option('r', "reset", Default = false,

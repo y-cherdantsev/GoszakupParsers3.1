@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
+using GoszakupParser.Parsers.ApiParsers.AimParsers;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -74,8 +82,71 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             return elements.items.All(x =>
             {
                 DateTime.TryParse(x.index_date, out var indexDate);
-                return indexDate < DateTime.Now.Subtract(TimeSpan.FromDays(33));
+                return indexDate < DateTime.Now.Subtract(TimeSpan.FromDays(32));
             });
         }
+
+        /// <summary>
+        /// Converts dto into model and inserts it into DB
+        /// </summary>
+        /// <param name="dto">Dto from Api</param>
+        /// <param name="context">Parsing DB context</param>
+        // protected override async Task ProcessObject(LotDto dto, AdataContext<LotGoszakup> context)
+        // {
+        //     var model = DtoToModel(dto);
+        //     context.Models.Add(model);
+        //     
+        //     var flag = false;
+        //     InsertDataOperation:
+        //     try
+        //     {
+        //         await context.SaveChangesAsync();
+        //     }
+        //     // Appears while network card error occurs
+        //     catch (InvalidOperationException e)
+        //     {
+        //         Logger.Warn(e.Message);
+        //         Thread.Sleep(15000);
+        //         goto InsertDataOperation;
+        //     }
+        //     catch (DbUpdateException e)
+        //     {
+        //         if (e.InnerException != null && e.InnerException.Message.Contains("goszakup_lot_plan_fk") && flag==false)
+        //         {
+        //             flag = true;
+        //             var newParserSetting = Configuration.ParsersStatic.FirstOrDefault(x => x.Name == "LotPlan");
+        //             // ReSharper disable once PossibleNullReferenceException
+        //             newParserSetting.Threads = 1;
+        //             lock (Url)
+        //             {
+        //                 new ParsePlanForce(newParserSetting, Configuration.AuthTokenStatic, dto.point_list[0].ToString()).ParseAsync().GetAwaiter().GetResult();
+        //             }
+        //             goto InsertDataOperation;
+        //         }
+        //
+        //         if (e.InnerException is NpgsqlException)
+        //             Logger.Trace($"Message: {e.InnerException?.Data["MessageText"]}; " +
+        //                          $"{e.InnerException?.Data["Detail"]} " +
+        //                          $"{e.InnerException?.Data["SchemaName"]}.{e.InnerException?.Data["TableName"]}");
+        //         else
+        //             throw;
+        //     }
+        // }
+        //
+        //
+        // private class ParsePlanForce : LotPlanParser
+        // {
+        //     private readonly string _aim;
+        //     public ParsePlanForce(Configuration.ParserSettings parserSettings, string authToken, string aim) : base(parserSettings, authToken)
+        //     {
+        //         _aim = aim;
+        //     }
+        //
+        //     // ReSharper disable once OptionalParameterHierarchyMismatch
+        //     protected override IEnumerable<string> LoadAims()
+        //     {
+        //         return new List<string> {_aim};
+        //     }
+        // }
     }
 }

@@ -37,7 +37,7 @@ namespace GoszakupParser.Parsers
         /// <summary>
         /// Number of threads used by parser
         /// </summary>
-        protected int Threads { get; }
+        protected int Threads { get; set; }
 
         /// <summary>
         /// Proxies for sending requests
@@ -70,7 +70,7 @@ namespace GoszakupParser.Parsers
             parserMonitoringContext.Dispose();
 
             // ReSharper disable once StringLiteralTypo
-            Console.Title = $"Goszakup Parser - {GetType().Name}";
+            Configuration.Title = $"Goszakup Parser - {GetType().Name}";
         }
 
         /// <summary>

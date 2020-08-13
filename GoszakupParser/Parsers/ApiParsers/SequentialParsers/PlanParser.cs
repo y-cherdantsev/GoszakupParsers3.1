@@ -23,7 +23,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         /// </summary>
         private readonly List<long> _existingPlans;
 
-        private readonly int ApiTotal;
+        private readonly int _apiTotal;
 
         /// <inheritdoc />
         public PlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(
@@ -32,7 +32,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             var planContext = new AdataContext<PlanGoszakup>(DatabaseConnections.ParsingAvroradata);
             _existingPlans = planContext.Models.Select(x => x.Id ?? 0).ToList();
             planContext.Dispose();
-            ApiTotal = Total;
+            _apiTotal = Total;
         }
 
         /// <inheritdoc />
@@ -116,7 +116,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             return apiResponse.items.All(x =>
             {
                 DateTime.TryParse(x.date_create, out var dateCreate);
-                return dateCreate < DateTime.Now.Subtract(TimeSpan.FromDays(60));
+                return dateCreate < DateTime.Now.Subtract(TimeSpan.FromDays(270));
             });
         }
 
@@ -124,7 +124,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         protected override string LogMessage(object obj = null)
         {
             var apiResponse = (ApiResponse<PlanDto>) obj; 
-            return $"Parsed:[{ApiTotal - Total}] Date:[{apiResponse.items[0].date_create}]";
+            return $"Parsed:[{_apiTotal - Total}] Date:[{apiResponse.items[0].date_create}]";
         }
     }
 }
