@@ -83,8 +83,6 @@ namespace GoszakupParser
             if (options.NoFatal)
                 LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Fatal));
 
-            LogManager.GetCurrentClassLogger().Debug("DEBUG IS ENABLED");
-
             // Start parsing using given arguments
             var parserService = new ParserService(configuration, options);
             parserService.StartParsingService().GetAwaiter().GetResult();
