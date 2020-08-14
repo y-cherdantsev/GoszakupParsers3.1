@@ -106,11 +106,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         {
             var apiResponse = (ApiResponse<PlanDto>) checkElement;
             // If all plans are already in table, parsing can be stopped
-            Console.WriteLine(DateTime.Now);
-            
             if (apiResponse.items.All(x => _existingPlans.Contains(x.id)))
                 return true;
-            Console.WriteLine(DateTime.Now);
 
             //If all plans are older than 60 days
             return apiResponse.items.All(x =>
@@ -123,7 +120,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         /// <inheritdoc />
         protected override string LogMessage(object obj = null)
         {
-            var apiResponse = (ApiResponse<PlanDto>) obj; 
+            var apiResponse = (ApiResponse<PlanDto>) obj;
             return $"Parsed:[{_apiTotal - Total}] Date:[{apiResponse.items[0].date_create}]";
         }
     }
