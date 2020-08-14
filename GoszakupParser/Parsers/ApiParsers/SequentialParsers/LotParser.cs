@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
-using GoszakupParser.Parsers.ApiParsers.AimParsers;
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
