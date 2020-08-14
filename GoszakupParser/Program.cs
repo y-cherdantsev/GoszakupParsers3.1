@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using CommandLine;
@@ -44,7 +45,8 @@ namespace GoszakupParser
             Configuration.AuthTokenStatic = configuration.AuthToken;
 
             // Initializing logger
-            LogManager.Configuration = new XmlLoggingConfiguration($"{AppDomain.CurrentDomain.BaseDirectory}NLog.config");
+            LogManager.Configuration =
+                new XmlLoggingConfiguration($"{AppDomain.CurrentDomain.BaseDirectory}NLog.config");
 
             // Assigning ip address to a logger
             var host = Dns.GetHostEntry(Dns.GetHostName());

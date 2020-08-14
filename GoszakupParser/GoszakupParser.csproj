@@ -23,6 +23,9 @@
         <None Include="goszakup_logo.png">
             <Pack>True</Pack>
         </None>
+        <None Update="KalkanCryptCOM.dll">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
