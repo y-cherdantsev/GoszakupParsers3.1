@@ -44,7 +44,7 @@ namespace GoszakupParser
             Configuration.AuthTokenStatic = configuration.AuthToken;
 
             // Initializing logger
-            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
+            LogManager.Configuration = new XmlLoggingConfiguration($"{AppDomain.CurrentDomain.BaseDirectory}NLog.config");
 
             // Assigning ip address to a logger
             var host = Dns.GetHostEntry(Dns.GetHostName());
