@@ -35,7 +35,7 @@ namespace GoszakupParser
             Configuration.Title = "Goszakup Parser";
 
             // Loading configurations
-            var configurationString = File.ReadAllText("Configuration.json");
+            var configurationString = File.ReadAllText("./Configuration.json");
             var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
 
             // todo(Remove after making configuration static)
