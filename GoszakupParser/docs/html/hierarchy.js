@@ -1,7 +1,10 @@
 var hierarchy =
 [
     [ "GoszakupParser.Models.Dtos.AnnouncementDto", "de/dc8/class_goszakup_parser_1_1_models_1_1_dtos_1_1_announcement_dto.html", null ],
-    [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< PlanDto, PlanGoszakup >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", [
+    [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< LotDto, LotGoszakup >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", [
+      [ "GoszakupParser.Parsers.ApiParsers.AimParsers.AnnouncementLotParser", "d7/d30/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_announcement_lot_parser.html", null ]
+    ] ],
+    [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< PlanDto, TenderPlanGoszakup >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.AimParsers.LotPlanParser", "d2/da2/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_lot_plan_parser.html", null ]
     ] ],
     [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< RnuReferenceDto, RnuReferenceGoszakup >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", [
@@ -22,6 +25,9 @@ var hierarchy =
     ] ],
     [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser< PlanDto, PlanGoszakup >", "d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.PlanParser", "db/db2/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_plan_parser.html", null ]
+    ] ],
+    [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser< PlanDto, TenderPlanGoszakup >", "d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html", [
+      [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.TenderPlanParser", "d1/dda/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_tender_plan_parser.html", null ]
     ] ],
     [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser< RefBuyStatusDto, RefBuyStatusGoszakup >", "d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.RefBuyStatusParser", "d1/d24/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_buy_status_parser.html", null ]
@@ -61,6 +67,7 @@ var hierarchy =
         [ "GoszakupParser.Models.ParsingModels.RefUnitGoszakup", "d8/d8f/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_unit_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.RnuReferenceGoszakup", "d9/d7c/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_rnu_reference_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", null ],
+        [ "GoszakupParser.Models.ParsingModels.TenderPlanGoszakup", "db/d27/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_plan_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", null ],
         [ "GoszakupParser.Models.Proxy", "df/d9a/class_goszakup_parser_1_1_models_1_1_proxy.html", null ],
         [ "GoszakupParser.Models.WebModels.AdataAnnouncementWeb", "db/d84/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_announcement_web.html", null ],
