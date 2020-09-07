@@ -12,7 +12,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 18:43:05
     /// <summary>
-    /// Plan Parsing DB table object
+    /// Tender Plan Parsing DB table object
     /// </summary>
     [Table("tender_plan_goszakup")]
     public class TenderPlanGoszakup : BaseModel
