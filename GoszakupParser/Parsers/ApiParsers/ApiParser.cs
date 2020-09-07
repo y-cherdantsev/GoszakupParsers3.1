@@ -66,7 +66,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// </summary>
         /// <param name="dto">Dto from Api</param>
         /// <param name="context">Parsing DB context</param>
-        protected virtual async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
+        private async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
         {
             var model = DtoToModel(dto);
             context.Models.Add(model);
