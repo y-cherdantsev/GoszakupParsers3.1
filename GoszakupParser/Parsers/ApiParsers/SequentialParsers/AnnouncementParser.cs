@@ -85,10 +85,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         protected override bool StopCondition(object checkElement)
         {
             var elements = (ApiResponse<AnnouncementDto>) checkElement;
-            return elements.items.All(x =>
+            return elements.items.Any(x =>
             {
                 DateTime.TryParse(x.start_date, out var startDate);
-                return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(31));
+                return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(4));
             });
         }
     }

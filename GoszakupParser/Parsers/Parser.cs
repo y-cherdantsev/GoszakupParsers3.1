@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace GoszakupParser.Parsers
         /// <summary>
         /// Number of threads used by parser
         /// </summary>
-        protected int Threads { get; set; }
+        protected int Threads { get; }
 
         /// <summary>
         /// Proxies for sending requests
@@ -67,6 +68,8 @@ namespace GoszakupParser.Parsers
             Proxies = proxiesDto.Select(proxy => new WebProxy(proxy.Address.ToString(), proxy.Port)
                     {Credentials = new NetworkCredential(proxy.Username, proxy.Password)})
                 .OrderBy(x => new Random().NextDouble()).ToArray();
+            if (Proxies.Length == 0)
+                throw new NoNullAllowedException("No proxies has been found in the system");
             parserMonitoringContext.Dispose();
 
             // ReSharper disable once StringLiteralTypo

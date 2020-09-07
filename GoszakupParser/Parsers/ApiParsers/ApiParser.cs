@@ -111,8 +111,11 @@ namespace GoszakupParser.Parsers.ApiParsers
             {
                 // Creating a client that will send the requst
                 var restClient = new RestClient($"https://ows.goszakup.gov.kz/{url}?limit=500")
-                    {Proxy = Proxies[0], Timeout = delay};
-                restClient.UnsafeAuthenticatedConnectionSharing = true;
+                {
+                    Proxy = Proxies[0],
+                    Timeout = delay,
+                    UnsafeAuthenticatedConnectionSharing = true
+                };
                 restClient.AddDefaultHeader("Content-Type", "application/json");
                 restClient.AddDefaultHeader("Authorization", AuthToken);
 
@@ -202,8 +205,6 @@ namespace GoszakupParser.Parsers.ApiParsers
 
                         Thread.Sleep(delay);
                         Logger.Trace($"{attempts} times, {restResponse.ErrorMessage}");
-                        Logger.Trace($"{attempts} times, {restResponse.ErrorException}");
-                        Logger.Trace($"{attempts} times, {restResponse.ErrorException.InnerException}");
                         continue;
                     }
 

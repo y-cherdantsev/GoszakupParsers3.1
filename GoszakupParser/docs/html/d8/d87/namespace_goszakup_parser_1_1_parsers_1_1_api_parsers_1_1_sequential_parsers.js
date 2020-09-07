@@ -10,5 +10,6 @@ var namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers
     [ "RefLotStatusParser", "dd/d51/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_lot_status_parser.html", "dd/d51/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_lot_status_parser" ],
     [ "RefTradeMethodParser", "df/d86/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_trade_method_parser.html", "df/d86/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_trade_method_parser" ],
     [ "RefUnitParser", "d5/d8d/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_unit_parser.html", "d5/d8d/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_ref_unit_parser" ],
+    [ "TenderPlanParser", "d1/dda/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_tender_plan_parser.html", "d1/dda/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_tender_plan_parser" ],
     [ "UnscrupulousParser", "db/d72/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_unscrupulous_parser.html", "db/d72/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_unscrupulous_parser" ]
 ];

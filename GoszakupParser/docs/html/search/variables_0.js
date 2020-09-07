@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['_5fconfiguration_268',['_configuration',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ab7236ef33ecff288b1805c065b074199',1,'GoszakupParser::ParserService']]],
-  ['_5fexistingplans_269',['_existingPlans',['../db/db2/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_plan_parser.html#a3d27b45885fc0406a17b4263498371b9',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers::PlanParser']]],
-  ['_5flogger_270',['_logger',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ab084188f3626552174f1147ea8968f77',1,'GoszakupParser::ParserService']]],
-  ['_5foptions_271',['_options',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ad2b60af2c9968ca992e490738b9368a5',1,'GoszakupParser::ParserService']]]
+  ['_5fconfiguration_279',['_configuration',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ab7236ef33ecff288b1805c065b074199',1,'GoszakupParser::ParserService']]],
+  ['_5fexistingplans_280',['_existingPlans',['../d1/dda/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_tender_plan_parser.html#a37ab560f99a38ca7ac994100caf28369',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers::TenderPlanParser']]],
+  ['_5flogger_281',['_logger',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ab084188f3626552174f1147ea8968f77',1,'GoszakupParser::ParserService']]],
+  ['_5foptions_282',['_options',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#ad2b60af2c9968ca992e490738b9368a5',1,'GoszakupParser::ParserService']]]
 ];

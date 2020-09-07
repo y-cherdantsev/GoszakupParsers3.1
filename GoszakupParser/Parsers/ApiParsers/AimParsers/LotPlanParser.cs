@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
+// ReSharper disable StringLiteralTypo
 
 namespace GoszakupParser.Parsers.ApiParsers.AimParsers
 {
@@ -17,7 +18,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     /// Lot Plan Parser
     /// </summary>
     // ReSharper disable once UnusedType.Global
-    public class LotPlanParser : ApiAimParser<PlanDto, PlanGoszakup>
+    public class LotPlanParser : ApiAimParser<PlanDto, TenderPlanGoszakup>
     {
         /// <inheritdoc />
         public LotPlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
@@ -26,13 +27,13 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
         }
 
         /// <inheritdoc />
-        protected override PlanGoszakup DtoToModel(PlanDto dto)
+        protected override TenderPlanGoszakup DtoToModel(PlanDto dto)
         {
             DateTime.TryParse(dto.date_approved, out var dateApproved);
             DateTime.TryParse(dto.date_create, out var dateCreate);
             DateTime.TryParse(dto.timestamp, out var timestamp);
 
-            var plan = new PlanGoszakup
+            var plan = new TenderPlanGoszakup
             {
                 Id = dto.id,
                 RootrecordId = dto.rootrecord_id,
@@ -93,7 +94,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             var lotContext = new AdataContext<LotGoszakup>(DatabaseConnections.ParsingAvroradata);
             var aims = lotContext.Models
                 .FromSqlRaw(
-                    "select * from avroradata.lot_goszakup l full outer join avroradata.plan_goszakup p on l.plan_point = p.id where p.id is null and l.ref_lot_status_id<360")
+                    "select * from avroradata.lot_goszakup l full outer join avroradata.tender_plan_goszakup p on l.plan_point = p.id where p.id is null and l.ref_lot_status_id<360")
                 .Select(x => x.PlanPoint.ToString()).ToList();
             lotContext.Dispose();
             return aims;
