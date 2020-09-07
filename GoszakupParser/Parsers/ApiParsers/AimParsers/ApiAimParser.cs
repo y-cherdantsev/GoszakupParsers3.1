@@ -19,7 +19,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
     /// <typeparam name="TDto">Dto that will be parsed</typeparam>
     /// <typeparam name="TResultModel">Model in which dto will be converted</typeparam>
     public abstract class ApiAimParser<TDto, TResultModel> : ApiParser<TDto, TResultModel>
-        where TResultModel  : BaseModel, new()
+        where TResultModel : BaseModel, new()
     {
         /// <summary>
         /// Aims that's used for parsing
@@ -44,7 +44,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
             // ReSharper disable once VirtualMemberCallInConstructor
             Aims = (List<string>) LoadAims();
             Total = Aims.Count;
-            
+
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
 
@@ -82,7 +82,7 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
                 if (!response.Contains("total"))
                 {
                     var apiResponse = JsonConvert.DeserializeObject<TDto>(response);
-                    tasks.Add(ProcessObjects(new []{(object)apiResponse}));
+                    tasks.Add(ProcessObjects(new[] {(object) apiResponse}));
                 }
                 // Else
                 else
@@ -92,6 +92,8 @@ namespace GoszakupParser.Parsers.ApiParsers.AimParsers
                     if (apiResponse.status != (int) HttpStatusCode.NotFound)
                         tasks.Add(ProcessObjects((IEnumerable<object>) apiResponse.items));
                 }
+
+                Logger.Trace($" Left:{Total}; Proceeded: {element}");
             }
 
             await Task.WhenAll(tasks);
