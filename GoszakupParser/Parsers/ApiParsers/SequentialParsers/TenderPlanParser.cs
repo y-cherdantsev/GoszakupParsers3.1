@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GoszakupParser.Contexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -10,25 +13,36 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// @author Yevgeniy Cherdantsev
     /// @date 09.07.2020 15:39:44
     /// <summary>
-    /// Plan Parser
+    /// Plan Parser For Tenders
     /// </summary>
     // ReSharper disable once UnusedType.Global
-    public sealed class PlanParser : ApiSequentialParser<PlanDto, PlanGoszakup>
+    public sealed class TenderPlanParser : ApiSequentialParser<PlanDto, TenderPlanGoszakup>
     {
+        /// <summary>
+        /// List of plans that are already in table
+        /// </summary>
+        private readonly List<long> _existingPlans;
+
+        private readonly int _apiTotal;
+
         /// <inheritdoc />
-        public PlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+        public TenderPlanParser(Configuration.ParserSettings parserSettings, string authToken) : base(
             parserSettings, authToken)
         {
+            var planContext = new AdataContext<PlanGoszakup>(DatabaseConnections.ParsingAvroradata);
+            _existingPlans = planContext.Models.Select(x => x.Id ?? 0).ToList();
+            planContext.Dispose();
+            _apiTotal = Total;
         }
 
         /// <inheritdoc />
-        protected override PlanGoszakup DtoToModel(PlanDto dto)
+        protected override TenderPlanGoszakup DtoToModel(PlanDto dto)
         {
             DateTime.TryParse(dto.date_approved, out var dateApproved);
             DateTime.TryParse(dto.date_create, out var dateCreate);
             DateTime.TryParse(dto.timestamp, out var timestamp);
 
-            var plan = new PlanGoszakup
+            var plan = new TenderPlanGoszakup
             {
                 Id = dto.id,
                 RootrecordId = dto.rootrecord_id,
@@ -81,6 +95,33 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             };
 
             return plan;
+        }
+
+        /// <summary>
+        /// Returns true if all lot elements are older than 60 days
+        /// </summary>
+        /// \todo(Not optimized, need logic reworking => { if (apiResponse.items.All(x => _existingPlans.Contains(x.id))) return true; }) 
+        /// \todo(Don't work, fix) 
+        protected override bool StopCondition(object checkElement)
+        {
+            var apiResponse = (ApiResponse<PlanDto>) checkElement;
+            // If all plans are already in table, parsing can be stopped
+            if (apiResponse.items.Any(x => _existingPlans.Contains(x.id)))
+                return true;
+
+            //If all plans are older than 45 days
+            return apiResponse.items.All(x =>
+            {
+                DateTime.TryParse(x.date_create, out var dateCreate);
+                return dateCreate < DateTime.Now.Subtract(TimeSpan.FromDays(5));
+            });
+        }
+
+        /// <inheritdoc />
+        protected override string LogMessage(object obj = null)
+        {
+            var apiResponse = (ApiResponse<PlanDto>) obj;
+            return $"Parsed:[{_apiTotal - Total}] Date:[{apiResponse.items[0].date_create}]";
         }
     }
 }
