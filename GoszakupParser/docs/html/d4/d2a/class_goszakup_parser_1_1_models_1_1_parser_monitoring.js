@@ -5,6 +5,5 @@ var class_goszakup_parser_1_1_models_1_1_parser_monitoring =
     [ "LastMigrated", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html#aa2c860b53f4e0f8815d6a2b8d4802b35", null ],
     [ "LastParsed", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html#a2f753f1b69fa15838c29e0682799c9fa", null ],
     [ "Name", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html#ae5065abaff4b49c711bcaf2caafda759", null ],
-    [ "Owner", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html#aae874d9b13d771ed10b9a739fb8a04f6", null ],
     [ "Parsed", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html#a7983d59338ba98952fc422b1cb4466cd", null ]
 ];

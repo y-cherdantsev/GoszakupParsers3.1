@@ -1,0 +1,5 @@
+var namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers =
+[
+    [ "ApiParallelParser", "d8/d0a/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_api_parallel_parser.html", "d8/d0a/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_api_parallel_parser" ],
+    [ "PlanParallelParser", "dd/dcd/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_plan_parallel_parser.html", "dd/dcd/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_plan_parallel_parser" ]
+];

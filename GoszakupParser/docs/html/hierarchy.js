@@ -10,6 +10,9 @@ var hierarchy =
     [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< RnuReferenceDto, RnuReferenceGoszakup >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.AimParsers.RnuReferenceParser", "d8/dbb/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_rnu_reference_parser.html", null ]
     ] ],
+    [ "GoszakupParser.Parsers.ApiParsers.ParallelParsers.ApiParallelParser< PlanDto, TenderPlanGoszakup >", "d8/d0a/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_api_parallel_parser.html", [
+      [ "GoszakupParser.Parsers.ApiParsers.ParallelParsers.PlanParallelParser", "dd/dcd/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_plan_parallel_parser.html", null ]
+    ] ],
     [ "GoszakupParser.Models.Dtos.ApiResponse< T >", "d1/d27/class_goszakup_parser_1_1_models_1_1_dtos_1_1_api_response.html", null ],
     [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser< AnnouncementDto, AnnouncementGoszakup >", "d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.AnnouncementParser", "d5/d3c/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_announcement_parser.html", null ]
@@ -77,9 +80,11 @@ var hierarchy =
         [ "GoszakupParser.Models.WebModels.UnscrupulousGoszakupWeb", "de/d5a/class_goszakup_parser_1_1_models_1_1_web_models_1_1_unscrupulous_goszakup_web.html", null ]
       ] ]
     ] ],
+    [ "GoszakupParser.Parsers.ApiParsers.ParallelParsers.PlanParallelParser.ParseElement", "da/d4f/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_plan_parallel_parser_1_1_parse_element.html", null ],
     [ "GoszakupParser.Parsers.Parser", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html", [
       [ "GoszakupParser.Parsers.ApiParsers.ApiParser< TDto, TResultModel >", "db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html", [
         [ "GoszakupParser.Parsers.ApiParsers.AimParsers.ApiAimParser< TDto, TResultModel >", "dc/df6/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_aim_parsers_1_1_api_aim_parser.html", null ],
+        [ "GoszakupParser.Parsers.ApiParsers.ParallelParsers.ApiParallelParser< TDto, TResultModel >", "d8/d0a/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_api_parallel_parser.html", null ],
         [ "GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser< TDto, TResultModel >", "d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html", null ]
       ] ],
       [ "GoszakupParser.Parsers.WebParsers.WebParser< TModel >", "da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html", [

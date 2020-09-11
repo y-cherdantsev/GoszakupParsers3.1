@@ -20,6 +20,6 @@ var class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web =
     [ "Terms", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ac6b863356412cc9600a62d96c4482fb9", null ],
     [ "Title", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a6d45bab49f4561a368ebf012c33225f6", null ],
     [ "TotalAmount", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a1068e0dbd9f175d716abc8f71816adbc", null ],
-    [ "TruId", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#aeba59c43fa3c9378bbb963547757417e", null ],
+    [ "TruCode", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#ab0fbee2f4fc4123d8a299ffdfbf52b60", null ],
     [ "UnitPrice", "de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html#a118b500773322f74bda6023acf55eee3", null ]
 ];
