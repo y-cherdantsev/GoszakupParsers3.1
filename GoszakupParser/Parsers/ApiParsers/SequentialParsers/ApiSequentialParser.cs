@@ -55,7 +55,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                         break;
 
                     // If response is too short to be true (Used to find and fix new errors if occured)
-                    if (response.Length < 500)
+                    if (response.Length < 500 && !Url.Contains("ref"))
                         throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
 
                     // Deserializes json into api response object

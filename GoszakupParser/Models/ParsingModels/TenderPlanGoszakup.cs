@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// <summary>
     /// Tender Plan Parsing DB table object
     /// </summary>
-    [Table("tender_plan_goszakup")]
+    [Table("plan_goszakup")]
     public class TenderPlanGoszakup : BaseModel
     {
         [Key] [Column("id")] public long? Id { get; set; }
