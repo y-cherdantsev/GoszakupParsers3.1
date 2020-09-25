@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tenderdocumentationparser_288',['TenderDocumentationParser',['../d2/d78/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_tender_documentation_parser.html#a2a38f1292be1078cea8af942e8770820',1,'GoszakupParser::Parsers::WebParsers::AimParsers::TenderDocumentationParser']]],
-  ['tenderplanparser_289',['TenderPlanParser',['../d1/dda/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_tender_plan_parser.html#a1f61e56089efdf7777fe8338ff37b62d',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers::TenderPlanParser']]]
+  ['webaimparser_167',['WebAimParser',['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#a76c3db50dd7c036137dc2ec3a097f707',1,'GoszakupParser::Parsers::WebParsers::AimParsers::WebAimParser']]],
+  ['webparser_168',['WebParser',['../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a58048b2991be0a972ecf026180647f4c',1,'GoszakupParser::Parsers::WebParsers::WebParser']]]
 ];

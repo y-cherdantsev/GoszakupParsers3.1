@@ -26,11 +26,9 @@ var NAVTREE =
     [ "README", "d3/dcc/md__r_e_a_d_m_e.html", [
       [ "Goszakup Parser", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md0", [
         [ "Проект включает в себя парсеры:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
-          [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ],
-          [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ],
-          [ "Справочники:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md4", null ]
+          [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ]
         ] ],
-        [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md5", null ]
+        [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ]
       ] ]
     ] ],
     [ "Список задач", "dd/da0/todo.html", null ],
@@ -54,9 +52,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a4b6e0f84b217c92d8979e0c84e09cfe7",
-"da/d4f/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_parallel_parsers_1_1_plan_parallel_parser_1_1_parse_element.html#a95b5d404a35c0f19db7b4259a58292ca",
-"de/d0a/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_ref_buy_status_goszakup.html#a8b9b4f509eb877624ef1793f5934d6a4"
+"dc/ded/namespace_goszakup_parser_1_1_contexts.html"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';
