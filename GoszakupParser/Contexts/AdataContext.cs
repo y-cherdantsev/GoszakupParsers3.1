@@ -19,6 +19,7 @@ namespace GoszakupParser.Contexts
         /// <summary>
         /// Set of models loaded by created context
         /// </summary>
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public DbSet<TModel> Models { get; set; }
 
         private DbConnectionCredential connectionCredentials { get; set; }
@@ -59,13 +60,5 @@ namespace GoszakupParser.Contexts
         {
             new TModel().BuildModel(modelBuilder);
         }
-    }
-
-    public enum DatabaseConnections
-    {
-        ParsingAvroradata,
-        ParsingMonitoring,
-        WebAdataTender,
-        WebAvroradata
     }
 }
