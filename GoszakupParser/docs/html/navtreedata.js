@@ -33,7 +33,11 @@ var NAVTREE =
     ] ],
     [ "Список задач", "dd/da0/todo.html", null ],
     [ "Пакеты", "namespaces.html", [
-      [ "Пакеты", "namespaces.html", "namespaces_dup" ]
+      [ "Пакеты", "namespaces.html", "namespaces_dup" ],
+      [ "Функции с областью видимости пакета", "namespacemembers.html", [
+        [ "Указатель", "namespacemembers.html", null ],
+        [ "Перечисления", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Классы", "annotated.html", [
       [ "Классы", "annotated.html", "annotated_dup" ],
@@ -52,7 +56,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"dc/ded/namespace_goszakup_parser_1_1_contexts.html"
+"d8/d0d/class_goszakup_parser_1_1_models_1_1_dtos_1_1_participant_dto.html#a670f66ad6c80b007bdb60af3bb349aa5"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

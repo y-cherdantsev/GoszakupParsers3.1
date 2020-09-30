@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_76',['README',['../d3/dcc/md__r_e_a_d_m_e.html',1,'']]],
-  ['reset_77',['Reset',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a2d06ef1d0c1fdaa38c083eb1f8f80521',1,'GoszakupParser::CommandLineOptions']]]
+  ['querytemplate_94',['QueryTemplate',['../d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a02dfac1dc95b21aa294ff03295d6b71f',1,'GoszakupParser::Parsers::GraphQlParsers::SequentialParsers::TenderParser']]]
 ];

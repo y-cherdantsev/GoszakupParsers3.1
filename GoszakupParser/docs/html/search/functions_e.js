@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unscrupulousparser_290',['UnscrupulousParser',['../db/d72/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_unscrupulous_parser.html#ab99b72a1c2fc485a85bc5205ec72f9ec',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers::UnscrupulousParser']]]
+  ['webaimparser_221',['WebAimParser',['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#a76c3db50dd7c036137dc2ec3a097f707',1,'GoszakupParser::Parsers::WebParsers::AimParsers::WebAimParser']]],
+  ['webparser_222',['WebParser',['../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a58048b2991be0a972ecf026180647f4c',1,'GoszakupParser::Parsers::WebParsers::WebParser']]]
 ];
