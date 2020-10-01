@@ -48,6 +48,9 @@ namespace GoszakupParser.Models.Dtos
             {
                 public string refEnstruCode { get; set; }
                 public string supplyDateRu { get; set; }
+                
+                public string nameRu { get; set; }
+                public string descRu { get; set; }
                 public TrdBuyType RefUnits { get; set; }
                 public TrdBuyPlanKato[] PlansKato { get; set; }
 

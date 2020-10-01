@@ -26,7 +26,9 @@ namespace GoszakupParser.Models.ParsingModels
 		[Column("amount")] public double? Amount{get; set;}
 		[Column("count")] public double? Count{get; set;}
 		[Column("lot_status")] public string LotStatus{get; set;}
-		[Column("tru")] public string Tru{get; set;}
+		[Column("tru_code")] public string TruCode{get; set;}
+		[Column("tru_name")] public string TruName{get; set;}
+		[Column("tru_description")] public string TruDescription{get; set;}
 		[Column("supply_date_ru")] public string SupplyDateRu{get; set;}
 		[Column("units")] public string Units{get; set;}
 		[Column("delivery_place")] public string DeliveryPlace{get; set;}

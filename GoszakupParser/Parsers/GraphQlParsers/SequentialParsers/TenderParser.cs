@@ -121,7 +121,9 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     };
                     if (trdBuyLot.Plans != null && trdBuyLot.Plans.Length > 0)
                     {
-                        lot.Tru = trdBuyLot.Plans[0]?.refEnstruCode;
+                        lot.TruCode = trdBuyLot.Plans[0]?.refEnstruCode;
+                        lot.TruName = trdBuyLot.Plans[0]?.nameRu;
+                        lot.TruDescription = trdBuyLot.Plans[0]?.descRu;
                         lot.Units = trdBuyLot.Plans[0]?.RefUnits.nameRu;
                         lot.SupplyDateRu = trdBuyLot.Plans[0]?.supplyDateRu;
                         if (trdBuyLot.Plans[0].PlansKato != null && trdBuyLot.Plans[0].PlansKato.Length > 0)
