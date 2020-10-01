@@ -24,7 +24,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// QuetyTemplate for requests
         /// </summary>
         private const string QueryTemplate =
-            "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,nameRu,descRu,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
+            "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
 
         /// <inheritdoc />
         public TenderParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
@@ -122,8 +122,6 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     if (trdBuyLot.Plans != null && trdBuyLot.Plans.Length > 0)
                     {
                         lot.TruCode = trdBuyLot.Plans[0]?.refEnstruCode;
-                        lot.TruName = trdBuyLot.Plans[0]?.nameRu;
-                        lot.TruDescription = trdBuyLot.Plans[0]?.descRu;
                         lot.Units = trdBuyLot.Plans[0]?.RefUnits.nameRu;
                         lot.SupplyDateRu = trdBuyLot.Plans[0]?.supplyDateRu;
                         if (trdBuyLot.Plans[0].PlansKato != null && trdBuyLot.Plans[0].PlansKato.Length > 0)
