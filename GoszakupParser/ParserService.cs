@@ -98,8 +98,14 @@ namespace GoszakupParser
             else
                 parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration);
 
+            // Changes 'parsed' field value in monitoring table to null
+            await ChangeParsedField(parserName, null);
             if (parser != null) await parser.ParseAsync();
-            else throw new NullReferenceException($"{parserName} hasn't been created");
+            else
+            {
+                await ChangeParsedField(parserName, false);
+                throw new NullReferenceException($"{parserName} hasn't been created");
+            }
 
             // Changes 'parsed' field value in monitoring table to true
             await ChangeParsedField(parserName, true);
@@ -197,14 +203,16 @@ namespace GoszakupParser
 
             // Check 'parsed' field in monitoring table
             var isParsed = parserMonitoringContext.Models
-                .FirstOrDefault(x =>
-                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
-                    ) && x.Parsed) != null;
+                .FirstOrDefault(x => x.Name.Equals(_configuration.ParserMonitoringNames[parserName]))?.Parsed;
 
-            if (isParsed)
+            switch (isParsed)
             {
-                _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
-                return false;
+                case true:
+                    _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
+                    return false;
+                case null:
+                    _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' now proceeding");
+                    return false;
             }
 
             return true;
@@ -215,7 +223,7 @@ namespace GoszakupParser
         /// </summary>
         /// <param name="parserName">Parser name</param>
         /// <param name="flag">Value</param>
-        private async Task ChangeParsedField(string parserName, bool flag)
+        private async Task ChangeParsedField(string parserName, bool? flag)
         {
             // Update data in monitoring table
             var parserMonitoringContext = new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
@@ -225,7 +233,7 @@ namespace GoszakupParser
 
             // ReSharper disable PossibleNullReferenceException
             // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
-            if (flag)
+            if (flag == true)
                 parsed.LastParsed = DateTime.Now;
             parsed.Parsed = flag;
             // ReSharper restore PossibleNullReferenceException

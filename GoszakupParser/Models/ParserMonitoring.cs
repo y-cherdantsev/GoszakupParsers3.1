@@ -19,7 +19,7 @@ namespace GoszakupParser.Models
     {
         [Key] [Column("id")] public int? Id { get; set; }
         [Column("name")] public new string Name { get; set; }
-        [Column("parsed")] public bool Parsed { get; set; }
+        [Column("parsed")] public bool? Parsed { get; set; }
         [Column("last_migrated")] public DateTime? LastMigrated { get; set; }
         [Column("last_parsed")] public DateTime? LastParsed { get; set; }
         [Column("active")] public bool Active { get; set; }
