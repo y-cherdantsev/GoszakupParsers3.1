@@ -24,7 +24,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// QuetyTemplate for requests
         /// </summary>
         private const string QueryTemplate =
-            "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
+            "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,nameRu,descRu,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
 
         /// <inheritdoc />
         public TenderParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
