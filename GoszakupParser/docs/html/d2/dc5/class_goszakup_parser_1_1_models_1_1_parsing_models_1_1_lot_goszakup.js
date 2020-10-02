@@ -11,6 +11,6 @@ var class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup =
     [ "LotStatus", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#a01051a661a911c28d027d02ef9a64a48", null ],
     [ "NameRu", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#abed470974f59857de099703a3135c054", null ],
     [ "SupplyDateRu", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#a150f4861bb953a3c878ea8c12bc0d27b", null ],
-    [ "Tru", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#a9ed7ef293d303ebac44723793a9e0c06", null ],
+    [ "TruCode", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#a9acb3fd1ef032b9a3a52f3a6121161d0", null ],
     [ "Units", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html#ac8f14f2bffec88799be6d5d199ef47ca", null ]
 ];

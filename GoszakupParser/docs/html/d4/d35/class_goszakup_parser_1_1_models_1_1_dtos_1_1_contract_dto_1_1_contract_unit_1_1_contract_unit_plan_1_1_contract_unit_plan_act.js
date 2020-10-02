@@ -1,0 +1,6 @@
+var class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_unit_plan_act =
+[
+    [ "dateApproved", "d4/d35/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_unit_plan_act.html#aa12bded7e11401236fd0cf5a1188edd2", null ],
+    [ "planActNumber", "d4/d35/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_unit_plan_act.html#ac7b934ec3a60892046ca381b84ef4b65", null ],
+    [ "planFinYear", "d4/d35/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_unit_plan_act.html#a1a91f3c8aedd9041c9aea17ab211ffbc", null ]
+];

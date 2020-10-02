@@ -11,6 +11,11 @@ var hierarchy =
     ] ],
     [ "GoszakupParser.CommandLineOptions", "d4/da6/class_goszakup_parser_1_1_command_line_options.html", null ],
     [ "GoszakupParser.Configuration", "df/d41/class_goszakup_parser_1_1_configuration.html", null ],
+    [ "GoszakupParser.Models.Dtos.ContractDto", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html", null ],
+    [ "GoszakupParser.Models.Dtos.ContractDto.ContractUnit.ContractUnitPlan.ContractType", "dc/dc0/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_type.html", null ],
+    [ "GoszakupParser.Models.Dtos.ContractDto.ContractUnit", "d0/d12/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit.html", null ],
+    [ "GoszakupParser.Models.Dtos.ContractDto.ContractUnit.ContractUnitPlan", "d1/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan.html", null ],
+    [ "GoszakupParser.Models.Dtos.ContractDto.ContractUnit.ContractUnitPlan.ContractUnitPlanAct", "d4/d35/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_unit_plan_act.html", null ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >.Data< T >", "de/dda/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response_1_1_data.html", null ],
     [ "GoszakupParser.Configuration.DbConnectionCredential", "d9/db8/class_goszakup_parser_1_1_configuration_1_1_db_connection_credential.html", null ],
     [ "DbContext", null, [
@@ -19,6 +24,9 @@ var hierarchy =
     ] ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >.Extensions", "d3/de7/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response_1_1_extensions.html", null ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >", "d4/d42/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response.html", null ],
+    [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser< ContractDto >", "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html", [
+      [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.ContractParser", "df/df5/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_contract_parser.html", null ]
+    ] ],
     [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser< TrdBuyDto >", "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html", [
       [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.TenderParser", "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html", null ]
     ] ],

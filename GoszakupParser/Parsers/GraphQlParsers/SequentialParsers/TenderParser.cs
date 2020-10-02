@@ -21,7 +21,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
     public class TenderParser : GraphQlSequentialParser<TrdBuyDto>
     {
         /// <summary>
-        /// QuetyTemplate for requests
+        /// QueryTemplate for requests
         /// </summary>
         private const string QueryTemplate =
             "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
