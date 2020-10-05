@@ -1,5 +1,29 @@
 var class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto =
 [
-    [ "ContractUnit", "d0/d12/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit.html", "d0/d12/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit" ],
-    [ "ContractUnits", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a8b53048569cd6da80ef50937b428bfbd", null ]
+    [ "ContractTypeDto", "d3/d4e/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_type_dto.html", "d3/d4e/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_type_dto" ],
+    [ "ContractUnitDto", "d9/dce/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto.html", "d9/dce/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto" ],
+    [ "contractNumber", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a8a2e622808a802ed961f2c87fa63d617", null ],
+    [ "contractNumberSys", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#ae25a11d0eb2a361eed4a9754eb6e14f6", null ],
+    [ "contractSumWnds", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#aeb076c5db67af65aa37fb425053c3b41", null ],
+    [ "crdate", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#ac55c1495f5da2a1e28f8a2e9866cfbd6", null ],
+    [ "customerBankNameRu", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#abaa8564581867f669050b4818ddedf99", null ],
+    [ "customerBik", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a4794b7bc11ec41a408465e982a9938a4", null ],
+    [ "customerBin", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a415039b4d2869e682a07f8163900ab65", null ],
+    [ "customerIik", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a6ada46964ecde8fbabce357765289804", null ],
+    [ "descriptionRu", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a5bf1b2f2e3310c1221049cde75b5e307", null ],
+    [ "ecEndDate", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#adb12fe46045b445550e68add8a0be3ce", null ],
+    [ "faktSumWnds", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#acae2d7c650608e8717eae42ed4f2fe61", null ],
+    [ "FaktTradeMethods", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a01f21090799970ef25de79b8a8a9d123", null ],
+    [ "finYear", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a56fdc160bfc7113bcf26a8e55dadf4e2", null ],
+    [ "itemsUnits", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a207f9bb89dbf1920f971c305b9d0e627", null ],
+    [ "RefitemsAgrForm", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#adb0047c6d3c4581e2a468f7f48909c73", null ],
+    [ "RefitemsStatus", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#aa09a1e71da93b2f28bbecd011123dcb9", null ],
+    [ "RefitemsType", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a2563e6cd6d21c9404c0550442d0a2324", null ],
+    [ "RefitemsYearType", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a06a0ed51a095e7ca2d6309c7449b8bf0", null ],
+    [ "signDate", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a711bf4edb93200cdc5fc4197e23a517e", null ],
+    [ "supplierBankNameRu", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#ad3ec333695dd82435810f9a23abe1f97", null ],
+    [ "supplierBiin", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a703300096377165d114e6267636a31fa", null ],
+    [ "supplierBik", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a292ba2fc49155c33720ca15c9daf88f9", null ],
+    [ "supplierIik", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a356bd10c14086b904813ca1d57302aec", null ],
+    [ "trdBuyNumberAnno", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a473884ddeead15db1bbd5664b28bfb66", null ]
 ];

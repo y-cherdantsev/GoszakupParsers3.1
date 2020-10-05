@@ -1,0 +1,25 @@
+var class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup =
+[
+    [ "ActNumber", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a014c8b2aa9528471379cc334201ede26", null ],
+    [ "Amount", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#aed3c5471abb0a0ee7ec9e46e8af11795", null ],
+    [ "ContractUnitId", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a496040afbce61a041e78ddd79f560463", null ],
+    [ "Count", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a23b515ca10f4650188f7df7ddd5e1444", null ],
+    [ "DateApproved", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#afb1afa67a938857a0a2fc64169d78ef8", null ],
+    [ "DateCreate", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a8f209b38593ee02a99437e474b18fcce", null ],
+    [ "Description", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a27153e9ae4480b2d5659315812be53e8", null ],
+    [ "ExtraDescription", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a4497c9d7388c206123b4687463f1bc3c", null ],
+    [ "FinYear", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a1642d43a72681748e945a7d89b002822", null ],
+    [ "Id", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#aaa5d65380f434620994bc30552133c2f", null ],
+    [ "IsQvazi", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#af3342c102fd4e425a407014f8c0213f4", null ],
+    [ "Measure", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a5c75d6b0fb240dec1fb29466f47de341", null ],
+    [ "Method", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a0fb85fdadb88a66187c0d35dda4d9478", null ],
+    [ "MonthId", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a3fb68ddd7c916a12aa760bb62421d704", null ],
+    [ "Name", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ad94c63789c2e361152a82650df08e128", null ],
+    [ "Prepayment", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#abe9630ef9f8e30fc6d38a38434f6e7d0", null ],
+    [ "Price", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ab70b3a7e3d0afef4746182346e5023f7", null ],
+    [ "SourceUniqueId", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a699e83e23fdde7169729e5031ec6a8db", null ],
+    [ "Status", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a2933d61a3362328c9aaf5747a1c6b962", null ],
+    [ "SubjectBiin", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#a7c0aec91a1b0bdf3ae9dd1a7ea9ed950", null ],
+    [ "SupplyDate", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ace4f7b8c3b9ae3842afc53645f9fdfd5", null ],
+    [ "TruCode", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#aaf5678f812e9b4133fb63efa391ea916", null ]
+];

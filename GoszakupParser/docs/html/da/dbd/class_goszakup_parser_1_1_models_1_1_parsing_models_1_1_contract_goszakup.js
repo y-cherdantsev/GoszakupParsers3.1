@@ -1,0 +1,27 @@
+var class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup =
+[
+    [ "AgrForm", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a1de64971d7d3226bdc30c87b43fea243", null ],
+    [ "AnnouncementNumber", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a3739cee658885a0d05fd244558b1c47c", null ],
+    [ "ContractNumber", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a4704c759829c13af7d3c96752fb454a1", null ],
+    [ "ContractNumberSys", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a84ae912e0dd2e6f57c08d1714cd2f1fe", null ],
+    [ "ContractSumWnds", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ab3e7e6446c6e2dbf6a1ccaaa82083b54", null ],
+    [ "CreateDate", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a714b7cc1cdee427688818348eb87da18", null ],
+    [ "CustomerBankNameRu", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#abab570f28f9324e316cf6c2bd309794c", null ],
+    [ "CustomerBik", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#af66e5d49c233f5faf74007bee2570190", null ],
+    [ "CustomerBin", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ae8b0cbfa17159ab8bf687c84f9022b8d", null ],
+    [ "CustomerIik", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a3eaa047576c655fd54c881be8fba02bf", null ],
+    [ "DescriptionRu", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a24ff4fa40c2667438449bdf1b27af07c", null ],
+    [ "EcEndDate", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#af2b51c8bc1e51acbf02603b3dd47fbd7", null ],
+    [ "FaktSumWnds", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a22653432e0e3825d3daeb61421158021", null ],
+    [ "FinYear", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a361ee8bb7457495da439f0ac29914327", null ],
+    [ "Id", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a885840c50a256a6826d2e6e775404a92", null ],
+    [ "SignDate", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a7283ffd9bc8fdf615efbe27df14893f7", null ],
+    [ "Status", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#aeeb759e8597563baeceaad81fcb6235f", null ],
+    [ "SupplierBankNameRu", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a0ff4bfaec8ccb030f3b40243844c2884", null ],
+    [ "SupplierBiin", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ad315a5c190c6896785641bb3af936f37", null ],
+    [ "SupplierBik", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#aefc363f1340f66adfb2e00e127733b31", null ],
+    [ "SupplierIik", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#aadd6dc99b0182fb6425b7a35c024103d", null ],
+    [ "TradeMethod", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a0e244a2d1ba0468d8974e5003f8cd82a", null ],
+    [ "Type", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#abb67ad2918a48da1f29d14b7e6361f07", null ],
+    [ "YearType", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ab12be49b35dc9f0f0d7c7f1352aa0b40", null ]
+];

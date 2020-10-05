@@ -56,7 +56,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#acc69ac548fcd80f800c0023dbb9b3d7f"
+"d6/d77/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_file_goszakup.html#a30daebe7cea69858bb4799b9a8d5693d",
+"de/d87/class_goszakup_parser_1_1_models_1_1_web_models_1_1_adata_lot_web.html"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

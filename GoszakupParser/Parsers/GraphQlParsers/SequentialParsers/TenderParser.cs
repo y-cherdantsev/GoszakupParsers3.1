@@ -15,7 +15,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
     /// @author Yevgeniy Cherdantsev
     /// @date 28.09.2020 11:32:17
     /// <summary>
-    /// Participant Parser
+    /// Tender Parser
     /// </summary>
     // ReSharper disable once UnusedType.Global
     public class TenderParser : GraphQlSequentialParser<TrdBuyDto>
