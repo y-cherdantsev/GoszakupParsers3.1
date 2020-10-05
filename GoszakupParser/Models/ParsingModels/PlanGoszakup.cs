@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// <summary>
     /// Plan Goszakup DB table object
     /// </summary>
-    [Table("plan_goszakup_new")]
+    [Table("plan_goszakup")]
     public class PlanGoszakup
     {
         [Key] [Column("id")] public long? Id { get; set; }
