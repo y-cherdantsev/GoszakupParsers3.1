@@ -41,5 +41,7 @@ namespace GoszakupParser.Models.ParsingModels
         [Column("trade_method")] public string TradeMethod { get; set; }
         [Column("status")] public string Status { get; set; }
         [Column("type")] public string Type { get; set; }
+        [Column("doc_link")] public string DocLink { get; set; }
+        [Column("doc_name")] public string DocName { get; set; }
     }
 }

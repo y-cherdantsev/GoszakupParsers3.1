@@ -36,6 +36,7 @@ namespace GoszakupParser.Models.Dtos
         public ContractTypeDto RefitemsStatus { get; set; }
         public ContractTypeDto RefitemsType { get; set; }
         public ContractUnitDto[] itemsUnits { get; set; }
+        public ContractFileDto[] File { get; set; }
 
         public class ContractUnitDto
         {
@@ -77,6 +78,12 @@ namespace GoszakupParser.Models.Dtos
             }
         }
         
+        public class ContractFileDto
+        {
+            public string nameRu { get; set; }
+            public string filePath { get; set; }
+            public string originalName { get; set; }
+        }
         
         public class ContractTypeDto
         {

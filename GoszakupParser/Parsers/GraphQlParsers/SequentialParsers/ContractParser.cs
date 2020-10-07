@@ -23,7 +23,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// QueryTemplate for requests
         /// </summary>
         private const string QueryTemplate =
-            "{\"query\":\"query{Contract(limit:200,filter:{finYear:2016},_AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
+            "{\"query\":\"query{Contract(limit:200,_AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},File{nameRu,filePath,originalName},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
 
         public ContractParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
             authToken)
@@ -91,7 +91,9 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 FaktSumWnds = dto.faktSumWnds,
                 CustomerBankNameRu = string.IsNullOrEmpty(dto.customerBankNameRu) ? null : dto.customerBankNameRu,
                 SupplierBankNameRu = string.IsNullOrEmpty(dto.supplierBankNameRu) ? null : dto.supplierBankNameRu,
-                CreateDate = createDate.Year == 1 ? (DateTime?) null : createDate
+                CreateDate = createDate.Year == 1 ? (DateTime?) null : createDate,
+                DocLink = dto.File?[0]?.filePath,
+                DocName = dto.File?[0]?.originalName
             };
 
             await ctx.ContractsGoszakup.AddAsync(contractGoszakup);
