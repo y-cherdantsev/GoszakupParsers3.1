@@ -92,8 +92,8 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 CustomerBankNameRu = string.IsNullOrEmpty(dto.customerBankNameRu) ? null : dto.customerBankNameRu,
                 SupplierBankNameRu = string.IsNullOrEmpty(dto.supplierBankNameRu) ? null : dto.supplierBankNameRu,
                 CreateDate = createDate.Year == 1 ? (DateTime?) null : createDate,
-                DocLink = dto.File?[0]?.filePath,
-                DocName = dto.File?[0]?.originalName
+                DocLink = dto.File?.filePath,
+                DocName = dto.File?.originalName
             };
 
             await ctx.ContractsGoszakup.AddAsync(contractGoszakup);
