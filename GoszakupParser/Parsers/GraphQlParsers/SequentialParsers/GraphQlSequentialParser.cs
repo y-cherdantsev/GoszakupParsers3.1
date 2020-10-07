@@ -79,12 +79,15 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     tasks.Clear();
 
                     // Processing objects and loading them into DB
-                    for (var i = 0; i < Threads; i++)
-                        tasks.Add(ProcessObjects(DivideList((IEnumerable<object>) graphQlResponse.data.items, i)));
-
-                    lock (Lock)
+                    if (graphQlResponse.data.items != null)
                     {
-                        Total -= graphQlResponse.data.items.Count;
+                        for (var i = 0; i < Threads; i++)
+                            tasks.Add(ProcessObjects(DivideList((IEnumerable<object>) graphQlResponse.data.items, i)));
+
+                        lock (Lock)
+                        {
+                            Total -= graphQlResponse.data.items.Count;
+                        }
                     }
 
                     // If graphQlResponse has no next page then finish parsing
