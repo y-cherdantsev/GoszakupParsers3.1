@@ -17,7 +17,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <summary>
         /// Last parsed Id
         /// </summary>
-        private int _lastId=2250000;
+        private int _lastId;
 
         /// <summary>
         /// Constructor for creating GraphQl sequential parsers
