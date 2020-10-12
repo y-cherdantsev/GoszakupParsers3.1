@@ -50,7 +50,6 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
 
             while (true)
             {
-                // var query = QueryTemplate.Replace("_AFTER", lastId!=0 ? $"after: {lastId}" : string.Empty);
                 var query = GetQuery(_lastId);
 
                 // Gets json response
