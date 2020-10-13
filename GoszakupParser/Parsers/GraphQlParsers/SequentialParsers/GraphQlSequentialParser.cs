@@ -61,9 +61,10 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                         break;
 
                     // If response is too short to be true (Used to find and fix new errors if occured)
-                    if (response.Length < 500)
-                        throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
-
+                    // Unuseful now
+                    // if (response.Length < 500)
+                        // throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
+                    
                     // Deserializes json into api response object
                     response = response.Replace(typeof(TDto).Name.Replace("Dto", string.Empty), "items");
                     var graphQlResponse = JsonConvert.DeserializeObject<GraphQlResponse<TDto>>(response);
@@ -81,7 +82,8 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     if (graphQlResponse.data.items != null)
                     {
                         for (var i = 0; i < Threads; i++)
-                            tasks.Add(ProcessObjects(DivideList((IEnumerable<object>) graphQlResponse.data.items, i)));
+                            tasks.Add(ProcessObjects(
+                                DivideList((IEnumerable<object>) graphQlResponse.data.items, i)));
 
                         lock (Lock)
                         {
