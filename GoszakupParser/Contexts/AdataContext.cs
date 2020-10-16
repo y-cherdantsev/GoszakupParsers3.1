@@ -22,7 +22,7 @@ namespace GoszakupParser.Contexts
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public DbSet<TModel> Models { get; set; }
 
-        private DbConnectionCredential connectionCredentials { get; set; }
+        private DbConnectionCredential ConnectionCredentials { get; set; }
 
         protected AdataContext(DbContextOptions options)
             : base(options)
@@ -33,7 +33,7 @@ namespace GoszakupParser.Contexts
         public AdataContext(DatabaseConnections databaseConnections)
         {
             var connectionTitle = Enum.GetName(typeof(DatabaseConnections), databaseConnections);
-            connectionCredentials =
+            ConnectionCredentials =
                 DbConnectionCredentialsStatic.FirstOrDefault(x =>
                     x.Title == connectionTitle);
         }
@@ -41,15 +41,15 @@ namespace GoszakupParser.Contexts
         /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (connectionCredentials != null)
+            if (ConnectionCredentials != null)
                 optionsBuilder.UseNpgsql(
-                    $"Server = {connectionCredentials.Address}; " +
-                    $"Database = {connectionCredentials.Name}; Port={connectionCredentials.Port}; " +
-                    $"User ID = {connectionCredentials.Username}; " +
-                    $"Password = {connectionCredentials.Password}; " +
-                    $"Search Path = {connectionCredentials.SearchPath}; " +
-                    $"Integrated Security=true; " +
-                    $"Pooling=true; " +
+                    $"Server = {ConnectionCredentials.Address}; " +
+                    $"Database = {ConnectionCredentials.Name}; Port={ConnectionCredentials.Port}; " +
+                    $"User ID = {ConnectionCredentials.Username}; " +
+                    $"Password = {ConnectionCredentials.Password}; " +
+                    $"Search Path = {ConnectionCredentials.SearchPath}; " +
+                    "Integrated Security=true; " +
+                    "Pooling=true; " +
                     $"Application Name={Title};");
             else
                 throw new NullReferenceException("Cannot find such connection credentials");
