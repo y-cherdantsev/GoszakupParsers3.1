@@ -81,7 +81,11 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 SupplierBik = string.IsNullOrEmpty(dto.supplierBik) ? null : dto.supplierBik,
                 CustomerIik = string.IsNullOrEmpty(dto.customerIik) ? null : dto.customerIik,
                 SupplierIik = string.IsNullOrEmpty(dto.supplierIik) ? null : dto.supplierIik,
-                DescriptionRu = dto.descriptionRu.Replace("&quot;", "\""),
+                DescriptionRu = dto.descriptionRu
+                    .Replace("&amp;", "")
+                    .Replace("amp;", "")
+                    .Replace("&quot;", "\"")
+                    .Replace("quot;", "\""),
                 FinYear = dto.finYear,
                 SignDate = signDate.Year == 1 ? (DateTime?) null : signDate,
                 EcEndDate = ecEndDate.Year == 1 ? (DateTime?) null : ecEndDate,
