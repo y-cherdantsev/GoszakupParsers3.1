@@ -23,7 +23,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// QueryTemplate for requests
         /// </summary>
         private const string QueryTemplate =
-            "{\"query\":\"query{Contract(limit:200, filter:{finYear:2016},_AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},File{nameRu,filePath,originalName},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
+            "{\"query\":\"query{Contract(limit:200, filter:{finYear:2020},_AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},File{nameRu,filePath,originalName},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
 
         public ContractParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
             authToken)
@@ -81,7 +81,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 SupplierBik = string.IsNullOrEmpty(dto.supplierBik) ? null : dto.supplierBik,
                 CustomerIik = string.IsNullOrEmpty(dto.customerIik) ? null : dto.customerIik,
                 SupplierIik = string.IsNullOrEmpty(dto.supplierIik) ? null : dto.supplierIik,
-                DescriptionRu = dto.descriptionRu,
+                DescriptionRu = dto.descriptionRu.Replace("&quot;", "\""),
                 FinYear = dto.finYear,
                 SignDate = signDate.Year == 1 ? (DateTime?) null : signDate,
                 EcEndDate = ecEndDate.Year == 1 ? (DateTime?) null : ecEndDate,
