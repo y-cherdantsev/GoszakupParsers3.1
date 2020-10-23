@@ -239,7 +239,7 @@ namespace GoszakupParser
             // ReSharper restore PossibleNullReferenceException
             parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
-            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'");
+            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'".Replace("''", "'null'"));
             await parserMonitoringContext.DisposeAsync();
         }
     }
