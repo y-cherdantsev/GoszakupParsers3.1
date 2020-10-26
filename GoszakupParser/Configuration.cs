@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable CollectionNeverUpdated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -81,6 +81,7 @@ namespace GoszakupParser
 
         public sealed class DbConnectionCredential
         {
+            // ReSharper disable once MemberHidesStaticFromOuterClass
             public string Title { get; set; }
             public string Address { get; set; }
             public int Port { get; set; }

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global

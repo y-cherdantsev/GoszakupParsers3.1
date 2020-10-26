@@ -2,10 +2,11 @@
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
-// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable FieldCanBeMadeReadOnly.Global
 // ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Models.Dtos
 {
@@ -20,9 +21,9 @@ namespace GoszakupParser.Models.Dtos
         public Data<T> data { get; set; }
         public Extensions extensions { get; set; }
 
-        public class Data<T>
+        public class Data<U>
         {
-            public List<T> items = new List<T>();
+            public List<U> items = new List<U>();
         }
 
         public class Extensions

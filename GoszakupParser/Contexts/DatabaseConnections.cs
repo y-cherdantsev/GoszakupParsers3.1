@@ -1,4 +1,6 @@
-﻿// ReSharper disable IdentifierTypo
+﻿// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable UnusedMember.Global
 
 namespace GoszakupParser.Contexts
 {

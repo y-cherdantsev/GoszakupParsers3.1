@@ -1,16 +1,16 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Sockets;
+using System.Linq;
 using System.Text;
-using System.Text.Json;
-using CommandLine;
-using NLog;
 using NLog.Config;
+using CommandLine;
+using System.Text.Json;
+using System.Net.Sockets;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser
 {

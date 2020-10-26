@@ -4,8 +4,8 @@ using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
 using static GoszakupParser.Configuration;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser.Contexts
 {
@@ -22,7 +22,7 @@ namespace GoszakupParser.Contexts
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public DbSet<TModel> Models { get; set; }
 
-        private DbConnectionCredential ConnectionCredentials { get; set; }
+        private DbConnectionCredential ConnectionCredentials { get; }
 
         protected AdataContext(DbContextOptions options)
             : base(options)

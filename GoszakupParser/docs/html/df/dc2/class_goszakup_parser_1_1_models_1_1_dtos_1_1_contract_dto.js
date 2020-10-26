@@ -1,5 +1,6 @@
 var class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto =
 [
+    [ "ContractFileDto", "d4/d90/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_file_dto.html", "d4/d90/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_file_dto" ],
     [ "ContractTypeDto", "d3/d4e/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_type_dto.html", "d3/d4e/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_type_dto" ],
     [ "ContractUnitDto", "d9/dce/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto.html", "d9/dce/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto" ],
     [ "contractNumber", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a8a2e622808a802ed961f2c87fa63d617", null ],
@@ -14,6 +15,7 @@ var class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto =
     [ "ecEndDate", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#adb12fe46045b445550e68add8a0be3ce", null ],
     [ "faktSumWnds", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#acae2d7c650608e8717eae42ed4f2fe61", null ],
     [ "FaktTradeMethods", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a01f21090799970ef25de79b8a8a9d123", null ],
+    [ "File", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#af32e6f45d931858744f2d4b903d16cfa", null ],
     [ "finYear", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a56fdc160bfc7113bcf26a8e55dadf4e2", null ],
     [ "itemsUnits", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#a207f9bb89dbf1920f971c305b9d0e627", null ],
     [ "RefitemsAgrForm", "df/dc2/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto.html#adb0047c6d3c4581e2a468f7f48909c73", null ],

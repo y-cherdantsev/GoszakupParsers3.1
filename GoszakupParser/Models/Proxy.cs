@@ -1,10 +1,11 @@
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable UnusedMember.Global
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 

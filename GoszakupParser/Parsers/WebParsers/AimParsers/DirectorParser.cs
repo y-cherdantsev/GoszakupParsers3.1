@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Net;
 using System.Linq;
-using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
+using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models.ParsingModels;
+using System.Collections.Generic;
 using GoszakupParser.Models.WebModels;
+using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using NLog;
+using System;
 using System.Linq;
 using System.Net;
+using System.Data;
+using GoszakupParser.Models;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
-using NLog;
+using System.Collections.Generic;
 
 // ReSharper disable CommentTypo
 

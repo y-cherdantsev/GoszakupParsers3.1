@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using GoszakupParser.Contexts;
-using GoszakupParser.Models;
-using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using RestSharp;
+using System.Net;
+using System.Threading;
+using GoszakupParser.Models;
+using System.Threading.Tasks;
+using GoszakupParser.Contexts;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable CommentTypo

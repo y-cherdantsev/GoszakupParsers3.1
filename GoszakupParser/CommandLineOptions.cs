@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using CommandLine;
+﻿using CommandLine;
+using System.Collections.Generic;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 // ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser
 {

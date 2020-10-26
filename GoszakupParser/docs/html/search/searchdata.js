@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "_lpq",
   5: "d",
   6: "pw",
-  7: "adfimnprtu",
+  7: "adfimnptu",
   8: "rÐ"
 };
 

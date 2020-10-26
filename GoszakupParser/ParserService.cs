@@ -1,14 +1,15 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Linq;
+using GoszakupParser.Models;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
-using NLog;
+using System.Collections.Generic;
 using Parser = GoszakupParser.Parsers.Parser;
 
-// ReSharper disable IdentifierTypo
-// ReSharper disable CommentTypo
 // ReSharper disable InvertIf
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser
 {
@@ -86,15 +87,27 @@ namespace GoszakupParser
 
 
             // Initializing and starting parser
-            Parser parser;
+
+            // Generating list of arguments for a current oarser
+            var args = new List<object>();
+
+            // ReSharper disable once PossibleNullReferenceException
+            foreach (var parameterInfo in parsingClass.GetConstructors()[0].GetParameters())
+            {
+                switch (parameterInfo.Name)
+                {
+                    case "parserSettings":
+                        args.Add(parserConfiguration);
+                        break;
+                    case "authToken":
+                        args.Add(_configuration.AuthToken);
+                        break;
+                }
+            }
 
             // ReSharper disable once PossibleNullReferenceException (Already checked)
-            // If parser has authToken in arguments list, creates object with the first constructor, otherwise with the second 
-            if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name != null && x.Name.Equals("authToken")))
-                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration,
-                    _configuration.AuthToken);
-            else
-                parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration);
+            // Creating instance of a parser
+            var parser = (Parser) Activator.CreateInstance(parsingClass, args.ToArray());
 
             // Changes 'parsed' field value in monitoring table to null
             await ChangeParsedField(parserName, null);
@@ -206,7 +219,8 @@ namespace GoszakupParser
             switch (isParsed)
             {
                 case true:
-                    _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
+                    _logger.Warn(
+                        $"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
                     return false;
                 case null:
                     _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' now proceeding");
@@ -237,7 +251,8 @@ namespace GoszakupParser
             // ReSharper restore PossibleNullReferenceException
             parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
-            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'".Replace("''", "'null'"));
+            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
+                .Replace("''", "'null'"));
             await parserMonitoringContext.DisposeAsync();
         }
     }

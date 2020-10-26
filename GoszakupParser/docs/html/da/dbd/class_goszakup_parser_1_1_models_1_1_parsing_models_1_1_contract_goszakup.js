@@ -11,6 +11,8 @@ var class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup =
     [ "CustomerBin", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ae8b0cbfa17159ab8bf687c84f9022b8d", null ],
     [ "CustomerIik", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a3eaa047576c655fd54c881be8fba02bf", null ],
     [ "DescriptionRu", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a24ff4fa40c2667438449bdf1b27af07c", null ],
+    [ "DocLink", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a95295120602e72e9e4eab9ba5dd1b909", null ],
+    [ "DocName", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a5a6eb641f65e941ffcc1387f42c254d7", null ],
     [ "EcEndDate", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#af2b51c8bc1e51acbf02603b3dd47fbd7", null ],
     [ "FaktSumWnds", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a22653432e0e3825d3daeb61421158021", null ],
     [ "FinYear", "da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#a361ee8bb7457495da439f0ac29914327", null ],

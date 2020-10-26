@@ -1,5 +1,6 @@
 ﻿// ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
+// ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 

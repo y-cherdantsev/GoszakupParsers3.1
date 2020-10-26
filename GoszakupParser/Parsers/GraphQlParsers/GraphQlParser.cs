@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RestSharp;
 
-// ReSharper disable StringLiteralTypo
 // ReSharper disable IdentifierTypo
+// ReSharper disable StringLiteralTypo
 
 namespace GoszakupParser.Parsers.GraphQlParsers
 {

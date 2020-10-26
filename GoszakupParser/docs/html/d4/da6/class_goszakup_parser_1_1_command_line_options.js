@@ -8,6 +8,5 @@ var class_goszakup_parser_1_1_command_line_options =
     [ "NoTrace", "d4/da6/class_goszakup_parser_1_1_command_line_options.html#ac31ea324c392992c94ff73da61cdbd07", null ],
     [ "NoWarn", "d4/da6/class_goszakup_parser_1_1_command_line_options.html#a76ecfabe4e3ad83aeab113a0abd70294", null ],
     [ "Parsers", "d4/da6/class_goszakup_parser_1_1_command_line_options.html#a936d73778d8fb305222e57de69f0be5b", null ],
-    [ "Reset", "d4/da6/class_goszakup_parser_1_1_command_line_options.html#a2d06ef1d0c1fdaa38c083eb1f8f80521", null ],
     [ "Truncate", "d4/da6/class_goszakup_parser_1_1_command_line_options.html#a93646aa4004b8f19106bbaf72b0fc4e7", null ]
 ];

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
+using System.Collections.Generic;
 using GoszakupParser.Models.Dtos;
-using GoszakupParser.Models.ParsingModels;
 using Microsoft.EntityFrameworkCore;
+using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo

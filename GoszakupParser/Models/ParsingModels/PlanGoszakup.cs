@@ -2,9 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-// ReSharper disable IdentifierTypo
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
+// ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Models.ParsingModels

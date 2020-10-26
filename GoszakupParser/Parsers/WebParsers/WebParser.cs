@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.IO;
 using System.Net;
-using System.Net.Security;
 using System.Threading;
+using System.Net.Security;
+using GoszakupParser.Models;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
 
 // ReSharper disable CommentTypo
 // ReSharper disable InconsistentlySynchronizedField

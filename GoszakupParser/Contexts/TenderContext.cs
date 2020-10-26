@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using GoszakupParser.Models.ParsingModels;
 using Microsoft.EntityFrameworkCore;
 using static GoszakupParser.Configuration;
+using GoszakupParser.Models.ParsingModels;
 
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
-// ReSharper disable IdentifierTypo
-// ReSharper disable CommentTypo
 
 namespace GoszakupParser.Contexts
 {
@@ -18,7 +18,7 @@ namespace GoszakupParser.Contexts
     /// </summary>
     public class TenderContext : DbContext
     {
-        private DbConnectionCredential connectionCredentials { get; set; }
+        private DbConnectionCredential ConnectionCredentials { get; set; }
 
         public DbSet<AnnouncementGoszakup> AnnouncementsGoszakup { get; set; }
         public DbSet<LotGoszakup> LotsGoszakup { get; set; }
@@ -36,7 +36,7 @@ namespace GoszakupParser.Contexts
         public TenderContext(DatabaseConnections databaseConnections)
         {
             var connectionTitle = Enum.GetName(typeof(DatabaseConnections), databaseConnections);
-            connectionCredentials =
+            ConnectionCredentials =
                 DbConnectionCredentialsStatic.FirstOrDefault(x =>
                     x.Title == connectionTitle);
         }
@@ -44,15 +44,15 @@ namespace GoszakupParser.Contexts
         /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (connectionCredentials != null)
+            if (ConnectionCredentials != null)
                 optionsBuilder.UseNpgsql(
-                    $"Server = {connectionCredentials.Address}; " +
-                    $"Database = {connectionCredentials.Name}; Port={connectionCredentials.Port}; " +
-                    $"User ID = {connectionCredentials.Username}; " +
-                    $"Password = {connectionCredentials.Password}; " +
-                    $"Search Path = {connectionCredentials.SearchPath}; " +
-                    $"Integrated Security=true; " +
-                    $"Pooling=true; " +
+                    $"Server = {ConnectionCredentials.Address}; " +
+                    $"Database = {ConnectionCredentials.Name}; Port={ConnectionCredentials.Port}; " +
+                    $"User ID = {ConnectionCredentials.Username}; " +
+                    $"Password = {ConnectionCredentials.Password}; " +
+                    $"Search Path = {ConnectionCredentials.SearchPath}; " +
+                    "Integrated Security=true; " +
+                    "Pooling=true; " +
                     $"Application Name={Title};");
             else
                 throw new NullReferenceException("Cannot find such connection credentials");

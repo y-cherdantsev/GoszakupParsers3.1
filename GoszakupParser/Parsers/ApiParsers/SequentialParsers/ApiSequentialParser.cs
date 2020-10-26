@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using GoszakupParser.Models;
-using GoszakupParser.Models.Dtos;
 using Newtonsoft.Json;
+using GoszakupParser.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using GoszakupParser.Models.Dtos;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 // ReSharper disable CommentTypo
