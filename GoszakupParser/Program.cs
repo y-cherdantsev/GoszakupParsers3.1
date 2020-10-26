@@ -3,11 +3,12 @@ using System;
 using System.IO;
 using System.Net;
 using System.Linq;
-using System.Text;
 using NLog.Config;
+using System.Text;
 using CommandLine;
 using System.Text.Json;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -22,7 +23,7 @@ namespace GoszakupParser
         /// Enter point
         /// </summary>
         /// <param name="args">Command Line arguments</param>
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
@@ -51,7 +52,7 @@ namespace GoszakupParser
                 (some, kind, of, shit) => true;
 
             // Loading configurations
-            var configurationString = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Configuration.json");
+            var configurationString = await File.ReadAllTextAsync($"{AppDomain.CurrentDomain.BaseDirectory}Configuration.json");
             var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
 
             // todo(Remove after making configuration static)
@@ -64,7 +65,7 @@ namespace GoszakupParser
                 new XmlLoggingConfiguration($"{AppDomain.CurrentDomain.BaseDirectory}NLog.config");
 
             // Assigning ip address to a logger
-            var host = Dns.GetHostEntry(Dns.GetHostName());
+            var host = await Dns.GetHostEntryAsync(Dns.GetHostName());
             var ip = host.AddressList.LastOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)?.ToString();
             LogManager.Configuration.Variables["sourceAddress"] = ip;
 
@@ -102,7 +103,7 @@ namespace GoszakupParser
 
             // Start parsing using given arguments
             var parserService = new ParserService(configuration, options);
-            parserService.StartParsingService().GetAwaiter().GetResult();
+            await parserService.StartParsingService();
         }
     }
 }
