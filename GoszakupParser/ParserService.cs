@@ -59,8 +59,6 @@ namespace GoszakupParser
             {
                 try
                 {
-                    if (_options.Reset)
-                        await ChangeParsedField(parserName, false);
                     if (IsAvailable(parserName))
                         await ProceedParsing(parserName);
                 }
@@ -92,7 +90,7 @@ namespace GoszakupParser
 
             // ReSharper disable once PossibleNullReferenceException (Already checked)
             // If parser has authToken in arguments list, creates object with the first constructor, otherwise with the second 
-            if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name.Equals("authToken")))
+            if (parsingClass.GetConstructors()[0].GetParameters().Any(x => x.Name != null && x.Name.Equals("authToken")))
                 parser = (Parser) Activator.CreateInstance(parsingClass, parserConfiguration,
                     _configuration.AuthToken);
             else

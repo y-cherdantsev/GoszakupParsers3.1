@@ -65,18 +65,11 @@ namespace GoszakupParser
         public bool NoFatal { get; set; }
 
         /// <summary>
-        /// Reset flag
-        /// </summary>
-        [Option('r', "reset", Default = false,
-            HelpText = "Resets 'parsed' field to false before checking it")]
-        public bool Reset { get; set; }
-
-        /// <summary>
         /// Truncate flag (not implemented)
         /// </summary>
         /// \todo(Implement parsing table truncating while using this flag)
         [Option('t', "truncate", Default = false,
-            HelpText = "Truncates parsing table before parsing (Not Implemented)")]
+            HelpText = "Truncates parsing tables before parsing (Not Implemented)")]
         public bool Truncate { get; set; }
     }
 }
