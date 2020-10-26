@@ -163,6 +163,6 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
 
         /// <inheritdoc />
         protected override string LogMessage(object obj = null) =>
-            $"Left: {Total}; Parsing {(DateTime.Now - DateTime.Parse(((List<TrdBuyDto>) obj).OrderBy(x => x.publishDate).First().publishDate)).Days} day";
+            $"Left: {Total}; Parsing {(DateTime.Now - DateTime.Parse(((List<TrdBuyDto>) obj)!.OrderBy(x => x.publishDate).First().publishDate)).Days} day";
     }
 }
