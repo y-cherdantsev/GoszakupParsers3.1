@@ -1,8 +1,7 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Linq;
-using GoszakupParser.Models;
 using System.Threading.Tasks;
+using GoszakupParser.Models;
 using GoszakupParser.Contexts;
 using System.Collections.Generic;
 using Parser = GoszakupParser.Parsers.Parser;
@@ -11,20 +10,11 @@ using Parser = GoszakupParser.Parsers.Parser;
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
 
-namespace GoszakupParser
+namespace GoszakupParser.Services
 {
-    /// @author Yevgeniy Cherdantsev
-    /// @date 26.02.2020 18:18:55
-    /// <summary>
-    /// Proceeding of arguments and general logic
-    /// </summary>
-    public class ParserService
+    /// <inheritdoc />
+    public class ParserService : GoszakupService
     {
-        /// <summary>
-        /// Current class logger
-        /// </summary>
-        private readonly Logger _logger;
-
         /// <summary>
         /// Command line options
         /// </summary>
@@ -38,15 +28,12 @@ namespace GoszakupParser
         public ParserService(CommandLineOptions.Parse options)
         {
             _options = options;
-            _logger = LogManager.GetCurrentClassLogger();
         }
 
-        /// <summary>
-        /// Starts parsing activity
-        /// </summary>
-        public async Task StartParsingService()
+        /// <inheritdoc />
+        public override async Task StartService()
         {
-            _logger.Info("Starting parsing service!");
+            Logger.Info("Starting parsing service!");
 
             // Trying to start each defined parser sequentially in defined order
             foreach (var parserName in _options.Parsers)
@@ -58,7 +45,7 @@ namespace GoszakupParser
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(e);
+                    Logger.Error(e);
                 }
             }
         }
@@ -140,7 +127,7 @@ namespace GoszakupParser
                 .Any(x => x.Equals(parserName));
             if (!existInDictionary)
             {
-                _logger.Warn($"Parser '{parserName}' doesn't exist in local dictionary");
+                Logger.Warn($"Parser '{parserName}' doesn't exist in local dictionary");
                 return false;
             }
 
@@ -149,7 +136,7 @@ namespace GoszakupParser
                 .Any(x => x.Name.Equals(Configuration.ParserMonitoringNames[parserName]));
             if (!existsInDatabase)
             {
-                _logger.Warn($"Parser '{parserName}' doesn't exist in database");
+                Logger.Warn($"Parser '{parserName}' doesn't exist in database");
                 return false;
             }
 
@@ -160,7 +147,7 @@ namespace GoszakupParser
                 .Any(x => x.Name.Equals(parserName + "Parser"));
             if (!existClass)
             {
-                _logger.Warn($"Parser '{parserName}' doesn't exist in current context");
+                Logger.Warn($"Parser '{parserName}' doesn't exist in current context");
                 return false;
             }
 
@@ -169,7 +156,7 @@ namespace GoszakupParser
                 .Any(x => x.Name.Equals(parserName));
             if (!existConfiguration)
             {
-                _logger.Warn($"There is no configuration for '{parserName}' parser");
+                Logger.Warn($"There is no configuration for '{parserName}' parser");
                 return false;
             }
 
@@ -198,7 +185,7 @@ namespace GoszakupParser
 
             if (!isActive)
             {
-                _logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' is not active");
+                Logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' is not active");
                 return false;
             }
 
@@ -212,11 +199,11 @@ namespace GoszakupParser
             switch (isParsed)
             {
                 case true:
-                    _logger.Warn(
+                    Logger.Warn(
                         $"Parser '{Configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
                     return false;
                 case null:
-                    _logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' now proceeding");
+                    Logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' now proceeding");
                     return false;
             }
 
@@ -244,7 +231,7 @@ namespace GoszakupParser
             // ReSharper restore PossibleNullReferenceException
             parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
-            _logger.Info($"{Configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
+            Logger.Info($"{Configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
                 .Replace("''", "'null'"));
             await parserMonitoringContext.DisposeAsync();
         }

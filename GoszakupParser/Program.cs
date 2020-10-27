@@ -81,8 +81,18 @@ namespace GoszakupParser
                 })
                 .ParseArguments<CommandLineOptions.Parse, CommandLineOptions.Download>(args)
                 .MapResult(
-                    (CommandLineOptions.Parse opts) => Actions.Parse(opts).Result,
-                    (CommandLineOptions.Download opts) => Actions.Download(opts).Result,
+                    (CommandLineOptions.Parse opts) =>
+                    {
+                        Actions.LoggerPoliciesInstallation(opts);
+                        Actions.Parse(opts).GetAwaiter();
+                        return 0;
+                    },
+                    (CommandLineOptions.Download opts) =>
+                    {
+                        Actions.LoggerPoliciesInstallation(opts);
+                        Actions.Download(opts).GetAwaiter();
+                        return 0;
+                    },
                     errs => 1);
         }
     }
