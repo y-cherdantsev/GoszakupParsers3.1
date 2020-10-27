@@ -1,30 +1,34 @@
 ﻿{
-  "AuthToken": "Bearer 00aa0a00a000aa000000a0000a0000aa",
+  "AuthToken": "Bearer 83rv9d36f724vr100489g8873n7953vv",
+  "ConnectionStrings":{
+    "Production" : "Server = 192.168.1.5; Database = dbname; Port=5432; User ID = admin; Password = passwd; Integrated Security=true; Pooling=true;",
+  },
   "ParserMonitoringNames": {
     "Participant": "ParticipantGoszakup",
-    "Unscrupulous": "UnscrupulousGoszakup"
+    "Unscrupulous": "UnscrupulousGoszakup",
   },
-  "DbConnectionCredentials": [
-    {
-      "Title": "MyDatabase",
-      "Address": "192.168.1.1",
-      "Port": 1111,
-      "Name": "mysql",
-      "SearchPath": "schema1",
-      "Username": "user",
-      "Password": "qwerty"
-    }
-  ],
   "Parsers": [
     {
-      "Name": "Participant",
-      "Threads": 10,
-      "Url": "v3/subject/all"
+      "Name": "Parser1",
+      "Threads": 20,
+      "Url": "Url1"
     },
     {
-      "Name": "Unscrupulous",
+      "Name": "Parser2",
+      "Threads": 5,
+      "Url": "Url2"
+    }
+  ],
+  "Downloaders": [
+    {
+      "Name": "Downloader1",
       "Threads": 10,
-      "Url": "v3/rnu"
+      "Folder": "Folder1"
+    },
+    {
+      "Name": "Downloader2",
+      "Threads": 20,
+      "Folder": "Folder2"
     }
   ]
 }

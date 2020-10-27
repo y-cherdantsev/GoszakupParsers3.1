@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
 	/// <summary>
 	/// Lot File DB table object
 	/// </summary>
-	[Table("lot_file_goszakup")]
+	[Table("lot_file_goszakup", Schema = "avroradata")]
 	public class LotFileGoszakup
 	{
 		[Key][Column("id")] public long Id{get; set;}

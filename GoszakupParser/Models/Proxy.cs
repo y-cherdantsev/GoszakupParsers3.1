@@ -16,12 +16,11 @@ namespace GoszakupParser.Models
     /// <summary>
     /// proxies Parsing DB table field
     /// </summary>
-    [Table("proxies")]
+    [Table("proxies", Schema = "monitoring")]
     public sealed class Proxy : BaseModel
     {
         public override void BuildModel(ModelBuilder modelBuilder) =>
             modelBuilder.Entity<Proxy>().HasKey(proxy => new {proxy.Address, proxy.Port});
-
 
         [Column("address")] public IPAddress Address { get; set; }
         [Column("port")] public int Port { get; set; }

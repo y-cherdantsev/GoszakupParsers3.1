@@ -10,14 +10,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace GoszakupParser.Models.WebModels
+namespace GoszakupParser.Models.ProductionModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 25.02.2020 09:33:46
     /// <summary>
     /// unscrupulous Web DB table field
     /// </summary>
-    [Table("unscrupulous_goszakup")]
+    [Table("unscrupulous_goszakup", Schema = "avroradata")]
     public class UnscrupulousGoszakupWeb : BaseModel
     {
         [Key]

@@ -12,12 +12,12 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Participant Parser
     /// </summary>
-    // ReSharper disable once UnusedType.Global
+    // ReSharper disable once UnusedMember.Global
     public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup>
     {
         /// <inheritdoc />
-        public ParticipantParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        public ParticipantParser(Configuration.ParserSettings parserSettings) : base(
+            parserSettings)
         {
         }
 

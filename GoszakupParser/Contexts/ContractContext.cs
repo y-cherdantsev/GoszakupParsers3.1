@@ -1,13 +1,7 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using static GoszakupParser.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 namespace GoszakupParser.Contexts
 {
@@ -18,43 +12,32 @@ namespace GoszakupParser.Contexts
     /// </summary>
     public class ContractContext : DbContext
     {
-        private DbConnectionCredential ConnectionCredentials { get; set; }
-
+        /// <summary>
+        /// Contract table models
+        /// </summary>
         public DbSet<ContractGoszakup> ContractsGoszakup { get; set; }
+        
+        /// <summary>
+        /// Contract units table models
+        /// </summary>
         public DbSet<ContractUnitGoszakup> ContractUnitsGoszakup { get; set; }
+        
+        /// <summary>
+        /// Plan table models
+        /// </summary>
         public DbSet<PlanGoszakup> PlanGoszakup { get; set; }
 
         /// <inheritdoc />
-        // ReSharper disable once UnusedMember.Global
-        protected ContractContext(DbContextOptions options)
-            : base(options)
+        protected internal ContractContext()
         {
-        }
-
-        /// <inheritdoc />
-        public ContractContext(DatabaseConnections databaseConnections)
-        {
-            var connectionTitle = Enum.GetName(typeof(DatabaseConnections), databaseConnections);
-            ConnectionCredentials =
-                DbConnectionCredentialsStatic.FirstOrDefault(x =>
-                    x.Title == connectionTitle);
         }
 
         /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (ConnectionCredentials != null)
-                optionsBuilder.UseNpgsql(
-                    $"Server = {ConnectionCredentials.Address}; " +
-                    $"Database = {ConnectionCredentials.Name}; Port={ConnectionCredentials.Port}; " +
-                    $"User ID = {ConnectionCredentials.Username}; " +
-                    $"Password = {ConnectionCredentials.Password}; " +
-                    $"Search Path = {ConnectionCredentials.SearchPath}; " +
-                    "Integrated Security=true; " +
-                    "Pooling=true; " +
-                    $"Application Name={Title};");
-            else
-                throw new NullReferenceException("Cannot find such connection credentials");
+            optionsBuilder.UseNpgsql(
+                $"{Configuration.ParsingDbConnectionString}" +
+                $"Application Name={Configuration.Title};");
         }
     }
 }

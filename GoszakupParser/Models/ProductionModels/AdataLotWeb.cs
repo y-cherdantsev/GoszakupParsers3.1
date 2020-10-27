@@ -8,14 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
-namespace GoszakupParser.Models.WebModels
+namespace GoszakupParser.Models.ProductionModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 10.08.2020 16:48:23
     /// <summary>
     /// Lot Web DB table object
     /// </summary>
-    [Table("lots")]
+    [Table("lots", Schema = "adata_tender")]
     public class AdataLotWeb : BaseModel
     {
         [Key]

@@ -26,15 +26,14 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
         /// Constructor for creating API sequential parsers
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="authToken">Parsing proxy</param>
-        protected ApiSequentialParser(Configuration.ParserSettings parserSettings, string authToken) :
+        protected ApiSequentialParser(Configuration.ParserSettings parserSettings) :
             base(
-                parserSettings, authToken)
+                parserSettings)
         {
             // Get total number of elements from api
             // ReSharper disable once VirtualMemberCallInConstructor
             var response = GetApiPageResponse(Url).Result;
-            Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response).total;
+            Total = JsonSerializer.Deserialize<ApiResponse<TDto>>(response)!.total;
         }
 
         /// <inheritdoc />
@@ -75,7 +74,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     tasks.Add(ProcessObjects((IEnumerable<object>) apiResponse?.items));
 
                     lock (Lock)
-                        if (apiResponse != null) Total -= apiResponse.items.Count;
+                        if (apiResponse != null)
+                            Total -= apiResponse.items.Count;
 
                     // If Url == "" then finish parsing
                     if (Url != "" && !StopCondition(apiResponse)) continue;

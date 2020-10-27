@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace GoszakupParser.Parsers.GraphQlParsers
 {
@@ -16,9 +17,13 @@ namespace GoszakupParser.Parsers.GraphQlParsers
         /// </summary>
         private string AuthToken { get; }
 
-        protected GraphQlParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings)
+        /// <summary>
+        /// Generates object of given graphql parser
+        /// </summary>
+        /// <param name="parserSettings">Parser settings from configuration</param>
+        protected GraphQlParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
-            AuthToken = authToken;
+            AuthToken = Configuration.AuthToken;
         }
 
         /// <inheritdoc />

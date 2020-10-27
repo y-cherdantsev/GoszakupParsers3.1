@@ -35,11 +35,10 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// Generates object of given api parser
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="authToken">Authentication bearer token</param>
-        protected ApiParser(Configuration.ParserSettings parserSettings, string authToken) : base(
+        protected ApiParser(Configuration.ParserSettings parserSettings) : base(
             parserSettings)
         {
-            AuthToken = authToken;
+            AuthToken = Configuration.AuthToken;
         }
 
         /// <inheritdoc />
@@ -78,7 +77,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <param name="dto">Dto from Api</param>
         private async Task ProcessObject(TDto dto)
         {
-            await using var context = new AdataContext<TResultModel>(DatabaseConnections.ParsingAvroradata);
+            await using var context = new GeneralContext<TResultModel>(Configuration.ParsingDbConnectionString);
             context.ChangeTracker.AutoDetectChangesEnabled = false;
             
             var model = DtoToModel(dto);

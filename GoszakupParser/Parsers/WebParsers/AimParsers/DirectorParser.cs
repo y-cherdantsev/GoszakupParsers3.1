@@ -5,8 +5,8 @@ using AngleSharp.Html.Parser;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using System.Collections.Generic;
-using GoszakupParser.Models.WebModels;
 using GoszakupParser.Models.ParsingModels;
+using GoszakupParser.Models.ProductionModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -18,7 +18,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     /// <summary>
     /// Director Parser
     /// </summary>
-    // ReSharper disable once UnusedType.Global
+    // ReSharper disable once UnusedMember.Global
     public sealed class DirectorParser : WebAimParser<DirectorGoszakup>
     {
         /// <inheritdoc />
@@ -29,22 +29,17 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         /// <inheritdoc />
         protected override Dictionary<string, string> LoadAims()
         {
-            var aims = new Dictionary<string, string>();
-            using (var participantWebContext =
-                new AdataContext<ParticipantGoszakupWeb>(DatabaseConnections.WebAvroradata))
-            {
-                var list = participantWebContext.Models.ToList();
-                foreach (var participantGoszakupWeb in list)
-                    aims.Add(participantGoszakupWeb.Pid.ToString(), participantGoszakupWeb.BiinCompanies.ToString());
-            }
+            using var participantWebContext =
+                new GeneralContext<ParticipantGoszakupWeb>(Configuration.ProductionDbConnectionString);
+            var list = participantWebContext.Models.ToList();
 
-            return aims;
+            return list.ToDictionary(participantGoszakupWeb => participantGoszakupWeb.Pid.ToString(), participantGoszakupWeb => participantGoszakupWeb.BiinCompanies.ToString());
         }
 
         /// <inheritdoc />
         protected override async Task ParseArray(IEnumerable<string> list, WebProxy webProxy)
         {
-            await using var context = new AdataContext<DirectorGoszakup>(DatabaseConnections.WebAvroradata);
+            await using var context = new GeneralContext<DirectorGoszakup>(Configuration.ProductionDbConnectionString);
             foreach (var pid in list)
             {
                 var response = GetPage($"{Url}/{pid}", webProxy);

@@ -15,7 +15,7 @@ namespace GoszakupParser.Models.ParsingModels
 	/// <summary>
 	/// Announcement DB table object
 	/// </summary>
-	[Table("announcement_goszakup")]
+	[Table("announcement_goszakup", Schema = "avroradata")]
 	public class AnnouncementGoszakup
 	{
 		[Key] [Column("id")] public long Id{get; set;}

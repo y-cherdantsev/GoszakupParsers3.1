@@ -9,14 +9,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace GoszakupParser.Models.WebModels
+namespace GoszakupParser.Models.ProductionModels
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 10.08.2020 16:48:23
     /// <summary>
     /// Announcement Web DB table object
     /// </summary>
-    [Table("announcements")]
+    [Table("announcements", Schema = "adata_tender")]
     public class AdataAnnouncementWeb : BaseModel
     {
         [Key]

@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// <summary>
     /// Director Parsing DB table object
     /// </summary>
-    [Table("director_goszakup")]
+    [Table("director_goszakup", Schema = "avroradata")]
     public class DirectorGoszakup : BaseModel
     {
         [Key] [Column("id")] public int? Id { get; set; }

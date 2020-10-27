@@ -1,13 +1,8 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using static GoszakupParser.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 namespace GoszakupParser.Contexts
 {
@@ -18,44 +13,37 @@ namespace GoszakupParser.Contexts
     /// </summary>
     public class TenderContext : DbContext
     {
-        private DbConnectionCredential ConnectionCredentials { get; set; }
-
+        /// <summary>
+        /// Announcements table models
+        /// </summary>
         public DbSet<AnnouncementGoszakup> AnnouncementsGoszakup { get; set; }
+
+        /// <summary>
+        /// Lots table models
+        /// </summary>
         public DbSet<LotGoszakup> LotsGoszakup { get; set; }
+
+        /// <summary>
+        /// Announcement files table models
+        /// </summary>
         public DbSet<AnnouncementFileGoszakup> AnnouncementFilesGoszakups { get; set; }
+
+        /// <summary>
+        /// Lot files table models
+        /// </summary>
         public DbSet<LotFileGoszakup> LotFilesGoszakup { get; set; }
 
         /// <inheritdoc />
-        // ReSharper disable once UnusedMember.Global
-        protected TenderContext(DbContextOptions options)
-            : base(options)
+        protected internal TenderContext()
         {
-        }
-
-        /// <inheritdoc />
-        public TenderContext(DatabaseConnections databaseConnections)
-        {
-            var connectionTitle = Enum.GetName(typeof(DatabaseConnections), databaseConnections);
-            ConnectionCredentials =
-                DbConnectionCredentialsStatic.FirstOrDefault(x =>
-                    x.Title == connectionTitle);
         }
 
         /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (ConnectionCredentials != null)
-                optionsBuilder.UseNpgsql(
-                    $"Server = {ConnectionCredentials.Address}; " +
-                    $"Database = {ConnectionCredentials.Name}; Port={ConnectionCredentials.Port}; " +
-                    $"User ID = {ConnectionCredentials.Username}; " +
-                    $"Password = {ConnectionCredentials.Password}; " +
-                    $"Search Path = {ConnectionCredentials.SearchPath}; " +
-                    "Integrated Security=true; " +
-                    "Pooling=true; " +
-                    $"Application Name={Title};");
-            else
-                throw new NullReferenceException("Cannot find such connection credentials");
+            optionsBuilder.UseNpgsql(
+                $"{Configuration.ParsingDbConnectionString}" +
+                $"Application Name={Configuration.Title};");
         }
     }
 }

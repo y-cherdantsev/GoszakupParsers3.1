@@ -12,12 +12,12 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Unscrupulous Parser
     /// </summary>
-    // ReSharper disable once UnusedType.Global
+    // ReSharper disable once UnusedMember.Global
     public sealed class UnscrupulousParser : ApiSequentialParser<UnscrupulousDto, UnscrupulousGoszakup>
     {
         /// <inheritdoc />
-        public UnscrupulousParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        public UnscrupulousParser(Configuration.ParserSettings parserSettings) : base(
+            parserSettings)
         {
         }
 

@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 // ReSharper disable CommentTypo
@@ -23,15 +22,14 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// Constructor for creating GraphQl sequential parsers
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="authToken">Parsing proxy</param>
-        protected GraphQlSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        protected GraphQlSequentialParser(Configuration.ParserSettings parserSettings) : base(
+            parserSettings)
         {
             // Get total number of elements from GraphQl api
             // ReSharper disable once VirtualMemberCallInConstructor
 
             var response = GetGraphQlResponse(GetQuery(0)).Result;
-            Total = JsonSerializer.Deserialize<GraphQlResponse<TDto>>(response).extensions.pageInfo.totalCount;
+            Total = JsonSerializer.Deserialize<GraphQlResponse<TDto>>(response)!.extensions.pageInfo.totalCount;
         }
 
         /// <summary>

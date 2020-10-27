@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using System.Collections.Generic;
-using System.Linq;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
@@ -17,7 +14,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
     /// <summary>
     /// Contract Parser
     /// </summary>
-    // ReSharper disable once UnusedType.Global
+    // ReSharper disable once UnusedMember.Global
     public class ContractParser : GraphQlSequentialParser<ContractDto>
     {
         /// <summary>
@@ -26,8 +23,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         private const string QueryTemplate =
             "{\"query\":\"query{Contract(limit:200, _AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},File{nameRu,filePath,originalName},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
 
-        public ContractParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public ContractParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
         }
 
@@ -42,7 +38,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <inheritdoc />
         protected override async Task ProcessObject(ContractDto dto)
         {
-            await using var ctx = new ContractContext(DatabaseConnections.ParsingAvroradata);
+            await using var ctx = new ContractContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
 
             long.TryParse(dto.customerBin, out var customerBin);

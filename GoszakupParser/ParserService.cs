@@ -21,11 +21,6 @@ namespace GoszakupParser
     public class ParserService
     {
         /// <summary>
-        /// Configuration defined in 'Configuration.json' file
-        /// </summary>
-        private readonly Configuration _configuration;
-
-        /// <summary>
         /// Current class logger
         /// </summary>
         private readonly Logger _logger;
@@ -33,18 +28,16 @@ namespace GoszakupParser
         /// <summary>
         /// Command line options
         /// </summary>
-        private readonly CommandLineOptions _options;
+        private readonly CommandLineOptions.Parse _options;
 
         /// <summary>
         /// Constructor of ParserService class
         /// </summary>
-        /// <param name="configuration">Parser configurations</param>
         /// <param name="options">Parsed command line options</param>
         /// <returns></returns>
-        public ParserService(Configuration configuration, CommandLineOptions options)
+        public ParserService(CommandLineOptions.Parse options)
         {
             _options = options;
-            _configuration = configuration;
             _logger = LogManager.GetCurrentClassLogger();
         }
 
@@ -83,8 +76,11 @@ namespace GoszakupParser
                 .FirstOrDefault(t => t.Name == parserName + "Parser");
 
             // Get parser configuration
-            var parserConfiguration = _configuration.Parsers.FirstOrDefault(x => x.Name.Equals(parserName));
+            var parserConfiguration = Configuration.Parsers.FirstOrDefault(x => x.Name.Equals(parserName));
 
+            // Redefine number of threads if needed
+            if (_options.Threads != 0)
+                parserConfiguration!.Threads = _options.Threads;
 
             // Initializing and starting parser
 
@@ -98,9 +94,6 @@ namespace GoszakupParser
                 {
                     case "parserSettings":
                         args.Add(parserConfiguration);
-                        break;
-                    case "authToken":
-                        args.Add(_configuration.AuthToken);
                         break;
                 }
             }
@@ -140,10 +133,10 @@ namespace GoszakupParser
         private bool Exists(string parserName)
         {
             using var parserMonitoringContext =
-                new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
+                new GeneralContext<ParserMonitoring>(Configuration.ParsingDbConnectionString);
 
             // Check if parser exist in map dictionary
-            var existInDictionary = _configuration.ParserMonitoringNames.Keys
+            var existInDictionary = Configuration.ParserMonitoringNames.Keys
                 .Any(x => x.Equals(parserName));
             if (!existInDictionary)
             {
@@ -153,7 +146,7 @@ namespace GoszakupParser
 
             // Check if parser exist in monitoring table
             var existsInDatabase = parserMonitoringContext.Models
-                .Any(x => x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
+                .Any(x => x.Name.Equals(Configuration.ParserMonitoringNames[parserName]));
             if (!existsInDatabase)
             {
                 _logger.Warn($"Parser '{parserName}' doesn't exist in database");
@@ -172,7 +165,7 @@ namespace GoszakupParser
             }
 
             // Check if parser exist in configuration
-            var existConfiguration = _configuration.Parsers
+            var existConfiguration = Configuration.Parsers
                 .Any(x => x.Name.Equals(parserName));
             if (!existConfiguration)
             {
@@ -195,17 +188,17 @@ namespace GoszakupParser
                 return true;
 
             using var parserMonitoringContext =
-                new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
+                new GeneralContext<ParserMonitoring>(Configuration.ParsingDbConnectionString);
 
             // Check 'active' field in monitoring table
             var isActive = parserMonitoringContext.Models
                 .FirstOrDefault(x =>
-                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]
+                    x.Name.Equals(Configuration.ParserMonitoringNames[parserName]
                     ) && x.Active) != null;
 
             if (!isActive)
             {
-                _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' is not active");
+                _logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' is not active");
                 return false;
             }
 
@@ -214,16 +207,16 @@ namespace GoszakupParser
 
             // Check 'parsed' field in monitoring table
             var isParsed = parserMonitoringContext.Models
-                .FirstOrDefault(x => x.Name.Equals(_configuration.ParserMonitoringNames[parserName]))?.Parsed;
+                .FirstOrDefault(x => x.Name.Equals(Configuration.ParserMonitoringNames[parserName]))?.Parsed;
 
             switch (isParsed)
             {
                 case true:
                     _logger.Warn(
-                        $"Parser '{_configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
+                        $"Parser '{Configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
                     return false;
                 case null:
-                    _logger.Warn($"Parser '{_configuration.ParserMonitoringNames[parserName]}' now proceeding");
+                    _logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' now proceeding");
                     return false;
             }
 
@@ -238,10 +231,10 @@ namespace GoszakupParser
         private async Task ChangeParsedField(string parserName, bool? flag)
         {
             // Update data in monitoring table
-            var parserMonitoringContext = new AdataContext<ParserMonitoring>(DatabaseConnections.ParsingMonitoring);
+            var parserMonitoringContext = new GeneralContext<ParserMonitoring>(Configuration.ParsingDbConnectionString);
             var parsed =
                 parserMonitoringContext.Models.FirstOrDefault(x =>
-                    x.Name.Equals(_configuration.ParserMonitoringNames[parserName]));
+                    x.Name.Equals(Configuration.ParserMonitoringNames[parserName]));
 
             // ReSharper disable PossibleNullReferenceException
             // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
@@ -251,7 +244,7 @@ namespace GoszakupParser
             // ReSharper restore PossibleNullReferenceException
             parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
-            _logger.Info($"{_configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
+            _logger.Info($"{Configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
                 .Replace("''", "'null'"));
             await parserMonitoringContext.DisposeAsync();
         }
