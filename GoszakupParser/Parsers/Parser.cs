@@ -61,7 +61,6 @@ namespace GoszakupParser.Parsers
             Threads = parserSettings.Threads;
             Url = parserSettings.Url;
 
-
             // Load proxies for parser
             var parserMonitoringContext = new AdataContext<Proxy>(DatabaseConnections.ParsingMonitoring);
             var proxiesDto = parserMonitoringContext.Models.Where(x => x.Status == true).ToList();
