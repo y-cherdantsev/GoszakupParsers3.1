@@ -72,13 +72,10 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                     tasks.Clear();
 
                     // Processing objects and loading them into DB
-                    for (var i = 0; i < Threads; i++)
-                        tasks.Add(ProcessObjects(DivideList((IEnumerable<object>) apiResponse?.items, i)));
+                    tasks.Add(ProcessObjects((IEnumerable<object>) apiResponse?.items));
 
                     lock (Lock)
-                    {
                         if (apiResponse != null) Total -= apiResponse.items.Count;
-                    }
 
                     // If Url == "" then finish parsing
                     if (Url != "" && !StopCondition(apiResponse)) continue;

@@ -94,21 +94,6 @@ namespace GoszakupParser.Parsers
             x => System.Text.Encoding.ASCII.GetBytes(x).Sum(Convert.ToInt32) % Threads == threadNumber).ToArray();
 
         /// <summary>
-        /// Gets part of list of objects for the given thread
-        /// </summary>
-        /// <param name="list">List that should be divided</param>
-        /// <param name="threadNumber">Number of current thread</param>
-        /// <returns>Array of elements</returns>
-        protected IEnumerable<object> DivideList(IEnumerable<object> list, int threadNumber)
-        {
-            /*
-             * Splitting based on index of an object in list
-             */
-            var enumerable = list.ToList();
-            return enumerable.Where(x => enumerable.IndexOf(x) % Threads == threadNumber).ToArray();
-        }
-
-        /// <summary>
         /// Determines when the parser should be stopped
         /// </summary>
         /// <param name="checkElement">Element that will determine if parsing should be stopped</param>

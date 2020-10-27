@@ -2,6 +2,7 @@
 using Npgsql;
 using RestSharp;
 using System.Net;
+using System.Linq;
 using System.Threading;
 using GoszakupParser.Models;
 using System.Threading.Tasks;
@@ -9,8 +10,9 @@ using GoszakupParser.Contexts;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-// ReSharper disable StringLiteralTypo
 // ReSharper disable CommentTypo
+// ReSharper disable StringLiteralTypo
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 // ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.ApiParsers
@@ -56,20 +58,31 @@ namespace GoszakupParser.Parsers.ApiParsers
         /// <param name="entities">List of parsed elements</param>
         protected async Task ProcessObjects(IEnumerable<object> entities)
         {
-            await using var context = new AdataContext<TResultModel>(DatabaseConnections.ParsingAvroradata);
+            var tasks = new List<Task>();
+            
             foreach (TDto dto in entities)
-                await ProcessObject(dto, context);
+            {
+                tasks.Add(ProcessObject(dto));
+                if (tasks.Count < Threads) continue;
+                await Task.WhenAny(tasks);
+                tasks.Where(x => x.IsFaulted).ToList().ForEach(x => Logger.Error(x.Exception));
+                tasks.RemoveAll(x => x.IsCompleted);
+            }
+
+            await Task.WhenAll(tasks);
         }
 
         /// <summary>
         /// Converts dto into model and inserts it into DB
         /// </summary>
         /// <param name="dto">Dto from Api</param>
-        /// <param name="context">Parsing DB context</param>
-        private async Task ProcessObject(TDto dto, AdataContext<TResultModel> context)
+        private async Task ProcessObject(TDto dto)
         {
+            await using var context = new AdataContext<TResultModel>(DatabaseConnections.ParsingAvroradata);
+            context.ChangeTracker.AutoDetectChangesEnabled = false;
+            
             var model = DtoToModel(dto);
-            context.Models.Add(model);
+            await context.Models.AddAsync(model);
 
             InsertDataOperation:
             try
@@ -170,7 +183,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                             Logger.Warn($"{attempts} times, {restResponse.Content}");
                             continue;
                     }
-
+                    
                     if (restResponse.ErrorMessage != null &&
                         restResponse.ErrorMessage.Contains(
                             "An error occurred while sending the request. The response ended prematurely."))
