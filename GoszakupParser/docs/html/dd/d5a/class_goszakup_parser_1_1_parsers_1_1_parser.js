@@ -1,7 +1,6 @@
 var class_goszakup_parser_1_1_parsers_1_1_parser =
 [
     [ "Parser", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a33ed50d203ded156f6bf846863064570", null ],
-    [ "DivideList", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a3b24d0bb552c214c5c0b3bd51122faf0", null ],
     [ "DivideList", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af946309a608453ab55580130d1d72ef9", null ],
     [ "LogMessage", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#aae1b92d34f5ef388646222b1e71b02c6", null ],
     [ "ParseAsync", "dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a98db495c9922861a1cf516ad8c834246", null ],

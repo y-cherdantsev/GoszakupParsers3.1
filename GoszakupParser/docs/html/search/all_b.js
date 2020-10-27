@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['name_75',['Name',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a476fb297a0d3481259dbc3d1fd8b15ee',1,'GoszakupParser::Configuration::ParserSettings']]],
-  ['noerror_76',['NoError',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a5e80f40f7428570076dd38602454f9e2',1,'GoszakupParser::CommandLineOptions']]],
-  ['nofatal_77',['NoFatal',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#ae92bff3063975af41c39f9dd7734f3bf',1,'GoszakupParser::CommandLineOptions']]],
-  ['noinfo_78',['NoInfo',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a6c6051d84115abb34c88e657a6808fba',1,'GoszakupParser::CommandLineOptions']]],
-  ['notrace_79',['NoTrace',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#ac31ea324c392992c94ff73da61cdbd07',1,'GoszakupParser::CommandLineOptions']]],
-  ['nowarn_80',['NoWarn',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a76ecfabe4e3ad83aeab113a0abd70294',1,'GoszakupParser::CommandLineOptions']]]
+  ['name_83',['Name',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a476fb297a0d3481259dbc3d1fd8b15ee',1,'GoszakupParser.Configuration.ParserSettings.Name()'],['../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html#ab41299c29c6c4ee270dd9ab7bc5b698b',1,'GoszakupParser.Configuration.DownloaderSettings.Name()']]],
+  ['noerror_84',['NoError',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a040303b14b1975d0e2dba08acbb90abf',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['nofatal_85',['NoFatal',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a266409713899adc3bccbeae3bb5e46eb',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['noinfo_86',['NoInfo',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#af67a2ce3cf4707151a7071a27523a8ab',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['notrace_87',['NoTrace',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#ac877c15321e6e8fbeeed67a9e82b1cb5',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['nowarn_88',['NoWarn',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a684010374d85c47e640209a8a6d5ef6c',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]]
 ];

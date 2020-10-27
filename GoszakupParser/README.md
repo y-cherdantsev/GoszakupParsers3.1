@@ -1,4 +1,4 @@
-![alternativetext](./goszakup_logo.png)
+![alternativetext](./../Resources/goszakup_logo.png)
 # Goszakup Parser
 
 ## Проект включает в себя парсеры:

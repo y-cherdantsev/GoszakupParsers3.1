@@ -1,4 +1,0 @@
-var class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_type =
-[
-    [ "nameRu", "dc/dc0/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_1_1_contract_unit_plan_1_1_contract_type.html#ac249b0400868647b80d50c95c35a5034", null ]
-];

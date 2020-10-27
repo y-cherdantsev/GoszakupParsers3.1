@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 <p>Parent parsing class for creating parser based on this class  
  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#details">Подробнее...</a></p>
 
-<p>Производные классы:<a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../dc/dc0/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_graph_ql_parser.html">GoszakupParser.Parsers.GraphQlParsers.GraphQlParser&lt; TDto &gt;</a> и <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a>.</p>
+<p>Производные классы:<a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../dc/dc0/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_graph_ql_parser.html">GoszakupParser.Parsers.GraphQlParsers.GraphQlParser</a> и <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
@@ -116,9 +116,6 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 <tr class="memitem:af946309a608453ab55580130d1d72ef9"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af946309a608453ab55580130d1d72ef9">DivideList</a> (IEnumerable&lt; string &gt; list, int threadNumber)</td></tr>
 <tr class="memdesc:af946309a608453ab55580130d1d72ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets part of list of strings for the given thread  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af946309a608453ab55580130d1d72ef9">Подробнее...</a><br /></td></tr>
 <tr class="separator:af946309a608453ab55580130d1d72ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b24d0bb552c214c5c0b3bd51122faf0"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a3b24d0bb552c214c5c0b3bd51122faf0">DivideList</a> (IEnumerable&lt; object &gt; list, int threadNumber)</td></tr>
-<tr class="memdesc:a3b24d0bb552c214c5c0b3bd51122faf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets part of list of objects for the given thread  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a3b24d0bb552c214c5c0b3bd51122faf0">Подробнее...</a><br /></td></tr>
-<tr class="separator:a3b24d0bb552c214c5c0b3bd51122faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af376cf0f2ca28627c58647d47a3b92b6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af376cf0f2ca28627c58647d47a3b92b6">StopCondition</a> (object checkElement)</td></tr>
 <tr class="memdesc:af376cf0f2ca28627c58647d47a3b92b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines when the parser should be stopped  <a href="../../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#af376cf0f2ca28627c58647d47a3b92b6">Подробнее...</a><br /></td></tr>
 <tr class="separator:af376cf0f2ca28627c58647d47a3b92b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,54 +187,8 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 </div>
 </div>
 <h2 class="groupheader">Методы</h2>
-<a id="a3b24d0bb552c214c5c0b3bd51122faf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b24d0bb552c214c5c0b3bd51122faf0">&#9670;&nbsp;</a></span>DivideList() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IEnumerable&lt;object&gt; GoszakupParser.Parsers.Parser.DivideList </td>
-          <td>(</td>
-          <td class="paramtype">IEnumerable&lt; object &gt;&#160;</td>
-          <td class="paramname"><em>list</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>threadNumber</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets part of list of objects for the given thread </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>List that should be divided</td></tr>
-    <tr><td class="paramname">threadNumber</td><td>Number of current thread</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Array of elements</dd></dl>
-
-</div>
-</div>
 <a id="af946309a608453ab55580130d1d72ef9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af946309a608453ab55580130d1d72ef9">&#9670;&nbsp;</a></span>DivideList() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af946309a608453ab55580130d1d72ef9">&#9670;&nbsp;</a></span>DivideList()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -336,7 +287,7 @@ $(document).ready(function(){initNavTree('dd/d5a/class_goszakup_parser_1_1_parse
 
 <p>Starts parsing </p>
 
-<p>Замещается в <a class="el" href="../../d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html#ab2688c45f1a127909bbce44efb2cb292">GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser&lt; TDto &gt;</a>, <a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html#abe92f0280d459154c222f1c2e21f96fd">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a5c51d37bc2c16185181d500db4eded86">GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#acc69ac548fcd80f800c0023dbb9b3d7f">GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser&lt; TModel &gt;</a>, <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a36bdbc1a09578a6083424d320e6e7819">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a> и <a class="el" href="../../dc/dc0/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_graph_ql_parser.html#a59f549f17ba01bad9096c967ecc2d648">GoszakupParser.Parsers.GraphQlParsers.GraphQlParser&lt; TDto &gt;</a>.</p>
+<p>Замещается в <a class="el" href="../../db/db4/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_api_parser.html#abe92f0280d459154c222f1c2e21f96fd">GoszakupParser.Parsers.ApiParsers.ApiParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html#ab2688c45f1a127909bbce44efb2cb292">GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser&lt; TDto &gt;</a>, <a class="el" href="../../d5/d94/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_api_sequential_parser.html#a5c51d37bc2c16185181d500db4eded86">GoszakupParser.Parsers.ApiParsers.SequentialParsers.ApiSequentialParser&lt; TDto, TResultModel &gt;</a>, <a class="el" href="../../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html#acc69ac548fcd80f800c0023dbb9b3d7f">GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser&lt; TModel &gt;</a>, <a class="el" href="../../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html#a36bdbc1a09578a6083424d320e6e7819">GoszakupParser.Parsers.WebParsers.WebParser&lt; TModel &gt;</a> и <a class="el" href="../../dc/dc0/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_graph_ql_parser.html#a0379dbac14f668d911e39d8f22892309">GoszakupParser.Parsers.GraphQlParsers.GraphQlParser</a>.</p>
 
 </div>
 </div>

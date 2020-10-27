@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['threads_275',['Threads',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a77cc729054f2d1290274c0561f7819a1',1,'GoszakupParser.Configuration.ParserSettings.Threads()'],['../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a5ae5609a9d7665dd82287372ba2492f5',1,'GoszakupParser.Parsers.Parser.Threads()']]],
-  ['total_276',['Total',['../dd/d5a/class_goszakup_parser_1_1_parsers_1_1_parser.html#a1cfc57dc010ba7355c8e43fef4731482',1,'GoszakupParser::Parsers::Parser']]],
-  ['truncate_277',['Truncate',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a93646aa4004b8f19106bbaf72b0fc4e7',1,'GoszakupParser::CommandLineOptions']]]
+  ['name_280',['Name',['../d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html#a476fb297a0d3481259dbc3d1fd8b15ee',1,'GoszakupParser.Configuration.ParserSettings.Name()'],['../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html#ab41299c29c6c4ee270dd9ab7bc5b698b',1,'GoszakupParser.Configuration.DownloaderSettings.Name()']]],
+  ['noerror_281',['NoError',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a040303b14b1975d0e2dba08acbb90abf',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['nofatal_282',['NoFatal',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a266409713899adc3bccbeae3bb5e46eb',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['noinfo_283',['NoInfo',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#af67a2ce3cf4707151a7071a27523a8ab',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['notrace_284',['NoTrace',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#ac877c15321e6e8fbeeed67a9e82b1cb5',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]],
+  ['nowarn_285',['NoWarn',['../d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html#a684010374d85c47e640209a8a6d5ef6c',1,'GoszakupParser::CommandLineOptions::GeneralOptions']]]
 ];

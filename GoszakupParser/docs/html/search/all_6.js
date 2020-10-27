@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['force_43',['Force',['../d4/da6/class_goszakup_parser_1_1_command_line_options.html#a8ecef55e248303497e13ecb304f0e144',1,'GoszakupParser::CommandLineOptions']]]
+  ['folder_46',['Folder',['../db/da1/class_goszakup_parser_1_1_command_line_options_1_1_download.html#a931ce5bd000d103c62af5d669914a474',1,'GoszakupParser.CommandLineOptions.Download.Folder()'],['../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html#ae66df620ee149229ec999bc72a660b45',1,'GoszakupParser.Configuration.DownloaderSettings.Folder()']]],
+  ['force_47',['Force',['../da/ded/class_goszakup_parser_1_1_command_line_options_1_1_parse.html#a056a1cc7e471e0ef848e04352d5d044c',1,'GoszakupParser::CommandLineOptions::Parse']]]
 ];

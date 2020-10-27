@@ -5,10 +5,8 @@ var indexSectionsWithContent =
   2: "g",
   3: "abcdegilmopstuw",
   4: "_lpq",
-  5: "d",
-  6: "pw",
-  7: "adfimnptu",
-  8: "rÐ"
+  5: "acdfilmnptu",
+  6: "rÐ"
 };
 
 var indexSectionNames =
@@ -18,10 +16,8 @@ var indexSectionNames =
   2: "namespaces",
   3: "functions",
   4: "variables",
-  5: "enums",
-  6: "enumvalues",
-  7: "properties",
-  8: "pages"
+  5: "properties",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -31,9 +27,7 @@ var indexSectionLabels =
   2: "Пространства имен",
   3: "Функции",
   4: "Переменные",
-  5: "Перечисления",
-  6: "Элементы перечислений",
-  7: "Свойства",
-  8: "Страницы"
+  5: "Свойства",
+  6: "Страницы"
 };
 
