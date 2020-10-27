@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using System.Collections.Generic;
+using System.Linq;
 using GoszakupParser.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
@@ -39,28 +40,10 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override async Task ProcessObjects(IEnumerable<object> entities)
+        protected override async Task ProcessObject(ContractDto dto)
         {
             await using var ctx = new ContractContext(DatabaseConnections.ParsingAvroradata);
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
-            foreach (ContractDto contract in entities)
-            {
-                try
-                {
-                    await ProcessObject(contract, ctx);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        protected override async Task ProcessObject(ContractDto dto, DbContext context)
-        {
-            var ctx = (ContractContext) context;
 
             long.TryParse(dto.customerBin, out var customerBin);
             long.TryParse(dto.supplierBiin, out var supplierBiin);

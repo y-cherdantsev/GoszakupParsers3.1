@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using RestSharp;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using RestSharp;
 
 // ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
 
 namespace GoszakupParser.Parsers.GraphQlParsers
 {
-    public abstract class GraphQlParser<TDto> : Parser
+    public abstract class GraphQlParser : Parser
     {
         /// <summary>
         /// Authentication bearer token
@@ -26,19 +24,6 @@ namespace GoszakupParser.Parsers.GraphQlParsers
         /// <inheritdoc />
         public abstract override Task ParseAsync();
 
-        /// <summary>
-        /// Processing list of dtos
-        /// </summary>
-        /// <param name="entities">List of parsed elements</param>
-        protected abstract Task ProcessObjects(IEnumerable<object> entities);
-
-        /// <summary>
-        /// Converts dto into model and inserts it into DB
-        /// </summary>
-        /// <param name="dto">Dto from GraphQl API</param>
-        /// <param name="context">Parsing DB context</param>
-        protected abstract Task ProcessObject(TDto dto, DbContext context);
-        
         /// <summary>
         /// Gets json response from GraphQl API
         /// </summary>

@@ -41,29 +41,11 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         }
 
         /// <inheritdoc />
-        protected override async Task ProcessObjects(IEnumerable<object> entities)
+        // ReSharper disable once CognitiveComplexity
+        protected override async Task ProcessObject(TrdBuyDto dto)
         {
             await using var ctx = new TenderContext(DatabaseConnections.ParsingAvroradata);
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
-            foreach (TrdBuyDto trdBuy in entities)
-            {
-                try
-                {
-                    await ProcessObject(trdBuy, ctx);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        // ReSharper disable once CognitiveComplexity
-        protected override async Task ProcessObject(TrdBuyDto dto, DbContext context)
-        {
-            var ctx = (TenderContext) context;
             
             long.TryParse(dto.orgBin, out var orgBin);
             DateTime.TryParse(dto.startDate, out var startDate);

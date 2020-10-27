@@ -12,7 +12,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 // ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
 {
-    public abstract class GraphQlSequentialParser<TDto> : GraphQlParser<TDto>
+    public abstract class GraphQlSequentialParser<TDto> : GraphQlParser
     {
         /// <summary>
         /// Last parsed Id
@@ -63,8 +63,8 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     // If response is too short to be true (Used to find and fix new errors if occured)
                     // Unuseful now
                     // if (response.Length < 500)
-                        // throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
-                    
+                    // throw new Exception($"Unknown error, Url: {Url}; Response: {response}");
+
                     // Deserializes json into api response object
                     response = response.Replace(typeof(TDto).Name.Replace("Dto", string.Empty), "items");
                     var graphQlResponse = JsonConvert.DeserializeObject<GraphQlResponse<TDto>>(response);
@@ -81,9 +81,8 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     // Processing objects and loading them into DB
                     if (graphQlResponse.data.items != null)
                     {
-                        for (var i = 0; i < Threads; i++)
-                            tasks.Add(ProcessObjects(
-                                DivideList((IEnumerable<object>) graphQlResponse.data.items, i)));
+                        tasks.Add(ProcessObjects(
+                            (IEnumerable<object>) graphQlResponse.data.items));
 
                         lock (Lock)
                         {
@@ -113,10 +112,29 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
             Logger.Info("Parsing done");
         }
 
-        /// <inheritdoc />
-        protected abstract override Task ProcessObjects(IEnumerable<object> entities);
+        /// <summary>
+        /// Processing list of dtos
+        /// </summary>
+        /// <param name="entities">List of parsed elements</param>
+        private async Task ProcessObjects(IEnumerable<object> entities)
+        {
+            var tasks = new List<Task>();
+            foreach (TDto dto in entities)
+            {
+                tasks.Add(ProcessObject(dto));
+                if (tasks.Count < Threads) continue;
+                await Task.WhenAny(tasks);
+                tasks.Where(x => x.IsFaulted).ToList().ForEach(x => Logger.Error(x.Exception));
+                tasks.RemoveAll(x => x.IsCompleted);
+            }
 
-        /// <inheritdoc />
-        protected abstract override Task ProcessObject(TDto dto, DbContext context);
+            await Task.WhenAll(tasks);
+        }
+
+        /// <summary>
+        /// Converts dto into model and inserts it into DB
+        /// </summary>
+        /// <param name="dto">Dto from GraphQl API</param>
+        protected abstract Task ProcessObject(TDto dto);
     }
 }
