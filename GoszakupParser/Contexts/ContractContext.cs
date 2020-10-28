@@ -2,6 +2,8 @@
 using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Contexts
 {

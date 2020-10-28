@@ -16,7 +16,7 @@ namespace GoszakupParser.Contexts
         /// <summary>
         /// 
         /// </summary>
-        public string ConnectionString { get; set; }
+        private string ConnectionString { get; }
 
         /// <summary>
         /// Set of models loaded by created context
