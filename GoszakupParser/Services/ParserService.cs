@@ -71,7 +71,7 @@ namespace GoszakupParser.Services
 
             // Initializing and starting parser
 
-            // Generating list of arguments for a current oarser
+            // Generating list of arguments for a current parser
             var args = new List<object>();
 
             // ReSharper disable once PossibleNullReferenceException

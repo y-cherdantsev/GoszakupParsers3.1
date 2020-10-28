@@ -1,17 +1,16 @@
-﻿// ReSharper disable CommentTypo
-// ReSharper disable IdentifierTypo
-
+﻿using NLog;
 using System;
-using System.Collections.Generic;
-using System.Data;
+using RestSharp;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Linq;
+using System.Data;
+using GoszakupParser.Models;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
-using GoszakupParser.Models;
-using NLog;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
 
 namespace GoszakupParser.Downloaders
 {
@@ -36,7 +35,7 @@ namespace GoszakupParser.Downloaders
         /// Number of threads used by downloader
         /// </summary>
         protected int Threads { get; }
-        
+
         /// <summary>
         /// Folder where downloaded files will be stored
         /// </summary>
@@ -62,19 +61,24 @@ namespace GoszakupParser.Downloaders
             Logger = LogManager.GetLogger(GetType().Name, GetType());
             Threads = downloaderSettings.Threads;
             Folder = downloaderSettings.Folder;
-            
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Total = GetTotal();
-            
+
             // Load proxies for downloader
             var downloaderMonitoringContext = new GeneralContext<Proxy>(Configuration.ParsingDbConnectionString);
             var proxiesDto = downloaderMonitoringContext.Models.Where(x => x.Status == true).ToList();
             Proxies = proxiesDto.Select(proxy => new WebProxy(proxy.Address.ToString(), proxy.Port)
                     {Credentials = new NetworkCredential(proxy.Username, proxy.Password)})
-                .OrderBy(x => new Random().NextDouble()).ToArray();
+                .OrderBy(x => new Random().NextDouble())
+                //todo(Blocked IP addresses)
+                .Where(x =>
+                    x.Address.Host != "185.120.77.111" &&
+                    x.Address.Host != "185.120.77.113" &&
+                    x.Address.Host != "185.120.77.246"
+                )
+                .ToArray();
             if (Proxies.Length == 0)
                 throw new NoNullAllowedException("No proxies has been found in the system");
             downloaderMonitoringContext.Dispose();
+
 
             // ReSharper disable once StringLiteralTypo
             Configuration.Title = $"Goszakup Downloader - {GetType().Name}";
@@ -91,12 +95,11 @@ namespace GoszakupParser.Downloaders
         {
             var fullName = Path.Combine(folderPath, name);
 
-            var client = proxy == null ? new HttpClient() : new HttpClient(new HttpClientHandler {UseProxy = true, Proxy = proxy});
-            
+            var client = proxy == null ? new RestClient() : new RestClient {Proxy = proxy};
             for (var i = 0; i < 10; ++i)
             {
                 var file = new FileInfo(fullName);
-                if (file.Exists && file.Length >= 10000) break;
+                if (file.Exists && file.Length >= 10000) return;
 
                 if (file.Exists)
                     try
@@ -108,15 +111,22 @@ namespace GoszakupParser.Downloaders
                         // ignored
                     }
 
-                var result = await client.GetAsync(link);
-                await using Stream contentStream =
-                        await result.Content.ReadAsStreamAsync(),
-                    stream = new FileStream(fullName, FileMode.Create, FileAccess.Write, FileShare.None,
-                        4000000, true);
-                await contentStream.CopyToAsync(stream);
-                await contentStream.FlushAsync();
-                contentStream.Close();
+                try
+                {
+                    var response = await client.ExecuteAsync(new RestRequest(link, Method.GET));
+                    if (response.StatusCode == HttpStatusCode.Forbidden)
+                        throw new Exception($"Forbidden: '{link}'; Proxy: '{proxy!.Address}'");
+
+                    await File.WriteAllBytesAsync(fullName, response.RawBytes);
+                }
+                catch (Exception e)
+                {
+                    Logger.Warn(e.Message);
+                    await Task.Delay(5000);
+                }
             }
+
+            throw new Exception("File hasn't been loaded after 10 tries");
         }
 
         /// <summary>

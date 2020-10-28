@@ -1,9 +1,10 @@
-﻿using GoszakupParser.Models.ProductionModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using GoszakupParser.Models.ProductionModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Contexts.ProductionContexts
 {
@@ -47,17 +48,18 @@ namespace GoszakupParser.Contexts.ProductionContexts
                 $"Application Name={Configuration.Title};");
         }
 
+        /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AdataLotWeb>()
-                .HasMany(x => x.LotDocumentations)
-                .WithOne()
-                .HasForeignKey(x => x.LotId)
-                .HasPrincipalKey(x => x.Id);
-            modelBuilder.Entity<AdataAnnouncementWeb>()
-                .HasMany(x => x.AnnouncementDocumentations)
-                .WithOne()
+            modelBuilder.Entity<AnnouncementDocumentationWeb>()
+                .HasOne(x => x.Announcement)
+                .WithMany()
                 .HasForeignKey(x => x.AnnouncementId)
+                .HasPrincipalKey(x => x.Id);
+            modelBuilder.Entity<LotDocumentationWeb>()
+                .HasOne(x => x.Lot)
+                .WithMany()
+                .HasForeignKey(x => x.LotId)
                 .HasPrincipalKey(x => x.Id);
         }
     }

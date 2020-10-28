@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoszakupParser.Downloaders;
 
 // ReSharper disable IdentifierTypo
 
@@ -27,7 +29,7 @@ namespace GoszakupParser.Services
         /// <inheritdoc />
         public override async Task StartService()
         {
-            Logger.Info("Starting sownloading service!");
+            Logger.Info("Starting downloading service!");
 
             // Trying to start each defined downloader sequentially in defined order
             foreach (var downloaderName in _options.Downloaders)
@@ -50,7 +52,44 @@ namespace GoszakupParser.Services
         /// <param name="downloaderName">Downloader name</param>
         private async Task ProceedDownloading(string downloaderName)
         {
-            await Task.Delay(1);
+            // Get class for parser
+            var downloadingClass = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .FirstOrDefault(t => t.Name == downloaderName + "Downloader");
+
+            // Get downloader configuration
+            var downloaderConfiguration = Configuration.Downloaders.FirstOrDefault(x => x.Name.Equals(downloaderName));
+
+            // Redefine number of threads if needed
+            if (_options.Threads != 0)
+                downloaderConfiguration!.Threads = _options.Threads;
+            
+            // Redefine folder if needed
+            if (_options.Folder != null)
+                downloaderConfiguration!.Folder = _options.Folder;
+
+            // Initializing and starting downloader
+
+            // Generating list of arguments for a current downloader
+            var args = new List<object>();
+
+            // ReSharper disable once PossibleNullReferenceException
+            foreach (var parameterInfo in downloadingClass.GetConstructors()[0].GetParameters())
+            {
+                switch (parameterInfo.Name)
+                {
+                    case "downloaderSettings":
+                        args.Add(downloaderConfiguration);
+                        break;
+                }
+            }
+
+            // ReSharper disable once PossibleNullReferenceException (Already checked)
+            // Creating instance of a downloader
+            var downloader = (Downloader) Activator.CreateInstance(downloadingClass, args.ToArray());
+
+            if (downloader != null) await downloader.DownloadAsync();
         }
 
 

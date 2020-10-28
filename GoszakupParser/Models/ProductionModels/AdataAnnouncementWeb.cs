@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -42,8 +41,6 @@ namespace GoszakupParser.Models.ProductionModels
         [Column("phone_number")] public string PhoneNumber { get; set; }
         [Column("flag_prequalification")] public bool FlagPrequalification { get; set; }
         [Column("tender_priority_id")] public long? TenderPriorityId { get; set; }
-        // ReSharper disable once CollectionNeverUpdated.Global
-        public List<AnnouncementDocumentationWeb> AnnouncementDocumentations { get; set; }
     }
 
     /// @author Yevgeniy Cherdantsev
@@ -51,14 +48,14 @@ namespace GoszakupParser.Models.ProductionModels
     /// <summary>
     /// Announcement Documentations Web DB table object
     /// </summary>
-    [Table("announcement_documentations")]
+    [Table("announcement_documentations", Schema = "adata_tender")]
     public class AnnouncementDocumentationWeb
     {
         [Key] [Column("id")] public int? Id { get; set; }
         [Column("documentation_type_id")] public int? DocumentationTypeId { get; set; }
         [Column("location")] public string Location { get; set; }
         [Column("relevance_date")] public DateTime? RelevanceDate { get; set; }
-        [Column("announcement_id")] public int? AnnouncementId { get; set; }
+        [Column("announcement_id")] public long AnnouncementId { get; set; }
         [Column("source_link")] public string SourceLink { get; set; }
         [Column("name")] public string Name { get; set; }
         public AdataAnnouncementWeb Announcement { get; set; }

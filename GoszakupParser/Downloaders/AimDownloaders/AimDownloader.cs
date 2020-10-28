@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 // ReSharper disable IdentifierTypo
 
 namespace GoszakupParser.Downloaders.AimDownloaders
 {
-    public abstract class AimDownloader <TAim> : Downloader
+    public abstract class AimDownloader : Downloader
     {
-        private readonly List<TAim> _aims;
+        private readonly List<DownloadAim> _aims;
         
         /// <summary>
         /// Generates object of given aim downloader
@@ -22,33 +20,27 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             // ReSharper disable once VirtualMemberCallInConstructor
             _aims = LoadAims();
             Total = _aims.Count;
+            Logger.Info($"{Total} aims has been found");
         }
 
         /// <summary>
         /// Loads list of aims for downloading
         /// </summary>
         /// <returns>List of aims</returns>
-        protected abstract List<TAim> LoadAims();
+        protected abstract List<DownloadAim> LoadAims();
 
         /// <summary>
         /// Generates file name from aim
         /// </summary>
         /// <param name="aim">Aim for downloading</param>
         /// <returns>File name</returns>
-        protected abstract string GenerateFileName(TAim aim);
-
-        /// <summary>
-        /// Gets link from aim
-        /// </summary>
-        /// <param name="aim">Aim for downloading</param>
-        /// <returns>Link to the file</returns>
-        protected abstract string GetLink(TAim aim);
+        protected abstract string GenerateFileName(DownloadAim aim);
 
         /// <summary>
         /// Saves path to file into Db
         /// </summary>
         /// <param name="aim">Aim for downloading</param>
-        protected abstract Task SavePathToDb(TAim aim);
+        protected abstract Task SavePathToDb(DownloadAim aim);
         
         /// <inheritdoc />
         public override async Task DownloadAsync()
@@ -79,24 +71,34 @@ namespace GoszakupParser.Downloaders.AimDownloaders
         /// </summary>
         /// <param name="aim">Aim for download</param>
         /// <param name="proxy">WebProxy if needed</param>
-        private async Task ProceedAim(TAim aim, WebProxy proxy = null)
+        private async Task ProceedAim(DownloadAim aim, WebProxy proxy = null)
         {
-            Logger.Info(LogMessage());
             var fileName = GenerateFileName(aim);
-            var link = GetLink(aim);
             try
             {
-                await SaveFileAsync(link, Folder,  fileName, proxy);
+                await SaveFileAsync(aim.Link, Folder,  fileName, proxy);
                 await SavePathToDb(aim);
                 lock (Lock)
                 {
                     --Total; 
+                    Logger.Trace(LogMessage());
                 }
+                await Task.Delay(500);
             }
             catch (Exception e)
             {
-                Logger.Error(e.Message);
+                Logger.Error(e);
             }
         }
+    }
+
+    /// <summary>
+    /// Class for creating aim objects
+    /// </summary>
+    public class DownloadAim
+    {
+        public string Link { get; set; }
+        public string Name { get; set; }
+        
     }
 }

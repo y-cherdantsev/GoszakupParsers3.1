@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,7 +21,6 @@ namespace GoszakupParser.Models.ProductionModels
     public class AdataLotWeb : BaseModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public long Id { get; set; }
 
@@ -47,8 +45,6 @@ namespace GoszakupParser.Models.ProductionModels
         [Column("source_link")] public string SourceLink { get; set; }
         [Column("relevance_date")] public DateTime RelevanceDate { get; set; } = DateTime.Now;
         [Column("flag_prequalification")] public bool FlagPrequalification { get; set; }
-        // ReSharper disable once CollectionNeverUpdated.Global
-        public List<LotDocumentationWeb> LotDocumentations { get; set; }
     }
     
     /// @author Yevgeniy Cherdantsev
@@ -59,11 +55,11 @@ namespace GoszakupParser.Models.ProductionModels
     [Table("lot_documentations", Schema = "adata_tender")]
     public class LotDocumentationWeb
     {
-        [Key] [Column("id")] public int? Id { get; set; }
+        [Key] [DatabaseGenerated(DatabaseGeneratedOption.None)] [Column("id")] public int? Id { get; set; }
         [Column("documentation_type_id")] public int? DocumentationTypeId { get; set; }
         [Column("location")] public string Location { get; set; }
         [Column("relevance_date")] public DateTime? RelevanceDate { get; set; }
-        [Column("lot_id")] public int? LotId { get; set; }
+        [Column("lot_id")] public long LotId { get; set; }
         [Column("source_link")] public string SourceLink { get; set; }
         [Column("name")] public string Name { get; set; }
         public AdataLotWeb Lot { get; set; }
