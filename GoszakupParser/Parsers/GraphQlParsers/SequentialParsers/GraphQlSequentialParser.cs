@@ -30,7 +30,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
             // Get total number of elements from GraphQl api
             // ReSharper disable once VirtualMemberCallInConstructor
 
-            var response = GetGraphQlResponse(GetQuery(0)).Result;
+            var response = GetGraphQlResponse(GetQuery(_lastId)).Result;
             Total = JsonSerializer.Deserialize<GraphQlResponse<TDto>>(response).extensions.pageInfo.totalCount;
         }
 
