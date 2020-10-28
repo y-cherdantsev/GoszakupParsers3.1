@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 // ReSharper disable StringLiteralTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Models.ProductionModels
 {
@@ -44,5 +47,25 @@ namespace GoszakupParser.Models.ProductionModels
         [Column("source_link")] public string SourceLink { get; set; }
         [Column("relevance_date")] public DateTime RelevanceDate { get; set; } = DateTime.Now;
         [Column("flag_prequalification")] public bool FlagPrequalification { get; set; }
+        // ReSharper disable once CollectionNeverUpdated.Global
+        public List<LotDocumentationWeb> LotDocumentations { get; set; }
+    }
+    
+    /// @author Yevgeniy Cherdantsev
+    /// @date 28.10.2020 10:37:43
+    /// <summary>
+    /// Lot Documentations Web DB table object
+    /// </summary>
+    [Table("lot_documentations", Schema = "adata_tender")]
+    public class LotDocumentationWeb
+    {
+        [Key] [Column("id")] public int? Id { get; set; }
+        [Column("documentation_type_id")] public int? DocumentationTypeId { get; set; }
+        [Column("location")] public string Location { get; set; }
+        [Column("relevance_date")] public DateTime? RelevanceDate { get; set; }
+        [Column("lot_id")] public int? LotId { get; set; }
+        [Column("source_link")] public string SourceLink { get; set; }
+        [Column("name")] public string Name { get; set; }
+        public AdataLotWeb Lot { get; set; }
     }
 }

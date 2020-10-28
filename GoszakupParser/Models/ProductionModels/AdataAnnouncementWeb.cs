@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 // ReSharper disable StringLiteralTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
+// ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GoszakupParser.Models.ProductionModels
@@ -40,8 +42,28 @@ namespace GoszakupParser.Models.ProductionModels
         [Column("phone_number")] public string PhoneNumber { get; set; }
         [Column("flag_prequalification")] public bool FlagPrequalification { get; set; }
         [Column("tender_priority_id")] public long? TenderPriorityId { get; set; }
+        // ReSharper disable once CollectionNeverUpdated.Global
+        public List<AnnouncementDocumentationWeb> AnnouncementDocumentations { get; set; }
     }
 
+    /// @author Yevgeniy Cherdantsev
+    /// @date 28.10.2020 10:52:46
+    /// <summary>
+    /// Announcement Documentations Web DB table object
+    /// </summary>
+    [Table("announcement_documentations")]
+    public class AnnouncementDocumentationWeb
+    {
+        [Key] [Column("id")] public int? Id { get; set; }
+        [Column("documentation_type_id")] public int? DocumentationTypeId { get; set; }
+        [Column("location")] public string Location { get; set; }
+        [Column("relevance_date")] public DateTime? RelevanceDate { get; set; }
+        [Column("announcement_id")] public int? AnnouncementId { get; set; }
+        [Column("source_link")] public string SourceLink { get; set; }
+        [Column("name")] public string Name { get; set; }
+        public AdataAnnouncementWeb Announcement { get; set; }
+    }
+    
     /// @author Yevgeniy Cherdantsev
     /// @date 10.08.2020 16:48:52
     /// <summary>

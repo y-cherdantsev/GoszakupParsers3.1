@@ -1,18 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using GoszakupParser.Models.ParsingModels;
+﻿using GoszakupParser.Models.ParsingModels;
+using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
+// ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace GoszakupParser.Contexts
+namespace GoszakupParser.Contexts.ParsingContexts
 {
     /// @author Yevgeniy Cherdantsev
     /// @date 26.02.2020 17:50:16
     /// <summary>
-    /// Tender DB context - used for parsing tenders
+    /// Tender Parsing DB context - used for parsing tenders
     /// </summary>
-    public class TenderContext : DbContext
+    public class ParsingTenderContext : DbContext
     {
         /// <summary>
         /// Announcements table models
@@ -35,7 +36,7 @@ namespace GoszakupParser.Contexts
         public DbSet<LotFileGoszakup> LotFilesGoszakup { get; set; }
 
         /// <inheritdoc />
-        protected internal TenderContext()
+        protected internal ParsingTenderContext()
         {
         }
 

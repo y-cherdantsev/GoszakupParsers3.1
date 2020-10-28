@@ -4,8 +4,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using GoszakupParser.Models;
@@ -34,6 +36,11 @@ namespace GoszakupParser.Downloaders
         /// Number of threads used by downloader
         /// </summary>
         protected int Threads { get; }
+        
+        /// <summary>
+        /// Folder where downloaded files will be stored
+        /// </summary>
+        protected string Folder { get; }
 
         /// <summary>
         /// Proxies for sending requests
@@ -54,7 +61,11 @@ namespace GoszakupParser.Downloaders
             // Initializes logger of derived class using overrode function
             Logger = LogManager.GetLogger(GetType().Name, GetType());
             Threads = downloaderSettings.Threads;
-
+            Folder = downloaderSettings.Folder;
+            
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Total = GetTotal();
+            
             // Load proxies for downloader
             var downloaderMonitoringContext = new GeneralContext<Proxy>(Configuration.ParsingDbConnectionString);
             var proxiesDto = downloaderMonitoringContext.Models.Where(x => x.Status == true).ToList();
@@ -70,29 +81,48 @@ namespace GoszakupParser.Downloaders
         }
 
         /// <summary>
-        /// Starts parsing
+        /// Saves file in defined folder
         /// </summary>
-        public abstract Task ParseAsync();
+        /// <param name="link">Link to the file</param>
+        /// <param name="folderPath">Path to the storage folder</param>
+        /// <param name="name">Name of the file</param>
+        /// <param name="proxy">WebProxy that will be used while downloading file</param>
+        protected async Task SaveFileAsync(string link, string folderPath, string name, WebProxy proxy = null)
+        {
+            var fullName = Path.Combine(folderPath, name);
+
+            var client = proxy == null ? new HttpClient() : new HttpClient(new HttpClientHandler {UseProxy = true, Proxy = proxy});
+            
+            for (var i = 0; i < 10; ++i)
+            {
+                var file = new FileInfo(fullName);
+                if (file.Exists && file.Length >= 10000) break;
+
+                if (file.Exists)
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+
+                var result = await client.GetAsync(link);
+                await using Stream contentStream =
+                        await result.Content.ReadAsStreamAsync(),
+                    stream = new FileStream(fullName, FileMode.Create, FileAccess.Write, FileShare.None,
+                        4000000, true);
+                await contentStream.CopyToAsync(stream);
+                await contentStream.FlushAsync();
+                contentStream.Close();
+            }
+        }
 
         /// <summary>
-        /// Gets part of list of strings for the given thread
+        /// Starts downloading
         /// </summary>
-        /// <code>
-        /// Splitting based on counting ASCII representations of all characters and counting modulus with Threads numbers
-        /// Lists might not be fully equal to each other by count, but it's easy and effective method of dividing of large lists
-        /// </code>
-        /// <param name="list">List that should be divided</param>
-        /// <param name="threadNumber">Number of current thread</param>
-        /// <returns>Array of elements</returns>
-        protected IEnumerable<string> DivideList(IEnumerable<string> list, int threadNumber) => list.Where(
-            x => System.Text.Encoding.ASCII.GetBytes(x).Sum(Convert.ToInt32) % Threads == threadNumber).ToArray();
-
-        /// <summary>
-        /// Determines when the parser should be stopped
-        /// </summary>
-        /// <param name="checkElement">Element that will determine if parsing should be stopped</param>
-        /// <returns>True, if parser should be stopped</returns>
-        protected virtual bool StopCondition(object checkElement) => false;
+        public abstract Task DownloadAsync();
 
         /// <summary>
         /// Determines the message that will be showed after each iteration

@@ -14,7 +14,7 @@ namespace GoszakupParser
     /// <summary>
     /// Configuration class
     /// </summary>
-    public sealed class Configuration
+    public static class Configuration
     {
         /// <summary>
         /// Goszakup authentication bearer token
@@ -98,7 +98,7 @@ namespace GoszakupParser
             /// Number of working threads (affects speed)
             /// </summary>
             public int Threads { get; set; }
-            
+
             /// <summary>
             /// Folder path where documentation are stored
             /// </summary>

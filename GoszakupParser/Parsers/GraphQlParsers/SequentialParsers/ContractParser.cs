@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
+using GoszakupParser.Contexts.ParsingContexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -38,7 +38,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <inheritdoc />
         protected override async Task ProcessObject(ContractDto dto)
         {
-            await using var ctx = new ContractContext();
+            await using var ctx = new ParsingContractContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
 
             long.TryParse(dto.customerBin, out var customerBin);

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using System.Collections.Generic;
+using GoszakupParser.Contexts.ParsingContexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
 
@@ -42,7 +42,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         // ReSharper disable once CognitiveComplexity
         protected override async Task ProcessObject(TrdBuyDto dto)
         {
-            await using var ctx = new TenderContext();
+            await using var ctx = new ParsingTenderContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
             
             long.TryParse(dto.orgBin, out var orgBin);
