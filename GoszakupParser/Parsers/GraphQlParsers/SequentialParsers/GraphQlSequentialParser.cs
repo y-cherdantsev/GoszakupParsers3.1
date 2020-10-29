@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 // ReSharper disable CommentTypo
@@ -17,7 +16,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <summary>
         /// Last parsed Id
         /// </summary>
-        private int _lastId = 7533127;
+        private int _lastId;
 
         /// <summary>
         /// Constructor for creating GraphQl sequential parsers
