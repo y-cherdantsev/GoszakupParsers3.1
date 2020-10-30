@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// <summary>
     /// Unscrupulous Parsing DB table object
     /// </summary>
-    [Table("unscrupulous_goszakup")]
+    [Table("unscrupulous_goszakup", Schema = "avroradata")]
     public class UnscrupulousGoszakup : BaseModel
     {
         [Key] [Column("pid")] public int? Pid { get; set; }

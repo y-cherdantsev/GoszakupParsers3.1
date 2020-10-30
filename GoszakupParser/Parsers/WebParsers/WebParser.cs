@@ -40,9 +40,9 @@ namespace GoszakupParser.Parsers.WebParsers
         /// </summary>
         /// <param name="model">Model</param>
         /// <param name="context">Parsing DB context</param>
-        protected async Task ProcessObject(TModel model, AdataContext<TModel> context)
+        protected async Task ProcessObject(TModel model, GeneralContext<TModel> context)
         {
-            context.Models.Add(model);
+            await context.Models.AddAsync(model);
             InsertDataOperation:
             try
             {

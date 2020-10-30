@@ -26,18 +26,18 @@ var NAVTREE =
     [ "README", "d3/dcc/md__r_e_a_d_m_e.html", [
       [ "Goszakup Parser", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md0", [
         [ "Проект включает в себя парсеры:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
-          [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ]
+          [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ],
+          [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ]
         ] ],
-        [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ]
+        [ "Проект включает в себя загрузчики:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md4", [
+          [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md5", null ]
+        ] ],
+        [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md6", null ]
       ] ]
     ] ],
     [ "Список задач", "dd/da0/todo.html", null ],
     [ "Пакеты", "namespaces.html", [
-      [ "Пакеты", "namespaces.html", "namespaces_dup" ],
-      [ "Функции с областью видимости пакета", "namespacemembers.html", [
-        [ "Указатель", "namespacemembers.html", null ],
-        [ "Перечисления", "namespacemembers_enum.html", null ]
-      ] ]
+      [ "Пакеты", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Классы", "annotated.html", [
       [ "Классы", "annotated.html", "annotated_dup" ],
@@ -56,8 +56,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/dd0/namespace_goszakup_parser_1_1_models.html",
-"de/d25/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto_1_1_contract_un5f9fcafb6d5eff7511d2f8bbb5331c35.html#ac580d251e959261a0ae8adee00c54402"
+"d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ad94c63789c2e361152a82650df08e128",
+"dc/d97/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto_1_1_contract_unit_plan_dto.html#a1b0d4337a70f62ce54f459e704b72745"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

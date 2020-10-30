@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
 using System.Collections.Generic;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
+using GoszakupParser.Contexts.ParsingContexts;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -27,8 +26,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
             "{\"query\":\"query{TrdBuy(limit:200,_AFTER){numberAnno,nameRu,orgBin,totalSum,countLots,startDate,endDate,publishDate,RefTypeTrade{nameRu},RefTradeMethods{nameRu},RefSubjectType{nameRu},RefBuyStatus{nameRu},Files{filePath,originalName,nameRu}Lots{lotNumber,count,RefLotsStatus{nameRu}customerBin,descriptionRu,amount,nameRu,Files{filePath,originalName,nameRu},Plans{refEnstruCode,supplyDateRu,RefUnits{nameRu}PlansKato{fullDeliveryPlaceNameRu}}}}}\"}";
 
         /// <inheritdoc />
-        public TenderParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public TenderParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
         }
 
@@ -44,7 +42,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         // ReSharper disable once CognitiveComplexity
         protected override async Task ProcessObject(TrdBuyDto dto)
         {
-            await using var ctx = new TenderContext(DatabaseConnections.ParsingAvroradata);
+            await using var ctx = new ParsingTenderContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
             
             long.TryParse(dto.orgBin, out var orgBin);

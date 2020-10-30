@@ -24,10 +24,7 @@ var menudata={children:[
 {text:"Титульная страница",url:"index.html"},
 {text:"Описания",url:"pages.html"},
 {text:"Пакеты",url:"namespaces.html",children:[
-{text:"Пакеты",url:"namespaces.html"},
-{text:"Функции с областью видимости пакета",url:"namespacemembers.html",children:[
-{text:"Указатель",url:"namespacemembers.html"},
-{text:"Перечисления",url:"namespacemembers_enum.html"}]}]},
+{text:"Пакеты",url:"namespaces.html"}]},
 {text:"Классы",url:"annotated.html",children:[
 {text:"Классы",url:"annotated.html"},
 {text:"Алфавитный указатель классов",url:"classes.html"},
@@ -70,4 +67,15 @@ var menudata={children:[
 {text:"u",url:"functions_func.html#index_u"},
 {text:"w",url:"functions_func.html#index_w"}]},
 {text:"Переменные",url:"functions_vars.html"},
-{text:"Свойства",url:"functions_prop.html"}]}]}]}
+{text:"Свойства",url:"functions_prop.html",children:[
+{text:"a",url:"functions_prop.html#index_a"},
+{text:"c",url:"functions_prop.html#index_c"},
+{text:"d",url:"functions_prop.html#index_d"},
+{text:"f",url:"functions_prop.html#index_f"},
+{text:"i",url:"functions_prop.html#index_i"},
+{text:"l",url:"functions_prop.html#index_l"},
+{text:"m",url:"functions_prop.html#index_m"},
+{text:"n",url:"functions_prop.html#index_n"},
+{text:"p",url:"functions_prop.html#index_p"},
+{text:"t",url:"functions_prop.html#index_t"},
+{text:"u",url:"functions_prop.html#index_u"}]}]}]}]}

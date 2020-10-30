@@ -16,8 +16,8 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup>
     {
         /// <inheritdoc />
-        public ParticipantParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        public ParticipantParser(Configuration.ParserSettings parserSettings) : base(
+            parserSettings)
         {
         }
 

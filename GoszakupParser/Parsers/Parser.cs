@@ -1,7 +1,7 @@
 ﻿using NLog;
 using System;
-using System.Linq;
 using System.Net;
+using System.Linq;
 using System.Data;
 using GoszakupParser.Models;
 using System.Threading.Tasks;
@@ -62,7 +62,7 @@ namespace GoszakupParser.Parsers
             Url = parserSettings.Url;
 
             // Load proxies for parser
-            var parserMonitoringContext = new AdataContext<Proxy>(DatabaseConnections.ParsingMonitoring);
+            var parserMonitoringContext = new GeneralContext<Proxy>(Configuration.ParsingDbConnectionString);
             var proxiesDto = parserMonitoringContext.Models.Where(x => x.Status == true).ToList();
             Proxies = proxiesDto.Select(proxy => new WebProxy(proxy.Address.ToString(), proxy.Port)
                     {Credentials = new NetworkCredential(proxy.Username, proxy.Password)})

@@ -2,6 +2,7 @@
 
 // ReSharper disable CommentTypo
 
+// ReSharper disable once IdentifierTypo
 namespace GoszakupParser.Models
 {
     /// @author Yevgeniy Cherdantsev

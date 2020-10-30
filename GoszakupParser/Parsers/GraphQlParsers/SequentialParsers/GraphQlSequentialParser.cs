@@ -22,9 +22,8 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// Constructor for creating GraphQl sequential parsers
         /// </summary>
         /// <param name="parserSettings">Parser settings from configuration</param>
-        /// <param name="authToken">Parsing proxy</param>
-        protected GraphQlSequentialParser(Configuration.ParserSettings parserSettings, string authToken) : base(
-            parserSettings, authToken)
+        protected GraphQlSequentialParser(Configuration.ParserSettings parserSettings) : base(
+            parserSettings)
         {
             // Get total number of elements from GraphQl api
             // ReSharper disable once VirtualMemberCallInConstructor

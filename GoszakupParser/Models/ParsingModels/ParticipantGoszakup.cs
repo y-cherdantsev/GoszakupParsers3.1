@@ -14,7 +14,7 @@ namespace GoszakupParser.Models.ParsingModels
     /// <summary>
     /// Participant Parsing DB table object
     /// </summary>
-    [Table("participant_goszakup")]
+    [Table("participant_goszakup", Schema = "avroradata")]
     public class ParticipantGoszakup : BaseModel
     {
         [Key] [Column("pid")] public int? Pid { get; set; }

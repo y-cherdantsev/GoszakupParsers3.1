@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['dbconnectioncredentials_262',['DbConnectionCredentials',['../df/d41/class_goszakup_parser_1_1_configuration.html#a93f79ea753876abaa528b1fb025a495c',1,'GoszakupParser::Configuration']]],
-  ['dbconnectioncredentialsstatic_263',['DbConnectionCredentialsStatic',['../df/d41/class_goszakup_parser_1_1_configuration.html#aab35e0806180bad05a546bbc511dc351',1,'GoszakupParser::Configuration']]]
+  ['connectionstring_326',['ConnectionString',['../d0/da3/class_goszakup_parser_1_1_contexts_1_1_general_context.html#a6bd35d6c7c3261bf26ce1ba2f2914251',1,'GoszakupParser::Contexts::GeneralContext']]],
+  ['contractsgoszakup_327',['ContractsGoszakup',['../de/d9b/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_contract_context.html#a01040320fe747d8a0e38669faf4ce0d5',1,'GoszakupParser::Contexts::ParsingContexts::ParsingContractContext']]],
+  ['contractunitsgoszakup_328',['ContractUnitsGoszakup',['../de/d9b/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_contract_context.html#a235edc183d75b380e0bf779b369f7940',1,'GoszakupParser::Contexts::ParsingContexts::ParsingContractContext']]]
 ];

@@ -15,7 +15,7 @@ namespace GoszakupParser.Models
     /// <summary>
     /// parser_monitoring Parsing DB table field
     /// </summary>
-    [Table("parser_monitoring")]
+    [Table("parser_monitoring", Schema = "monitoring")]
     public sealed class ParserMonitoring : BaseModel
     {
         [Key] [Column("id")] public int? Id { get; set; }

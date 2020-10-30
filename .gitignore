@@ -3,4 +3,5 @@ obj
 publish
 .idea
 .vs
+*DotSettings.user
 Configuration.json

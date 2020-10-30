@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['aimparsers_196',['AimParsers',['../d8/dca/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers.html',1,'GoszakupParser::Parsers::WebParsers']]],
-  ['apiparsers_197',['ApiParsers',['../df/ddd/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers.html',1,'GoszakupParser::Parsers']]],
-  ['contexts_198',['Contexts',['../dc/ded/namespace_goszakup_parser_1_1_contexts.html',1,'GoszakupParser']]],
-  ['dtos_199',['Dtos',['../df/d6b/namespace_goszakup_parser_1_1_models_1_1_dtos.html',1,'GoszakupParser::Models']]],
-  ['goszakupparser_200',['GoszakupParser',['../df/dcd/namespace_goszakup_parser.html',1,'']]],
-  ['graphqlparsers_201',['GraphQlParsers',['../d7/df0/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers.html',1,'GoszakupParser::Parsers']]],
-  ['models_202',['Models',['../d5/dd0/namespace_goszakup_parser_1_1_models.html',1,'GoszakupParser']]],
-  ['parsers_203',['Parsers',['../d7/d76/namespace_goszakup_parser_1_1_parsers.html',1,'GoszakupParser']]],
-  ['parsingmodels_204',['ParsingModels',['../d6/df4/namespace_goszakup_parser_1_1_models_1_1_parsing_models.html',1,'GoszakupParser::Models']]],
-  ['sequentialparsers_205',['SequentialParsers',['../d8/d87/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers'],['../d1/d82/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.GraphQlParsers.SequentialParsers']]],
-  ['webmodels_206',['WebModels',['../d4/da9/namespace_goszakup_parser_1_1_models_1_1_web_models.html',1,'GoszakupParser::Models']]],
-  ['webparsers_207',['WebParsers',['../d4/db4/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers.html',1,'GoszakupParser::Parsers']]]
+  ['aimdownloaders_242',['AimDownloaders',['../dd/d86/namespace_goszakup_parser_1_1_downloaders_1_1_aim_downloaders.html',1,'GoszakupParser::Downloaders']]],
+  ['aimparsers_243',['AimParsers',['../d8/dca/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers.html',1,'GoszakupParser::Parsers::WebParsers']]],
+  ['apiparsers_244',['ApiParsers',['../df/ddd/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers.html',1,'GoszakupParser::Parsers']]],
+  ['contexts_245',['Contexts',['../dc/ded/namespace_goszakup_parser_1_1_contexts.html',1,'GoszakupParser']]],
+  ['downloaders_246',['Downloaders',['../d3/d77/namespace_goszakup_parser_1_1_downloaders.html',1,'GoszakupParser']]],
+  ['dtos_247',['Dtos',['../df/d6b/namespace_goszakup_parser_1_1_models_1_1_dtos.html',1,'GoszakupParser::Models']]],
+  ['goszakupparser_248',['GoszakupParser',['../df/dcd/namespace_goszakup_parser.html',1,'']]],
+  ['graphqlparsers_249',['GraphQlParsers',['../d7/df0/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers.html',1,'GoszakupParser::Parsers']]],
+  ['models_250',['Models',['../d5/dd0/namespace_goszakup_parser_1_1_models.html',1,'GoszakupParser']]],
+  ['parsers_251',['Parsers',['../d7/d76/namespace_goszakup_parser_1_1_parsers.html',1,'GoszakupParser']]],
+  ['parsingcontexts_252',['ParsingContexts',['../d8/de7/namespace_goszakup_parser_1_1_contexts_1_1_parsing_contexts.html',1,'GoszakupParser::Contexts']]],
+  ['parsingmodels_253',['ParsingModels',['../d6/df4/namespace_goszakup_parser_1_1_models_1_1_parsing_models.html',1,'GoszakupParser::Models']]],
+  ['productioncontexts_254',['ProductionContexts',['../df/d65/namespace_goszakup_parser_1_1_contexts_1_1_production_contexts.html',1,'GoszakupParser::Contexts']]],
+  ['productionmodels_255',['ProductionModels',['../d4/d26/namespace_goszakup_parser_1_1_models_1_1_production_models.html',1,'GoszakupParser::Models']]],
+  ['sequentialparsers_256',['SequentialParsers',['../d8/d87/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers'],['../d1/d82/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.GraphQlParsers.SequentialParsers']]],
+  ['services_257',['Services',['../d1/d04/namespace_goszakup_parser_1_1_services.html',1,'GoszakupParser']]],
+  ['webparsers_258',['WebParsers',['../d4/db4/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers.html',1,'GoszakupParser::Parsers']]]
 ];

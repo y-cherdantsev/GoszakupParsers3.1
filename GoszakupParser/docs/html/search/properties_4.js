@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['models_266',['Models',['../dd/de3/class_goszakup_parser_1_1_contexts_1_1_adata_context.html#ace3e16654c60f1e34a43db824bb14d50',1,'GoszakupParser::Contexts::AdataContext']]]
+  ['ignore_332',['Ignore',['../da/ded/class_goszakup_parser_1_1_command_line_options_1_1_parse.html#a1b01c1ded04e4063d08483fd498ceb66',1,'GoszakupParser::CommandLineOptions::Parse']]]
 ];

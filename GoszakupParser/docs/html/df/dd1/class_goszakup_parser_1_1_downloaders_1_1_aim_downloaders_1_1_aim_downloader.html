@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GoszakupParser: Класс GoszakupParser.Downloaders.AimDownloaders.AimDownloader</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goszakup_logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GoszakupParser
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.16 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html','../../');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-methods">Защищенные члены</a> &#124;
+<a href="#pri-methods">Закрытые члены</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
+<a href="../../d3/da1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс GoszakupParser.Downloaders.AimDownloaders.AimDownloader<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовые классы:<a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html">GoszakupParser.Downloaders.Downloader</a>.</p>
+
+<p>Производные классы:<a class="el" href="../../d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html">GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader</a> и <a class="el" href="../../dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html">GoszakupParser.Downloaders.AimDownloaders.LotDownloader</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:aca5394deb3316aa1f2a4c99ed9f3213e"><td class="memItemLeft" align="right" valign="top"><a id="aca5394deb3316aa1f2a4c99ed9f3213e"></a>
+override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#aca5394deb3316aa1f2a4c99ed9f3213e">DownloadAsync</a> ()</td></tr>
+<tr class="memdesc:aca5394deb3316aa1f2a4c99ed9f3213e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts downloading <br /></td></tr>
+<tr class="separator:aca5394deb3316aa1f2a4c99ed9f3213e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Защищенные члены</h2></td></tr>
+<tr class="memitem:aeebed0097ec6cee2a812cd2406e8b0e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#aeebed0097ec6cee2a812cd2406e8b0e8">AimDownloader</a> (<a class="el" href="../../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html">Configuration.DownloaderSettings</a> downloaderSettings)</td></tr>
+<tr class="memdesc:aeebed0097ec6cee2a812cd2406e8b0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates object of given aim downloader  <a href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#aeebed0097ec6cee2a812cd2406e8b0e8">Подробнее...</a><br /></td></tr>
+<tr class="separator:aeebed0097ec6cee2a812cd2406e8b0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4610445d29b2602900baa7e7e240ce5b"><td class="memItemLeft" align="right" valign="top">abstract List&lt; <a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#a4610445d29b2602900baa7e7e240ce5b">LoadAims</a> ()</td></tr>
+<tr class="memdesc:a4610445d29b2602900baa7e7e240ce5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads list of aims for downloading  <a href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#a4610445d29b2602900baa7e7e240ce5b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4610445d29b2602900baa7e7e240ce5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acadd56be1ad513f4b19288be450c4f6f"><td class="memItemLeft" align="right" valign="top">abstract string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#acadd56be1ad513f4b19288be450c4f6f">GenerateFileName</a> (<a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a> aim)</td></tr>
+<tr class="memdesc:acadd56be1ad513f4b19288be450c4f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates file name from aim  <a href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#acadd56be1ad513f4b19288be450c4f6f">Подробнее...</a><br /></td></tr>
+<tr class="separator:acadd56be1ad513f4b19288be450c4f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a619f05976a29aa57cf6a64c659bff088"><td class="memItemLeft" align="right" valign="top">abstract Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#a619f05976a29aa57cf6a64c659bff088">SavePathToDb</a> (<a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a> aim)</td></tr>
+<tr class="memdesc:a619f05976a29aa57cf6a64c659bff088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves path to file into Db  <a href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#a619f05976a29aa57cf6a64c659bff088">Подробнее...</a><br /></td></tr>
+<tr class="separator:a619f05976a29aa57cf6a64c659bff088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader')"><img src="../../closed.png" alt="-"/>&#160;Защищенные члены унаследованные от <a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html">GoszakupParser.Downloaders.Downloader</a></td></tr>
+<tr class="memitem:ae26eb9d34711bff8737b95a2a59ac37e inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#ae26eb9d34711bff8737b95a2a59ac37e">Downloader</a> (<a class="el" href="../../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html">Configuration.DownloaderSettings</a> downloaderSettings)</td></tr>
+<tr class="memdesc:ae26eb9d34711bff8737b95a2a59ac37e inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base constructor of each downloader  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#ae26eb9d34711bff8737b95a2a59ac37e">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae26eb9d34711bff8737b95a2a59ac37e inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a542fa71a9f08656d6cb47cb299b04d inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a3a542fa71a9f08656d6cb47cb299b04d">SaveFileAsync</a> (string link, string folderPath, string name, WebProxy proxy=null)</td></tr>
+<tr class="memdesc:a3a542fa71a9f08656d6cb47cb299b04d inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves file in defined folder  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a3a542fa71a9f08656d6cb47cb299b04d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3a542fa71a9f08656d6cb47cb299b04d inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae70a621802c289b99c365b8db027efb inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aae70a621802c289b99c365b8db027efb">LogMessage</a> (object obj=null)</td></tr>
+<tr class="memdesc:aae70a621802c289b99c365b8db027efb inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the message that will be showed after each iteration  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aae70a621802c289b99c365b8db027efb">Подробнее...</a><br /></td></tr>
+<tr class="separator:aae70a621802c289b99c365b8db027efb inherit pro_methods_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:abe38bb73c4791515057246e1c245fc0e"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#abe38bb73c4791515057246e1c245fc0e">ProceedAim</a> (<a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a> aim, WebProxy proxy=null)</td></tr>
+<tr class="memdesc:abe38bb73c4791515057246e1c245fc0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proceeding aim  <a href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html#abe38bb73c4791515057246e1c245fc0e">Подробнее...</a><br /></td></tr>
+<tr class="separator:abe38bb73c4791515057246e1c245fc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:ac4bdc58e08ea79b619067a0a70ed4d58"><td class="memItemLeft" align="right" valign="top"><a id="ac4bdc58e08ea79b619067a0a70ed4d58"></a>
+readonly List&lt; <a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_aims</b></td></tr>
+<tr class="separator:ac4bdc58e08ea79b619067a0a70ed4d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Дополнительные унаследованные члены</h2></td></tr>
+<tr class="inherit_header pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader')"><img src="../../closed.png" alt="-"/>&#160;Защищенные данные унаследованные от <a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html">GoszakupParser.Downloaders.Downloader</a></td></tr>
+<tr class="memitem:a2af5fc0c82a40d209999fc4865e32fe9 inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">readonly Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a2af5fc0c82a40d209999fc4865e32fe9">Logger</a></td></tr>
+<tr class="memdesc:a2af5fc0c82a40d209999fc4865e32fe9 inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logger used by downloader  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a2af5fc0c82a40d209999fc4865e32fe9">Подробнее...</a><br /></td></tr>
+<tr class="separator:a2af5fc0c82a40d209999fc4865e32fe9 inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef7e7ac8f613dd7c54662133611ddac inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">readonly WebProxy[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aeef7e7ac8f613dd7c54662133611ddac">Proxies</a></td></tr>
+<tr class="memdesc:aeef7e7ac8f613dd7c54662133611ddac inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxies for sending requests  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aeef7e7ac8f613dd7c54662133611ddac">Подробнее...</a><br /></td></tr>
+<tr class="separator:aeef7e7ac8f613dd7c54662133611ddac inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef7c2f03540fd03ad7d74a09d48e42c inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">readonly object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a4ef7c2f03540fd03ad7d74a09d48e42c">Lock</a> = new object()</td></tr>
+<tr class="memdesc:a4ef7c2f03540fd03ad7d74a09d48e42c inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock used to prevent fragmentation and implement atomic operations between several threads  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a4ef7c2f03540fd03ad7d74a09d48e42c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4ef7c2f03540fd03ad7d74a09d48e42c inherit pro_attribs_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td colspan="2" onclick="javascript:toggleInherit('properties_class_goszakup_parser_1_1_downloaders_1_1_downloader')"><img src="../../closed.png" alt="-"/>&#160;Свойства унаследованные от <a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html">GoszakupParser.Downloaders.Downloader</a></td></tr>
+<tr class="memitem:a48a1b7cf9ec3e579832d40bdbd50d4b9 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a48a1b7cf9ec3e579832d40bdbd50d4b9">Total</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a48a1b7cf9ec3e579832d40bdbd50d4b9 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of elements that should be parsed (decreasing with each iteration)  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a48a1b7cf9ec3e579832d40bdbd50d4b9">Подробнее...</a><br /></td></tr>
+<tr class="separator:a48a1b7cf9ec3e579832d40bdbd50d4b9 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1959057762520a8697306f1bbd643d82 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a1959057762520a8697306f1bbd643d82">Threads</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1959057762520a8697306f1bbd643d82 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads used by downloader  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#a1959057762520a8697306f1bbd643d82">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1959057762520a8697306f1bbd643d82 inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6fe1cbd989acd51b54125dcd12f507c inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aa6fe1cbd989acd51b54125dcd12f507c">Folder</a><code> [get]</code></td></tr>
+<tr class="memdesc:aa6fe1cbd989acd51b54125dcd12f507c inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="mdescLeft">&#160;</td><td class="mdescRight">Folder where downloaded files will be stored  <a href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html#aa6fe1cbd989acd51b54125dcd12f507c">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa6fe1cbd989acd51b54125dcd12f507c inherit properties_class_goszakup_parser_1_1_downloaders_1_1_downloader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Конструктор(ы)</h2>
+<a id="aeebed0097ec6cee2a812cd2406e8b0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeebed0097ec6cee2a812cd2406e8b0e8">&#9670;&nbsp;</a></span>AimDownloader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GoszakupParser.Downloaders.AimDownloaders.AimDownloader.AimDownloader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html">Configuration.DownloaderSettings</a>&#160;</td>
+          <td class="paramname"><em>downloaderSettings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates object of given aim downloader </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">downloaderSettings</td><td><a class="el" href="../../de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html" title="Parent downloader class for creating downloader based on this class">Downloader</a> settings from configuration</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="acadd56be1ad513f4b19288be450c4f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acadd56be1ad513f4b19288be450c4f6f">&#9670;&nbsp;</a></span>GenerateFileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract string GoszakupParser.Downloaders.AimDownloaders.AimDownloader.GenerateFileName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a>&#160;</td>
+          <td class="paramname"><em>aim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates file name from aim </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim</td><td>Aim for downloading</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>File name</dd></dl>
+
+<p>Замещается в <a class="el" href="../../d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html#af89b2a066cb08996af69da070098e41d">GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader</a> и <a class="el" href="../../dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html#ad3916614953e9d3bf94e79833ec5f8d3">GoszakupParser.Downloaders.AimDownloaders.LotDownloader</a>.</p>
+
+</div>
+</div>
+<a id="a4610445d29b2602900baa7e7e240ce5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4610445d29b2602900baa7e7e240ce5b">&#9670;&nbsp;</a></span>LoadAims()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract List&lt;<a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a>&gt; GoszakupParser.Downloaders.AimDownloaders.AimDownloader.LoadAims </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loads list of aims for downloading </p>
+<dl class="section return"><dt>Возвращает</dt><dd>List of aims</dd></dl>
+
+<p>Замещается в <a class="el" href="../../d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html#a9b41b80649302398194dcd1ce3ca0f56">GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader</a> и <a class="el" href="../../dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html#a7627d2905d717d7404e6def07de9430d">GoszakupParser.Downloaders.AimDownloaders.LotDownloader</a>.</p>
+
+</div>
+</div>
+<a id="abe38bb73c4791515057246e1c245fc0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe38bb73c4791515057246e1c245fc0e">&#9670;&nbsp;</a></span>ProceedAim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task GoszakupParser.Downloaders.AimDownloaders.AimDownloader.ProceedAim </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a>&#160;</td>
+          <td class="paramname"><em>aim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WebProxy&#160;</td>
+          <td class="paramname"><em>proxy</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Proceeding aim </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim</td><td>Aim for download</td></tr>
+    <tr><td class="paramname">proxy</td><td>WebProxy if needed</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a619f05976a29aa57cf6a64c659bff088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a619f05976a29aa57cf6a64c659bff088">&#9670;&nbsp;</a></span>SavePathToDb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract Task GoszakupParser.Downloaders.AimDownloaders.AimDownloader.SavePathToDb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html">DownloadAim</a>&#160;</td>
+          <td class="paramname"><em>aim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saves path to file into Db </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim</td><td>Aim for downloading</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Замещается в <a class="el" href="../../d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html#add80375347b242591dcdb91dffe3b446">GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader</a> и <a class="el" href="../../dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html#a1bb6a2c8c8f33020c9196bdc093fd94f">GoszakupParser.Downloaders.AimDownloaders.LotDownloader</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>Downloaders/AimDownloaders/AimDownloader.cs</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../df/dcd/namespace_goszakup_parser.html">GoszakupParser</a></li><li class="navelem"><a class="el" href="../../d3/d77/namespace_goszakup_parser_1_1_downloaders.html">Downloaders</a></li><li class="navelem"><a class="el" href="../../dd/d86/namespace_goszakup_parser_1_1_downloaders_1_1_aim_downloaders.html">AimDownloaders</a></li><li class="navelem"><a class="el" href="../../df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html">AimDownloader</a></li>
+    <li class="footer">Создано системой
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
+</body>
+</html>

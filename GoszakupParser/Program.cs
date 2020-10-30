@@ -1,14 +1,14 @@
 ﻿using NLog;
 using System;
-using System.IO;
 using System.Net;
 using System.Linq;
 using NLog.Config;
 using System.Text;
 using CommandLine;
-using System.Text.Json;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -52,13 +52,16 @@ namespace GoszakupParser
                 (some, kind, of, shit) => true;
 
             // Loading configurations
-            var configurationString = await File.ReadAllTextAsync($"{AppDomain.CurrentDomain.BaseDirectory}Configuration.json");
-            var configuration = JsonSerializer.Deserialize<Configuration>(configurationString);
+            var configuration = new ConfigurationBuilder().AddJsonFile("Configuration.json").Build();
 
-            // todo(Remove after making configuration static)
-            Configuration.DbConnectionCredentialsStatic = configuration.DbConnectionCredentials;
-            Configuration.ParsersStatic = configuration.Parsers;
-            Configuration.AuthTokenStatic = configuration.AuthToken;
+            Configuration.AuthToken = configuration["AuthToken"];
+            Configuration.Parsers = configuration.GetSection("Parsers").Get<List<Configuration.ParserSettings>>();
+            Configuration.Downloaders =
+                configuration.GetSection("Downloaders").Get<List<Configuration.DownloaderSettings>>();
+            Configuration.ParserMonitoringNames =
+                configuration.GetSection("ParserMonitoringNames").Get<Dictionary<string, string>>();
+            Configuration.ParsingDbConnectionString = configuration.GetConnectionString("Parsing");
+            Configuration.ProductionDbConnectionString = configuration.GetConnectionString("Production");
 
             // Initializing logger
             LogManager.Configuration =
@@ -70,40 +73,27 @@ namespace GoszakupParser
             LogManager.Configuration.Variables["sourceAddress"] = ip;
 
             // Parsing arguments
-            var parser = new Parser(with =>
-            {
-                with.CaseSensitive = false;
-                with.HelpWriter = Console.Out;
-                with.AutoHelp = true;
-            });
-            var result = parser.ParseArguments<CommandLineOptions>(args);
-            if (result.Tag == ParserResultType.NotParsed)
-                return;
-            var options = ((Parsed<CommandLineOptions>) result).Value;
-
-            // Disabling trace level of logging
-            if (options.NoTrace)
-                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Trace));
-
-            // Disabling info level of logging
-            if (options.NoInfo)
-                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Info));
-
-            // Disabling warn level of logging
-            if (options.NoWarn)
-                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Warn));
-
-            // Disabling error level of logging
-            if (options.NoError)
-                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Error));
-
-            // Disabling fatal level of logging
-            if (options.NoFatal)
-                LogManager.Configuration.LoggingRules.ToList().ForEach(x => x.DisableLoggingForLevel(LogLevel.Fatal));
-
-            // Start parsing using given arguments
-            var parserService = new ParserService(configuration, options);
-            await parserService.StartParsingService();
+            new Parser(with =>
+                {
+                    with.CaseSensitive = false;
+                    with.HelpWriter = Console.Out;
+                    with.AutoHelp = true;
+                })
+                .ParseArguments<CommandLineOptions.Parse, CommandLineOptions.Download>(args)
+                .MapResult(
+                    (CommandLineOptions.Parse opts) =>
+                    {
+                        Actions.LoggerPoliciesInstallation(opts);
+                        Actions.Parse(opts).GetAwaiter().GetResult();
+                        return 0;
+                    },
+                    (CommandLineOptions.Download opts) =>
+                    {
+                        Actions.LoggerPoliciesInstallation(opts);
+                        Actions.Download(opts).GetAwaiter().GetResult();
+                        return 0;
+                    },
+                    errs => 1);
         }
     }
 }

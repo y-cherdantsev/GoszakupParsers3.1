@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GoszakupParser.Contexts;
-using System.Collections.Generic;
-using System.Linq;
 using GoszakupParser.Models.Dtos;
-using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
+using GoszakupParser.Contexts.ParsingContexts;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -26,8 +23,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         private const string QueryTemplate =
             "{\"query\":\"query{Contract(limit:200, _AFTER){trdBuyNumberAnno,contractNumber,contractNumberSys,supplierBiin,customerBin,supplierIik,customerIik,finYear,signDate,crdate,ecEndDate,descriptionRu,contractSumWnds,faktSumWnds,supplierBankNameRu,customerBankNameRu,supplierBik,customerBik,RefContractAgrForm{nameRu},RefContractYearType{nameRu},FaktTradeMethods{nameRu},RefContractStatus{nameRu},RefContractType{nameRu},File{nameRu,filePath,originalName},ContractUnits{id,itemPrice,itemPriceWnds,quantity,totalSum,totalSumWnds,Plans{id,PlanActs{planActNumber,planFinYear,dateApproved},RefPlnPointStatus{nameRu},nameRu,RefUnits{nameRu},RefTradeMethods{nameRu},count,price,amount,refMonthsId,refEnstruCode,isQvazi,dateCreate,descRu,extraDescRu,supplyDateRu,prepayment,subjectBiin}}}}\"}";
 
-        public ContractParser(Configuration.ParserSettings parserSettings, string authToken) : base(parserSettings,
-            authToken)
+        public ContractParser(Configuration.ParserSettings parserSettings) : base(parserSettings)
         {
         }
 
@@ -42,7 +38,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <inheritdoc />
         protected override async Task ProcessObject(ContractDto dto)
         {
-            await using var ctx = new ContractContext(DatabaseConnections.ParsingAvroradata);
+            await using var ctx = new ParsingContractContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
 
             long.TryParse(dto.customerBin, out var customerBin);
@@ -103,38 +99,37 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     await ctx.ContractUnitsGoszakup.AddAsync(contractUnit);
                     await ctx.SaveChangesAsync();
 
-                    if (dtoContractUnit.Plans != null)
+                    if (dtoContractUnit.Plans == null) continue;
+                    
+                    long.TryParse(dtoContractUnit.Plans.subjectBiin, out var planSupplierBiin);
+                    DateTime.TryParse(dtoContractUnit.Plans.PlanActs?.dateApproved, out var planActDateApproved);
+                    DateTime.TryParse(dtoContractUnit.Plans.dateCreate, out var planDateCreate);
+                    var plan = new PlanGoszakup
                     {
-                        long.TryParse(dtoContractUnit.Plans.subjectBiin, out var planSupplierBiin);
-                        DateTime.TryParse(dtoContractUnit.Plans.PlanActs?.dateApproved, out var planActDateApproved);
-                        DateTime.TryParse(dtoContractUnit.Plans.dateCreate, out var planDateCreate);
-                        var plan = new PlanGoszakup
-                        {
-                            SourceUniqueId = dtoContractUnit.Plans.Id,
-                            Amount = dtoContractUnit.Plans.amount,
-                            Count = dtoContractUnit.Plans.count,
-                            Description = dtoContractUnit.Plans.descRu,
-                            ExtraDescription = dtoContractUnit.Plans.extraDescRu,
-                            Measure = dtoContractUnit.Plans.RefUnits?.nameRu,
-                            Method = dtoContractUnit.Plans.RefTradeMethods?.nameRu,
-                            Name = dtoContractUnit.Plans.nameRu,
-                            Prepayment = dtoContractUnit.Plans.prepayment,
-                            Price = dtoContractUnit.Plans.price,
-                            Status = dtoContractUnit.Plans.RefPlnPointStatus?.nameRu,
-                            ActNumber = dtoContractUnit.Plans.PlanActs?.planActNumber,
-                            DateApproved = planActDateApproved.Year == 1 ? (DateTime?) null : planActDateApproved,
-                            DateCreate = planDateCreate.Year == 1 ? (DateTime?) null : planDateCreate,
-                            FinYear = dtoContractUnit.Plans.PlanActs?.planFinYear,
-                            IsQvazi = dtoContractUnit.Plans.isQvazi == 1,
-                            MonthId = dtoContractUnit.Plans.refMonthsId,
-                            SubjectBiin = planSupplierBiin,
-                            SupplyDate = dtoContractUnit.Plans.supplyDateRu,
-                            TruCode = dtoContractUnit.Plans.refEnstruCode,
-                            ContractUnitId = contractUnit.Id
-                        };
-                        await ctx.PlanGoszakup.AddAsync(plan);
-                        await ctx.SaveChangesAsync();
-                    }
+                        SourceUniqueId = dtoContractUnit.Plans.Id,
+                        Amount = dtoContractUnit.Plans.amount,
+                        Count = dtoContractUnit.Plans.count,
+                        Description = dtoContractUnit.Plans.descRu,
+                        ExtraDescription = dtoContractUnit.Plans.extraDescRu,
+                        Measure = dtoContractUnit.Plans.RefUnits?.nameRu,
+                        Method = dtoContractUnit.Plans.RefTradeMethods?.nameRu,
+                        Name = dtoContractUnit.Plans.nameRu,
+                        Prepayment = dtoContractUnit.Plans.prepayment,
+                        Price = dtoContractUnit.Plans.price,
+                        Status = dtoContractUnit.Plans.RefPlnPointStatus?.nameRu,
+                        ActNumber = dtoContractUnit.Plans.PlanActs?.planActNumber,
+                        DateApproved = planActDateApproved.Year == 1 ? (DateTime?) null : planActDateApproved,
+                        DateCreate = planDateCreate.Year == 1 ? (DateTime?) null : planDateCreate,
+                        FinYear = dtoContractUnit.Plans.PlanActs?.planFinYear,
+                        IsQvazi = dtoContractUnit.Plans.isQvazi == 1,
+                        MonthId = dtoContractUnit.Plans.refMonthsId,
+                        SubjectBiin = planSupplierBiin,
+                        SupplyDate = dtoContractUnit.Plans.supplyDateRu,
+                        TruCode = dtoContractUnit.Plans.refEnstruCode,
+                        ContractUnitId = contractUnit.Id
+                    };
+                    await ctx.PlanGoszakup.AddAsync(plan);
+                    await ctx.SaveChangesAsync();
                 }
         }
     }

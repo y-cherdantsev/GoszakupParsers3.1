@@ -14,36 +14,40 @@ namespace GoszakupParser
     /// <summary>
     /// Configuration class
     /// </summary>
-    public sealed class Configuration
+    public static class Configuration
     {
         /// <summary>
         /// Goszakup authentication bearer token
         /// </summary>
-        public string AuthToken { get; set; }
-        
-        public static string AuthTokenStatic { get; set; }
+        public static string AuthToken { get; set; }
 
         /// <summary>
         /// Parsers settings
         /// </summary>
-        public List<ParserSettings> Parsers { get; set; }
-        
-        public static List<ParserSettings> ParsersStatic { get; set; }
+        public static List<ParserSettings> Parsers { get; set; }
+
+        /// <summary>
+        /// Downloaders settings
+        /// </summary>
+        public static List<DownloaderSettings> Downloaders { get; set; }
 
         /// <summary>
         /// Mapped parsers names into parsing DB titles
         /// </summary>
-        public Dictionary<string, string> ParserMonitoringNames { get; set; }
+        public static Dictionary<string, string> ParserMonitoringNames { get; set; }
 
         /// <summary>
-        /// List of connection credentials for DB
+        /// Parsing DB connection string
         /// </summary>
-        public List<DbConnectionCredential> DbConnectionCredentials { get; set; }
+        public static string ParsingDbConnectionString { get; set; }
 
-        /// \todo(Make configuration static)
-        public static List<DbConnectionCredential> DbConnectionCredentialsStatic { get; set; }
+        /// <summary>
+        /// Production DB connection string
+        /// </summary>
+        public static string ProductionDbConnectionString { get; set; }
 
         private static string _title;
+
         public static string Title
         {
             get => _title;
@@ -78,17 +82,27 @@ namespace GoszakupParser
             public string Url { get; set; }
         }
 
-
-        public sealed class DbConnectionCredential
+        /// @author Yevgeniy Cherdantsev
+        /// @date 25.02.2020 10:17:01
+        /// <summary>
+        /// Downloader setting class with downloader properties
+        /// </summary>
+        public sealed class DownloaderSettings
         {
-            // ReSharper disable once MemberHidesStaticFromOuterClass
-            public string Title { get; set; }
-            public string Address { get; set; }
-            public int Port { get; set; }
+            /// <summary>
+            /// Downloader name (depends on downloader classname)
+            /// </summary>
             public string Name { get; set; }
-            public string SearchPath { get; set; }
-            public string Username { get; set; }
-            public string Password { get; set; }
+
+            /// <summary>
+            /// Number of working threads (affects speed)
+            /// </summary>
+            public int Threads { get; set; }
+
+            /// <summary>
+            /// Folder path where documentation are stored
+            /// </summary>
+            public string Folder { get; set; }
         }
     }
 }
