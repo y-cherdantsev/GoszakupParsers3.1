@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "GoszakupParser.Actions", "d0/d63/class_goszakup_parser_1_1_actions.html", null ],
+    [ "GoszakupParser.Models.ProductionModels.AnnouncementDocumentationWeb", "d5/d5f/class_goszakup_parser_1_1_models_1_1_production_models_1_1_announcement_documentation_web.html", null ],
     [ "GoszakupParser.Models.ParsingModels.AnnouncementFileGoszakup", "d6/d77/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_file_goszakup.html", null ],
     [ "GoszakupParser.Models.ParsingModels.AnnouncementGoszakup", "d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html", null ],
     [ "GoszakupParser.Models.Dtos.ApiResponse< T >", "d1/d27/class_goszakup_parser_1_1_models_1_1_dtos_1_1_api_response.html", null ],
@@ -22,15 +23,27 @@ var hierarchy =
     [ "GoszakupParser.Models.Dtos.ContractDto.ContractUnitDto.ContractUnitPlanDto", "dc/d97/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto_1_1_contract_unit_plan_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >.Data< U >", "de/dda/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response_1_1_data.html", null ],
     [ "DbContext", null, [
-      [ "GoszakupParser.Contexts.ContractContext", "d4/d21/class_goszakup_parser_1_1_contexts_1_1_contract_context.html", null ],
       [ "GoszakupParser.Contexts.GeneralContext< TModel >", "d0/da3/class_goszakup_parser_1_1_contexts_1_1_general_context.html", null ],
-      [ "GoszakupParser.Contexts.TenderContext", "d1/d4a/class_goszakup_parser_1_1_contexts_1_1_tender_context.html", null ]
+      [ "GoszakupParser.Contexts.ParsingContexts.ParsingContractContext", "de/d9b/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_contract_context.html", null ],
+      [ "GoszakupParser.Contexts.ParsingContexts.ParsingTenderContext", "dd/d65/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_tender_context.html", null ],
+      [ "GoszakupParser.Contexts.ProductionContexts.ProductionTenderContext", "db/de4/class_goszakup_parser_1_1_contexts_1_1_production_contexts_1_1_production_tender_context.html", null ]
+    ] ],
+    [ "GoszakupParser.Downloaders.AimDownloaders.DownloadAim", "d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html", null ],
+    [ "GoszakupParser.Downloaders.Downloader", "de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html", [
+      [ "GoszakupParser.Downloaders.AimDownloaders.AimDownloader", "df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html", [
+        [ "GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader", "d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html", null ],
+        [ "GoszakupParser.Downloaders.AimDownloaders.LotDownloader", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html", null ]
+      ] ]
     ] ],
     [ "GoszakupParser.Configuration.DownloaderSettings", "d4/d2b/class_goszakup_parser_1_1_configuration_1_1_downloader_settings.html", null ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >.Extensions", "d3/de7/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response_1_1_extensions.html", null ],
     [ "GoszakupParser.CommandLineOptions.GeneralOptions", "d2/d73/class_goszakup_parser_1_1_command_line_options_1_1_general_options.html", [
       [ "GoszakupParser.CommandLineOptions.Download", "db/da1/class_goszakup_parser_1_1_command_line_options_1_1_download.html", null ],
       [ "GoszakupParser.CommandLineOptions.Parse", "da/ded/class_goszakup_parser_1_1_command_line_options_1_1_parse.html", null ]
+    ] ],
+    [ "GoszakupParser.Services.GoszakupService", "da/d9f/class_goszakup_parser_1_1_services_1_1_goszakup_service.html", [
+      [ "GoszakupParser.Services.DownloaderService", "d8/ddb/class_goszakup_parser_1_1_services_1_1_downloader_service.html", null ],
+      [ "GoszakupParser.Services.ParserService", "da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html", null ]
     ] ],
     [ "GoszakupParser.Models.Dtos.GraphQlResponse< T >", "d4/d42/class_goszakup_parser_1_1_models_1_1_dtos_1_1_graph_ql_response.html", null ],
     [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser< ContractDto >", "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html", [
@@ -39,6 +52,7 @@ var hierarchy =
     [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser< TrdBuyDto >", "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html", [
       [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.TenderParser", "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html", null ]
     ] ],
+    [ "GoszakupParser.Models.ProductionModels.LotDocumentationWeb", "d2/d59/class_goszakup_parser_1_1_models_1_1_production_models_1_1_lot_documentation_web.html", null ],
     [ "GoszakupParser.Models.ParsingModels.LotFileGoszakup", "d1/d48/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_file_goszakup.html", null ],
     [ "GoszakupParser.Models.ParsingModels.LotGoszakup", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html", null ],
     [ "Model", null, [
@@ -67,7 +81,6 @@ var hierarchy =
         [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< TModel >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", null ]
       ] ]
     ] ],
-    [ "GoszakupParser.ParserService", "d1/d82/class_goszakup_parser_1_1_parser_service.html", null ],
     [ "GoszakupParser.Configuration.ParserSettings", "d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html", null ],
     [ "GoszakupParser.Models.Dtos.ParticipantDto", "d8/d0d/class_goszakup_parser_1_1_models_1_1_dtos_1_1_participant_dto.html", null ],
     [ "GoszakupParser.Models.ParsingModels.PlanGoszakup", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html", null ],

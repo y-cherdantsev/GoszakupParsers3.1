@@ -1,5 +1,5 @@
-﻿using GoszakupParser.Models.ParsingModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using GoszakupParser.Models.ParsingModels;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo

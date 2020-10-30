@@ -1,5 +1,6 @@
 var class_goszakup_parser_1_1_actions =
 [
-    [ "Download", "d0/d63/class_goszakup_parser_1_1_actions.html#abe5c0eaf348a8c27fc46d3786c7fd0e6", null ],
-    [ "Parse", "d0/d63/class_goszakup_parser_1_1_actions.html#a2ee34bb099761db8a3ef8102ed394fc7", null ]
+    [ "Download", "d0/d63/class_goszakup_parser_1_1_actions.html#ab35e91bda56dfdaf134240e7ec0b241f", null ],
+    [ "LoggerPoliciesInstallation", "d0/d63/class_goszakup_parser_1_1_actions.html#aa0f1dfcfea3c0dfea722e75af2dc80af", null ],
+    [ "Parse", "d0/d63/class_goszakup_parser_1_1_actions.html#a0df215b7f02647f6351cc4d28ec077e0", null ]
 ];

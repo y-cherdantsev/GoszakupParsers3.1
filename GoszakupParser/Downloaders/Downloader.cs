@@ -138,6 +138,7 @@ namespace GoszakupParser.Downloaders
         /// Determines the message that will be showed after each iteration
         /// </summary>
         /// <returns>string - message</returns>
-        protected virtual string LogMessage(object obj = null) => $"Left:[{Total}]";
+        // ReSharper disable once UnusedParameter.Global
+        protected string LogMessage(object obj = null) => $"Left:[{Total}]";
     }
 }

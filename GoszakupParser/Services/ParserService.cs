@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using GoszakupParser.Models;
+using System.Threading.Tasks;
 using GoszakupParser.Contexts;
 using System.Collections.Generic;
 using Parser = GoszakupParser.Parsers.Parser;

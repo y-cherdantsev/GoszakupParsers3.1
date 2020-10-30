@@ -12,7 +12,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
     /// <summary>
     /// Participant Parser
     /// </summary>
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public sealed class ParticipantParser : ApiSequentialParser<ParticipantDto, ParticipantGoszakup>
     {
         /// <inheritdoc />

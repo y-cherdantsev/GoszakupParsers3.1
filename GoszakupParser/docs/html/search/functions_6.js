@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isavailable_237',['IsAvailable',['../d1/d82/class_goszakup_parser_1_1_parser_service.html#a0acde95c7b07518b5c792e8f1d196b46',1,'GoszakupParser::ParserService']]]
+  ['isavailable_283',['IsAvailable',['../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a86be85833abe93b2b90e7ae4383643dd',1,'GoszakupParser::Services::ParserService']]]
 ];

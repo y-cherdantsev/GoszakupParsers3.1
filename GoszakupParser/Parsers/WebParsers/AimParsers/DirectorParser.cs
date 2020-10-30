@@ -18,7 +18,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
     /// <summary>
     /// Director Parser
     /// </summary>
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public sealed class DirectorParser : WebAimParser<DirectorGoszakup>
     {
         /// <inheritdoc />
@@ -33,7 +33,8 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 new GeneralContext<ParticipantGoszakupWeb>(Configuration.ProductionDbConnectionString);
             var list = participantWebContext.Models.ToList();
 
-            return list.ToDictionary(participantGoszakupWeb => participantGoszakupWeb.Pid.ToString(), participantGoszakupWeb => participantGoszakupWeb.BiinCompanies.ToString());
+            return list.ToDictionary(participantGoszakupWeb => participantGoszakupWeb.Pid.ToString(),
+                participantGoszakupWeb => participantGoszakupWeb.BiinCompanies.ToString());
         }
 
         /// <inheritdoc />
@@ -74,9 +75,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 if (item.InnerHtml.Contains(">ИИН<"))
                 {
                     if (long.TryParse(item.InnerHtml.Split("<td>")[1].Split("<")[0], out var iin))
-                    {
                         director.Iin = iin;
-                    }
                 }
                 else if (item.InnerHtml.Contains(">РНН<"))
                 {
@@ -84,9 +83,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                     director.Rnn = rnn;
                 }
                 else if (item.InnerHtml.Contains(">ФИО<"))
-                {
                     director.Fullname = item.InnerHtml.Split("<td>")[1].Split("<")[0];
-                }
             }
 
             return director;

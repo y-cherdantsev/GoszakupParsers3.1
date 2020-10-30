@@ -1,5 +1,5 @@
-﻿using System;
-using Npgsql;
+﻿using Npgsql;
+using System;
 using RestSharp;
 using System.Net;
 using System.Linq;

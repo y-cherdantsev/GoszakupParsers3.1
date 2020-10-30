@@ -1,7 +1,7 @@
 ﻿using NLog;
 using System;
-using System.Linq;
 using System.Net;
+using System.Linq;
 using System.Data;
 using GoszakupParser.Models;
 using System.Threading.Tasks;

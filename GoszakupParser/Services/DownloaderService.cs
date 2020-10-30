@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using GoszakupParser.Downloaders;
 
 // ReSharper disable IdentifierTypo
@@ -114,13 +114,10 @@ namespace GoszakupParser.Services
             // Check if parser exist in configuration
             var existConfiguration = Configuration.Downloaders
                 .Any(x => x.Name.Equals(downloaderName));
-            if (!existConfiguration)
-            {
-                Logger.Warn($"There is no configuration for '{downloaderName}' downloader");
-                return false;
-            }
+            if (existConfiguration) return true;
+            Logger.Warn($"There is no configuration for '{downloaderName}' downloader");
+            return false;
 
-            return true;
         }
     }
 }

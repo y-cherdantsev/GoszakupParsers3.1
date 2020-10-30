@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using GoszakupParser.Contexts.ParsingContexts;
 using GoszakupParser.Models.Dtos;
 using GoszakupParser.Models.ParsingModels;
+using GoszakupParser.Contexts.ParsingContexts;
 
 // ReSharper disable CommentTypo
 // ReSharper disable IdentifierTypo
@@ -16,7 +16,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
     /// <summary>
     /// Tender Parser
     /// </summary>
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class TenderParser : GraphQlSequentialParser<TrdBuyDto>
     {
         /// <summary>
