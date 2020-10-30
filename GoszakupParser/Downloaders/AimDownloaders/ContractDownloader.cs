@@ -35,7 +35,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
         /// <inheritdoc />
         protected override string GenerateFileName(DownloadAim aim)
         {
-            return $"{aim.Name}";
+            return $"{aim.Link.TrimEnd('/').Split("/").Last()}_{aim.Name}";
         }
 
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             await using var contractContext = new ProductionContractContext();
             contractContext.ChangeTracker.AutoDetectChangesEnabled = false;
             var location = $"goszakup/contracts/{GenerateFileName(aim)}";
-            await contractContext.Database.ExecuteSqlRawAsync($"UPDATE adata_tender.contracts SET doc_location = '{location}' WHERE doc_link = '{aim.Link}'");
+            await contractContext.Database.ExecuteSqlRawAsync($"UPDATE adata_tender.contracts SET doc_location = '{location}' WHERE id = '{aim.Id}'");
             await contractContext.SaveChangesAsync();
         }
     }
