@@ -9,7 +9,11 @@ using GoszakupParser.Contexts.ProductionContexts;
 
 namespace GoszakupParser.Downloaders.AimDownloaders
 {
-    /// <inheritdoc />
+    /// @author Yevgeniy Cherdantsev
+    /// @date 28.10.2020 16:53:43
+    /// <summary>
+    /// Downloader for announcement files
+    /// </summary>
     // ReSharper disable once UnusedType.Global
     public class LotDownloader : AimDownloader
     {
