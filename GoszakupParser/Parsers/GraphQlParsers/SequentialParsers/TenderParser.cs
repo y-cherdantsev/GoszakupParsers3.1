@@ -134,7 +134,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         protected override bool StopCondition(object checkElement)
         {
             var elements = (List<TrdBuyDto>) checkElement;
-            return elements.Any(x =>
+            return elements.All(x =>
             {
                 DateTime.TryParse(x.publishDate, out var startDate);
                 return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(3));
@@ -143,6 +143,6 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
 
         /// <inheritdoc />
         protected override string LogMessage(object obj = null) =>
-            $"Left: {Total}; Parsing {(DateTime.Now - DateTime.Parse(((List<TrdBuyDto>) obj)!.OrderBy(x => x.publishDate).First().publishDate)).Days} day";
+            $"Left: {Total}; Parsing {(DateTime.Now - DateTime.Parse(((List<TrdBuyDto>) obj)!.OrderBy(x => x.publishDate).Last().publishDate)).Days} day";
     }
 }
