@@ -121,7 +121,7 @@ namespace GoszakupParser.Downloaders
                 }
                 catch (Exception)
                 {
-                    Logger.Warn($"StatusCode:'{response.StatusCode}'e.Message");
+                    Logger.Warn($"StatusCode:'{response.StatusCode}' e.Message");
                     await Task.Delay(5000);
                 }
             }
