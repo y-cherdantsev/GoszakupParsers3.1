@@ -79,7 +79,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             {
                 await SaveFileAsync(aim.Link, Folder, fileName, proxy);
                 await SavePathToDb(aim);
-                await Task.Delay(500);
+                await Task.Delay(1000);
             }
             catch (Exception e)
             {
