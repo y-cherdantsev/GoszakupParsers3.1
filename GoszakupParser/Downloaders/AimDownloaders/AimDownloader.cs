@@ -10,7 +10,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
     public abstract class AimDownloader : Downloader
     {
         private readonly List<DownloadAim> _aims;
-        
+
         /// <summary>
         /// Generates object of given aim downloader
         /// </summary>
@@ -41,7 +41,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
         /// </summary>
         /// <param name="aim">Aim for downloading</param>
         protected abstract Task SavePathToDb(DownloadAim aim);
-        
+
         /// <inheritdoc />
         public override async Task DownloadAsync()
         {
@@ -55,6 +55,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
                     proxies.Reset();
                     proxies.MoveNext();
                 }
+
                 tasks.Add(ProceedAim(aim, proxies.Current as WebProxy));
                 if (tasks.Count < Threads) continue;
                 await Task.WhenAny(tasks);
@@ -62,7 +63,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             }
 
             await Task.WhenAll(tasks);
-            
+
             Logger.Info("End Of Downloading");
         }
 
@@ -76,18 +77,21 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             var fileName = GenerateFileName(aim);
             try
             {
-                await SaveFileAsync(aim.Link, Folder,  fileName, proxy);
+                await SaveFileAsync(aim.Link, Folder, fileName, proxy);
                 await SavePathToDb(aim);
-                lock (Lock)
-                {
-                    --Total; 
-                    Logger.Trace(LogMessage());
-                }
                 await Task.Delay(500);
             }
             catch (Exception e)
             {
                 Logger.Error(e);
+            }
+            finally
+            {
+                lock (Lock)
+                {
+                    --Total;
+                    Logger.Trace(LogMessage());
+                }
             }
         }
     }
@@ -100,6 +104,5 @@ namespace GoszakupParser.Downloaders.AimDownloaders
         public long Id { get; set; }
         public string Link { get; set; }
         public string Name { get; set; }
-        
     }
 }

@@ -111,17 +111,17 @@ namespace GoszakupParser.Downloaders
                         // ignored
                     }
 
+                var response = await client.ExecuteAsync(new RestRequest(link, Method.GET));  
                 try
                 {
-                    var response = await client.ExecuteAsync(new RestRequest(link, Method.GET));
                     if (response.StatusCode == HttpStatusCode.Forbidden)
                         throw new Exception($"Forbidden: '{link}'; Proxy: '{proxy!.Address}'");
 
                     await File.WriteAllBytesAsync(fullName, response.RawBytes);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Logger.Warn(e.Message);
+                    Logger.Warn($"StatusCode:'{response.StatusCode}'e.Message");
                     await Task.Delay(5000);
                 }
             }
