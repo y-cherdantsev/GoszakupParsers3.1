@@ -3,6 +3,7 @@ using System.Linq;
 using GoszakupParser.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable CommentTypo
 
@@ -37,33 +38,40 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         protected abstract Dictionary<string, string> LoadAims();
 
         /// <inheritdoc />
+        [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH")]
         public override async Task ParseAsync()
         {
             Logger.Info("Starting Parsing");
             var tasks = new List<Task>();
 
             var proxies = Proxies.GetEnumerator();
-            for (var i = 0; i < Threads; i++)
+
+            foreach (var aim in Aims.Keys)
             {
-                var ls = DivideList(Aims.Keys.ToList(), i);
                 if (!proxies.MoveNext())
                 {
                     proxies.Reset();
                     proxies.MoveNext();
                 }
 
-                tasks.Add(ParseArray(ls, proxies.Current as WebProxy));
+                tasks.Add(ParseAim(aim, proxies.Current as WebProxy));
+                if (tasks.Count < Threads) continue;
+                foreach (var task in tasks.Where(x => x.IsFaulted))
+                    Logger.Warn(task.Exception?.Message);
+                await Task.WhenAny(tasks);
+                tasks.RemoveAll(x => x.IsCompleted);
             }
 
             await Task.WhenAll(tasks);
+
             Logger.Info("End Of Parsing");
         }
 
         /// <summary>
         /// Parses given list of aims
         /// </summary>
-        /// <param name="list">List of aims</param>
+        /// <param name="aim">Aim</param>
         /// <param name="webProxy">Parsing proxy</param>
-        protected abstract Task ParseArray(IEnumerable<string> list, WebProxy webProxy);
+        protected abstract Task ParseAim(string aim, WebProxy webProxy);
     }
 }

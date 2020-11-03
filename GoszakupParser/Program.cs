@@ -1,7 +1,6 @@
 ﻿using NLog;
 using System;
 using System.Net;
-using System.Linq;
 using NLog.Config;
 using System.Text;
 using CommandLine;
@@ -68,9 +67,12 @@ namespace GoszakupParser
                 new XmlLoggingConfiguration($"{AppDomain.CurrentDomain.BaseDirectory}NLog.config");
 
             // Assigning ip address to a logger
-            var host = await Dns.GetHostEntryAsync(Dns.GetHostName());
-            var ip = host.AddressList.LastOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)?.ToString();
-            LogManager.Configuration.Variables["sourceAddress"] = ip;
+            using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.IP))
+            {
+                socket.Connect("8.8.8.8", 65530);
+                LogManager.Configuration.Variables["sourceAddress"] =
+                    (socket.LocalEndPoint as IPEndPoint)?.Address.ToString();
+            }
 
             // Parsing arguments
             new Parser(with =>

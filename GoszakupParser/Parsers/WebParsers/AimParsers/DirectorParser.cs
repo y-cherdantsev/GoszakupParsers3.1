@@ -38,25 +38,22 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         }
 
         /// <inheritdoc />
-        protected override async Task ParseArray(IEnumerable<string> list, WebProxy webProxy)
+        protected override async Task ParseAim(string aim, WebProxy webProxy)
         {
             await using var context = new GeneralContext<DirectorGoszakup>(Configuration.ProductionDbConnectionString);
-            foreach (var pid in list)
+            var response = GetPage($"{Url}/{aim}", webProxy);
+            lock (Lock)
             {
-                var response = GetPage($"{Url}/{pid}", webProxy);
-                lock (Lock)
-                {
-                    --Total;
-                    Logger.Trace($"{LogMessage()}");
-                }
-
-                var director = ParseParticipantPage(response);
-                director.Bin = long.Parse(Aims[pid]);
-                director.Rnn = director.Rnn != 0 ? director.Rnn : null;
-                director.Iin = director.Iin != 0 ? director.Iin : null;
-                await ProcessObject(director, context);
-                Thread.Sleep(1000);
+                --Total;
+                Logger.Trace($"{LogMessage()}");
             }
+
+            var director = ParseParticipantPage(response);
+            director.Bin = long.Parse(Aims[aim]);
+            director.Rnn = director.Rnn != 0 ? director.Rnn : null;
+            director.Iin = director.Iin != 0 ? director.Iin : null;
+            await ProcessObject(director, context);
+            Thread.Sleep(1000);
         }
 
         /// <summary>
