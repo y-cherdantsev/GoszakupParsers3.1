@@ -115,9 +115,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
+                        Logger.Warn(restResponse.ErrorException,$"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
@@ -127,9 +125,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
+                        Logger.Warn(restResponse.ErrorException,$"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 

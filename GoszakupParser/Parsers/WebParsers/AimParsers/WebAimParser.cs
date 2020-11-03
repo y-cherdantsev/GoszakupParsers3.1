@@ -57,7 +57,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 tasks.Add(ParseAim(aim, proxies.Current as WebProxy));
                 if (tasks.Count < Threads) continue;
                 foreach (var task in tasks.Where(x => x.IsFaulted))
-                    Logger.Warn(task.Exception?.Message);
+                    Logger.Warn(task.Exception, task.Exception?.Message);
                 await Task.WhenAny(tasks);
                 tasks.RemoveAll(x => x.IsCompleted);
             }

@@ -91,7 +91,7 @@ namespace GoszakupParser.Parsers.ApiParsers
             // Appears while network card error occurs
             catch (InvalidOperationException e)
             {
-                Logger.Warn(e.Message);
+                Logger.Warn(e, e.Message);
                 Thread.Sleep(15000);
                 goto InsertDataOperation;
             }
@@ -190,9 +190,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
+                        Logger.Warn(restResponse.ErrorException, $"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
@@ -202,9 +200,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorMessage}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException}");
-                        Logger.Warn($"{attempts} times, {restResponse.ErrorException.InnerException}");
+                        Logger.Warn(restResponse.ErrorException, $"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 
@@ -216,7 +212,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                         ++attempts;
 
                         Thread.Sleep(delay);
-                        Logger.Trace($"{attempts} times, {restResponse.ErrorMessage}");
+                        Logger.Trace(restResponse.ErrorException, $"{attempts} times, {restResponse.ErrorMessage}");
                         continue;
                     }
 

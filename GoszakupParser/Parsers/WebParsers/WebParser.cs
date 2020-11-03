@@ -51,7 +51,7 @@ namespace GoszakupParser.Parsers.WebParsers
             // Appears while network card error occurs
             catch (InvalidOperationException e)
             {
-                Logger.Warn(e.Message);
+                Logger.Warn(e, e.Message);
                 Thread.Sleep(15000);
                 goto InsertDataOperation;
             }

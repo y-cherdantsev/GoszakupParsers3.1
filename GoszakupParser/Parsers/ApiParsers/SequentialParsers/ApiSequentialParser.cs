@@ -91,7 +91,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
                 }
                 catch (Exception e)
                 {
-                    Logger.Error($"{e} | {Url} |{response}");
+                    Logger.Error(e, $"Error at {Url} | '{response}'");
                 }
             }
 
