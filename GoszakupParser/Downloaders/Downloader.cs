@@ -119,9 +119,9 @@ namespace GoszakupParser.Downloaders
 
                     await File.WriteAllBytesAsync(fullName, response.RawBytes);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Logger.Warn($"StatusCode:'{response.StatusCode}' e.Message");
+                    Logger.Warn(e, $"StatusCode:'{response.StatusCode}' {e.Message}");
                     await Task.Delay(5000);
                 }
             }
