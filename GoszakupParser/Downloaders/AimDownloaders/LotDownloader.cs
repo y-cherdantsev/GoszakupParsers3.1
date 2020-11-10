@@ -30,6 +30,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             var aims = tenderContext.LotDocumentations
                 .Include(x => x.Lot)
                 .Where(x => x.Lot.SourceId == 2 && x.SourceLink != null && x.Location == null)
+                .Take(100000)
                 .Select(x => new DownloadAim {Link = x.SourceLink, Name = x.Name})
                 .Distinct()
                 .ToList();

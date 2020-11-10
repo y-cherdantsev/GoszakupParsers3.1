@@ -137,7 +137,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
             return elements.All(x =>
             {
                 DateTime.TryParse(x.publishDate, out var startDate);
-                return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(3));
+                return startDate < DateTime.Now.Subtract(TimeSpan.FromDays(7));
             });
         }
 
