@@ -42,6 +42,8 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         protected override async Task ParseAim(string aim, WebProxy webProxy)
         {
+            await Task.Delay(1000);
+            
             await using var tenderDocumentContext =
                 new GeneralContext<TenderDocumentGoszakup>(Configuration.ParsingDbConnectionString);
 
@@ -62,8 +64,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                     Type = tenderDocument.Type,
                     Number = tenderDocument.Number
                 }, tenderDocumentContext);
-
-            await Task.Delay(1000);
         }
 
         /// <summary>

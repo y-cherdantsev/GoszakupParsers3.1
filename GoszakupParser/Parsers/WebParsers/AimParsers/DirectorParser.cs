@@ -40,7 +40,8 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         /// <inheritdoc />
         protected override async Task ParseAim(string aim, WebProxy webProxy)
         {
-            await using var context = new GeneralContext<DirectorGoszakup>(Configuration.ProductionDbConnectionString);
+            await Task.Delay(1000);
+            await using var context = new GeneralContext<DirectorGoszakup>(Configuration.ParsingDbConnectionString);
             var response = GetPage($"{Url}/{aim}", webProxy);
             lock (Lock)
             {
@@ -48,12 +49,11 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 Logger.Trace($"{LogMessage()}");
             }
 
-            var director = ParseParticipantPage(response);
+            var director = await ParseParticipantPage(response);
             director.Bin = long.Parse(Aims[aim]);
             director.Rnn = director.Rnn != 0 ? director.Rnn : null;
             director.Iin = director.Iin != 0 ? director.Iin : null;
             await ProcessObject(director, context);
-            Thread.Sleep(1000);
         }
 
         /// <summary>
@@ -61,14 +61,13 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
         /// </summary>
         /// <param name="page">html page</param>
         /// <returns>DirectorGoszakup model</returns>
-        private static DirectorGoszakup ParseParticipantPage(string page)
+        private static async Task<DirectorGoszakup> ParseParticipantPage(string page)
         {
             var director = new DirectorGoszakup();
-            var doc = new HtmlParser().ParseDocument(page);
+            var doc = await new HtmlParser().ParseDocumentAsync(page);
 
             var items = doc.QuerySelectorAll("tr");
             foreach (var item in items)
-            {
                 if (item.InnerHtml.Contains(">ИИН<"))
                 {
                     if (long.TryParse(item.InnerHtml.Split("<td>")[1].Split("<")[0], out var iin))
@@ -81,7 +80,6 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
                 }
                 else if (item.InnerHtml.Contains(">ФИО<"))
                     director.Fullname = item.InnerHtml.Split("<td>")[1].Split("<")[0];
-            }
 
             return director;
         }
