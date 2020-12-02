@@ -58,7 +58,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         protected async Task ProcessObjects(IEnumerable<object> entities)
         {
             var tasks = new List<Task>();
-            
+
             foreach (TDto dto in entities)
             {
                 tasks.Add(ProcessObject(dto));
@@ -79,7 +79,7 @@ namespace GoszakupParser.Parsers.ApiParsers
         {
             await using var context = new GeneralContext<TResultModel>(Configuration.ParsingDbConnectionString);
             context.ChangeTracker.AutoDetectChangesEnabled = false;
-            
+
             var model = DtoToModel(dto);
             await context.Models.AddAsync(model);
 
@@ -182,7 +182,7 @@ namespace GoszakupParser.Parsers.ApiParsers
                             Logger.Warn($"{attempts} times, {restResponse.Content}");
                             continue;
                     }
-                    
+
                     if (restResponse.ErrorMessage != null &&
                         restResponse.ErrorMessage.Contains(
                             "An error occurred while sending the request. The response ended prematurely."))
