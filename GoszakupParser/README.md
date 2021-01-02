@@ -3,19 +3,19 @@
 
 ## Проект включает в себя парсеры:
 ### Контрагенты:
-* Парсер всех участников госзакупа (*Participant*)
-* Парсер недобросовестных участников госзакупа (*Unscrupulous*)
-* Парсер руководителей (*Director*)
+* Parser of all goszakup participants (*Participant*)
+* Parser of unscrupulous goszakup participants (*Unscrupulous*)
+* Directors parser (*Director*)
 ### Тендера:
-* Парсер тендеров (*Tender*)
-* Парсер договоров (*Contract*)
-* Парсер документации тендеров (*TenderDocumentation*)
+* Tenders parser (*Tender*)
+* Contracts parser (*Contract*)
+* Parser of tenders documentation (*TenderDocumentation*)
 
 ## Проект включает в себя загрузчики:
 ### Тендера:
-* Загрузчик документации объявлений (*Announcement*)
-* Загрузчик документации лотов (*Lot*)
-* Загрузчик документации договоров (*Contract*)
+* Downloader of announcement documentations (*Announcement*)
+* Downloader of lot documentations(*Lot*)
+* Downloader of contract documentations (*Contract*)
 
 
 ## Авторы
