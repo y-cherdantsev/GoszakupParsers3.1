@@ -2,7 +2,7 @@
 # Goszakup Parsers 3.1
 
 ## Решение включает в себя проекты:
-* **Goszakup Parser** - парсинг данных с ресурса [goszakup](https://www.goszakup.gov.kz)
+* **Goszakup Parser** - parser of [goszakup](https://www.goszakup.gov.kz) source
 
 
 ## Авторы
