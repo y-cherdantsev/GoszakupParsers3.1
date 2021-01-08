@@ -5,6 +5,6 @@
 * **Goszakup Parser** - parser of [goszakup](https://www.goszakup.gov.kz) source
 
 
-## Авторы
+## Authors
 
 * **Yevgeniy Cherdantsev** - *Initial work* - [github](https://github.com/y-cherdantsev) - [21090](http://192.168.1.75:7990/users/e.cherdancev)

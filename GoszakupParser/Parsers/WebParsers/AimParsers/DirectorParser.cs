@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Linq;
-using System.Threading;
 using AngleSharp.Html.Parser;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts;
