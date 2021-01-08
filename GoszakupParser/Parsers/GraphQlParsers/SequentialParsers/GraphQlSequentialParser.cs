@@ -103,7 +103,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e, $"LastId:{_lastId}");
+                    Logger.Error(e, $"LastId:{_lastId}; {e.Message}");
                 }
             }
 
