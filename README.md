@@ -1,6 +1,7 @@
 ![alternativetext](./Resources/goszakup_logo.png)
 # Goszakup Parsers 3.1
 
+
 ## Solution includes projects:
 * **Goszakup Parser** - parser of [goszakup](https://www.goszakup.gov.kz) source
 
