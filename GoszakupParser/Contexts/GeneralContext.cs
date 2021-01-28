@@ -14,7 +14,7 @@ namespace GoszakupParser.Contexts
     public class GeneralContext<TModel> : DbContext where TModel : BaseModel, new()
     {
         /// <summary>
-        /// 
+        /// Connection String
         /// </summary>
         private string ConnectionString { get; }
 
