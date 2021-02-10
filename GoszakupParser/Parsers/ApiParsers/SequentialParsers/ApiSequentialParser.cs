@@ -46,7 +46,7 @@ namespace GoszakupParser.Parsers.ApiParsers.SequentialParsers
             while (true)
             {
                 // Gets json response
-                var response = GetApiPageResponse(Url).Result;
+                var response = await GetApiPageResponse(Url);
 
                 try
                 {
