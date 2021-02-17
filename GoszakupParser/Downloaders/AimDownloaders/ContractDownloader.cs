@@ -27,8 +27,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             contractContext.ChangeTracker.AutoDetectChangesEnabled = false;
             var aims = contractContext.Contracts
                 .Where(x => x.SourceId == 2 && x.DocLocation == null && x.DocLink != null)
-                .OrderBy(r => Guid.NewGuid())
-                .Take(100000)
+                .Take(300000)
                 .Select(x => new DownloadAim {Id = x.Id, Link = x.DocLink, Name = x.DocName})
                 .ToList();
             return aims;
