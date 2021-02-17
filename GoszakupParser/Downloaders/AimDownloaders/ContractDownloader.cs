@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoszakupParser.Contexts.ProductionContexts;
@@ -26,6 +27,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             contractContext.ChangeTracker.AutoDetectChangesEnabled = false;
             var aims = contractContext.Contracts
                 .Where(x => x.SourceId == 2 && x.DocLocation == null && x.DocLink != null)
+                .OrderBy(x => new Random().Next())
                 .Take(100000)
                 .Select(x => new DownloadAim {Id = x.Id, Link = x.DocLink, Name = x.DocName})
                 .ToList();
