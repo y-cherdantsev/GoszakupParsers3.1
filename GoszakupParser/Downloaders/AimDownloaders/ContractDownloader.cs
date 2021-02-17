@@ -28,6 +28,7 @@ namespace GoszakupParser.Downloaders.AimDownloaders
             var aims = contractContext.Contracts
                 .Where(x => x.SourceId == 2 && x.DocLocation == null && x.DocLink != null)
                 .Take(300000)
+                .Skip(50000)
                 .Select(x => new DownloadAim {Id = x.Id, Link = x.DocLink, Name = x.DocName})
                 .ToList();
             return aims;
