@@ -1,38 +1,40 @@
 /*
-@licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2019 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of version 2 of the GNU General Public License as published by
-the Free Software Foundation
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
   [ "GoszakupParser", "index.html", [
     [ "README", "d3/dcc/md__r_e_a_d_m_e.html", [
       [ "Goszakup Parser", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md0", [
-        [ "Проект включает в себя парсеры:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
-          [ "Контрагенты:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ],
-          [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ]
+        [ "Project includes parsers:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
+          [ "Counterparties:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md2", null ],
+          [ "Tenders:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md3", null ]
         ] ],
-        [ "Проект включает в себя загрузчики:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md4", [
-          [ "Тендера:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md5", null ]
+        [ "Project includes downloaders:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md4", [
+          [ "Tenders:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md5", null ]
         ] ],
-        [ "Авторы", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md6", null ]
+        [ "Authors", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md6", null ]
       ] ]
     ] ],
     [ "Список задач", "dd/da0/todo.html", null ],
@@ -56,8 +58,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html#ad94c63789c2e361152a82650df08e128",
-"dc/d97/class_goszakup_parser_1_1_models_1_1_dtos_1_1_contract_dto_1_1_contract_unit_dto_1_1_contract_unit_plan_dto.html#a1b0d4337a70f62ce54f459e704b72745"
+"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html#a33b7ffa1649e686b6b7a3182c1f5ae7e",
+"da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#af91ef8550c13c69325386784373c7b23"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

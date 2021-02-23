@@ -9,5 +9,6 @@ var namespace_goszakup_parser_1_1_models_1_1_parsing_models =
     [ "LotGoszakup", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup" ],
     [ "ParticipantGoszakup", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup.html", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup" ],
     [ "PlanGoszakup", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup" ],
+    [ "TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup" ],
     [ "UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup" ]
 ];

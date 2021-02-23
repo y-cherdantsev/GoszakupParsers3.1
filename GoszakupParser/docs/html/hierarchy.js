@@ -26,12 +26,14 @@ var hierarchy =
       [ "GoszakupParser.Contexts.GeneralContext< TModel >", "d0/da3/class_goszakup_parser_1_1_contexts_1_1_general_context.html", null ],
       [ "GoszakupParser.Contexts.ParsingContexts.ParsingContractContext", "de/d9b/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_contract_context.html", null ],
       [ "GoszakupParser.Contexts.ParsingContexts.ParsingTenderContext", "dd/d65/class_goszakup_parser_1_1_contexts_1_1_parsing_contexts_1_1_parsing_tender_context.html", null ],
+      [ "GoszakupParser.Contexts.ProductionContexts.ProductionContractContext", "dc/de3/class_goszakup_parser_1_1_contexts_1_1_production_contexts_1_1_production_contract_context.html", null ],
       [ "GoszakupParser.Contexts.ProductionContexts.ProductionTenderContext", "db/de4/class_goszakup_parser_1_1_contexts_1_1_production_contexts_1_1_production_tender_context.html", null ]
     ] ],
     [ "GoszakupParser.Downloaders.AimDownloaders.DownloadAim", "d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html", null ],
     [ "GoszakupParser.Downloaders.Downloader", "de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html", [
       [ "GoszakupParser.Downloaders.AimDownloaders.AimDownloader", "df/dd1/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_aim_downloader.html", [
         [ "GoszakupParser.Downloaders.AimDownloaders.AnnouncementDownloader", "d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html", null ],
+        [ "GoszakupParser.Downloaders.AimDownloaders.ContractDownloader", "d3/ddc/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_contract_downloader.html", null ],
         [ "GoszakupParser.Downloaders.AimDownloaders.LotDownloader", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html", null ]
       ] ]
     ] ],
@@ -55,13 +57,15 @@ var hierarchy =
     [ "GoszakupParser.Models.ProductionModels.LotDocumentationWeb", "d2/d59/class_goszakup_parser_1_1_models_1_1_production_models_1_1_lot_documentation_web.html", null ],
     [ "GoszakupParser.Models.ParsingModels.LotFileGoszakup", "d1/d48/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_file_goszakup.html", null ],
     [ "GoszakupParser.Models.ParsingModels.LotGoszakup", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html", null ],
-    [ "Model", null, [
+    [ "DbLoggerCategory.Model", null, [
       [ "GoszakupParser.Models.BaseModel", "dd/d30/class_goszakup_parser_1_1_models_1_1_base_model.html", [
         [ "GoszakupParser.Models.ParserMonitoring", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html", null ],
         [ "GoszakupParser.Models.ParsingModels.DirectorGoszakup", "d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.ParticipantGoszakup", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup.html", null ],
+        [ "GoszakupParser.Models.ParsingModels.TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", null ],
         [ "GoszakupParser.Models.ProductionModels.AdataAnnouncementWeb", "d9/d6f/class_goszakup_parser_1_1_models_1_1_production_models_1_1_adata_announcement_web.html", null ],
+        [ "GoszakupParser.Models.ProductionModels.AdataContractWeb", "d3/d84/class_goszakup_parser_1_1_models_1_1_production_models_1_1_adata_contract_web.html", null ],
         [ "GoszakupParser.Models.ProductionModels.AdataLotWeb", "d9/d37/class_goszakup_parser_1_1_models_1_1_production_models_1_1_adata_lot_web.html", null ],
         [ "GoszakupParser.Models.ProductionModels.ParticipantGoszakupWeb", "dd/d23/class_goszakup_parser_1_1_models_1_1_production_models_1_1_participant_goszakup_web.html", null ],
         [ "GoszakupParser.Models.ProductionModels.StatusWeb", "db/db0/class_goszakup_parser_1_1_models_1_1_production_models_1_1_status_web.html", null ],
@@ -85,6 +89,7 @@ var hierarchy =
     [ "GoszakupParser.Models.Dtos.ParticipantDto", "d8/d0d/class_goszakup_parser_1_1_models_1_1_dtos_1_1_participant_dto.html", null ],
     [ "GoszakupParser.Models.ParsingModels.PlanGoszakup", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html", null ],
     [ "GoszakupParser.Program", "d5/d32/class_goszakup_parser_1_1_program.html", null ],
+    [ "GoszakupParser.Models.Dtos.TenderDocumentDto", "d9/df9/class_goszakup_parser_1_1_models_1_1_dtos_1_1_tender_document_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto", "d4/d99/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto.TrdBuyFileDto", "d0/dae/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto_1_1_trd_buy_file_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto.TrdBuyLotDto", "d1/d4a/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto_1_1_trd_buy_lot_dto.html", null ],
@@ -94,5 +99,8 @@ var hierarchy =
     [ "GoszakupParser.Models.Dtos.UnscrupulousDto", "d8/dd1/class_goszakup_parser_1_1_models_1_1_dtos_1_1_unscrupulous_dto.html", null ],
     [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< DirectorGoszakup >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", [
       [ "GoszakupParser.Parsers.WebParsers.AimParsers.DirectorParser", "db/d5f/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_director_parser.html", null ]
+    ] ],
+    [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< TenderDocumentGoszakup >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", [
+      [ "GoszakupParser.Parsers.WebParsers.AimParsers.TenderDocumentationParser", "d2/d78/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_tender_documentation_parser.html", null ]
     ] ]
 ];
