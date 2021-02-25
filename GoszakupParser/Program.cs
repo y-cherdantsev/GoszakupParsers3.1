@@ -22,7 +22,7 @@ namespace GoszakupParser
         /// Enter point
         /// </summary>
         /// <param name="args">Command Line arguments</param>
-        private static async Task Main(string[] args)
+        private static Task Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
