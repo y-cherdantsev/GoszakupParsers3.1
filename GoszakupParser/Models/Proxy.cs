@@ -16,7 +16,7 @@ namespace GoszakupParser.Models
     /// <summary>
     /// proxies Parsing DB table field
     /// </summary>
-    [Table("proxies_parsing_fl", Schema = "monitoring")]
+    [Table("proxies", Schema = "monitoring")]
     public sealed class Proxy : BaseModel
     {
         public override void BuildModel(ModelBuilder modelBuilder) =>
