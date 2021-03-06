@@ -78,5 +78,11 @@ namespace GoszakupParser.Parsers.WebParsers.SequentialParsers
         /// <param name="page">Page number that will be parsed</param>
         /// <param name="proxy">Proxy for parsing</param>
         protected abstract Task ParsePage(int page, WebProxy proxy);
+
+        /// <inheritdoc />
+        protected override string LogMessage(object obj = null)
+        {
+            return $"Truing to parse {(int) obj!} page";
+        }
     }
 }

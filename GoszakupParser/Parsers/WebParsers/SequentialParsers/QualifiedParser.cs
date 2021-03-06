@@ -31,6 +31,7 @@ namespace GoszakupParser.Parsers.WebParsers.SequentialParsers
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
         protected override async Task ParsePage(int page, WebProxy proxy)
         {
+            LogMessage(page);
             var pageContent = string.Empty;
 
             for (var i = 0; i < 5; i++)
@@ -53,8 +54,6 @@ namespace GoszakupParser.Parsers.WebParsers.SequentialParsers
                     new GeneralContext<QualifiedGoszakup>(Configuration.ParsingDbConnectionString);
                 await ProcessObject(qualifiedGoszakupElement, qualifiedGoszakupContext);
             }
-
-            Logger.Trace($"{page} page has parsed");
         }
 
         /// <summary>
