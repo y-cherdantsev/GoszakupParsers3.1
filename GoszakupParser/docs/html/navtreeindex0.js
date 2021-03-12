@@ -11,6 +11,7 @@ var NAVTREEINDEX0 =
 "d0/d14/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_unit_goszakup.html#a820448b204669584fa70d96ca8163fa7":[3,0,0,2,1,3,5],
 "d0/d14/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_unit_goszakup.html#ae2e50bd87703f8511dd70fd84be3adec":[3,0,0,2,1,3,4],
 "d0/d14/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_unit_goszakup.html#aee65e79456e6e009e05b17e82221b9ee":[3,0,0,2,1,3,3],
+"d0/d53/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_tender_result_downloader.html":[3,0,0,1,0,5],
 "d0/d63/class_goszakup_parser_1_1_actions.html":[3,0,0,5],
 "d0/d63/class_goszakup_parser_1_1_actions.html#a0df215b7f02647f6351cc4d28ec077e0":[3,0,0,5,2],
 "d0/d63/class_goszakup_parser_1_1_actions.html#aa0f1dfcfea3c0dfea722e75af2dc80af":[3,0,0,5,1],
@@ -66,9 +67,10 @@ var NAVTREEINDEX0 =
 "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html#ac8d5554f66826e671c38804de1a1ba22":[3,0,0,3,1,0,1,1],
 "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html#ad2c91fb60bfb7ecccb766487dd947568":[3,0,0,3,1,0,1,0],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html":[3,0,0,3,1,0,2],
-"d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a02dfac1dc95b21aa294ff03295d6b71f":[3,0,0,3,1,0,2,5],
+"d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a02dfac1dc95b21aa294ff03295d6b71f":[3,0,0,3,1,0,2,6],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a1f592514fbd3231b4379ba43801f378a":[3,0,0,3,1,0,2,1],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a4847e472d1163beed68ca8da3ad009ae":[3,0,0,3,1,0,2,4],
+"d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a4d9713dfa45208f21c00e4ed6c99bd7b":[3,0,0,3,1,0,2,5],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a50895a1c028ce8537d42ec2fdea7f2c1":[3,0,0,3,1,0,2,3],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#a7a81b92e3ba2e19c045739d41f20edc5":[3,0,0,3,1,0,2,2],
 "d2/d12/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_tender_parser.html#aa30fb86a8cbdfefe59c59f86ea9e7a7b":[3,0,0,3,1,0,2,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#a3fa1ba774eff40985a51d23c3077a0a1":[3,0,0,2,1,4,1],
 "d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#a40036217ab0db4a6314c49119530fb50":[3,0,0,2,1,4,3],
 "d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#a56082c77fca89b3a7b9a086a21bc5863":[3,0,0,2,1,4,4],
-"d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#ad73a370627eb10ae2a3d10693b2e7358":[3,0,0,2,1,4,0],
-"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html":[3,0,0,2,1,1],
-"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html#a0470c756dd81d9b67ca9a880dd675d2e":[3,0,0,2,1,1,4]
+"d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#ad73a370627eb10ae2a3d10693b2e7358":[3,0,0,2,1,4,0]
 };

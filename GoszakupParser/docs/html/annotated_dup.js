@@ -18,7 +18,8 @@ var annotated_dup =
           [ "DownloadAim", "d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim.html", "d2/d99/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_download_aim" ],
           [ "AnnouncementDownloader", "d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader.html", "d2/dad/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_announcement_downloader" ],
           [ "ContractDownloader", "d3/ddc/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_contract_downloader.html", "d3/ddc/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_contract_downloader" ],
-          [ "LotDownloader", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader" ]
+          [ "LotDownloader", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader.html", "dd/dc7/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_lot_downloader" ],
+          [ "TenderResultDownloader", "d0/d53/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_tender_result_downloader.html", null ]
         ] ],
         [ "Downloader", "de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader.html", "de/dc7/class_goszakup_parser_1_1_downloaders_1_1_downloader" ]
       ] ],
@@ -42,6 +43,7 @@ var annotated_dup =
           [ "LotGoszakup", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup.html", "d2/dc5/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_lot_goszakup" ],
           [ "ParticipantGoszakup", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup.html", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup" ],
           [ "PlanGoszakup", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup" ],
+          [ "QualifiedGoszakup", "d9/daa/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_qualified_goszakup.html", "d9/daa/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_qualified_goszakup" ],
           [ "TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup" ],
           [ "UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup" ]
         ] ],
@@ -81,6 +83,10 @@ var annotated_dup =
             [ "DirectorParser", "db/d5f/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_director_parser.html", "db/d5f/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_director_parser" ],
             [ "TenderDocumentationParser", "d2/d78/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_tender_documentation_parser.html", "d2/d78/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_tender_documentation_parser" ],
             [ "WebAimParser", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser" ]
+          ] ],
+          [ "SequentialParsers", "df/df0/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers.html", [
+            [ "QualifiedParser", "d5/d88/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_qualified_parser.html", "d5/d88/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_qualified_parser" ],
+            [ "WebSequentialParser", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser.html", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser" ]
           ] ],
           [ "WebParser", "da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html", "da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser" ]
         ] ],

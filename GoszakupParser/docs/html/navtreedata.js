@@ -58,8 +58,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html#a33b7ffa1649e686b6b7a3182c1f5ae7e",
-"da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#af91ef8550c13c69325386784373c7b23"
+"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html",
+"da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ae8b0cbfa17159ab8bf687c84f9022b8d"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

@@ -112,6 +112,9 @@ override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <tr class="memitem:a9c500f1a4261e7c7d30ea3fbf5ba2f5d"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a9c500f1a4261e7c7d30ea3fbf5ba2f5d">ProceedParsing</a> (string parserName)</td></tr>
 <tr class="memdesc:a9c500f1a4261e7c7d30ea3fbf5ba2f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generating object of given parser and starts it  <a href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a9c500f1a4261e7c7d30ea3fbf5ba2f5d">Подробнее...</a><br /></td></tr>
 <tr class="separator:a9c500f1a4261e7c7d30ea3fbf5ba2f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7209bcd57e790274497bb741a586bc01"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a7209bcd57e790274497bb741a586bc01">Rollback</a> (string parserName)</td></tr>
+<tr class="memdesc:a7209bcd57e790274497bb741a586bc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncating tables and setting parsed field to 'false'  <a href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a7209bcd57e790274497bb741a586bc01">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7209bcd57e790274497bb741a586bc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86be85833abe93b2b90e7ae4383643dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a86be85833abe93b2b90e7ae4383643dd">IsAvailable</a> (string parserName)</td></tr>
 <tr class="memdesc:a86be85833abe93b2b90e7ae4383643dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if parser available based on current system state and given values  <a href="../../da/df5/class_goszakup_parser_1_1_services_1_1_parser_service.html#a86be85833abe93b2b90e7ae4383643dd">Подробнее...</a><br /></td></tr>
 <tr class="separator:a86be85833abe93b2b90e7ae4383643dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -343,6 +346,40 @@ override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div><div class="memdoc">
 
 <p>Generating object of given parser and starts it </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parserName</td><td>Parser name</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7209bcd57e790274497bb741a586bc01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7209bcd57e790274497bb741a586bc01">&#9670;&nbsp;</a></span>Rollback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task GoszakupParser.Services.ParserService.Rollback </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>parserName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Truncating tables and setting parsed field to 'false' </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">parserName</td><td>Parser name</td></tr>

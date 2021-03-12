@@ -1,0 +1,5 @@
+var namespace_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers =
+[
+    [ "QualifiedParser", "d5/d88/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_qualified_parser.html", "d5/d88/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_qualified_parser" ],
+    [ "WebSequentialParser", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser.html", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser" ]
+];

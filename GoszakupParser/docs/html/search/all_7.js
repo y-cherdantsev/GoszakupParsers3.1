@@ -27,7 +27,7 @@ var searchData=
   ['parsingmodels_82',['ParsingModels',['../d6/df4/namespace_goszakup_parser_1_1_models_1_1_parsing_models.html',1,'GoszakupParser::Models']]],
   ['productioncontexts_83',['ProductionContexts',['../df/d65/namespace_goszakup_parser_1_1_contexts_1_1_production_contexts.html',1,'GoszakupParser::Contexts']]],
   ['productionmodels_84',['ProductionModels',['../d4/d26/namespace_goszakup_parser_1_1_models_1_1_production_models.html',1,'GoszakupParser::Models']]],
-  ['sequentialparsers_85',['SequentialParsers',['../d8/d87/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers'],['../d1/d82/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.GraphQlParsers.SequentialParsers']]],
+  ['sequentialparsers_85',['SequentialParsers',['../d8/d87/namespace_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.ApiParsers.SequentialParsers'],['../d1/d82/namespace_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.GraphQlParsers.SequentialParsers'],['../df/df0/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers.html',1,'GoszakupParser.Parsers.WebParsers.SequentialParsers']]],
   ['services_86',['Services',['../d1/d04/namespace_goszakup_parser_1_1_services.html',1,'GoszakupParser']]],
   ['webparsers_87',['WebParsers',['../d4/db4/namespace_goszakup_parser_1_1_parsers_1_1_web_parsers.html',1,'GoszakupParser::Parsers']]]
 ];
