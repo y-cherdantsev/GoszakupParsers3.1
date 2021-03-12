@@ -55,9 +55,10 @@ namespace GoszakupParser
             Configuration.AuthToken = configuration["AuthToken"];
             Configuration.Parsers = configuration.GetSection("Parsers").Get<List<Configuration.ParserSettings>>();
             Configuration.Downloaders =
+                // ReSharper disable once StringLiteralTypo
                 configuration.GetSection("Downloaders").Get<List<Configuration.DownloaderSettings>>();
-            Configuration.ParserMonitoringNames =
-                configuration.GetSection("ParserMonitoringNames").Get<Dictionary<string, string>>();
+            Configuration.ParserMonitoringMappings =
+                configuration.GetSection("ParserMonitoringMappings").Get<Dictionary<string, string>>();
             Configuration.ParsingDbConnectionString = configuration.GetConnectionString("Parsing");
             Configuration.ProductionDbConnectionString = configuration.GetConnectionString("Production");
 

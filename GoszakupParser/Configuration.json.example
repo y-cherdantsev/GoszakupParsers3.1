@@ -3,7 +3,7 @@
   "ConnectionStrings":{
     "Production" : "Server = 192.168.1.5; Database = dbname; Port=5432; User ID = admin; Password = passwd; Integrated Security=true; Pooling=true;",
   },
-  "ParserMonitoringNames": {
+  "ParserMonitoringMappings": {
     "Participant": "ParticipantGoszakup",
     "Unscrupulous": "UnscrupulousGoszakup",
   },
