@@ -105,5 +105,10 @@ namespace GoszakupParser.Parsers
         /// </summary>
         /// <returns>string - message</returns>
         protected virtual string LogMessage(object obj = null) => $"Left:[{Total}]";
+
+        /// <summary>
+        /// Truncating parsing tables
+        /// </summary>
+        public abstract Task TruncateParsingTables();
     }
 }

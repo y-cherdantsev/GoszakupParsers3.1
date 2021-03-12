@@ -31,7 +31,6 @@ namespace GoszakupParser.Parsers.WebParsers
         {
         }
 
-
         /// <inheritdoc />
         public abstract override Task ParseAsync();
 
@@ -102,6 +101,16 @@ namespace GoszakupParser.Parsers.WebParsers
             {
                 return null;
             }
+        }
+
+        /// <inheritdoc />
+        public override async Task TruncateParsingTables()
+        {
+            var ctx = new GeneralContext<TModel>(Configuration.ParsingDbConnectionString);
+            var entityType = ctx.Model.FindEntityType(typeof(TModel));
+            var schema = entityType.GetSchema();
+            var tableName = entityType.GetTableName();
+            await ctx.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {schema}.{tableName} RESTART IDENTITY CASCADE");
         }
     }
 }

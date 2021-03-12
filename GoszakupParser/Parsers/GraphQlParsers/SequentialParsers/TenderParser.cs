@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using GoszakupParser.Models.Dtos;
+using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Contexts.ParsingContexts;
 
@@ -44,12 +45,12 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         {
             await using var ctx = new ParsingTenderContext();
             ctx.ChangeTracker.AutoDetectChangesEnabled = false;
-            
+
             long.TryParse(dto.orgBin, out var orgBin);
             DateTime.TryParse(dto.startDate, out var startDate);
             DateTime.TryParse(dto.endDate, out var endDate);
             DateTime.TryParse(dto.publishDate, out var publishDate);
-            
+
             var announcement = new AnnouncementGoszakup
             {
                 BuyStatus = dto.RefBuyStatus?.nameRu,
@@ -65,7 +66,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                 TradeMethod = dto.RefTradeMethods?.nameRu,
                 TypeTrade = dto.RefTypeTrade?.nameRu
             };
-            
+
             ctx.AnnouncementsGoszakup.Add(announcement);
             await ctx.SaveChangesAsync();
 
@@ -144,5 +145,18 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
         /// <inheritdoc />
         protected override string LogMessage(object obj = null) =>
             $"Left: {Total}; Parsing {(DateTime.Now - DateTime.Parse(((List<TrdBuyDto>) obj)!.OrderBy(x => x.publishDate).Last().publishDate)).Days} day";
+
+        /// <inheritdoc />
+        /// <inheritdoc />
+        public override async Task TruncateParsingTables()
+        {
+            await using var ctx = new ParsingTenderContext();
+
+            // Truncating ContractGoszakup Model Table
+            var entityType = ctx.Model.FindEntityType(typeof(AnnouncementGoszakup));
+            var schema = entityType.GetSchema();
+            var tableName = entityType.GetTableName();
+            await ctx.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {schema}.{tableName} RESTART IDENTITY CASCADE");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Linq;
 using GoszakupParser.Models;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace GoszakupParser.Parsers.WebParsers.AimParsers
             Aims = LoadAims();
             Total = Aims.Count;
         }
-
+        
         /// <summary>
         /// Loads aims from the (Mostly from DB, but also can be file or smt. similar);
         /// </summary>

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using GoszakupParser.Models.Dtos;
+using Microsoft.EntityFrameworkCore;
 using GoszakupParser.Models.ParsingModels;
 using GoszakupParser.Contexts.ParsingContexts;
 
@@ -100,7 +101,7 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     await ctx.SaveChangesAsync();
 
                     if (dtoContractUnit.Plans == null) continue;
-                    
+
                     long.TryParse(dtoContractUnit.Plans.subjectBiin, out var planSupplierBiin);
                     DateTime.TryParse(dtoContractUnit.Plans.PlanActs?.dateApproved, out var planActDateApproved);
                     DateTime.TryParse(dtoContractUnit.Plans.dateCreate, out var planDateCreate);
@@ -131,6 +132,18 @@ namespace GoszakupParser.Parsers.GraphQlParsers.SequentialParsers
                     await ctx.PlanGoszakup.AddAsync(plan);
                     await ctx.SaveChangesAsync();
                 }
+        }
+
+        /// <inheritdoc />
+        public override async Task TruncateParsingTables()
+        {
+            await using var ctx = new ParsingContractContext();
+
+            // Truncating ContractGoszakup Model Table
+            var entityType = ctx.Model.FindEntityType(typeof(ContractGoszakup));
+            var schema = entityType.GetSchema();
+            var tableName = entityType.GetTableName();
+            await ctx.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {schema}.{tableName} RESTART IDENTITY CASCADE");
         }
     }
 }
