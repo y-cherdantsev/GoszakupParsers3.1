@@ -231,5 +231,15 @@ namespace GoszakupParser.Parsers.ApiParsers
 
             throw new Exception($"Attempts exceeded their maximum({allowedAttempts}) value");
         }
+
+        /// <inheritdoc />
+        public override async Task TruncateParsingTables()
+        {
+            var ctx = new GeneralContext<TResultModel>(Configuration.ParsingDbConnectionString);
+            var entityType = ctx.Model.FindEntityType(typeof(TResultModel));
+            var schema = entityType.GetSchema();
+            var tableName = entityType.GetTableName();
+            await ctx.Database.ExecuteSqlRawAsync($"TRUNCATE TABLE {schema}.{tableName} RESTART IDENTITY CASCADE");
+        }
     }
 }

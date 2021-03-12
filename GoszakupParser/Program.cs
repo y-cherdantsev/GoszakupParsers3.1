@@ -5,7 +5,6 @@ using NLog.Config;
 using System.Text;
 using CommandLine;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 

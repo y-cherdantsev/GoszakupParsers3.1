@@ -46,6 +46,7 @@ namespace GoszakupParser.Services
                 catch (Exception e)
                 {
                     Logger.Error(e);
+                    await Rollback(parserName);
                 }
             }
         }
@@ -100,6 +101,44 @@ namespace GoszakupParser.Services
 
             // Changes 'parsed' field value in monitoring table to true
             await ChangeParsedField(parserName, true);
+        }
+
+        /// <summary>
+        /// Truncating tables and setting parsed field to 'false'
+        /// </summary>
+        /// <param name="parserName">Parser name</param>
+        private async Task Rollback(string parserName)
+        {
+            await ChangeParsedField(parserName, false);
+
+            // Get class for parser
+            var parsingClass = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .FirstOrDefault(t => t.Name == parserName + "Parser");
+
+            // Get parser configuration
+            var parserConfiguration = Configuration.Parsers.FirstOrDefault(x => x.Name.Equals(parserName));
+
+            // Generating list of arguments for a current parser
+            var args = new List<object>();
+
+            // ReSharper disable once PossibleNullReferenceException
+            foreach (var parameterInfo in parsingClass.GetConstructors()[0].GetParameters())
+                switch (parameterInfo.Name)
+                {
+                    case "parserSettings":
+                        args.Add(parserConfiguration);
+                        break;
+                }
+
+
+            // ReSharper disable once PossibleNullReferenceException (Already checked)
+            // Creating instance of a parser and truncating its tables
+            var parser = (Parser) Activator.CreateInstance(parsingClass, args.ToArray());
+
+            await parser!.TruncateParsingTables();
+            Logger.Info("Changes has been rolled back");
         }
 
         /// <summary>
