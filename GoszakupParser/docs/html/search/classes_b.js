@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['webaimparser_254',['WebAimParser',['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html',1,'GoszakupParser::Parsers::WebParsers::AimParsers']]],
-  ['webaimparser_3c_20directorgoszakup_20_3e_255',['WebAimParser&lt; DirectorGoszakup &gt;',['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html',1,'GoszakupParser::Parsers::WebParsers::AimParsers']]],
-  ['webaimparser_3c_20tenderdocumentgoszakup_20_3e_256',['WebAimParser&lt; TenderDocumentGoszakup &gt;',['../d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html',1,'GoszakupParser::Parsers::WebParsers::AimParsers']]],
-  ['webparser_257',['WebParser',['../da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html',1,'GoszakupParser::Parsers::WebParsers']]]
+  ['unscrupulousdto_262',['UnscrupulousDto',['../d8/dd1/class_goszakup_parser_1_1_models_1_1_dtos_1_1_unscrupulous_dto.html',1,'GoszakupParser::Models::Dtos']]],
+  ['unscrupulousgoszakup_263',['UnscrupulousGoszakup',['../da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html',1,'GoszakupParser::Models::ParsingModels']]],
+  ['unscrupulousgoszakupweb_264',['UnscrupulousGoszakupWeb',['../d1/d15/class_goszakup_parser_1_1_models_1_1_production_models_1_1_unscrupulous_goszakup_web.html',1,'GoszakupParser::Models::ProductionModels']]],
+  ['unscrupulousparser_265',['UnscrupulousParser',['../db/d72/class_goszakup_parser_1_1_parsers_1_1_api_parsers_1_1_sequential_parsers_1_1_unscrupulous_parser.html',1,'GoszakupParser::Parsers::ApiParsers::SequentialParsers']]]
 ];

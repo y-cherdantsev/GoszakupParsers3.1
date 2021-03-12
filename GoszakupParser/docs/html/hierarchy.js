@@ -62,6 +62,7 @@ var hierarchy =
         [ "GoszakupParser.Models.ParserMonitoring", "d4/d2a/class_goszakup_parser_1_1_models_1_1_parser_monitoring.html", null ],
         [ "GoszakupParser.Models.ParsingModels.DirectorGoszakup", "d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.ParticipantGoszakup", "d4/d79/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_participant_goszakup.html", null ],
+        [ "GoszakupParser.Models.ParsingModels.QualifiedGoszakup", "d9/daa/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_qualified_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.TenderDocumentGoszakup", "d9/df1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_tender_document_goszakup.html", null ],
         [ "GoszakupParser.Models.ParsingModels.UnscrupulousGoszakup", "da/da1/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_unscrupulous_goszakup.html", null ],
         [ "GoszakupParser.Models.ProductionModels.AdataAnnouncementWeb", "d9/d6f/class_goszakup_parser_1_1_models_1_1_production_models_1_1_adata_announcement_web.html", null ],
@@ -82,7 +83,8 @@ var hierarchy =
         [ "GoszakupParser.Parsers.GraphQlParsers.SequentialParsers.GraphQlSequentialParser< TDto >", "d1/d92/class_goszakup_parser_1_1_parsers_1_1_graph_ql_parsers_1_1_sequential_parsers_1_1_graph_ql_sequential_parser.html", null ]
       ] ],
       [ "GoszakupParser.Parsers.WebParsers.WebParser< TModel >", "da/d69/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_web_parser.html", [
-        [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< TModel >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", null ]
+        [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< TModel >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", null ],
+        [ "GoszakupParser.Parsers.WebParsers.SequentialParsers.WebSequentialParser< TModel >", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser.html", null ]
       ] ]
     ] ],
     [ "GoszakupParser.Configuration.ParserSettings", "d4/d3e/class_goszakup_parser_1_1_configuration_1_1_parser_settings.html", null ],
@@ -90,6 +92,7 @@ var hierarchy =
     [ "GoszakupParser.Models.ParsingModels.PlanGoszakup", "d5/d39/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_plan_goszakup.html", null ],
     [ "GoszakupParser.Program", "d5/d32/class_goszakup_parser_1_1_program.html", null ],
     [ "GoszakupParser.Models.Dtos.TenderDocumentDto", "d9/df9/class_goszakup_parser_1_1_models_1_1_dtos_1_1_tender_document_dto.html", null ],
+    [ "GoszakupParser.Downloaders.AimDownloaders.TenderResultDownloader", "d0/d53/class_goszakup_parser_1_1_downloaders_1_1_aim_downloaders_1_1_tender_result_downloader.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto", "d4/d99/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto.TrdBuyFileDto", "d0/dae/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto_1_1_trd_buy_file_dto.html", null ],
     [ "GoszakupParser.Models.Dtos.TrdBuyDto.TrdBuyLotDto", "d1/d4a/class_goszakup_parser_1_1_models_1_1_dtos_1_1_trd_buy_dto_1_1_trd_buy_lot_dto.html", null ],
@@ -102,5 +105,8 @@ var hierarchy =
     ] ],
     [ "GoszakupParser.Parsers.WebParsers.AimParsers.WebAimParser< TenderDocumentGoszakup >", "d7/db2/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_web_aim_parser.html", [
       [ "GoszakupParser.Parsers.WebParsers.AimParsers.TenderDocumentationParser", "d2/d78/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_aim_parsers_1_1_tender_documentation_parser.html", null ]
+    ] ],
+    [ "GoszakupParser.Parsers.WebParsers.SequentialParsers.WebSequentialParser< QualifiedGoszakup >", "d6/df6/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_web_sequential_parser.html", [
+      [ "GoszakupParser.Parsers.WebParsers.SequentialParsers.QualifiedParser", "d5/d88/class_goszakup_parser_1_1_parsers_1_1_web_parsers_1_1_sequential_parsers_1_1_qualified_parser.html", null ]
     ] ]
 ];
