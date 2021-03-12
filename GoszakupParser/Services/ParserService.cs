@@ -162,7 +162,7 @@ namespace GoszakupParser.Services
                 new GeneralContext<ParserMonitoring>(Configuration.ParsingDbConnectionString);
 
             // Check if parser exist in map dictionary
-            var existInDictionary = Configuration.ParserMonitoringNames.Keys
+            var existInDictionary = Configuration.ParserMonitoringMappings.Keys
                 .Any(x => x.Equals(parserName));
             if (!existInDictionary)
             {
@@ -172,7 +172,7 @@ namespace GoszakupParser.Services
 
             // Check if parser exist in monitoring table
             var existsInDatabase = parserMonitoringContext.Models
-                .Any(x => x.Name.Equals(Configuration.ParserMonitoringNames[parserName]));
+                .Any(x => x.Name.Equals(Configuration.ParserMonitoringMappings[parserName]));
             if (!existsInDatabase)
             {
                 Logger.Warn($"Parser '{parserName}' doesn't exist in database");
@@ -219,12 +219,12 @@ namespace GoszakupParser.Services
             // Check 'active' field in monitoring table
             var isActive = parserMonitoringContext.Models
                 .FirstOrDefault(x =>
-                    x.Name.Equals(Configuration.ParserMonitoringNames[parserName]
+                    x.Name.Equals(Configuration.ParserMonitoringMappings[parserName]
                     ) && x.Active) != null;
 
             if (!isActive)
             {
-                Logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' is not active");
+                Logger.Warn($"Parser '{Configuration.ParserMonitoringMappings[parserName]}' is not active");
                 return false;
             }
 
@@ -233,16 +233,16 @@ namespace GoszakupParser.Services
 
             // Check 'parsed' field in monitoring table
             var isParsed = parserMonitoringContext.Models
-                .FirstOrDefault(x => x.Name.Equals(Configuration.ParserMonitoringNames[parserName]))?.Parsed;
+                .FirstOrDefault(x => x.Name.Equals(Configuration.ParserMonitoringMappings[parserName]))?.Parsed;
 
             switch (isParsed)
             {
                 case true:
                     Logger.Warn(
-                        $"Parser '{Configuration.ParserMonitoringNames[parserName]}' hasn't been migrated yet");
+                        $"Parser '{Configuration.ParserMonitoringMappings[parserName]}' hasn't been migrated yet");
                     return false;
                 case null:
-                    Logger.Warn($"Parser '{Configuration.ParserMonitoringNames[parserName]}' now proceeding");
+                    Logger.Warn($"Parser '{Configuration.ParserMonitoringMappings[parserName]}' now proceeding");
                     return false;
             }
 
@@ -260,7 +260,7 @@ namespace GoszakupParser.Services
             var parserMonitoringContext = new GeneralContext<ParserMonitoring>(Configuration.ParsingDbConnectionString);
             var parsed =
                 parserMonitoringContext.Models.FirstOrDefault(x =>
-                    x.Name.Equals(Configuration.ParserMonitoringNames[parserName]));
+                    x.Name.Equals(Configuration.ParserMonitoringMappings[parserName]));
 
             // ReSharper disable PossibleNullReferenceException
             // Possible reason of null: field has been deleted from DB table while parsing has been proceeding
@@ -270,7 +270,7 @@ namespace GoszakupParser.Services
             // ReSharper restore PossibleNullReferenceException
             parserMonitoringContext.Models.Update(parsed);
             await parserMonitoringContext.SaveChangesAsync();
-            Logger.Info($"{Configuration.ParserMonitoringNames[parserName]} 'parsed' field now equals to '{flag}'"
+            Logger.Info($"{Configuration.ParserMonitoringMappings[parserName]} 'parsed' field now equals to '{flag}'"
                 .Replace("''", "'null'"));
             await parserMonitoringContext.DisposeAsync();
         }

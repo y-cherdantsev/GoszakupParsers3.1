@@ -34,7 +34,7 @@ namespace GoszakupParser
         /// <summary>
         /// Mapped parsers names into parsing DB titles
         /// </summary>
-        public static Dictionary<string, string> ParserMonitoringNames { get; set; }
+        public static Dictionary<string, string> ParserMonitoringMappings { get; set; }
 
         /// <summary>
         /// Parsing DB connection string

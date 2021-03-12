@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "GoszakupParser", "index.html", [
+    [ "SOS_README", "d4/d57/md_bin__release_netcoreapp3_1_win10_x64_publish__s_o_s__r_e_a_d_m_e.html", null ],
+    [ "SOS_README", "d3/d51/md_bin__release_netcoreapp3_1_win10_x64__s_o_s__r_e_a_d_m_e.html", null ],
     [ "README", "d3/dcc/md__r_e_a_d_m_e.html", [
       [ "Goszakup Parser", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md0", [
         [ "Project includes parsers:", "d3/dcc/md__r_e_a_d_m_e.html#autotoc_md1", [
@@ -58,8 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d4/dfb/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_announcement_goszakup.html",
-"da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#ae8b0cbfa17159ab8bf687c84f9022b8d"
+"d4/df0/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_director_goszakup.html#a56082c77fca89b3a7b9a086a21bc5863",
+"da/dbd/class_goszakup_parser_1_1_models_1_1_parsing_models_1_1_contract_goszakup.html#abb67ad2918a48da1f29d14b7e6361f07"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';
